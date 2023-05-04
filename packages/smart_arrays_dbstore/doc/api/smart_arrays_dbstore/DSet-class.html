@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the DSet class from the smart_arrays_dbstore library, for the Dart programming language.">
+  <title>DSet class - smart_arrays_dbstore library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_dbstore</a></li>
+    <li><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html">smart_arrays_dbstore</a></li>
+    <li class="self-crumb">DSet class</li>
+  </ol>
+  <div class="self-name">DSet</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_dbstore</a></li>
+      <li><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html">smart_arrays_dbstore</a></li>
+      <li class="self-crumb">DSet class</li>
+    </ol>
+    
+    <h5>smart_arrays_dbstore library</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html#classes">Classes</a></li>
+      <li><a href="smart_arrays_dbstore/DSAuditTrail-class.html">DSAuditTrail</a></li>
+      <li><a href="smart_arrays_dbstore/DSet-class.html">DSet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB-class.html">DSetDB</a></li>
+      <li><a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a></li>
+      <li><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></li>
+      <li><a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a></li>
+      <li><a href="smart_arrays_dbstore/UtilsJson-class.html">UtilsJson</a></li>
+    
+    
+    
+    
+    
+    
+      <li class="section-title"><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html#typedefs">Typedefs</a></li>
+      <li><a href="smart_arrays_dbstore/DSetInit.html">DSetInit</a></li>
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">DSet</span> class </h1></div>
+
+    <section class="desc markdown">
+      <p>The purpose of this class is to define a "dataset" <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> consisting of
+arrays of floating numbers and of metadata consisting of Strings.
+A entire <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> may be stored the browser area of the device's storage medium
+(e.g. disk) using the functionalities of <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>.</p>
+<p><a href="smart_arrays_dbstore/DSet-class.html">DSet</a> supports 1D and 2D datasets:</p><ul><li>
+<p>1D data: a 1D dataset may contain 1 or 2 1D arrays.
+The 2nd array, if not null may for example be used to represent the
+"imaginary" part of the data if <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> is to display complex data, or for
+any other purpose.
+A 1D dataset is created using the constructor <a href="smart_arrays_dbstore/DSet-class.html">DSet</a>.</p></li><li>
+<p>2D data: a 2D dataset must contain at least one 2D array (a matrix).
+Optionally additional matrices may be present which
+may be used, for example, for "imaginary" or "hypercomplex" data
+where the additional matrices are the imaginary parts, or other purposes.
+A 2D dataset is created using the constructor <a href="smart_arrays_dbstore/DSet/DSet.twoD.html">DSet..twoD</a>.</p></li><li>
+<p>Metadata: Each 1D or 2D dataset must contain metadata, i.e. information
+that provides String type information about the arrays.</p></li></ul>
+<p>The arrays and their metadata are called the "dataset components".</p>
+<p>Example: In NMR spectroscopy, datasets are 1D or 2D free induction decays
+and spectra. 1D spectra consist of: an array respresenting
+"real data", an array respresenting "imaginary data", and the "NMR parameters"
+which form the dataset's metadata.</p>
+<p>In addition a YData object has</p><ul><li>an audit trail <a href="smart_arrays_dbstore/DSet/audittrail.html">audittrail</a>, handled by class <a href="smart_arrays_dbstore/DSAuditTrail-class.html">DSAuditTrail</a></li><li>some other properties which are set during construction <a href="smart_arrays_dbstore/DSet/vmin.html">vmin</a>, ...</li><li>some properties that can be filled in by the user for special applications:
+<a href="smart_arrays_dbstore/DSet/compressedPos.html">compressedPos</a>, <a href="smart_arrays_dbstore/DSet/compressedNeg.html">compressedNeg</a>, <a href="smart_arrays_dbstore/DSet/projRows.html">projRows</a>, <a href="smart_arrays_dbstore/DSet/projCols.html">projCols</a>.
+In NMR, they can e.g. be used to hold compressed data (for large arrays),
+and to hold data projections.</li></ul>
+<p>Usage of this class: see <code>example.dart</code>.</p>
+    </section>
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="DSet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/DSet.html">DSet</a></span><span class="signature">(<span class="parameter" id="-param-values"><span class="type-annotation">Float64List</span> <span class="parameter-name">values</span>, </span> <span class="parameter" id="-param-valuesImag"><span class="type-annotation">Float64List</span> <span class="parameter-name">valuesImag</span>, </span> <span class="parameter" id="-param-meta"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">meta</span></span>)</span>
+        </dt>
+        <dd>
+          Creates a 1D <a href="smart_arrays_dbstore/DSet-class.html">DSet</a>. Argument descriptions see above. If <code>meta</code> is null,
+an empty Map is created.
+        </dd>
+        <dt id="DSet.twoD" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/DSet.twoD.html">DSet.twoD</a></span><span class="signature">(<span class="parameter" id="twoD-param-values2D"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span> <span class="parameter-name">values2D</span>, </span> <span class="parameter" id="twoD-param-values2DImag"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">values2DImag</span>, </span> <span class="parameter" id="twoD-param-meta"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">meta</span></span>)</span>
+        </dt>
+        <dd>
+          Creates a 2D <a href="smart_arrays_dbstore/DSet-class.html">DSet</a>. Argument descriptions see above. If <code>meta</code> is null,
+an empty Map is created.
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="audittrail" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/audittrail.html">audittrail</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span>         
+        </dt>
+        <dd>
+          The value of a _audittrail entry (which is defined to be a String) may
+also be a JSON String from a List or a Map.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="compressedNeg" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/compressedNeg.html">compressedNeg</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          Optional compressed version of 2D data (see pub package 'smart_arrays_compress'
+on how to compress a matrix)
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="compressedPos" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/compressedPos.html">compressedPos</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          Optional compressed version of 2D data (see pub package 'smart_arrays_compress'
+on how to compress a matrix)
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="dskey" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/dskey.html">dskey</a></span>
+          <span class="signature">&#8594; <a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span>         
+        </dt>
+        <dd>
+          Returns the <a href="smart_arrays_dbstore/DSet/dskey.html">dskey</a> under which this <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> was stored in a <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>
+using the setter below.
+                  <div class="features">read-only</div>
+</dd>
+        <dt id="encodedDskey" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/encodedDskey.html">encodedDskey</a></span>
+          <span class="signature">&#8592; <span class="parameter" id="encodedDskey=-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span></span></span>         
+        </dt>
+        <dd>
+          Saves <code>dskey</code> as encoded String in <a href="smart_arrays_dbstore/DSet/meta.html">meta</a>. Recommended use:
+When this <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> is stored in a database using <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>, it gets
+stored under an indetified of type <a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a>.
+Storing this key (here in an encode version) allows one later to find
+out under which key a dataset was stored.
+Note: Renaming a dataset must account for that!
+                  <div class="features">write-only</div>
+</dd>
+        <dt id="is1D" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/is1D.html">is1D</a></span>
+          <span class="signature">&#8594; bool</span>         
+        </dt>
+        <dd>
+          Returns true if this <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> is 1D
+                  <div class="features">read-only</div>
+</dd>
+        <dt id="meta" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/meta.html">meta</a></span>
+          <span class="signature">&#8596; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          The metadata. May also hold more complex data types such as Lists or Maps
+if stored as jsonified String.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="projCols" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/projCols.html">projCols</a></span>
+          <span class="signature">&#8596; Float64List</span>         
+        </dt>
+        <dd>
+          Optional projections of 2D data (see pub package 'smart_arrays_base'
+on how to computes projections of a matrix)
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="projRows" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/projRows.html">projRows</a></span>
+          <span class="signature">&#8596; Float64List</span>         
+        </dt>
+        <dd>
+          Optional projections of 2D data (see pub package 'smart_arrays_base'
+on how to computes projections of a matrix)
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="size" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/size.html">size</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          the data sizes, computed automatically at <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> construction time.
+For 2D, <a href="smart_arrays_dbstore/DSet/size.html">size</a> is the # columns, <a href="smart_arrays_dbstore/DSet/sizef1.html">sizef1</a> the # of rows.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="sizef1" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/sizef1.html">sizef1</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          the data sizes, computed automatically at <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> construction time.
+For 2D, <a href="smart_arrays_dbstore/DSet/size.html">size</a> is the # columns, <a href="smart_arrays_dbstore/DSet/sizef1.html">sizef1</a> the # of rows.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="values" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/values.html">values</a></span>
+          <span class="signature">&#8596; Float64List</span>         
+        </dt>
+        <dd>
+          Only for 1D datasets: the 2 arrays which can be stored, e.g. real + imag part
+<a href="smart_arrays_dbstore/DSet/valuesImag.html">valuesImag</a> may be null
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="values2D" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/values2D.html">values2D</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          Only for 2D datasets: the matrix data to be stored, e.g. the "real" matrix
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="values2DImag" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/values2DImag.html">values2DImag</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>&gt;</span></span>         
+        </dt>
+        <dd>
+          The optional additional matrices (e.g. imaginary parts ii, ir, ri)
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="valuesImag" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/valuesImag.html">valuesImag</a></span>
+          <span class="signature">&#8596; Float64List</span>         
+        </dt>
+        <dd>
+          Only for 1D datasets: the 2 arrays which can be stored, e.g. real + imag part
+<a href="smart_arrays_dbstore/DSet/valuesImag.html">valuesImag</a> may be null
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="vmax" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/vmax.html">vmax</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          the data ranges over all data values, computed automatically at
+<a href="smart_arrays_dbstore/DSet-class.html">DSet</a> construction time.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="vmax_index" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/vmax_index.html">vmax_index</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          indices of vmin, vmax within <a href="smart_arrays_dbstore/DSet/values.html">values</a>.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="vmin" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/vmin.html">vmin</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          the data ranges over all data values, computed automatically at
+<a href="smart_arrays_dbstore/DSet-class.html">DSet</a> construction time.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="vmin_index" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/vmin_index.html">vmin_index</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          indices of vmin, vmax within <a href="smart_arrays_dbstore/DSet/values.html">values</a>.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="smart_arrays_dbstore/DSet/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="init" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/init.html">init</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Performs some initializations needed to fully construct a <a href="smart_arrays_dbstore/DSet-class.html">DSet</a>
+                  
+</dd>
+        <dt id="initY" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/initY.html">initY</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Sets sizes and minmax values for a newly created dataset
+                  
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="smart_arrays_dbstore/DSet/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="smart_arrays_dbstore/DSet/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-properties">
+      <h2>Static Properties</h2>
+
+      <dl class="properties">
+        <dt id="DSET_DSKEY" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/DSET_DSKEY.html">DSET_DSKEY</a></span>
+          <span class="signature">&#8596; String</span>         
+        </dt>
+        <dd>
+          See <a href="smart_arrays_dbstore/DSet/is1D.html">is1D</a> and <a href="smart_arrays_dbstore/DSet/encodedDskey.html">encodedDskey</a> for explanation
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="dsetInit" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSet/dsetInit.html">dsetInit</a></span>
+          <span class="signature">&#8596; <a href="smart_arrays_dbstore/DSetInit.html">DSetInit</a></span>         
+        </dt>
+        <dd>
+          If this function is non-null, it will get called with <code>meta</code> as its
+argument upon while the <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> is created. It allows users to
+initialize <code>meta</code> with specific properties.
+                  <div class="features">read / write</div>
+</dd>
+      </dl>
+    </section>
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="smart_arrays_dbstore/DSet-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/DSet.html">DSet</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/DSet.twoD.html">twoD</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_dbstore/DSet-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_dbstore/DSet/audittrail.html">audittrail</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/compressedNeg.html">compressedNeg</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/compressedPos.html">compressedPos</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/dskey.html">dskey</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/encodedDskey.html">encodedDskey</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/is1D.html">is1D</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/meta.html">meta</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/projCols.html">projCols</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/projRows.html">projRows</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/size.html">size</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/sizef1.html">sizef1</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/values.html">values</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/values2D.html">values2D</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/values2DImag.html">values2DImag</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/valuesImag.html">valuesImag</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/vmax.html">vmax</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/vmax_index.html">vmax_index</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/vmin.html">vmin</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/vmin_index.html">vmin_index</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSet/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSet/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_dbstore/DSet-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/init.html">init</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/initY.html">initY</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSet/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSet/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_dbstore/DSet-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSet/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_dbstore/DSet-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/DSET_DSKEY.html">DSET_DSKEY</a></li>
+      <li><a href="smart_arrays_dbstore/DSet/dsetInit.html">dsetInit</a></li>
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_dbstore 2.0.4
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

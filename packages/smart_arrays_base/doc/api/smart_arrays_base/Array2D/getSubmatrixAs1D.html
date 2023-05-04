@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the getSubmatrixAs1D method from the Array2D class, for the Dart programming language.">
+  <title>getSubmatrixAs1D method - Array2D class - smart_arrays_base library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_base</a></li>
+    <li><a href="smart_arrays_base/smart_arrays_base-library.html">smart_arrays_base</a></li>
+    <li><a href="smart_arrays_base/Array2D-class.html">Array2D</a></li>
+    <li class="self-crumb">getSubmatrixAs1D method</li>
+  </ol>
+  <div class="self-name">getSubmatrixAs1D</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_base</a></li>
+      <li><a href="smart_arrays_base/smart_arrays_base-library.html">smart_arrays_base</a></li>
+      <li><a href="smart_arrays_base/Array2D-class.html">Array2D</a></li>
+      <li class="self-crumb">getSubmatrixAs1D method</li>
+    </ol>
+    
+    <h5>Array2D class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_base/Array2D-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_base/Array2D/Array2D.html">Array2D</a></li>
+    
+      <li class="section-title inherited">
+        <a href="smart_arrays_base/Array2D-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="smart_arrays_base/Array2D/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_base/Array2D/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_base/Array2D-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="smart_arrays_base/Array2D/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_base/Array2D/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_base/Array2D-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_base/Array2D/operator_equals.html">operator ==</a></li>
+    
+    
+      <li class="section-title"><a href="smart_arrays_base/Array2D-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_arrays_base/Array2D/appendRows.html">appendRows</a></li>
+      <li><a href="smart_arrays_base/Array2D/getColumn.html">getColumn</a></li>
+      <li><a href="smart_arrays_base/Array2D/getColumnMax.html">getColumnMax</a></li>
+      <li><a href="smart_arrays_base/Array2D/getMinMax.html">getMinMax</a></li>
+      <li><a href="smart_arrays_base/Array2D/getProjection.html">getProjection</a></li>
+      <li><a href="smart_arrays_base/Array2D/getRow.html">getRow</a></li>
+      <li><a href="smart_arrays_base/Array2D/getRowMax.html">getRowMax</a></li>
+      <li><a href="smart_arrays_base/Array2D/getSubmatrix.html">getSubmatrix</a></li>
+      <li><a href="smart_arrays_base/Array2D/getSubmatrixAs1D.html">getSubmatrixAs1D</a></li>
+      <li><a href="smart_arrays_base/Array2D/getSumRowsCols.html">getSumRowsCols</a></li>
+      <li><a href="smart_arrays_base/Array2D/integrateRegion.html">integrateRegion</a></li>
+      <li><a href="smart_arrays_base/Array2D/join.html">join</a></li>
+      <li><a href="smart_arrays_base/Array2D/reverseRows.html">reverseRows</a></li>
+      <li><a href="smart_arrays_base/Array2D/swapRows.html">swapRows</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">getSubmatrixAs1D</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">Float64List</span>
+            <span class="name ">getSubmatrixAs1D</span>
+(<wbr><span class="parameter" id="getSubmatrixAs1D-param-matrix"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span> <span class="parameter" id="getSubmatrixAs1D-param-row1"><span class="type-annotation">int</span> <span class="parameter-name">row1</span>, </span> <span class="parameter" id="getSubmatrixAs1D-param-row2"><span class="type-annotation">int</span> <span class="parameter-name">row2</span>, </span> <span class="parameter" id="getSubmatrixAs1D-param-col1"><span class="type-annotation">int</span> <span class="parameter-name">col1</span>, </span> <span class="parameter" id="getSubmatrixAs1D-param-col2"><span class="type-annotation">int</span> <span class="parameter-name">col2</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Returns the submatrix of <code>matrix</code> defined by <code>row1, row2, col1, col2</code>
+as a 1D array, a sequence of rows. The total array length is nrows * ncols,
+where nrows = row2 - row1 + 1 and ncols = col2 - col1 + 1.
+The indices are inclusive.
+The result may have 0 elements, depending on input indices.
+It is not relevant wheter rows1 is &lt; or &gt; row2, or col1 &lt; or &gt; col2.
+See also <a href="smart_arrays_base/Array1D/splitArray.html">Array1D.splitArray</a> to make a 2D array from the result.
+See also <a href="smart_arrays_base/Array2D/getSubmatrix.html">getSubmatrix</a>.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">static Float64List getSubmatrixAs1D(
+    List&lt;Float64List&gt; matrix, int row1, int row2, int col1, int col2) {
+  &#47;&#47; Enable for check
+&#47;&#47;    if(row1 &lt; 0 || row2 &lt; 0 || col1 &lt; 0 ||col2 &lt; 0 || row1 &gt; sizef1-1 || row2 &gt; sizef1-1 ||
+&#47;&#47;        col1 &gt; size-1 || col2 &gt; size-1)
+&#47;&#47;      throw new Exception(&quot;CompressedData2D: Submatrix out of bounds (2)&quot;);
+
+  if (row1 == row2 &amp;&amp; col1 == col2) {
+    return new Float64List.fromList([matrix[row1][col1]]); &#47;&#47; single point
+  }
+
+  int firstRow = row1;
+  int endRow = row2;
+  if (row1 &gt; row2) {
+    firstRow = row2;
+    endRow = row1;
+  }
+
+  int firstCol = col1;
+  int endCol = col2;
+  if (col1 &gt; col2) {
+    firstCol = col2;
+    endCol = col1;
+  }
+
+  int nrows = (row2 - row1 + 1).abs();
+  int ncols = (col2 - col1 + 1).abs();
+
+  if (row1 == row2) {
+    Float64List row = Array2D.getRow(matrix, firstRow);
+    Float64List result = new Float64List(ncols);
+    for (int i = 0; i &lt; ncols; i++) {
+      result[i] = row[firstCol + i];
+    }
+    return result;
+  }
+
+  if (col1 == col2) {
+    Float64List col = Array2D.getColumn(matrix, firstCol);
+    Float64List result = new Float64List(nrows);
+    for (int i = 0; i &lt; nrows; i++) {
+      result[i] = col[firstRow + i];
+    }
+    return result;
+  }
+
+  Float64List submatrix = new Float64List(nrows * ncols);
+
+  Float64List rowdata;
+  int isub = 0;
+  for (int i = firstRow; i &lt;= endRow; i++) {
+    rowdata = matrix[i];
+    for (int j = firstCol; j &lt;= endCol; j++) {
+      submatrix[isub++] = rowdata[j];
+    }
+  }
+  return submatrix;
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_base 2.0.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+name: smart_arrays_numerics
+version: "2.1.1"
+author: Dr. Bruno Guigas <specpad@gmail.com>
+description: This package provides a number of useful calculation functions for one- and two-dimensional arrays such as multiply, transpose, invert, sum, clone, create.
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.1.4
+  pedantic: ^1.7.0

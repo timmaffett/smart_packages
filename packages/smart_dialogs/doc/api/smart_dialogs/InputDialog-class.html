@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the InputDialog class from the smart_dialogs library, for the Dart programming language.">
+  <title>InputDialog class - smart_dialogs library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+    <li class="self-crumb">InputDialog class</li>
+  </ol>
+  <div class="self-name">InputDialog</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+      <li class="self-crumb">InputDialog class</li>
+    </ol>
+    
+    <h5>smart_dialogs library</h5>
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/smart_dialogs-library.html#classes">Classes</a></li>
+      <li><a href="smart_dialogs/ActButton-class.html">ActButton</a></li>
+      <li><a href="smart_dialogs/BaseDialog-class.html">BaseDialog</a></li>
+      <li><a href="smart_dialogs/BasicTable-class.html">BasicTable</a></li>
+      <li><a href="smart_dialogs/ConfirmDialog-class.html">ConfirmDialog</a></li>
+      <li><a href="smart_dialogs/DiaAttr-class.html">DiaAttr</a></li>
+      <li><a href="smart_dialogs/DiaUtils-class.html">DiaUtils</a></li>
+      <li><a href="smart_dialogs/FileSelectionDialog-class.html">FileSelectionDialog</a></li>
+      <li><a href="smart_dialogs/IconPanel-class.html">IconPanel</a></li>
+      <li><a href="smart_dialogs/Info-class.html">Info</a></li>
+      <li><a href="smart_dialogs/InfoDialog-class.html">InfoDialog</a></li>
+      <li><a href="smart_dialogs/InputDialog-class.html">InputDialog</a></li>
+      <li><a href="smart_dialogs/PopupMenu-class.html">PopupMenu</a></li>
+      <li><a href="smart_dialogs/TableAttr-class.html">TableAttr</a></li>
+      <li><a href="smart_dialogs/UserInput-class.html">UserInput</a></li>
+    
+    
+    
+    
+    
+    
+      <li class="section-title"><a href="smart_dialogs/smart_dialogs-library.html#typedefs">Typedefs</a></li>
+      <li><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></li>
+      <li><a href="smart_dialogs/FileSelectionCallback.html">FileSelectionCallback</a></li>
+      <li><a href="smart_dialogs/GetIconCallbacks.html">GetIconCallbacks</a></li>
+      <li><a href="smart_dialogs/IconCallback.html">IconCallback</a></li>
+      <li><a href="smart_dialogs/TableButtonClickListener.html">TableButtonClickListener</a></li>
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">InputDialog</span> class </h1></div>
+
+    <section class="desc markdown">
+      <p>This class defines a modal or non-modal dialog for displaying text and/or
+request input from a user. User input elements are consisting of multiple
+rows with text labels, text input fields, check and radio buttons and
+combo boxes.
+The dialog appearance (style) is defined by the attributes of the class</p>
+    </section>
+    
+    <section>
+      <dl class="dl-horizontal">
+        <dt>Inheritance</dt>
+        <dd><ul class="gt-separated dark clazz-relationships">
+          <li>Object</li>
+          <li><a href="smart_dialogs/BaseDialog-class.html">BaseDialog</a></li>
+          <li>InputDialog</li>
+        </ul></dd>
+
+
+
+        <dt>Implementers</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          <li><a href="smart_dialogs/ConfirmDialog-class.html">ConfirmDialog</a></li>
+          <li><a href="smart_dialogs/InfoDialog-class.html">InfoDialog</a></li>
+        </ul></dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="InputDialog" class="callable">
+          <span class="name"><a href="smart_dialogs/InputDialog/InputDialog.html">InputDialog</a></span><span class="signature">(<span class="parameter" id="-param-buttontype"><span class="type-annotation">String</span> <span class="parameter-name">buttontype</span>, </span> <span class="parameter" id="-param-htmlTitleText"><span class="type-annotation">String</span> <span class="parameter-name">htmlTitleText</span>, </span> <span class="parameter" id="-param-textLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">textLabels</span>, </span> <span class="parameter" id="-param-comboInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">comboInfo</span>, </span> <span class="parameter" id="-param-defaultInputTexts"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">defaultInputTexts</span>, </span> <span class="parameter" id="-param-widths"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">widths</span>, </span> <span class="parameter" id="-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="-param-closeCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">closeCallback</span>, </span> <span class="parameter" id="-param-alternateRowColor"><span class="type-annotation">bool</span> <span class="parameter-name">alternateRowColor</span>, </span> <span class="parameter" id="-param-buttonLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttonLabels</span></span>)</span>
+        </dt>
+        <dd>
+          NOTE: In many cases it is not necessary to use the constructors.
+ It is easier to inoke the utilities Info.show(), Info.get(), Info,get2D(),
+ Info.confirm().
+Creates and shows an <a href="smart_dialogs/InputDialog-class.html">InputDialog</a> consisting of a text header, followed
+by several rows. Each row consists of an options radio or check button,
+a text label, a text input field, and an optional combo box.
+At its bottom, the dialog has zero up to 3 action buttons (extending
+to &gt;4 is easy). At the top left or right, a red cross is displayed and
+serves as an Abort button.
+ <code>buttontype</code> = one of <code>DiaAttr.RADIO, DiaAttr.CHECKBOX, null(=CHECKBOX)</code>
+   See <code>isChecked</code> argument for details.
+ <code>htmlTitleText</code> = the dialog header
+ <code>textLabels</code> = one text label per row belonging to the row's text input field
+ <code>comboInfo</code> = needed when a combox box is appended to a text input field.
+   null = no combox at all in the dialog, otherwise e.g. if 4 dialog rows:
+    [null, <code>"yes", "no", "skip"</code>, null, null] would mean that rows 0,2,3
+    don't have combo boxes assigned, while row 1 gets a combo box with
+    3 members.
+ NOTE: if the first item of combo values contains (e.g. at the beginning)
+   InputDialog.ENABLE_TEXTINPUT_COMBO (e.g. the "yes" in the example), the
+   text input field belonging to the combo box display will stay editable,
+   otherwise it will be disabled.
+ NOTE: if the first item of combo values contains
+   InputDialog.DISABLE_COMBO_SELECTION, a selected combo item will NOT
+   be put into the textfield the combo belongs to.
+ <code>defaultInputTexts</code> = the initial contents of the text input fields.
+ <code>widths</code> = the widths of the text input fields in characters.
+    A width my be 0, then no input text field is shown for this row.
+ <code>isChecked</code> = the initial values of the radio buttons or checkboxes.
+   <code>isChecked</code> = null: No radio button or checkbox is drawn at all,
+   regardless of <code>buttontype</code>. If a list entry of  <code>isChecked</code>
+   is null, then no radio button or checkbox for this row is shown.
+   If a list entry of  <code>isChecked</code> is "true" or "false", a
+   radio button or checkbox (depending on <code>buttontype</code>) for this row is shown
+   and gets initialized with checked or unchecked, respectively.
+ <code>closeCallback</code> = called when an action button is pressed (may be null)
+ <code>alternateRowColor</code> = if true, every second dialog row will get a different color.
+ <code>buttonLabels</code> = the labels of the action buttons at the bottom of the
+   dialog. If null, 1 action button labelled with "OK" is shown.
+   If "" (empty String), no action button at all is shown.
+   <code>buttonLabels</code>.length must be &lt;= 3 at this time, extension is easy.
+        </dd>
+        <dt id="InputDialog.noModal" class="callable">
+          <span class="name"><a href="smart_dialogs/InputDialog/InputDialog.noModal.html">InputDialog.noModal</a></span><span class="signature">(<span class="parameter" id="noModal-param-buttontype"><span class="type-annotation">String</span> <span class="parameter-name">buttontype</span>, </span> <span class="parameter" id="noModal-param-htmlTitleText"><span class="type-annotation">String</span> <span class="parameter-name">htmlTitleText</span>, </span> <span class="parameter" id="noModal-param-inputTextLabelInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">inputTextLabelInfo</span>, </span> <span class="parameter" id="noModal-param-comboInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">comboInfo</span>, </span> <span class="parameter" id="noModal-param-defaultInputTexts"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">defaultInputTexts</span>, </span> <span class="parameter" id="noModal-param-sizes"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">sizes</span>, </span> <span class="parameter" id="noModal-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="noModal-param-closeCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">closeCallback</span>, </span> <span class="parameter" id="noModal-param-alternateRowColor"><span class="type-annotation">bool</span> <span class="parameter-name">alternateRowColor</span>, </span> <span class="parameter" id="noModal-param-buttonLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttonLabels</span></span>)</span>
+        </dt>
+        <dd>
+          Creates a non-modal (non-blocking) dialog.
+See <a href="smart_dialogs/InputDialog-class.html">InputDialog</a> for the arguments.
+        </dd>
+        <dt id="InputDialog.twoD" class="callable">
+          <span class="name"><a href="smart_dialogs/InputDialog/InputDialog.twoD.html">InputDialog.twoD</a></span><span class="signature">(<span class="parameter" id="twoD-param-buttontype"><span class="type-annotation">String</span> <span class="parameter-name">buttontype</span>, </span> <span class="parameter" id="twoD-param-htmlTitleText"><span class="type-annotation">String</span> <span class="parameter-name">htmlTitleText</span>, </span> <span class="parameter" id="twoD-param-defaultInputTexts"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">defaultInputTexts</span>, </span> <span class="parameter" id="twoD-param-comboInfoND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">comboInfoND</span>, </span> <span class="parameter" id="twoD-param-defaultInputTextsND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">defaultInputTextsND</span>, </span> <span class="parameter" id="twoD-param-sizes"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">sizes</span>, </span> <span class="parameter" id="twoD-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="twoD-param-closeCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">closeCallback</span>, </span> <span class="parameter" id="twoD-param-alternateRowColor"><span class="type-annotation">bool</span> <span class="parameter-name">alternateRowColor</span>, </span> <span class="parameter" id="twoD-param-buttonLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttonLabels</span></span>)</span>
+        </dt>
+        <dd>
+          The twoD input dialog supports 2 columns of text input fields per rows,
+rather than just 1 column as it the case with InputDialog().
+This constructor comment only describes the arguments different from
+InputDialog()'s arguments.
+<code>comboInfoND</code> = like comboInfo, but values for 2 columns must be given.
+  Use the Map keys <a href="smart_dialogs/InputDialog/COL1.html">InputDialog.COL1</a> and <a href="smart_dialogs/InputDialog/COL2.html">InputDialog.COL2</a> for this.
+<code>defaultInputTextsND</code> = like <code>defaultInputTexts</code>, but values for 2 columns must be given.
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="actButs" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/actButs.html">actButs</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_dialogs/ActButton-class.html">ActButton</a></span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="diaTable" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/diaTable.html">diaTable</a></span>
+          <span class="signature">&#8596; TableElement</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="popup" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/popup.html">popup</a></span>
+          <span class="signature">&#8596; <a href="smart_dialogs/PopupMenu-class.html">PopupMenu</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="RADIOGROUP1" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/RADIOGROUP1.html">RADIOGROUP1</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="redcross_left" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/redcross_left.html">redcross_left</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="closeCallback" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a></span>
+          <span class="signature">&#8596; <a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="dia" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/dia.html">dia</a></span>
+          <span class="signature">&#8596; DivElement</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="diaContainer" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/diaContainer.html">diaContainer</a></span>
+          <span class="signature">&#8596; DivElement</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="smart_dialogs/BaseDialog/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="isModal" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/isModal.html">isModal</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="isopen" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/isopen.html">isopen</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="init" class="callable">
+          <span class="name"><a href="smart_dialogs/InputDialog/init.html">init</a></span><span class="signature">(<wbr><span class="parameter" id="init-param-buttontype"><span class="type-annotation">String</span> <span class="parameter-name">buttontype</span>, </span> <span class="parameter" id="init-param-htmlTitleText"><span class="type-annotation">String</span> <span class="parameter-name">htmlTitleText</span>, </span> <span class="parameter" id="init-param-inputTextLabelInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">inputTextLabelInfo</span>, </span> <span class="parameter" id="init-param-comboInfoND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">comboInfoND</span>, </span> <span class="parameter" id="init-param-defaultInputTextsND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">defaultInputTextsND</span>, </span> <span class="parameter" id="init-param-sizes"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">sizes</span>, </span> <span class="parameter" id="init-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="init-param-alternateRowColor"><span class="type-annotation">bool</span> <span class="parameter-name">alternateRowColor</span>, </span> <span class="parameter" id="init-param-buttonLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttonLabels</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd>
+          Creates and displays a dialog.
+See <a href="smart_dialogs/InputDialog-class.html">InputDialog</a> and <a href="smart_dialogs/InputDialog/InputDialog.twoD.html">InputDialog.twoD</a> for the arguments.
+                  
+</dd>
+        <dt id="close" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/close.html">close</a></span><span class="signature">(<wbr><span class="parameter" id="close-param-userInput"><span class="type-annotation"><a href="smart_dialogs/UserInput-class.html">UserInput</a></span> <span class="parameter-name">userInput</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Closes the dialog.
+<code>userInput</code> is passed on to
+<a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a> if a non-null callback is defined.
+if <code>userInput</code> is null, a non-null one is generated,
+with an empty String a button code.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="createShowDia" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/createShowDia.html">createShowDia</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Performs the dialog creation and display logic.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="isOpen" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/isOpen.html">isOpen</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns true if the dialog is open.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="smart_dialogs/BaseDialog/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="smart_dialogs/BaseDialog/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-properties">
+      <h2>Static Properties</h2>
+
+      <dl class="properties">
+        <dt id="ALIGN_LEFT" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/ALIGN_LEFT.html">ALIGN_LEFT</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="COL1" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/COL1.html">COL1</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="COL2" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/COL2.html">COL2</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="DISABLE_COMBO_SELECTION" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/DISABLE_COMBO_SELECTION.html">DISABLE_COMBO_SELECTION</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="ENABLE_TEXTINPUT_COMBO" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/ENABLE_TEXTINPUT_COMBO.html">ENABLE_TEXTINPUT_COMBO</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="inputDialogStatus" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/inputDialogStatus.html">inputDialogStatus</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="READ_ONLY" class="property">
+          <span class="name"><a href="smart_dialogs/InputDialog/READ_ONLY.html">READ_ONLY</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-methods">
+      <h2>Static Methods</h2>
+      <dl class="callables">
+        <dt id="show" class="callable">
+          <span class="name"><a href="smart_dialogs/InputDialog/show.html">show</a></span><span class="signature">(<wbr><span class="parameter" id="show-param-buttontype"><span class="type-annotation">String</span> <span class="parameter-name">buttontype</span>, </span> <span class="parameter" id="show-param-htmlTitleText"><span class="type-annotation">String</span> <span class="parameter-name">htmlTitleText</span>, </span> <span class="parameter" id="show-param-inputTextLabelInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">inputTextLabelInfo</span>, </span> <span class="parameter" id="show-param-comboInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">comboInfo</span>, </span> <span class="parameter" id="show-param-defaultInputTexts"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">defaultInputTexts</span>, </span> <span class="parameter" id="show-param-sizes"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">sizes</span>, </span> <span class="parameter" id="show-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="show-param-alternateRowColor"><span class="type-annotation">bool</span> <span class="parameter-name">alternateRowColor</span>, </span> <span class="parameter" id="show-param-buttonLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttonLabels</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_dialogs/UserInput-class.html">UserInput</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Displays a dialog with a <code>htmlTitleText</code> and with several rows of optional
+check buttons, radio buttons, text entry fields, combo boxes.
+The name "get" indicates that <a href="smart_dialogs/UserInput-class.html">UserInput</a> into the above GUI elements is
+returned.
+ <code>buttontype</code> - one of <a href="smart_dialogs/DiaAttr/RADIO.html">DiaAttr.RADIO</a>, <a href="smart_dialogs/DiaAttr/CHECKBOX.html">DiaAttr.CHECKBOX</a>, null(=CHECKBOX)]
+   See <code>isChecked</code> argument for further details. <a href="smart_dialogs/InputDialog/show.html">[...]</a>
+                  
+</dd>
+        <dt id="show2D" class="callable">
+          <span class="name"><a href="smart_dialogs/InputDialog/show2D.html">show2D</a></span><span class="signature">(<wbr><span class="parameter" id="show2D-param-buttontype"><span class="type-annotation">String</span> <span class="parameter-name">buttontype</span>, </span> <span class="parameter" id="show2D-param-htmlTitleText"><span class="type-annotation">String</span> <span class="parameter-name">htmlTitleText</span>, </span> <span class="parameter" id="show2D-param-inputTextLabelInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">inputTextLabelInfo</span>, </span> <span class="parameter" id="show2D-param-comboInfoND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">comboInfoND</span>, </span> <span class="parameter" id="show2D-param-defaultInputTextsND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">defaultInputTextsND</span>, </span> <span class="parameter" id="show2D-param-sizes"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">sizes</span>, </span> <span class="parameter" id="show2D-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="show2D-param-alternateRowColor"><span class="type-annotation">bool</span> <span class="parameter-name">alternateRowColor</span>, </span> <span class="parameter" id="show2D-param-buttonLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttonLabels</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_dialogs/UserInput-class.html">UserInput</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          This method is similar to <code>get</code>, with the following difference: it displays
+not a single, but two columns with texts, text entry fields etc.
+So, the meaning of the arguments is the same as for <code>get</code>, except for the
+following which reflect the 2D features:
+<code>comboInfoND</code> - acts like <code>comboInfo</code> in <code>get</code>, but values for the two
+columns must be given. Use the Map keys <a href="smart_dialogs/InputDialog/COL1.html">InputDialog.COL1</a> and
+<a href="smart_dialogs/InputDialog/COL2.html">InputDialog.COL2</a> for this.
+<code>defaultInputTextsND</code> = like <code>defaultInputTexts</code> in<code>get</code>, but values for the two
+columns must be given. Use the Map keys <a href="smart_dialogs/InputDialog/COL1.html">InputDialog.COL1</a> and
+<a href="smart_dialogs/InputDialog/COL2.html">InputDialog.COL2</a> for this.
+Please refer to the example <code>showAdvancedInputDialog2D</code> in the file
+<code>examples.dart</code> of this package.
+                  
+</dd>
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/InputDialog-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_dialogs/InputDialog/InputDialog.html">InputDialog</a></li>
+      <li><a href="smart_dialogs/InputDialog/InputDialog.noModal.html">noModal</a></li>
+      <li><a href="smart_dialogs/InputDialog/InputDialog.twoD.html">twoD</a></li>
+    
+      <li class="section-title">
+        <a href="smart_dialogs/InputDialog-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_dialogs/InputDialog/actButs.html">actButs</a></li>
+      <li><a href="smart_dialogs/InputDialog/diaTable.html">diaTable</a></li>
+      <li><a href="smart_dialogs/InputDialog/popup.html">popup</a></li>
+      <li><a href="smart_dialogs/InputDialog/RADIOGROUP1.html">RADIOGROUP1</a></li>
+      <li><a href="smart_dialogs/InputDialog/redcross_left.html">redcross_left</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/dia.html">dia</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/diaContainer.html">diaContainer</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isModal.html">isModal</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isopen.html">isopen</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/InputDialog-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_dialogs/InputDialog/init.html">init</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/close.html">close</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/createShowDia.html">createShowDia</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isOpen.html">isOpen</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/InputDialog-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/InputDialog-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_dialogs/InputDialog/ALIGN_LEFT.html">ALIGN_LEFT</a></li>
+      <li><a href="smart_dialogs/InputDialog/COL1.html">COL1</a></li>
+      <li><a href="smart_dialogs/InputDialog/COL2.html">COL2</a></li>
+      <li><a href="smart_dialogs/InputDialog/DISABLE_COMBO_SELECTION.html">DISABLE_COMBO_SELECTION</a></li>
+      <li><a href="smart_dialogs/InputDialog/ENABLE_TEXTINPUT_COMBO.html">ENABLE_TEXTINPUT_COMBO</a></li>
+      <li><a href="smart_dialogs/InputDialog/inputDialogStatus.html">inputDialogStatus</a></li>
+      <li><a href="smart_dialogs/InputDialog/READ_ONLY.html">READ_ONLY</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/InputDialog-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_dialogs/InputDialog/show.html">show</a></li>
+      <li><a href="smart_dialogs/InputDialog/show2D.html">show2D</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_dialogs 2.1.2
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

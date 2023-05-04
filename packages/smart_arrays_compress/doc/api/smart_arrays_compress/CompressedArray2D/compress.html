@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the compress method from the CompressedArray2D class, for the Dart programming language.">
+  <title>compress method - CompressedArray2D class - smart_arrays_compress library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_compress</a></li>
+    <li><a href="smart_arrays_compress/smart_arrays_compress-library.html">smart_arrays_compress</a></li>
+    <li><a href="smart_arrays_compress/CompressedArray2D-class.html">CompressedArray2D</a></li>
+    <li class="self-crumb">compress method</li>
+  </ol>
+  <div class="self-name">compress</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_compress</a></li>
+      <li><a href="smart_arrays_compress/smart_arrays_compress-library.html">smart_arrays_compress</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray2D-class.html">CompressedArray2D</a></li>
+      <li class="self-crumb">compress method</li>
+    </ol>
+    
+    <h5>CompressedArray2D class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_compress/CompressedArray2D-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray2D/CompressedArray2D.html">CompressedArray2D</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_compress/CompressedArray2D-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_compress/CompressedArray2D/cvalsNeg.html">cvalsNeg</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray2D/cvalsPos.html">cvalsPos</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray2D/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray2D/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_compress/CompressedArray2D-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray2D/compress.html">compress</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray2D/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray2D/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_compress/CompressedArray2D-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray2D/operator_equals.html">operator ==</a></li>
+    
+    
+      <li class="section-title"><a href="smart_arrays_compress/CompressedArray2D-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray2D/computeCellsize.html">computeCellsize</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">compress</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">void</span>
+            <span class="name ">compress</span>
+(<wbr><span class="parameter" id="compress-param-yValues2D"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span> <span class="parameter-name">yValues2D</span>, </span> <span class="parameter" id="compress-param-row1"><span class="type-annotation">int</span> <span class="parameter-name">row1</span>, </span> <span class="parameter" id="compress-param-row2"><span class="type-annotation">int</span> <span class="parameter-name">row2</span>, </span> <span class="parameter" id="compress-param-col1"><span class="type-annotation">int</span> <span class="parameter-name">col1</span>, </span> <span class="parameter" id="compress-param-col2"><span class="type-annotation">int</span> <span class="parameter-name">col2</span>, </span> <span class="parameter" id="compress-param-nrowsNew"><span class="type-annotation">int</span> <span class="parameter-name">nrowsNew</span>, </span> <span class="parameter" id="compress-param-ncolsNew"><span class="type-annotation">int</span> <span class="parameter-name">ncolsNew</span>, </span> <span class="parameter" id="compress-param-negLevels"><span class="type-annotation">bool</span> <span class="parameter-name">negLevels</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Compresses the submatrix of the matrix <code>yValues2D</code> given by
+ <code>row1</code>, <code>row2</code>, <code>col1</code>, <code>col2</code> to a matrix of size <code>nrowsNew, ncolsNew</code>.
+ All indices are meant inclusive.
+Returns the result in <a href="smart_arrays_compress/CompressedArray2D/cvalsPos.html">cvalsPos</a> and <a href="smart_arrays_compress/CompressedArray2D/cvalsNeg.html">cvalsNeg</a>, both representing lists
+of rows (<a href="smart_arrays_compress/CompressedArray2D/cvalsNeg.html">cvalsNeg</a> remains null if negLevels is false).
+<code>negLevels</code> = true means get also a compression of the negative values
+(result is <a href="smart_arrays_compress/CompressedArray2D/cvalsNeg.html">cvalsNeg</a>), false means get only a compression of the positive
+values (result is <a href="smart_arrays_compress/CompressedArray2D/cvalsPos.html">cvalsPos</a>).
+<a href="smart_arrays_compress/CompressedArray2D/cvalsPos.html">cvalsPos</a> only contains positive or zero values, and zeroes are filled in
+where formerly were negative values. <a href="smart_arrays_compress/CompressedArray2D/cvalsNeg.html">cvalsNeg</a> only contains negative
+or zero values, and zeroes are filled in where formerly were positive values.
+Note: The index inside a row is the col index and counts the cols.
+<a href="smart_arrays_compress/CompressedArray2D/cvalsPos.html">cvalsPos</a> and <a href="smart_arrays_compress/CompressedArray2D/cvalsNeg.html">cvalsNeg</a> will remain null if unsuitable input parameters
+are specified.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">void compress(List&lt;Float64List&gt; yValues2D, int row1, int row2, int col1,
+    int col2, int nrowsNew, int ncolsNew, bool negLevels) {
+&#47;&#47;    Stopwatch stopwatch = new Stopwatch();
+&#47;&#47;    stopwatch.start();
+  &#47;&#47; say 512 out of 2048, or 665 out of 2048
+  int nrows = (row2 - row1 + 1).abs(); &#47;&#47; +1: indices inclusive
+  int ncols = (col2 - col1 + 1).abs();
+  if (nrows == 0 || ncols == 0 || nrowsNew == 0 || ncolsNew == 0) {
+    return;
+  }
+
+  if (nrowsNew &gt;= nrows &amp;&amp; ncolsNew &gt;= ncols) return; &#47;&#47; nothing to compress
+  if (nrowsNew &gt; nrows) nrowsNew = nrows;
+  if (ncolsNew &gt; ncols) ncolsNew = ncols;
+
+  int rowFirst = row1, rowLast = row2;
+  if (row1 &gt; row2) {
+    rowFirst = row2;
+    rowLast = row1;
+  }
+
+  int colFirst = col1, colLast = col2;
+  if (col1 &gt; col2) {
+    colFirst = col2;
+    colLast = col1;
+  }
+
+  List&lt;double&gt; cellsize =
+      computeCellsize(row1, row2, col1, col2, nrowsNew, ncolsNew);
+  if (cellsize == null) return; &#47;&#47; security exit, no compression can be done
+  double cellsizeRow = cellsize[0];
+  double cellsizeCol = cellsize[1];
+
+&#47;&#47;    print(&quot;compress rows cols=$row1 $row2 $col1 $col2 ${yValues2D.length}&quot;);
+&#47;&#47;    print(&quot;compress cellsize=$cellsize&quot;);
+
+  cvalsPos = [];
+  cvalsNeg = [];
+  Float64List smallMatrix, newrowPos, newrowNeg;
+  double curvalPos, curvalNeg;
+  int irowsNew = 0, icolsNew; &#47;&#47; current count of destination rows, cols
+  int rowFrom, colFrom;
+  int rowTo = rowFirst - 1, colTo;
+
+  while (irowsNew &lt; nrowsNew) {
+    newrowPos = new Float64List(ncolsNew); &#47;&#47; all elements are initally zero!
+    newrowNeg = new Float64List(ncolsNew);
+
+    rowFrom = rowTo + 1;
+    if (rowFrom &gt; rowLast) rowFrom = rowLast;
+    rowTo = rowFirst + ((irowsNew + 1) * cellsizeRow).floor();
+    if (nrowsNew == nrows) rowTo = rowFrom; &#47;&#47; no row compression
+    if (rowTo &gt; rowLast) rowTo = rowLast; &#47;&#47; may occur in very last cell
+
+    icolsNew = 0;
+    colTo = colFirst - 1;
+
+    while (icolsNew &lt; ncolsNew) {
+      colFrom = colTo + 1;
+      if (colFrom &gt; colLast) colFrom = colLast;
+      colTo = colFirst + ((icolsNew + 1) * cellsizeCol).floor();
+      if (ncolsNew == ncols) colTo = colFrom; &#47;&#47; no col compression
+      if (colTo &gt; colLast) colTo = colLast;
+
+      try {
+        smallMatrix = Array2D.getSubmatrixAs1D(
+            yValues2D, rowFrom, rowTo, colFrom, colTo);
+      } catch (e) {
+        print(&quot;compress2D=$e &lt;br&gt; $rowFrom $rowTo $colFrom $colTo&quot;);
+      }
+
+      curvalPos = Array1D.getMaxInRange(smallMatrix, null, null);
+      if (curvalPos &gt; 0) {
+        newrowPos[icolsNew] = curvalPos; &#47;&#47; only values &gt; 0 to be used
+      }
+
+      if (negLevels) {
+        curvalNeg = Array1D.getMinVal(smallMatrix);
+        if (curvalNeg &lt; 0) {
+          newrowNeg[icolsNew] = curvalNeg; &#47;&#47; only values &lt; 0 to be used
+        }
+      }
+
+      icolsNew++;
+    } &#47;&#47; while(resultCol &lt; ncolsNew)
+
+    cvalsPos.add(newrowPos);
+    if (negLevels) cvalsNeg.add(newrowNeg);
+
+    irowsNew++;
+  } &#47;&#47; rows
+&#47;&#47;    stopwatch.stop();
+&#47;&#47;    print(&quot;time=${stopwatch.elapsedMilliseconds} msec&quot;);
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_compress 2.0.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

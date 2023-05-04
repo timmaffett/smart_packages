@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Polyline class from the smart_arrays_plot_polyline library, for the Dart programming language.">
+  <title>Polyline class - smart_arrays_plot_polyline library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+    <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+    <li class="self-crumb">Polyline class</li>
+  </ol>
+  <div class="self-name">Polyline</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+      <li class="self-crumb">Polyline class</li>
+    </ol>
+    
+    <h5>smart_arrays_plot_polyline library</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#classes">Classes</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis-class.html">Axis</a></li>
+      <li><a href="smart_arrays_plot_polyline/JsonUtils-class.html">JsonUtils</a></li>
+      <li><a href="smart_arrays_plot_polyline/Legend-class.html">Legend</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines-class.html">MarkerLines</a></li>
+      <li><a href="smart_arrays_plot_polyline/PhysUnits-class.html">PhysUnits</a></li>
+      <li><a href="smart_arrays_plot_polyline/PlotLayoutSVG-class.html">PlotLayoutSVG</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline-class.html">Polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/SimpleContourRenderer-class.html">SimpleContourRenderer</a></li>
+      <li><a href="smart_arrays_plot_polyline/SimplePlot-class.html">SimplePlot</a></li>
+      <li><a href="smart_arrays_plot_polyline/SVG-class.html">SVG</a></li>
+      <li><a href="smart_arrays_plot_polyline/Utils-class.html">Utils</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid-class.html">XYGrid</a></li>
+      <li><a href="smart_arrays_plot_polyline/YZoomRegion-class.html">YZoomRegion</a></li>
+    
+    
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#properties">Properties</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_DEFAULT_ATTRIBUTES.html">POLYLINE_DEFAULT_ATTRIBUTES</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_INITIAL_YSCALE.html">POLYLINE_INITIAL_YSCALE</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_POINT_SHAPE_CIRCLE_EMPTY.html">POLYLINE_POINT_SHAPE_CIRCLE_EMPTY</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_POINT_SHAPE_SQUARE_EMPTY.html">POLYLINE_POINT_SHAPE_SQUARE_EMPTY</a></li>
+    
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#enums">Enums</a></li>
+      <li><a href="smart_arrays_plot_polyline/AxA-class.html">AxA</a></li>
+      <li><a href="smart_arrays_plot_polyline/CtourA-class.html">CtourA</a></li>
+      <li><a href="smart_arrays_plot_polyline/LayA-class.html">LayA</a></li>
+      <li><a href="smart_arrays_plot_polyline/LegA-class.html">LegA</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarA-class.html">MarA</a></li>
+      <li><a href="smart_arrays_plot_polyline/PyA-class.html">PyA</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#typedefs">Typedefs</a></li>
+      <li><a href="smart_arrays_plot_polyline/PhysicalToScreen.html">PhysicalToScreen</a></li>
+      <li><a href="smart_arrays_plot_polyline/TouchCallback.html">TouchCallback</a></li>
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">Polyline</span> class </h1></div>
+
+    <section class="desc markdown">
+      <p>The purpose of this class is to draw (plot) the values of a 1D array as a curve.
+Drawing is performed using SVG, Scalable Vector Graphics. The drawn curve
+is a SVG "polyline".
+The user can control many polyline attributes.
+Usage:</p><ol><li>Construct an polyline: pl = Polyline(args).</li><li>Result: The polyline was drawn into the SvgSvgElement <a href="smart_arrays_plot_polyline/Polyline/polylineContainer.html">polylineContainer</a>.</li><li>Append <a href="smart_arrays_plot_polyline/Polyline/polylineContainer.html">polylineContainer</a> to the desired SvgSvgElement type container
+(e.g. named dataArea) of your particluar page layout:
+dataArea.append(pl.polylineContainer)
+NOTE 1: The array values are plotted "equidistant" (= linear x scaling)
+NOTE 2: A computer screen or a screen windows has a limited amount of pixels,
+e.g. around 200, 1000, 2000, 4000 in horizontal (or vertical) direction,
+depending on the device. This class allows one to plot large arrays effciently.
+Array sizes with 10000, 100000 or even a million points can be handled.
+Internally, a suitable compression algorithm is used, see pub package
+   <a href="https://pub.dev/packages/smart_arrays_compress">https://pub.dev/packages/smart_arrays_compress</a>.
+NOTE 3: The <a href="smart_arrays_plot_polyline/Polyline/polylineContainer.html">polylineContainer</a> of several Polylines may be appended to the
+ same dataArea (see above). The result will be a "polyline multi view" to
+ visualize several arrays at the same time.</li></ol>
+    </section>
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="Polyline" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/Polyline.html">Polyline</a></span><span class="signature">(<span class="parameter" id="-param-array"><span class="type-annotation">Float64List</span> <span class="parameter-name">array</span>, </span> <span class="parameter" id="-param-ixFirst"><span class="type-annotation">int</span> <span class="parameter-name">ixFirst</span>, </span> <span class="parameter" id="-param-ixLast"><span class="type-annotation">int</span> <span class="parameter-name">ixLast</span>, </span> <span class="parameter" id="-param-dataAreaWidth"><span class="type-annotation">int</span> <span class="parameter-name">dataAreaWidth</span>, </span> <span class="parameter" id="-param-dataAreaHeight"><span class="type-annotation">int</span> <span class="parameter-name">dataAreaHeight</span>, </span> <span class="parameter" id="-param-zoomRegion"><span class="type-annotation"><a href="smart_arrays_plot_polyline/YZoomRegion-class.html">YZoomRegion</a></span> <span class="parameter-name">zoomRegion</span>, </span> <span class="parameter" id="-param-ymin"><span class="type-annotation">double</span> <span class="parameter-name">ymin</span>, </span> <span class="parameter" id="-param-ymax"><span class="type-annotation">double</span> <span class="parameter-name">ymax</span>, </span> <span class="parameter" id="-param-uAttr"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/PyA-class.html">PyA</a></span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">uAttr</span></span>)</span>
+        </dt>
+        <dd>
+          Draws (plots) <code>array</code> into <a href="smart_arrays_plot_polyline/Polyline/polylineContainer.html">polylineContainer</a>. The latter must be appended
+to your desired SvgSvgElement container ("data area") to make the plot visible.
+<code>ixFirst</code> - first index of <code>array</code> that gets plotted. If null, 0 is assumed.
+<code>ixLast</code> - last index of <code>array</code> that gets plotted. If null, the array's
+  maximum index is assumed.
+<code>dataAreaWidth</code> - the width of the polyline's data area in pixels.
+<code>dataAreaHeight</code> - the height of the polyline's data area in pixels.
+<code>zoomRegion</code> - If null, the array will be plotted such that
+  it fits entirely into the data area, but inset from the borders of
+  this area by the attributes POLYLINE_INSETX and POLYLINE_INSETY.
+  If not null:
+  <code>zoomRegion</code> defines the y (intensity) viewport of <code>array</code>.
+  A typical use is zooming into a plot, e.g. if the GUI provides a tool
+  to draw a rectangle around a desired section of a polyline plot already
+  displayed on the screen. From this rectangle (in screen coordinates)
+  an app would derive the respective intensity (y) range
+  with respect to the displayed polyline, and compute a new Polyline
+  by feeding the y region into the constructor to obtains to "zoom" in.
+<code>ymin</code>, <code>ymax</code> - If null, the intensity (y) scale of the plot is computed
+ such that the maximum intensity between <code>ixFirst</code> and <code>ixLast</code> gets displayed
+ at the top of the data area, and the minimum intensity at the bottom
+ (= "automatic y scaling").
+ If not null: Defines which 2 intensity values should be used to be
+  displayed at the top and bottom of the data area.
+  A typical use is "interactive shifting a zoomed-in polyline along x
+  while retaining its y scaling":
+  For this case compute a new Polyline with <code>ymin</code> and <code>ymax</code> set to the
+  respective values of the polyline displaying the previous x viewport
+  as soon as viewport changes.
+<code>uAttr</code>: User-defined polyline attributes.
+ If null, <a href="smart_arrays_plot_polyline/POLYLINE_DEFAULT_ATTRIBUTES.html">POLYLINE_DEFAULT_ATTRIBUTES</a> are used. Otherwise
+ you can change here colors, scaling and layout parameters, and more
+ drawing features.
+ The attributes specified here will override their respective defaults.
+ <a href="smart_arrays_plot_polyline/Polyline/attr.html">attr</a> will become the combined map of effective attributes.
+ See <a href="smart_arrays_plot_polyline/PyA-class.html">PyA</a> for all options.
+ NOTE 1: In addition to the polyline a list of points in form of circles
+   or other shapes will be drawn if attr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.POINT_LIST</a> is not
+   null.
+ NOTE 2: In addition to the polyline a text will be drawn at the end of the
+   polyline if attr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.MARKER_TEXT</a> is not null or empty.
+ NOTE 3: In addition to the polyline an icon ("selection icon") will be
+  drawn at the end of the polyline if attr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.DRAW_SELECTION_ICON</a> is
+  "true". The icon size is attr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.SELECTION_ICON_WIDTH</a>.
+  attr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.SELECTION_ICON_OUTSIDE</a> = "true" ensures that the icon remains
+  inside the data area.
+ NOTE 4: You can display a polyline rotated, e.g. by 90 degrees, by
+  specifying a rotation and or translation operator in attr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.ROTATE</a>,
+  e.g "rotate(-90) translate(${-axisLength/2}, ${someOffset})".
+  The syntax must conform to SVG.
+ NOTE 5: The maximum y value can be set to the optional reference value
+  <a href="smart_arrays_plot_polyline/Polyline/refYmax.html">refYmax</a>. All respective y values are scaled accordingly. This feature
+  can be used to display several polylines in a plot area
+  which are scaled with respect to each store_quota, with a desired one
+  to be the reference. If refYmax is not used while displaying several
+  polylines at the same time in the same area, each respective graph
+  would would be scaled and displayed such that its ymax will be visible
+  inside the area at y = 0 + insety to fit into dataAreaHeight-insety.
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="a" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/a.html">a</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="array" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/array.html">array</a></span>
+          <span class="signature">&#8596; Float64List</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="attr" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/attr.html">attr</a></span>
+          <span class="signature">&#8596; Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/PyA-class.html">PyA</a></span>, <span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/b.html">b</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="clipDataAtYBoundary" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/clipDataAtYBoundary.html">clipDataAtYBoundary</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="cpd" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/cpd.html">cpd</a></span>
+          <span class="signature">&#8596; CompressedArray1D</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="dataAreaHeight" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/dataAreaHeight.html">dataAreaHeight</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="dataAreaWidth" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/dataAreaWidth.html">dataAreaWidth</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="effectivePolylineHeight" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/effectivePolylineHeight.html">effectivePolylineHeight</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="effectivePolylineWidth" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/effectivePolylineWidth.html">effectivePolylineWidth</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="insetx" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/insetx.html">insetx</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="insety" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/insety.html">insety</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="insety2" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/insety2.html">insety2</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="isSelected" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/isSelected.html">isSelected</a></span>
+          <span class="signature">&#8594; bool</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read-only</div>
+</dd>
+        <dt id="ixFirst" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/ixFirst.html">ixFirst</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="ixLast" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/ixLast.html">ixLast</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="pointShapes" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/pointShapes.html">pointShapes</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">GeometryElement</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="polyline" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/polyline.html">polyline</a></span>
+          <span class="signature">&#8596; PolylineElement</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="polylineContainer" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/polylineContainer.html">polylineContainer</a></span>
+          <span class="signature">&#8596; SvgSvgElement</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="polylineMarker" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/polylineMarker.html">polylineMarker</a></span>
+          <span class="signature">&#8596; TextElement</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="refYmax" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/refYmax.html">refYmax</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="selectionIcon" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/selectionIcon.html">selectionIcon</a></span>
+          <span class="signature">&#8596; RectElement</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="strokeWidth" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/strokeWidth.html">strokeWidth</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="useWebgl" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/useWebgl.html">useWebgl</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xmax" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xmax.html">xmax</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xmin" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xmin.html">xmin</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xscale" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xscale.html">xscale</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xselectionIcon" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xselectionIcon.html">xselectionIcon</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xsFirst" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xsFirst.html">xsFirst</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xshift" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xshift.html">xshift</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xsLast" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xsLast.html">xsLast</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xValues" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xValues.html">xValues</a></span>
+          <span class="signature">&#8596; Float64List</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="ymax" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/ymax.html">ymax</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="ymin" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/ymin.html">ymin</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yscale" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yscale.html">yscale</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yselectionIcon" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yselectionIcon.html">yselectionIcon</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yshift1" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yshift1.html">yshift1</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yshift2" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yshift2.html">yshift2</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="ysLast" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/ysLast.html">ysLast</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="ysMax" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/ysMax.html">ysMax</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="ysMin" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/ysMin.html">ysMin</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yysMax" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yysMax.html">yysMax</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yysMin" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yysMin.html">yysMin</a></span>
+          <span class="signature">&#8596; double</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="zoomRegion" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/zoomRegion.html">zoomRegion</a></span>
+          <span class="signature">&#8596; <a href="smart_arrays_plot_polyline/YZoomRegion-class.html">YZoomRegion</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="smart_arrays_plot_polyline/Polyline/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="addMarkerText" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/addMarkerText.html">addMarkerText</a></span><span class="signature">(<wbr><span class="parameter" id="addMarkerText-param-xs"><span class="type-annotation">int</span> <span class="parameter-name">xs</span>, </span> <span class="parameter" id="addMarkerText-param-ys"><span class="type-annotation">int</span> <span class="parameter-name">ys</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Adds a text to the polyline in the polyline's color
+from attr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.MARKER_TEXT</a>, if present, at the screen position
+<code>xs</code>, <code>ys</code>. If the text is appended right of the polyline it requires that
+the user extended polyAttr<a href="smart_arrays_plot_polyline/PyA-class.html">PyA.INSETX</a> by the length of the text in pixels.
+                  
+</dd>
+        <dt id="addPointShapes" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/addPointShapes.html">addPointShapes</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Adds a list of points to <a href="smart_arrays_plot_polyline/Polyline/polylineContainer.html">polylineContainer</a>. The list must be
+given in POLYLINE_POINT_LIST (list of strings): shape,x1,y1,x2,y2,...
+in the polyline coordinates units.
+<code>shape</code> defines how the points are drawn, e.g. as a circle.
+SQUARE_EMPTY, CIRCLE_EMPTY, ...
+                  
+</dd>
+        <dt id="addSelectionIcon" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/addSelectionIcon.html">addSelectionIcon</a></span><span class="signature">(<wbr><span class="parameter" id="addSelectionIcon-param-xs"><span class="type-annotation">int</span> <span class="parameter-name">xs</span>, </span> <span class="parameter" id="addSelectionIcon-param-ys"><span class="type-annotation">int</span> <span class="parameter-name">ys</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Adds a selection rectangle at <code>xs, ys</code> of polylineContainer
+If <code>xs</code> is null, the last rectangle is redrawn if there was one.
+                  
+</dd>
+        <dt id="assertIndexes" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/assertIndexes.html">assertIndexes</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          
+                  
+</dd>
+        <dt id="createPointShape" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/createPointShape.html">createPointShape</a></span><span class="signature">(<wbr><span class="parameter" id="createPointShape-param-mxs"><span class="type-annotation">int</span> <span class="parameter-name">mxs</span>, </span> <span class="parameter" id="createPointShape-param-mys"><span class="type-annotation">int</span> <span class="parameter-name">mys</span>, </span> <span class="parameter" id="createPointShape-param-shape"><span class="type-annotation">String</span> <span class="parameter-name">shape</span></span>)
+            <span class="returntype parameter">&#8594; GeometryElement</span>
+          </span>
+                  </dt>
+        <dd>
+          Creates a point shape for the screen position
+<code>mxs, mys</code> with the geometric form <code>shape</code>.
+                  
+</dd>
+        <dt id="drawMarkers" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/drawMarkers.html">drawMarkers</a></span><span class="signature">(<wbr><span class="parameter" id="drawMarkers-param-markerIndices"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">double</span>&gt;</span></span> <span class="parameter-name">markerIndices</span>, </span> <span class="parameter" id="drawMarkers-param-markerLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">markerLabels</span>, </span> <span class="parameter" id="drawMarkers-param-markerAttrList"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/MarA-class.html">MarA</a></span>, <span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">markerAttrList</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Draws vertical lines above this polyline.
+<code>markerIndices</code> - the x positions of the lines (indices in the <code>dpy</code>'s array.
+<code>markerLabels</code> - text labels drawn together with lines. If not null, the
+  length of this array must be the same as that of <code>markerIndices</code>.
+<code>markerAttrList</code> - marker attributes. If null, <code>MARKER_DEFAULT_ATTRIBUTES</code>
+  are used. Otherwise, the length of this array must be the same as that of
+  <code>markerIndices</code>.
+                  
+</dd>
+        <dt id="genPolyline" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/genPolyline.html">genPolyline</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Generatey the svg polyline element from the xypairs
+                  
+</dd>
+        <dt id="getAbsoluteIndexFromScreenX" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/getAbsoluteIndexFromScreenX.html">getAbsoluteIndexFromScreenX</a></span><span class="signature">(<wbr><span class="parameter" id="getAbsoluteIndexFromScreenX-param-x"><span class="type-annotation">int</span> <span class="parameter-name">x</span></span>)
+            <span class="returntype parameter">&#8594; double</span>
+          </span>
+                  </dt>
+        <dd>
+          This polyline displays a given range of a data array.
+<code>x</code> must be given in pixels relative to dataArea's origin.
+Then this function returns an absolute index between 0 and
+npointsInDisplayRegion (of the original uncompressed array).
+                  
+</dd>
+        <dt id="getRelativeIndexFromScreenX" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/getRelativeIndexFromScreenX.html">getRelativeIndexFromScreenX</a></span><span class="signature">(<wbr><span class="parameter" id="getRelativeIndexFromScreenX-param-x"><span class="type-annotation">int</span> <span class="parameter-name">x</span></span>)
+            <span class="returntype parameter">&#8594; double</span>
+          </span>
+                  </dt>
+        <dd>
+          This polyline displays a range from a data array.
+<code>x</code> must be given in pixels relative to dataArea's origin.
+Then this function returns a relative index with respect to
+cpd.uIndices<code>0</code> ranging from
+cpd.uIndices<code>0</code> to cpd.uIndices<code>cpd.uIndices.length-1</code>
+                  
+</dd>
+        <dt id="getSelectionRectangleMath" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/getSelectionRectangleMath.html">getSelectionRectangleMath</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; Rectangle<span class="signature">&lt;<wbr><span class="type-parameter">num</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the specs of the selectionRect.
+                  
+</dd>
+        <dt id="remove" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/remove.html">remove</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Removes this polyline from dataArea if not webgl.
+                  
+</dd>
+        <dt id="removeSelectionIcon" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/removeSelectionIcon.html">removeSelectionIcon</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Removes the selection icon if there
+                  
+</dd>
+        <dt id="setSelected" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/setSelected.html">setSelected</a></span><span class="signature">(<wbr><span class="parameter" id="setSelected-param-select"><span class="type-annotation">bool</span> <span class="parameter-name">select</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Sets selection state, changes stroke of polyline and filling of
+selectionRect.
+                  
+</dd>
+        <dt id="toggleSelected" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/toggleSelected.html">toggleSelected</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Reverses selection state
+                  
+</dd>
+        <dt id="xphysToXscreen" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/xphysToXscreen.html">xphysToXscreen</a></span><span class="signature">(<wbr><span class="parameter" id="xphysToXscreen-param-x"><span class="type-annotation">double</span> <span class="parameter-name">x</span></span>)
+            <span class="returntype parameter">&#8594; double</span>
+          </span>
+                  </dt>
+        <dd>
+          Converts physical x coordinate to screen x coordinate, which is returned
+relative to the data area.
+NOTE: This method assumes x coordinates increasing vom left to right.
+Therefore for nmr we always feed in indexes!
+MUST have the type of PhysicalToScreen.
+                  
+</dd>
+        <dt id="yphysToYscreen" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yphysToYscreen.html">yphysToYscreen</a></span><span class="signature">(<wbr><span class="parameter" id="yphysToYscreen-param-y"><span class="type-annotation">double</span> <span class="parameter-name">y</span></span>)
+            <span class="returntype parameter">&#8594; double</span>
+          </span>
+                  </dt>
+        <dd>
+          Converts physical y coordinate to screen y coordinate, which is returned
+relative to the data area.
+Formula: see .odt document in specpad source tree in the folder "manuals".
+have the type of PhysicalToScreen.
+                  
+</dd>
+        <dt id="yScreenToYphys" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/yScreenToYphys.html">yScreenToYphys</a></span><span class="signature">(<wbr><span class="parameter" id="yScreenToYphys-param-yscreen"><span class="type-annotation">int</span> <span class="parameter-name">yscreen</span></span>)
+            <span class="returntype parameter">&#8594; double</span>
+          </span>
+                  </dt>
+        <dd>
+          Converts screen y coordinate <code>yscreen</code> which is given relative to the
+data area, to physical y coordinate.
+This conversion is the inverse operation of <code>yphysToXscreen(double y)</code>
+and is valid for this polyline by using the constants a and b computed
+by <code>yphysToXscreen</code>.
+If this method is called prior to calling <code>yphysToXscreen</code> the constants
+a and b and not available yet, null is returned.
+                  
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="smart_arrays_plot_polyline/Polyline/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/Polyline/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="smart_arrays_plot_polyline/Polyline/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="smart_arrays_plot_polyline/Polyline-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/Polyline.html">Polyline</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_plot_polyline/Polyline-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/a.html">a</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/array.html">array</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/attr.html">attr</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/b.html">b</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/clipDataAtYBoundary.html">clipDataAtYBoundary</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/cpd.html">cpd</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/dataAreaHeight.html">dataAreaHeight</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/dataAreaWidth.html">dataAreaWidth</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/effectivePolylineHeight.html">effectivePolylineHeight</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/effectivePolylineWidth.html">effectivePolylineWidth</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/insetx.html">insetx</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/insety.html">insety</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/insety2.html">insety2</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/isSelected.html">isSelected</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/ixFirst.html">ixFirst</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/ixLast.html">ixLast</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/pointShapes.html">pointShapes</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/polyline.html">polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/polylineContainer.html">polylineContainer</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/polylineMarker.html">polylineMarker</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/refYmax.html">refYmax</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/selectionIcon.html">selectionIcon</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/strokeWidth.html">strokeWidth</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/useWebgl.html">useWebgl</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xmax.html">xmax</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xmin.html">xmin</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xscale.html">xscale</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xselectionIcon.html">xselectionIcon</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xsFirst.html">xsFirst</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xshift.html">xshift</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xsLast.html">xsLast</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xValues.html">xValues</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/ymax.html">ymax</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/ymin.html">ymin</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yscale.html">yscale</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yselectionIcon.html">yselectionIcon</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yshift1.html">yshift1</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yshift2.html">yshift2</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/ysLast.html">ysLast</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/ysMax.html">ysMax</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/ysMin.html">ysMin</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yysMax.html">yysMax</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yysMin.html">yysMin</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/zoomRegion.html">zoomRegion</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Polyline/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Polyline/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/Polyline-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/addMarkerText.html">addMarkerText</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/addPointShapes.html">addPointShapes</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/addSelectionIcon.html">addSelectionIcon</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/assertIndexes.html">assertIndexes</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/createPointShape.html">createPointShape</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/drawMarkers.html">drawMarkers</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/genPolyline.html">genPolyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/getAbsoluteIndexFromScreenX.html">getAbsoluteIndexFromScreenX</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/getRelativeIndexFromScreenX.html">getRelativeIndexFromScreenX</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/getSelectionRectangleMath.html">getSelectionRectangleMath</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/remove.html">remove</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/removeSelectionIcon.html">removeSelectionIcon</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/setSelected.html">setSelected</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/toggleSelected.html">toggleSelected</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/xphysToXscreen.html">xphysToXscreen</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yphysToYscreen.html">yphysToYscreen</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline/yScreenToYphys.html">yScreenToYphys</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Polyline/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Polyline/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_plot_polyline/Polyline-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Polyline/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_plot_polyline 2.1.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

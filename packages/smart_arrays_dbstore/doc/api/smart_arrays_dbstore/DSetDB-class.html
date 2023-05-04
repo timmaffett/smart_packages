@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the DSetDB class from the smart_arrays_dbstore library, for the Dart programming language.">
+  <title>DSetDB class - smart_arrays_dbstore library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_dbstore</a></li>
+    <li><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html">smart_arrays_dbstore</a></li>
+    <li class="self-crumb">DSetDB class</li>
+  </ol>
+  <div class="self-name">DSetDB</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_dbstore</a></li>
+      <li><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html">smart_arrays_dbstore</a></li>
+      <li class="self-crumb">DSetDB class</li>
+    </ol>
+    
+    <h5>smart_arrays_dbstore library</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html#classes">Classes</a></li>
+      <li><a href="smart_arrays_dbstore/DSAuditTrail-class.html">DSAuditTrail</a></li>
+      <li><a href="smart_arrays_dbstore/DSet-class.html">DSet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB-class.html">DSetDB</a></li>
+      <li><a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a></li>
+      <li><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></li>
+      <li><a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a></li>
+      <li><a href="smart_arrays_dbstore/UtilsJson-class.html">UtilsJson</a></li>
+    
+    
+    
+    
+    
+    
+      <li class="section-title"><a href="smart_arrays_dbstore/smart_arrays_dbstore-library.html#typedefs">Typedefs</a></li>
+      <li><a href="smart_arrays_dbstore/DSetInit.html">DSetInit</a></li>
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">DSetDB</span> class </h1></div>
+
+    <section class="desc markdown">
+      <p>A "dataset" is represented by a <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> object consisting of one or
+several 1D or 2D arrays, and of metadata. The arrays and the metadata
+are called the "dataset components".</p>
+<p>This class handles the storage of such datasets in an IndexedDB.
+Example: In NMR spectroscopy, datasets are often 1D or 2D floating arrays
+plus spectral parameters ( = "metadata").
+The following holds:</p><ul><li>
+<p>Each dataset is stored in its own data base.</p></li><li>
+<p>The data base name is: <a href="smart_arrays_dbstore/DSetDB/dbBaseName.html">dbBaseName</a> + &lt; a data base number 1, 2, 3, ...&gt;</p></li><li>
+<p>In a dataset's db, the dataset's arrays and its metadata are stored: the
+dataset components.</p></li><li>
+<p>Each db contains several "IndexedDB object stores". A data set component
+(an array or metadata) is stored in such an object store.</p></li><li>
+<p>An object store has a name, which is chosen to be the component name of the dataset.
+DSC_REAL, DSC_IMAG, DSC_META ...</p>
+<p>An object store may contain several items identified by a "key". A dataset
+component is stored inside its object store with a key identical to the
+object store's name. This is an arbitrary convention.</p></li><li>
+<p>Note: a component name may be extended by a running number if a
+component (a large array) must be split due to its size (the max component
+size is browser dependent, usually several megabytes).</p></li><li>
+<p>A dataset is identified by a "dataset key".</p></li><li>
+<p>The database name for a dataset is created from <a href="smart_arrays_dbstore/DSetDB/dbBaseName.html">dbBaseName</a> and from
+the dataset's <code>encodedDskey</code> via <a href="smart_arrays_dbstore/DSetDB/dbnameCreate.html">dbnameCreate</a>.</p></li><li>
+<p>All existing data base names and their corresponding data set names are
+kept in the map <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a>. The map is saved in the <a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a>
+under the key <a href="smart_arrays_dbstore/DSetDB/DS_DB_NAMES.html">DS_DB_NAMES</a>.</p></li><li>
+<p><code>dskeys</code> are required in the format according to via <code>DSKey.create</code>.</p></li></ul>
+<p>NOTE: The number of data bases (and therefore the number of datasets) that
+can be stored under a browser is browser dependent.
+As of June 2017: Chrome Android or Windows &gt; 100, Safari iOS &lt; 70.
+These values may depend on other apps.</p>
+<p>As of June 2017 Chrome supports getting the names of all databases
+(=datasets) stored by specpad, but Safari doesn't.
+Therefore we maintain our own data base list YDATA_DB_LIST.</p>
+    </section>
+    
+    <section>
+      <dl class="dl-horizontal">
+        <dt>Inheritance</dt>
+        <dd><ul class="gt-separated dark clazz-relationships">
+          <li>Object</li>
+          <li><a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a></li>
+          <li>DSetDB</li>
+        </ul></dd>
+
+
+
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="DSetDB" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/DSetDB.html">DSetDB</a></span><span class="signature">(<span class="parameter" id="-param-dbBaseName"><span class="type-annotation">String</span> <span class="parameter-name">dbBaseName</span>, </span> <span class="parameter" id="-param-dbBaseNameGlobals"><span class="type-annotation">String</span> <span class="parameter-name">dbBaseNameGlobals</span></span>)</span>
+        </dt>
+        <dd>
+          Creates a dataset storage handler <a href="smart_arrays_dbstore/DSetDB-class.html">DSetDB</a> which can store datasets of type
+<a href="smart_arrays_dbstore/DSet-class.html">DSet</a> in databases whose names all begin with <code>dbBaseName</code>.
+Also creates a <a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a> for this <a href="smart_arrays_dbstore/DSetDB-class.html">DSetDB</a> used to store common
+information for all datasets managed by this <a href="smart_arrays_dbstore/DSetDB-class.html">DSetDB</a>, e.g. the
+<a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a> and more. <a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a> stores its properties in its own
+database with name <code>dbBaseNameGlobals</code>.
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="dbBaseName" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbBaseName.html">dbBaseName</a></span>
+          <span class="signature">&#8596; String</span>         
+        </dt>
+        <dd>
+          The db's "base name" identical to all <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> databases managed by this <a href="smart_arrays_dbstore/DSetDB-class.html">DSetDB</a>.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="dbBaseNameGlobals" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbBaseNameGlobals.html">dbBaseNameGlobals</a></span>
+          <span class="signature">&#8596; String</span>         
+        </dt>
+        <dd>
+          The name of the "global (common) properties" database belonging to this <a href="smart_arrays_dbstore/DSetDB-class.html">DSetDB</a>.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="dbnamesMap" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a></span>
+          <span class="signature">&#8596; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">int</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          A dataset in a <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a> is identified by a dataset key <code>dskey</code> of type
+<a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a>. Each dataset is stored
+in its own database whose name consists of <a href="smart_arrays_dbstore/DSetDB/dbBaseName.html">dbBaseName</a>, plus a number.
+For each dataset, <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a> contains this mapping:
+{dskey.encode(): number}
+It is saved in the global properties store <a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a> under the key
+<a href="smart_arrays_dbstore/DSetDB/DS_DB_NAMES.html">DS_DB_NAMES</a> by <a href="smart_arrays_dbstore/DSetDB/dbnamesSave.html">dbnamesSave</a>.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="DSC_OBJECT_STORES" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/DSC_OBJECT_STORES.html">DSC_OBJECT_STORES</a></span>
+          <span class="signature">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="smart_arrays_dbstore/DSetStore/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="propStore" class="property inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a></span>
+          <span class="signature">&#8596; <a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a></span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="dbCreateStores" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbCreateStores.html">dbCreateStores</a></span><span class="signature">(<wbr><span class="parameter" id="dbCreateStores-param-e"><span class="type-annotation">VersionChangeEvent</span> <span class="parameter-name">e</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Called when a new DB was created, or the version of an existing
+DB was changed.
+                  
+</dd>
+        <dt id="dbnameCreate" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnameCreate.html">dbnameCreate</a></span><span class="signature">(<wbr><span class="parameter" id="dbnameCreate-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span></span>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd>
+          Returns a unique DB name for a dataset described by <code>dskey</code>.
+[constructed from <a href="smart_arrays_dbstore/DSetDB/dbBaseName.html">dbBaseName</a>, <code>dskey</code> and
+the first unused db number.
+                  
+</dd>
+        <dt id="dbnameGet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnameGet.html">dbnameGet</a></span><span class="signature">(<wbr><span class="parameter" id="dbnameGet-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span></span>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the name of the database where the dataset defined by <code>dskey</code>
+is stored. Locates <code>dskey</code> in <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a>. Returns null if <code>dskey</code>
+is not there.
+                  
+</dd>
+        <dt id="dbnamePut" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnamePut.html">dbnamePut</a></span><span class="signature">(<wbr><span class="parameter" id="dbnamePut-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span>, </span> <span class="parameter" id="dbnamePut-param-dbname"><span class="type-annotation">String</span> <span class="parameter-name">dbname</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Assigns <code>dskey</code> a new database number and updates <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a> respectively
+(possibly overriding an existing value). The changed map is stored in
+<a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a>.
+Returns true if successful.
+                  
+</dd>
+        <dt id="dbnameRemove" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnameRemove.html">dbnameRemove</a></span><span class="signature">(<wbr><span class="parameter" id="dbnameRemove-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Removes <code>dskey</code> from <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a> and updates <a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a>.
+Returns <a href="smart_arrays_dbstore/DSetDB/DS_DB_NAMES.html">DS_DB_NAMES</a> in the case of success, null if failed. The latter
+is true if the db could not be opened or created.
+                  
+</dd>
+        <dt id="dbnamesInit" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnamesInit.html">dbnamesInit</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Initializes the contents of <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a>.
+Requires that the global properties <a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a> are available, otherwise
+<a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a> would remain empty.
+Note that <a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a> is available after calling <a href="smart_arrays_dbstore/DSetDB/createDSetStore.html">createDSetStore</a>.
+                  
+</dd>
+        <dt id="dbnamesSave" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnamesSave.html">dbnamesSave</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Saves <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a> jsonified in <a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a> under <a href="smart_arrays_dbstore/DSetDB/DS_DB_NAMES.html">DS_DB_NAMES</a>.
+Returns <a href="smart_arrays_dbstore/DSetDB/DS_DB_NAMES.html">DS_DB_NAMES</a> in the case of success, null if failed. The latter
+is true if the db could not be opened or created.
+                  
+</dd>
+        <dt id="dbnumFreeGet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnumFreeGet.html">dbnumFreeGet</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; int</span>
+          </span>
+                  </dt>
+        <dd>
+          Return the first unused db number in <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a>.
+Can be used to create a new db.
+2, 8, 13
+1,2,3,4,5,13
+                  
+</dd>
+        <dt id="dbnumGet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbnumGet.html">dbnumGet</a></span><span class="signature">(<wbr><span class="parameter" id="dbnumGet-param-dbname"><span class="type-annotation">String</span> <span class="parameter-name">dbname</span></span>)
+            <span class="returntype parameter">&#8594; int</span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the database number (&gt;0) ("extension") of <code>dbname</code>.
+Returns -1 if illegal dbname.
+                  
+</dd>
+        <dt id="dbOpen" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dbOpen.html">dbOpen</a></span><span class="signature">(<wbr><span class="parameter" id="dbOpen-param-dbname"><span class="type-annotation">String</span> <span class="parameter-name">dbname</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">Database</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the database with <code>dbname</code> if it exists and has the version
+number DB_VERSION_YDATA. <code>onUpgradeNeeded</code> is not called.
+Creates and returns a new database with <code>dbname</code> if it does not exists
+or it exists, but DB_VERSION_YDATA is different from that of the existing
+database. After creation, <code>onUpgradeNeeded</code> gets called where the object
+store<code>s</code> in the db can be crated.
+                  
+</dd>
+        <dt id="dscompDel" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dscompDel.html">dscompDel</a></span><span class="signature">(<wbr><span class="parameter" id="dscompDel-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span>, </span> <span class="parameter" id="dscompDel-param-componentKey"><span class="type-annotation">String</span> <span class="parameter-name">componentKey</span></span>)
+            <span class="returntype parameter">&#8594; Future</span>
+          </span>
+                  </dt>
+        <dd>
+          Deletes the <a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a> component <code>componentKey</code> of the data set <code>dskey</code> from
+the database defined by <code>dskey</code>.
+A component consists of the actual component data (e.g. DSC_REAL) and
+possibly other associated data (e.g. a special property) all contained in
+an object store whose name is <code>componentKey</code>.
+Therefore we delete here the entire contents of object store <code>componentKey</code>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dscompLoad" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dscompLoad.html">dscompLoad</a></span><span class="signature">(<wbr><span class="parameter" id="dscompLoad-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span>, </span> <span class="parameter" id="dscompLoad-param-dsc"><span class="type-annotation">String</span> <span class="parameter-name">dsc</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Inverse of <a href="smart_arrays_dbstore/DSetDB/dscompSave.html">dscompSave</a>:
+Returns the matrix that was stored as dataset component <code>dsc</code> in the
+database whose name is derived from <code>dskey</code>.
+Returns null if the component doesn't
+exist, or an error occured. Handles both cases:  Data are stored in a
+single block or in several blocks by <a href="smart_arrays_dbstore/DSetDB/dscompSave.html">dscompSave</a>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dscompSave" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dscompSave.html">dscompSave</a></span><span class="signature">(<wbr><span class="parameter" id="dscompSave-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span>, </span> <span class="parameter" id="dscompSave-param-matrix"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span> <span class="parameter" id="dscompSave-param-dsc"><span class="type-annotation">String</span> <span class="parameter-name">dsc</span></span>)
+            <span class="returntype parameter">&#8594; Future</span>
+          </span>
+                  </dt>
+        <dd>
+          Saves <code>matrix</code> in a database as the dataset component <code>dsc</code>, e.g. as
+<a href="smart_arrays_dbstore/DSetStore/DSC_REAL.html">DSC_REAL</a>. The database name is obtained from <code>dskey</code> via <a href="smart_arrays_dbstore/DSetDB/dbnameGet.html">dbnameGet</a>.
+If the database exists, a potentially existing
+<code>dsc</code> will be overridden. If it does not exist, it will be created with
+a unique name using <a href="smart_arrays_dbstore/DSetDB/dbnameCreate.html">dbnameCreate</a>.
+This method handles both cases: Data are stored in a single block or in
+several blocks (the latter: if the data <a href="smart_arrays_dbstore/DSetDB/MAXSIZE.html">MAXSIZE</a> was exceeded when storing
+the data, a browser limitation).
+Throws a message upon error.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dsDel" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dsDel.html">dsDel</a></span><span class="signature">(<wbr><span class="parameter" id="dsDel-param-dskeys"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span>&gt;</span></span> <span class="parameter-name">dskeys</span>, </span> <span class="parameter" id="dsDel-param-imagOnly"><span class="type-annotation">bool</span> <span class="parameter-name">imagOnly</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Deletes all datasets indetified by <code>dskeys</code> by deleting the respective
+databases if <code>imagOnly</code> is <code>false</code>. Otherwise deletes only the imaginary
+data of the datasets from the database.
+Returns true on success.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dsExist" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dsExist.html">dsExist</a></span><span class="signature">(<wbr><span class="parameter" id="dsExist-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns true if a dataset described by <code>dskey</code> exists.
+Checks if a database for <code>dskey</code> exists and contains at least
+metadata.
+Note: If the database didn't exist before, it will exist afterwards
+because openDB() will create a database if it doesn't exist. This is
+not a problem because, for a <a href="smart_arrays_dbstore/DSet-class.html">DSet</a> set to exist we check for existing
+metadata. The created database will NOT be present in <a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a>.
+For this reason the created empty db will be used next time a dataset is
+stored.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dskeyGet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dskeyGet.html">dskeyGet</a></span><span class="signature">(<wbr><span class="parameter" id="dskeyGet-param-dbnum"><span class="type-annotation">int</span> <span class="parameter-name">dbnum</span></span>)
+            <span class="returntype parameter">&#8594; <a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the <a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a> belonging to the data base number <code>dbnum</code> in
+<a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a>. Returns null if not existing.
+                  
+</dd>
+        <dt id="dskeysWithProject" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dskeysWithProject.html">dskeysWithProject</a></span><span class="signature">(<wbr><span class="parameter" id="dskeysWithProject-param-projectName"><span class="type-annotation">String</span> <span class="parameter-name">projectName</span></span>)
+            <span class="returntype parameter">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns all <a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a>s belonging to <code>projectName</code>. The result is compiled
+from all stored datasets managed by this <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>.
+The result can be empty, but not null.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dsmetaLoad" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dsmetaLoad.html">dsmetaLoad</a></span><span class="signature">(<wbr><span class="parameter" id="dsmetaLoad-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the metadata of a dataset identified by <code>dskey</code>.
+Returns null on error or no metadata.
+The error message is then available in <a href="smart_arrays_dbstore/DSetStore/load_meta_error.html">load_meta_error</a>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dsmetaLoad_db" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dsmetaLoad_db.html">dsmetaLoad_db</a></span><span class="signature">(<wbr><span class="parameter" id="dsmetaLoad_db-param-dbname"><span class="type-annotation">String</span> <span class="parameter-name">dbname</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the metadata of a dataset stored as a database with name <code>dbname</code>.
+Under metadata we understand the component <a href="smart_arrays_dbstore/DSetStore/DSC_META.html">DSetStore.DSC_META</a> of
+a dataset.
+Returns null if no metadata exist in <code>dbname</code>.
+Returns a map of the form {"ERR": error message} if metadata exist, but
+have a wrong data type ( probably a programming error).
+Note: if a database with <code>dbname</code> doesn't exist, also null is returned.
+However, afterwards a database with this name was created, with no content.
+It will later be re-used when one is needed. No harm otherwise.
+                  
+</dd>
+        <dt id="dsmetaSave" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dsmetaSave.html">dsmetaSave</a></span><span class="signature">(<wbr><span class="parameter" id="dsmetaSave-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span>, </span> <span class="parameter" id="dsmetaSave-param-ds"><span class="type-annotation"><a href="smart_arrays_dbstore/DSet-class.html">DSet</a></span> <span class="parameter-name">ds</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Saves the metadata <code>meta</code> of the <code>dset</code> under <code>dskey</code> in a database.
+The database name is implicitely defined by <code>dskey</code>.
+Existing metadata will be overridden.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dsRen" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/dsRen.html">dsRen</a></span><span class="signature">(<wbr><span class="parameter" id="dsRen-param-sourceDatasetKey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">sourceDatasetKey</span>, </span> <span class="parameter" id="dsRen-param-destDatasetKey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">destDatasetKey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Renames a dataset identified by <code>sourceDatasetKey</code> to the new
+identifier <code>destDatasetKey</code>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="gpropDel" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/gpropDel.html">gpropDel</a></span><span class="signature">(<wbr><span class="parameter" id="gpropDel-param-propName"><span class="type-annotation">String</span> <span class="parameter-name">propName</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Deletes the property <code>propName</code> from the <a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a> common ("global") to
+all datasets of this <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>. Returns true if succeeded.
+                  <div class="features">override</div>
+</dd>
+        <dt id="gpropGet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/gpropGet.html">gpropGet</a></span><span class="signature">(<wbr><span class="parameter" id="gpropGet-param-propName"><span class="type-annotation">String</span> <span class="parameter-name">propName</span></span>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the value of the property <code>propName</code> from the <a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a>
+maintained by this <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="gpropSave" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/gpropSave.html">gpropSave</a></span><span class="signature">(<wbr><span class="parameter" id="gpropSave-param-propName"><span class="type-annotation">String</span> <span class="parameter-name">propName</span>, </span> <span class="parameter" id="gpropSave-param-propValue"><span class="type-annotation">String</span> <span class="parameter-name">propValue</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Saves the property with name <code>propName</code> and with value <code>propValue</code> to
+the <a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a> common ("global") to all datasets of this <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>.
+Returns <code>propName</code> in the case of success, null if failed. The latter
+is true if the db could not be opened or created.
+                  <div class="features">override</div>
+</dd>
+        <dt id="matrixLoad" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/matrixLoad.html">matrixLoad</a></span><span class="signature">(<wbr><span class="parameter" id="matrixLoad-param-db"><span class="type-annotation">Database</span> <span class="parameter-name">db</span>, </span> <span class="parameter" id="matrixLoad-param-objectStoreName"><span class="type-annotation">String</span> <span class="parameter-name">objectStoreName</span>, </span> <span class="parameter" id="matrixLoad-param-dataKey"><span class="type-annotation">String</span> <span class="parameter-name">dataKey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Inverse of <a href="smart_arrays_dbstore/DSetDB/matrixSave.html">matrixSave</a>. See also comment there.
+Returns the matrix stored in the database <code>db</code> (whose name is derived from
+<code>encodedDskey</code>) inside the object store <code>objectStoreName</code>
+Returns null if the data don't exist, or an error occured.
+The error message is then available in <a href="smart_arrays_dbstore/DSetDB/load_error.html">load_error</a>;
+                  
+</dd>
+        <dt id="matrixSave" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/matrixSave.html">matrixSave</a></span><span class="signature">(<wbr><span class="parameter" id="matrixSave-param-db"><span class="type-annotation">Database</span> <span class="parameter-name">db</span>, </span> <span class="parameter" id="matrixSave-param-objectStoreName"><span class="type-annotation">String</span> <span class="parameter-name">objectStoreName</span>, </span> <span class="parameter" id="matrixSave-param-matrix"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span> <span class="parameter" id="matrixSave-param-nameInObjectStore"><span class="type-annotation">String</span> <span class="parameter-name">nameInObjectStore</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">Null</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Saves <code>matrix</code> in the object store <code>objectStoreName</code> of the database <code>db</code>
+under <code>nameInObjectStore</code>. Overrides a potentially exsting matrix.
+It is expected that: <a href="smart_arrays_dbstore/DSetDB/matrixSave.html">[...]</a>
+                  
+</dd>
+        <dt id="projectDel" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/projectDel.html">projectDel</a></span><span class="signature">(<wbr><span class="parameter" id="projectDel-param-projectName"><span class="type-annotation">String</span> <span class="parameter-name">projectName</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Deletes all datasets maintained by this <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a> whose dataset key
+component "projectName" is equal to <code>projectName</code>. Or. in other words:
+Deletes those datasets belonging to the project <code>projectName</code>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="projectExists" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/projectExists.html">projectExists</a></span><span class="signature">(<wbr><span class="parameter" id="projectExists-param-projectName"><span class="type-annotation">String</span> <span class="parameter-name">projectName</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd>
+          Returns true if <code>projectName</code> exists in the database, i.e. there is at least
+one dataset in the db belonging to this project (= whose dataset key
+was create with this <code>projectName</code>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="projectRen" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/projectRen.html">projectRen</a></span><span class="signature">(<wbr><span class="parameter" id="projectRen-param-projectName"><span class="type-annotation">String</span> <span class="parameter-name">projectName</span>, </span> <span class="parameter" id="projectRen-param-newProjectName"><span class="type-annotation">String</span> <span class="parameter-name">newProjectName</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Renames project <code>projectName</code> to <code>newProjectName</code>. This means that all datasets
+belonging to <code>projectName</code> will belong to <code>newProjectName</code> afterwards.
+In this implementation, all datasets (i.e. the respective data bases)
+will be renamed accordingly.
+Returns false if <code>newProjectName</code>==<code>projectName</code>.
+                  <div class="features">override</div>
+</dd>
+        <dt id="projectsGet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/projectsGet.html">projectsGet</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns all available project names. They are compiled from all datasets
+managed by this <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a> (can be done because each dataset MUST belong
+to a project). Keys and values in the returned Map are
+identical (by history). The result can be empty, but not null.
+                  <div class="features">override</div>
+</dd>
+        <dt id="dsCopy" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/dsCopy.html">dsCopy</a></span><span class="signature">(<wbr><span class="parameter" id="dsCopy-param-sourceDskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">sourceDskey</span>, </span> <span class="parameter" id="dsCopy-param-destDskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">destDskey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Makes a copy of the dataset identified by <code>sourceDskey</code> and stores it
+under the new identifier <code>destDskey</code>.
+Note: for 2D data, if array components other than DSC_REAL and DSC_IMAG
+ are present, these are not copied (TODO).
+ Returns false if error. Also throws error message.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="dsimagLoad" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/dsimagLoad.html">dsimagLoad</a></span><span class="signature">(<wbr><span class="parameter" id="dsimagLoad-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Convenience method to load the component DSC_IMAG of a dataset defined by
+<code>dskey</code> from this data store.
+Returns null if no such component there, or on error.
+For 1D datasets, the result has only 1 List entry which is the DSC_IMAG
+component. For 2D, the result is the DSC_IMAG matrix.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="dsLoad" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/dsLoad.html">dsLoad</a></span><span class="signature">(<wbr><span class="parameter" id="dsLoad-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_dbstore/DSet-class.html">DSet</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Loads and returns the dataset identified by <code>dskey</code> from this data store.
+The resulting dataset will contain the metadata and the component
+<a href="smart_arrays_dbstore/DSetStore/DSC_REAL.html">DSetStore.DSC_REAL</a>. For performance reason no other components,
+should they if present (e.g. DSC_IMAG), are loaded because the respective
+arrays might be large. They have to be loaded, when needed,
+separately using <a href="smart_arrays_dbstore/DSetDB/dscompLoad.html">dscompLoad</a>.
+Throws an error message in case of a problem.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="dsSave" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/dsSave.html">dsSave</a></span><span class="signature">(<wbr><span class="parameter" id="dsSave-param-dskey"><span class="type-annotation"><a href="smart_arrays_dbstore/DSKey-class.html">DSKey</a></span> <span class="parameter-name">dskey</span>, </span> <span class="parameter" id="dsSave-param-ds"><span class="type-annotation"><a href="smart_arrays_dbstore/DSet-class.html">DSet</a></span> <span class="parameter-name">ds</span></span>)
+            <span class="returntype parameter">&#8594; Future</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Saves the dataset <code>ds</code> under the identifier <code>dskey</code> in this store.
+If <code>ds</code> already exists, it is overriden silently.
+Throws an error message in case of a problem.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="smart_arrays_dbstore/DSetStore/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="smart_arrays_dbstore/DSetStore/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="smart_arrays_dbstore/DSetStore/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-properties">
+      <h2>Static Properties</h2>
+
+      <dl class="properties">
+        <dt id="BLK_SEP" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/BLK_SEP.html">BLK_SEP</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="create_dsstore_error" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/create_dsstore_error.html">create_dsstore_error</a></span>
+          <span class="signature">&#8596; String</span>         
+        </dt>
+        <dd>
+          Contains message when <a href="smart_arrays_dbstore/DSetDB/createDSetStore.html">createDSetStore</a> failed
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="DB_VERSION_YDATA" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/DB_VERSION_YDATA.html">DB_VERSION_YDATA</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="DS_DB_NAMES" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/DS_DB_NAMES.html">DS_DB_NAMES</a></span>
+          <span class="signature">&#8596; String</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="load_error" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/load_error.html">load_error</a></span>
+          <span class="signature">&#8596; String</span>         
+        </dt>
+        <dd>
+          Error message from <a href="smart_arrays_dbstore/DSetDB/matrixLoad.html">matrixLoad</a>
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="MAXSIZE" class="property">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/MAXSIZE.html">MAXSIZE</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-methods">
+      <h2>Static Methods</h2>
+      <dl class="callables">
+        <dt id="createDSetStore" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/createDSetStore.html">createDSetStore</a></span><span class="signature">(<wbr><span class="parameter" id="createDSetStore-param-dbBaseName"><span class="type-annotation">String</span> <span class="parameter-name">dbBaseName</span>, </span> <span class="parameter" id="createDSetStore-param-dbBaseNameGlobals"><span class="type-annotation">String</span> <span class="parameter-name">dbBaseNameGlobals</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns a <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>:
+a) creates a <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a> from <code>dbBaseName</code> and <code>dbBaseNameGlobals</code> if
+   no such store exists, i.e. no datasets are available which are stored
+   in 'IndexedDB' databases whose names start with <code>dbBaseName</code>. In this
+   case also a new <a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a> is created, i.e. an IndexedDB' database
+   with name <code>dbBaseNameGlobals</code> which is used to store common information
+   for all datasets, e.g. a directory of all datasets.
+b) opens a <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a> from <code>dbBaseName</code> and <code>dbBaseNameGlobals</code> if
+   at least one 'IndexedDB' database exists whose name start with
+   <code>dbBaseName</code>. In this case also the associated <a href="smart_arrays_dbstore/PropStore-class.html">PropStore</a>, i.e.
+   an IndexedDB' database with name <code>dbBaseNameGlobals</code> is opened and
+   its contents is loaded to be accessed with the methods of <a href="smart_arrays_dbstore/DSetStore-class.html">DSetStore</a>,
+   e.g. <a href="smart_arrays_dbstore/DSetDB/gpropGet.html">gpropGet</a> or <a href="smart_arrays_dbstore/DSetDB/projectDel.html">projectDel</a>. <a href="smart_arrays_dbstore/DSetDB/createDSetStore.html">[...]</a>
+                  
+</dd>
+        <dt id="persistent" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/persistent.html">persistent</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Requests from the browser to make storage persistent.
+Returns true if granted.
+                  
+</dd>
+        <dt id="persistentAlert" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/persistentAlert.html">persistentAlert</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Requests from the browser to make storage persistent.
+Returns true if granted.
+In addition, alerts the user about the result.
+                  
+</dd>
+        <dt id="propGet" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/propGet.html">propGet</a></span><span class="signature">(<wbr><span class="parameter" id="propGet-param-db"><span class="type-annotation">Database</span> <span class="parameter-name">db</span>, </span> <span class="parameter" id="propGet-param-objectStoreName"><span class="type-annotation">String</span> <span class="parameter-name">objectStoreName</span>, </span> <span class="parameter" id="propGet-param-propName"><span class="type-annotation">String</span> <span class="parameter-name">propName</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Inverse of <a href="smart_arrays_dbstore/DSetDB/propSave.html">propSave</a>.
+Returns the value stored under the key <code>propName</code> from the database <code>db</code>
+inside <code>objectStoreName</code>.
+<code>db</code> must be opened and closed by the caller.
+Returns null if <code>propName</code> doesn't exist in <code>db</code>/<code>objectStoreName</code> or there
+is a problem with accessing the db.
+                  
+</dd>
+        <dt id="propSave" class="callable">
+          <span class="name"><a href="smart_arrays_dbstore/DSetDB/propSave.html">propSave</a></span><span class="signature">(<wbr><span class="parameter" id="propSave-param-db"><span class="type-annotation">Database</span> <span class="parameter-name">db</span>, </span> <span class="parameter" id="propSave-param-objectStoreName"><span class="type-annotation">String</span> <span class="parameter-name">objectStoreName</span>, </span> <span class="parameter" id="propSave-param-propName"><span class="type-annotation">String</span> <span class="parameter-name">propName</span>, </span> <span class="parameter" id="propSave-param-propValue"><span class="type-annotation">String</span> <span class="parameter-name">propValue</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Saves the property defined by the key <code>propName</code> and its value <code>propValue</code>
+in the database <code>db</code> inside the object store with <code>objectStoreName</code>.
+<code>db</code> must be opened and closed by the caller.
+A potentially existing value is overridden.
+Returns <code>propName</code>.
+                  
+</dd>
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="smart_arrays_dbstore/DSetDB-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/DSetDB.html">DSetDB</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_dbstore/DSetDB-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbBaseName.html">dbBaseName</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbBaseNameGlobals.html">dbBaseNameGlobals</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnamesMap.html">dbnamesMap</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/DSC_OBJECT_STORES.html">DSC_OBJECT_STORES</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/propStore.html">propStore</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_dbstore/DSetDB-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbCreateStores.html">dbCreateStores</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnameCreate.html">dbnameCreate</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnameGet.html">dbnameGet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnamePut.html">dbnamePut</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnameRemove.html">dbnameRemove</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnamesInit.html">dbnamesInit</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnamesSave.html">dbnamesSave</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnumFreeGet.html">dbnumFreeGet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbnumGet.html">dbnumGet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dbOpen.html">dbOpen</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dscompDel.html">dscompDel</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dscompLoad.html">dscompLoad</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dscompSave.html">dscompSave</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dsDel.html">dsDel</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dsExist.html">dsExist</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dskeyGet.html">dskeyGet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dskeysWithProject.html">dskeysWithProject</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dsmetaLoad.html">dsmetaLoad</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dsmetaLoad_db.html">dsmetaLoad_db</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dsmetaSave.html">dsmetaSave</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/dsRen.html">dsRen</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/gpropDel.html">gpropDel</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/gpropGet.html">gpropGet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/gpropSave.html">gpropSave</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/matrixLoad.html">matrixLoad</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/matrixSave.html">matrixSave</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/projectDel.html">projectDel</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/projectExists.html">projectExists</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/projectRen.html">projectRen</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/projectsGet.html">projectsGet</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/dsCopy.html">dsCopy</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/dsimagLoad.html">dsimagLoad</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/dsLoad.html">dsLoad</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/dsSave.html">dsSave</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_dbstore/DSetDB-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_dbstore/DSetStore/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_dbstore/DSetDB-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/BLK_SEP.html">BLK_SEP</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/create_dsstore_error.html">create_dsstore_error</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/DB_VERSION_YDATA.html">DB_VERSION_YDATA</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/DS_DB_NAMES.html">DS_DB_NAMES</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/load_error.html">load_error</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/MAXSIZE.html">MAXSIZE</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_dbstore/DSetDB-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/createDSetStore.html">createDSetStore</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/persistent.html">persistent</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/persistentAlert.html">persistentAlert</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/propGet.html">propGet</a></li>
+      <li><a href="smart_arrays_dbstore/DSetDB/propSave.html">propSave</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_dbstore 2.0.4
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

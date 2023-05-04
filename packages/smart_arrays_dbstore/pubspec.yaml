@@ -1,0 +1,13 @@
+name: smart_arrays_dbstore
+version: "2.1.0"
+author: Dr. Bruno Guigas <specpad@gmail.com>
+description: Storing 1D or 2D arrays with their metadata inside indexedDB databases on the local device (for WEB applications).
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.1.4
+  pedantic: ^1.7.0
+  smart_arrays_base: ^2.0.6
+

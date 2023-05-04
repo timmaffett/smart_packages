@@ -1,0 +1,13 @@
+name: smart_arrays_compress
+version: "2.1.0"
+author: Dr. Bruno Guigas <specpad@gmail.com>
+description: Compresses large one- or two-dimensional arrays (vectors, matrices) to a reduced format retaining minimum and maximum values. Can also expand an array by interpolation.
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.0.0
+  pedantic: ^1.7.0
+  smart_arrays_base: ^2.0.9
+

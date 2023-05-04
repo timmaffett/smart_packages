@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the getTouchPoints method from the DiaUtils class, for the Dart programming language.">
+  <title>getTouchPoints method - DiaUtils class - smart_dialogs library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/DiaUtils-class.html">DiaUtils</a></li>
+    <li class="self-crumb">getTouchPoints method</li>
+  </ol>
+  <div class="self-name">getTouchPoints</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/DiaUtils-class.html">DiaUtils</a></li>
+      <li class="self-crumb">getTouchPoints method</li>
+    </ol>
+    
+    <h5>DiaUtils class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/DiaUtils-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_dialogs/DiaUtils/DiaUtils.html">DiaUtils</a></li>
+    
+      <li class="section-title inherited">
+        <a href="smart_dialogs/DiaUtils-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/DiaUtils-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/DiaUtils-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/DiaUtils-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_dialogs/DiaUtils/FALSE.html">FALSE</a></li>
+      <li><a href="smart_dialogs/DiaUtils/SEP_STAN.html">SEP_STAN</a></li>
+      <li><a href="smart_dialogs/DiaUtils/TRUE.html">TRUE</a></li>
+      <li><a href="smart_dialogs/DiaUtils/UNICODE_COMBO_BOX.html">UNICODE_COMBO_BOX</a></li>
+      <li><a href="smart_dialogs/DiaUtils/UNICODE_DELETE_CROSS.html">UNICODE_DELETE_CROSS</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/DiaUtils-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_dialogs/DiaUtils/appendHtml2.html">appendHtml2</a></li>
+      <li><a href="smart_dialogs/DiaUtils/getBoolFromString.html">getBoolFromString</a></li>
+      <li><a href="smart_dialogs/DiaUtils/getTouchPoint.html">getTouchPoint</a></li>
+      <li><a href="smart_dialogs/DiaUtils/getTouchPoints.html">getTouchPoints</a></li>
+      <li><a href="smart_dialogs/DiaUtils/hasMouse.html">hasMouse</a></li>
+      <li><a href="smart_dialogs/DiaUtils/isPhone.html">isPhone</a></li>
+      <li><a href="smart_dialogs/DiaUtils/isSafariIOS.html">isSafariIOS</a></li>
+      <li><a href="smart_dialogs/DiaUtils/isTablet.html">isTablet</a></li>
+      <li><a href="smart_dialogs/DiaUtils/removePx.html">removePx</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">getTouchPoints</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">List<span class="signature">&lt;<wbr><span class="type-parameter">Point<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span>&gt;</span></span>
+            <span class="name ">getTouchPoints</span>
+(<wbr><span class="parameter" id="getTouchPoints-param-e"><span class="type-annotation">UIEvent</span> <span class="parameter-name">e</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Gets the <code>x,y</code> positions in pixels from a touch event <code>e</code>.
+If several fingers touched, the returned list is &gt; 1.
+The returned <code>x,y</code> list is relative to the page.
+Return null if <code>e</code> is not touch event or the number of touches is 0.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">static List&lt;Point&lt;int&gt;&gt; getTouchPoints(UIEvent e) {
+  int x, y;
+  List&lt;Point&lt;int&gt;&gt; tpoints;
+  if (e is MouseEvent) {
+    x = e.page.x;
+    y = e.page.y;
+    tpoints = [Point(x, y)];
+  } else if (!(e is TouchEvent)) {
+    tpoints = [Point(0, 0)];
+  } else {
+    TouchEvent et = e;
+    if (et.touches == null || et.touches.isEmpty) return null;
+
+    tpoints = List&lt;Point&lt;int&gt;&gt;(et.touches.length);
+    for (int i = 0; i &lt; tpoints.length; i++) {
+      x = et.touches[i].page.x;
+      y = et.touches[i].page.y;
+      tpoints[i] = Point(x, y);
+    }
+  }
+  return tpoints;
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_dialogs 2.1.2
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

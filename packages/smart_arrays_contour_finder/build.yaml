@@ -1,0 +1,11 @@
+# If this file is not present, WebStorm will call "build" with default arguments for dart2js,
+# which is "--minify".
+# This file overrides the dart2js args, and minification will be suppressed if the --minify
+# is disabled.
+#targets:
+ # $default:
+  #  builders:
+   #   build_web_compilers|entrypoint:
+    #    options:
+     #     dart2js_args:
+      #      - --minify # disable just this line to suppress minification

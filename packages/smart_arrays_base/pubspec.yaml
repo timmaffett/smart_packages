@@ -1,0 +1,12 @@
+name: smart_arrays_base
+version: "2.1.0"
+author: Dr. Bruno Guigas <specpad@gmail.com>
+description: Provides basic functionalities for 1- and 2-dimensional arrays. Minima/maxima. Split, shuffle, swap, extract, extend. Submatrices, rows, columns, projections, sums.
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.0.0
+  pedantic: ^1.7.0
+

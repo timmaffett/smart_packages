@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.29.1">
+  <meta name="description" content="smart_signal_processing API docs, for the Dart programming language.">
+  <title>smart_signal_processing - Dart API docs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://smart.specpad.bplaced.net">smart_signal_processing package</a></li>
+  </ol>
+  <div class="self-name">smart_signal_processing</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://smart.specpad.bplaced.net">smart_signal_processing package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">smart_signal_processing</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="smart_signal_processing/smart_signal_processing-library.html">smart_signal_processing</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h2 id="smart-signal-processing">Smart Signal Processing</h2>
+<h3 id="what-the-package-can-do-for-you">What the package can do for you</h3>
+<p>This package provides frequently used functions for signal processing:</p>
+<ul>
+<li>Computes mean values, variance, standard deviation.</li>
+<li>Applies windowing (apodization functions) with exponential or Gaussian shapes to an array</li>
+<li>Applies the Fast Fourier Transform to an array.</li>
+<li>Calculates the power or magnitude of a complex-valued array.</li>
+<li>Phase-shifts (rotates in the complex plane) a complex-valued array.</li>
+</ul>
+<h3 id="example">Example</h3>
+<ul>
+<li>
+<p>The provided example can be directly executed via <a href="https://smart.specpad.bplaced.net/smart_signal_processing/example.html">https://smart.specpad.bplaced.net/smart_signal_processing/example.html</a>.</p>
+</li>
+<li>
+<p>Or, download the package and execute the file <code>example/example.html</code> in your browser.</p>
+</li>
+</ul>
+<h3 id="the-major-api-functionalities">The major API functionalities</h3>
+<ul>
+<li>classes <code>Sigma</code>, <code>BaseLine</code>, <code>WinFunc</code>,<code>FFT</code>, <code>Phase</code>.</li>
+</ul>
+<p>Examples: </p>
+<ul>
+<li>
+<p>Multiplication with an exponential:</p>
+<p><code>WinFunc.expMult(array, decayFactor, false, "0");</code></p>
+</li>
+<li>
+<p>Compute Fourier Transform:</p>
+<p><code>FFT.transform(reals, imags);</code></p>
+</li>
+<li>
+<p>Compute magnitude:</p>
+<p><code>Phase.magnitude(reals, imags, true)</code></p>
+</li>
+<li>
+<p>Compute variance in a region:<br>
+<code>Sigma.variance(array, ixstart, ixend)</code></p>
+</li>
+</ul>
+<h3 id="related-packages">Related packages</h3>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_base"><code>smart_arrays_base</code>: Basic functions for 1D and 2D arrays</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_numerics"><code>smart_arrays_numerics</code>: Numerics with 1D and 2D arrays</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_compress"><code>smart_arrays_compress</code>: Compress 1D and 2D arrays to a smaller size.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_sample_data"><code>smart_arrays_sample_data</code>: Computes 1D and 2D arrays containing sample data.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_dbstore"><code>smart_arrays_dbstore</code>: Store 1D and 2D arrays along with metadata on the local device.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_plot_polyline"><code>smart_arrays_plot_polyline</code>: Plot 1D arrays as polyline along with axes and more.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_peaks"><code>smart_arrays_peaks</code>: Detect peaks in 1D and 2D arrays.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_contour_finder"><code>smart_arrays_contour_finder</code>: Contours the three-dimensional surface represented by the values f(x,y) of a matrix.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_lmfit"><code>smart_arrays_lmfit</code>: Fits (x, y) data given as arrays to a specified model function using the  Levenberg-Marquardt algorithm.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_lorentz_gauss"><code>smart_lorentz-gauss</code>: Compute Lorentz-Gauss (pseudo-Voigt) line shapes.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_dialogs"><code>smart_dialogs</code>: Easy-to-use dialogs in Web applications</a></p>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="smart_signal_processing">
+              <span class="name"><a href="smart_signal_processing/smart_signal_processing-library.html">smart_signal_processing</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_signal_processing
+      2.1.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

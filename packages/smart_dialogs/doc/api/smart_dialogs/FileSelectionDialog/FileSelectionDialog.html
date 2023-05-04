@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the FileSelectionDialog constructor from the Class FileSelectionDialog class from the smart_dialogs library, for the Dart programming language.">
+  <title>FileSelectionDialog constructor - FileSelectionDialog class - smart_dialogs library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/FileSelectionDialog-class.html">FileSelectionDialog</a></li>
+    <li class="self-crumb">FileSelectionDialog constructor</li>
+  </ol>
+  <div class="self-name">FileSelectionDialog</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/FileSelectionDialog-class.html">FileSelectionDialog</a></li>
+      <li class="self-crumb">FileSelectionDialog constructor</li>
+    </ol>
+    
+    <h5>FileSelectionDialog class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/FileSelectionDialog-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_dialogs/FileSelectionDialog/FileSelectionDialog.html">FileSelectionDialog</a></li>
+    
+      <li class="section-title inherited">
+        <a href="smart_dialogs/FileSelectionDialog-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/dia.html">dia</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/diaContainer.html">diaContainer</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isModal.html">isModal</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isopen.html">isopen</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/FileSelectionDialog-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/close.html">close</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/createShowDia.html">createShowDia</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isOpen.html">isOpen</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/FileSelectionDialog-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">FileSelectionDialog</span> constructor</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">FileSelectionDialog</span>(<wbr><span class="parameter" id="-param-htmlInfoText"><span class="type-annotation">String</span> <span class="parameter-name">htmlInfoText</span>, </span> <span class="parameter" id="-param-fileSelectionCallback"><span class="type-annotation"><a href="smart_dialogs/FileSelectionCallback.html">FileSelectionCallback</a></span> <span class="parameter-name">fileSelectionCallback</span></span>)
+    </section>
+
+    <section class="desc markdown">
+      <p>Creates a modal dialog providing a button to open the system's file
+selection dialog.
+<code>htmlInfoText</code> will be displayed as a header text.
+<code>fileSelectionCallback</code> will be called with the list of user-selected
+html File objects. The list will be null if the user cancelled the
+dialog without having selected a file.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">FileSelectionDialog(
+  String htmlInfoText,
+  FileSelectionCallback fileSelectionCallback,
+) : super(null) {
+  assert(fileSelectionCallback != null);
+
+  Map&lt;String, String&gt; attr = DiaAttr.attr; &#47;&#47; use shortcut
+
+  TableElement table = TableElement();
+  table.style
+        ..padding = &quot;0px&quot;
+        ..margin = &quot;0px&quot;
+        ..width = &quot;100%&quot; &#47;&#47; makes the table width as wide as its container
+&#47;&#47;    ..height = &quot;100% &quot;&#47;&#47; don&#39;t specify, then it gets computed according to its actual height and is not spread over the container.
+        ..borderCollapse =
+            &quot;collapse&quot; &#47;&#47; table cells directly adjacent, no empty border
+      ;
+
+  TableRowElement row1 = TableRowElement();
+  TableRowElement row2 = TableRowElement();
+  TableRowElement row3 = TableRowElement();
+  table.append(row1);
+  table.append(row2);
+  table.append(row3);
+
+  TableCellElement delCell = TableCellElement();
+  TableCellElement textCell = TableCellElement();
+  TableCellElement buttonCell = TableCellElement();
+
+  row1.append(delCell);
+  row2.append(textCell);
+  row3.append(buttonCell);
+
+  dia.append(table);
+
+  int delIconSize = int.parse(attr[DiaAttr.DIALOG_CROSS_FONTSIZE]);
+  delCell.style
+    ..color = &quot;red&quot;
+    ..fontSize = &quot;${delIconSize}px&quot;
+    ..textAlign = &quot;right&quot;
+    ..cursor = &quot;pointer&quot;;
+  DiaUtils.appendHtml2(delCell, DiaUtils.UNICODE_DELETE_CROSS);
+  delCell.onClick.listen((UIEvent e) {
+    if (dia != null) {
+      close(UserInput(
+          DiaAttr.DIA_ACT_ABORT, null, null)); &#47;&#47; just close the dialog
+      dia = null;
+      fileSelectionCallback(null); &#47;&#47; signal no system file dialog shown
+    }
+  });
+
+  int fontsizeTxT = int.parse(attr[DiaAttr.DIALOG_HELP_TEXT_FONTSIZE]);
+  textCell.style
+    ..paddingTop = &quot;12px&quot; &#47;&#47; leave some space to the delete icon
+    ..paddingBottom = &quot;16px&quot;
+    ..fontSize = &quot;$fontsizeTxT&quot;;
+
+  DiaUtils.appendHtml2(textCell, htmlInfoText);
+  dia.style.color = &quot;${attr[DiaAttr.DIALOG_TEXT_COLOR]}&quot;;
+
+  InputElement inputBut = InputElement(type: &quot;file&quot;);
+  inputBut.multiple = true;
+  inputBut.style..fontSize = &quot;${attr[DiaAttr.DIALOG_BUTTON_FONTSIZE]}px&quot;;
+
+  &#47;&#47; selectedFiles will get the files selected by the user.
+  &#47;&#47; [dia] will be closed via the onClick function immediately, even before the
+  &#47;&#47; file browser dialog is closed by the user.
+  inputBut.onChange.listen((Event e) {
+    if (dia != null) {
+      close(UserInput(
+          DiaAttr.DIA_ACT_ABORT, null, null)); &#47;&#47; just close the dialog
+      dia = null;
+    }
+    List&lt;File&gt; selectedFiles = inputBut.files;
+    fileSelectionCallback(selectedFiles); &#47;&#47; return user selection to caller
+  });
+
+  &#47;&#47; html document requires input elements to be inside a form element:
+  FormElement form = FormElement();
+  form.append(inputBut);
+  buttonCell.append(form);
+
+  &#47;&#47; center the dialog vertically
+  int marginTop = diaContainer.clientHeight ~&#47; 2 - dia.clientHeight ~&#47; 2;
+  marginTop -= (marginTop * 0.2).round(); &#47;&#47;shift up for optical reasons
+  if (DiaUtils.isTablet()) {
+    marginTop = 0; &#47;&#47; dialog at top to minimize coverage by soft keyboard
+  }
+
+  dia.style
+        ..width =
+            &quot;${inputBut.clientWidth + 30}px&quot; &#47;&#47; make popup as wide as the its contents
+        ..marginTop = &quot;${marginTop}px&quot; &#47;&#47; This centers the dialog vertically
+      ;
+
+  document.onKeyDown.listen((KeyboardEvent e) {
+    if (e.keyCode == KeyCode.ESC) {
+      if (dia != null) {
+        close(UserInput(
+            DiaAttr.DIA_ACT_ABORT, null, null)); &#47;&#47; just close the dialog
+        dia = null;
+      }
+    }
+  });
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_dialogs 2.1.2
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

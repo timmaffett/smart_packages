@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the hasMouse method from the DiaUtils class, for the Dart programming language.">
+  <title>hasMouse method - DiaUtils class - smart_dialogs library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/DiaUtils-class.html">DiaUtils</a></li>
+    <li class="self-crumb">hasMouse method</li>
+  </ol>
+  <div class="self-name">hasMouse</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/DiaUtils-class.html">DiaUtils</a></li>
+      <li class="self-crumb">hasMouse method</li>
+    </ol>
+    
+    <h5>DiaUtils class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/DiaUtils-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_dialogs/DiaUtils/DiaUtils.html">DiaUtils</a></li>
+    
+      <li class="section-title inherited">
+        <a href="smart_dialogs/DiaUtils-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/DiaUtils-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/DiaUtils-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_dialogs/DiaUtils/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/DiaUtils-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_dialogs/DiaUtils/FALSE.html">FALSE</a></li>
+      <li><a href="smart_dialogs/DiaUtils/SEP_STAN.html">SEP_STAN</a></li>
+      <li><a href="smart_dialogs/DiaUtils/TRUE.html">TRUE</a></li>
+      <li><a href="smart_dialogs/DiaUtils/UNICODE_COMBO_BOX.html">UNICODE_COMBO_BOX</a></li>
+      <li><a href="smart_dialogs/DiaUtils/UNICODE_DELETE_CROSS.html">UNICODE_DELETE_CROSS</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/DiaUtils-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_dialogs/DiaUtils/appendHtml2.html">appendHtml2</a></li>
+      <li><a href="smart_dialogs/DiaUtils/getBoolFromString.html">getBoolFromString</a></li>
+      <li><a href="smart_dialogs/DiaUtils/getTouchPoint.html">getTouchPoint</a></li>
+      <li><a href="smart_dialogs/DiaUtils/getTouchPoints.html">getTouchPoints</a></li>
+      <li><a href="smart_dialogs/DiaUtils/hasMouse.html">hasMouse</a></li>
+      <li><a href="smart_dialogs/DiaUtils/isPhone.html">isPhone</a></li>
+      <li><a href="smart_dialogs/DiaUtils/isSafariIOS.html">isSafariIOS</a></li>
+      <li><a href="smart_dialogs/DiaUtils/isTablet.html">isTablet</a></li>
+      <li><a href="smart_dialogs/DiaUtils/removePx.html">removePx</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">hasMouse</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">bool</span>
+            <span class="name ">hasMouse</span>
+(<wbr>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Get Apple OS version (major and minor).
+try to find something like "CPU OS 9_0 or CPU OS 9_0_1", which is typical for iOS (also OS X ??)
+Return e.g. <code>9, 0</code> or [9, 0, 1. This was tested on iPad for iOS 9.0.1.
+Return null if no proper format found.
+/  InfoDialog.noModal(window.navigator.userAgent, null);
+/  InfoDialog.noModal("2=${versionString} ${index}", null);
+/  InfoDialog.noModal("3=${versionString} ${index}", null);
+/  InfoDialog.noModal("4=${temp}", null);
+Get Chrome version, works for Window, Android, .. (so far major).
+try to find something like "Chrome/48.0.2564.195.567".
+Return e.g. <code>48, 0</code> or <code>48, 0, 2564</code>.
+Return null if no proper format found.
+/  InfoDialog.noModal(window.navigator.userAgent, null);
+/  InfoDialog.noModal("2=${versionString} ${index}", null);
+/  InfoDialog.noModal("4=${temp}", null);
+Returns true if SpecPad is operated via mouse rather than finger.
+Currently identical to isTablet().
+ TODO: Event if tablet: mouse could be present, detect that.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">&#47;&#47;List&lt;int&gt; getVersionApple() {
+&#47;&#47;  int index = window.navigator.userAgent.indexOf(&quot;CPU OS &quot;);
+&#47;&#47;&#47;&#47;  InfoDialog.noModal(window.navigator.userAgent, null);
+&#47;&#47;  if (index == -1) return null;
+&#47;&#47;  index += &quot;CPU OS &quot;.length;
+&#47;&#47;
+&#47;&#47;  String versionString = window.navigator.userAgent
+&#47;&#47;      .substring(index, index + 10); &#47;&#47; get &quot;9_0&quot; from &quot;9_0 XXXXX...&quot;
+&#47;&#47;  index = versionString.indexOf(&quot; &quot;);
+&#47;&#47;&#47;&#47;  InfoDialog.noModal(&quot;2=${versionString} ${index}&quot;, null);
+&#47;&#47;  if (index == -1) return null;
+&#47;&#47;
+&#47;&#47;  versionString = versionString.substring(0, index); &#47;&#47; now we have &quot;9_0&quot;.
+&#47;&#47;  index = versionString.indexOf(&quot;_&quot;); &#47;&#47; split in major&#47;minor
+&#47;&#47;&#47;&#47;  InfoDialog.noModal(&quot;3=${versionString} ${index}&quot;, null);
+&#47;&#47;  if (index == -1) return null;
+&#47;&#47;
+&#47;&#47;  List&lt;String&gt; temp = versionString.split(&quot;_&quot;);
+&#47;&#47;&#47;&#47;  InfoDialog.noModal(&quot;4=${temp}&quot;, null);
+&#47;&#47;  if (temp.length == 2) &#47;&#47; 9_0
+&#47;&#47;  {
+&#47;&#47;    return [int.parse(temp[0]), int.parse(temp[1])]; &#47;&#47; [9,0]
+&#47;&#47;  } else if (temp.length == 3) &#47;&#47; 9_0_1
+&#47;&#47;  {
+&#47;&#47;    return [
+&#47;&#47;      int.parse(temp[0]),
+&#47;&#47;      int.parse(temp[1]),
+&#47;&#47;      int.parse(temp[2])
+&#47;&#47;    ]; &#47;&#47; [9,0,1]
+&#47;&#47;  }
+&#47;&#47;  return null;
+&#47;&#47;}
+
+&#47;&#47;&#47; Get Chrome version, works for Window, Android, .. (so far major).
+&#47;&#47;&#47; try to find something like &quot;Chrome&#47;48.0.2564.195.567&quot;.
+&#47;&#47;&#47; Return e.g. [48, 0] or [48, 0, 2564].
+&#47;&#47;&#47; Return null if no proper format found.
+&#47;&#47;List&lt;int&gt; getVersionChrome() {
+&#47;&#47;  int index = window.navigator.userAgent.indexOf(&quot;Chrome&#47;&quot;);
+&#47;&#47;&#47;&#47;  InfoDialog.noModal(window.navigator.userAgent, null);
+&#47;&#47;  if (index == -1) return null;
+&#47;&#47;  index += &quot;Chrome&#47;&quot;.length;
+&#47;&#47;
+&#47;&#47;  String versionString = window.navigator.userAgent
+&#47;&#47;      .substring(index, index + 12); &#47;&#47; get &quot;9_0&quot; from &quot;9_0 XXXXX...&quot;
+&#47;&#47;  index = versionString.indexOf(&quot;.&quot;);
+&#47;&#47;&#47;&#47;  InfoDialog.noModal(&quot;2=${versionString} ${index}&quot;, null);
+&#47;&#47;  if (index == -1) return null;
+&#47;&#47;
+&#47;&#47;  List&lt;String&gt; temp = versionString.split(&quot;.&quot;);
+&#47;&#47;&#47;&#47;  InfoDialog.noModal(&quot;4=${temp}&quot;, null);
+&#47;&#47;  if (temp.length == 2) &#47;&#47; 48.0
+&#47;&#47;  {
+&#47;&#47;    return [int.parse(temp[0]), int.parse(temp[1])]; &#47;&#47; [9,0]
+&#47;&#47;  } else if (temp.length &gt; 2) &#47;&#47; 48.0.9257.5
+&#47;&#47;  {
+&#47;&#47;    return [
+&#47;&#47;      int.parse(temp[0]),
+&#47;&#47;      int.parse(temp[1]),
+&#47;&#47;      int.parse(temp[2])
+&#47;&#47;    ]; &#47;&#47; [9,0,1]
+&#47;&#47;  }
+&#47;&#47;  return null;
+&#47;&#47;}
+
+&#47;&#47;&#47; Returns true if SpecPad is operated via mouse rather than finger.
+&#47;&#47;&#47; Currently identical to isTablet().
+&#47;&#47;&#47;  TODO: Event if tablet: mouse could be present, detect that.
+static bool hasMouse() {
+  return !isTablet();
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_dialogs 2.1.2
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

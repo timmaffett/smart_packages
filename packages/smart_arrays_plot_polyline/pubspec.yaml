@@ -1,0 +1,15 @@
+name: smart_arrays_plot_polyline
+version: "2.2.1"
+author: Dr. Bruno Guigas <specpad@gmail.com>
+description: Plots one-dimensional arrays as polylines (curves) in the browser, along with axes and legend text, with versatile view options.
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.4.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.1.4
+  pedantic: ^1.7.0
+  smart_arrays_base: ^2.0.9
+  smart_arrays_compress: ^2.0.7
+  smart_arrays_sample_data: ^2.0.3
+  smart_arrays_contour_finder: ^2.0.3

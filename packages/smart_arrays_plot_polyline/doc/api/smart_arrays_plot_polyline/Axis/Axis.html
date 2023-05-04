@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Axis constructor from the Class Axis class from the smart_arrays_plot_polyline library, for the Dart programming language.">
+  <title>Axis constructor - Axis class - smart_arrays_plot_polyline library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+    <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+    <li><a href="smart_arrays_plot_polyline/Axis-class.html">Axis</a></li>
+    <li class="self-crumb">Axis constructor</li>
+  </ol>
+  <div class="self-name">Axis</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis-class.html">Axis</a></li>
+      <li class="self-crumb">Axis constructor</li>
+    </ol>
+    
+    <h5>Axis class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_plot_polyline/Axis-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/Axis.html">Axis</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/Axis.coord.html">coord</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/Axis.intens.html">intens</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_plot_polyline/Axis-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_plot_polyline/Axis/extra_space_for_edge_labels_x.html">extra_space_for_edge_labels_x</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/extra_space_for_edge_labels_y.html">extra_space_for_edge_labels_y</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/labelsContainer.html">labelsContainer</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/physToScreen.html">physToScreen</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/xyGrid.html">xyGrid</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Axis/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Axis/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/Axis-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/getScreenPos.html">getScreenPos</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Axis/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Axis/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_plot_polyline/Axis-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/Axis/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/Axis-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/AXIS_DEFAULT_ATTRIBUTES.html">AXIS_DEFAULT_ATTRIBUTES</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/Axis-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/genLabels.html">genLabels</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis/nicenum.html">nicenum</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">Axis</span> constructor</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">Axis</span>(<wbr><span class="parameter" id="-param-npoints"><span class="type-annotation">int</span> <span class="parameter-name">npoints</span>, </span> <span class="parameter" id="-param-start"><span class="type-annotation">double</span> <span class="parameter-name">start</span>, </span> <span class="parameter" id="-param-end"><span class="type-annotation">double</span> <span class="parameter-name">end</span>, </span> <span class="parameter" id="-param-physStart"><span class="type-annotation">double</span> <span class="parameter-name">physStart</span>, </span> <span class="parameter" id="-param-physWidth"><span class="type-annotation">double</span> <span class="parameter-name">physWidth</span>, </span> <span class="parameter" id="-param-center"><span class="type-annotation">bool</span> <span class="parameter-name">center</span>, </span> <span class="parameter" id="-param-calib"><span class="type-annotation">double</span> <span class="parameter-name">calib</span>, </span> <span class="parameter" id="-param-_coordShift"><span class="type-annotation">double</span> <span class="parameter-name">_coordShift</span>, </span> <span class="parameter" id="-param-axisLength"><span class="type-annotation">int</span> <span class="parameter-name">axisLength</span>, </span> <span class="parameter" id="-param-axisWidth"><span class="type-annotation">int</span> <span class="parameter-name">axisWidth</span>, </span> <span class="parameter" id="-param-gridLength"><span class="type-annotation">int</span> <span class="parameter-name">gridLength</span>, </span> <span class="parameter" id="-param-physToScreen"><span class="type-annotation"><a href="smart_arrays_plot_polyline/PhysicalToScreen.html">PhysicalToScreen</a></span> <span class="parameter-name">physToScreen</span>, </span> <span class="parameter" id="-param-axesAttributes"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/AxA-class.html">AxA</a></span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">axesAttributes</span>, </span> <span class="parameter" id="-param-touchCallbacks"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/TouchCallback.html">TouchCallback</a></span>&gt;</span></span> <span class="parameter-name">touchCallbacks</span></span>)
+    </section>
+
+    <section class="desc markdown">
+      <p>Constructs an axis. See <a href="smart_arrays_plot_polyline/Axis/Axis.coord.html">Axis.coord</a> and <a href="smart_arrays_plot_polyline/Axis/Axis.intens.html">Axis.intens</a> for a description of
+the arguments. Use these named constructors rather than this one.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">Axis(
+    int npoints,
+    final double start,
+    final double end,
+    double physStart,
+    double physWidth,
+    bool center,
+    double calib,
+    this._coordShift,
+    final int axisLength,
+    final int axisWidth,
+    final int gridLength,
+    this.physToScreen,
+    Map&lt;AxA, String&gt; axesAttributes,
+    List&lt;TouchCallback&gt; touchCallbacks) {
+  String legendText = axesAttributes[AxA.LEGENDTEXT];
+  String position = axesAttributes[AxA.POSITION];
+  if (position.contains(&#39;-&#39;)) _isReversed = true;
+
+  bool isXaxis = true;
+  bool isXaxisF1 = false;
+  if (position.contains(&quot;y&quot;)) {
+    isXaxis = false; &#47;&#47; vertical intensity axis
+  }
+
+  if (position.contains(&quot;x2&quot;)) {
+    isXaxis = false;
+    isXaxisF1 = true; &#47;&#47; vertical x2 coordinate axis
+  }
+
+  &#47;&#47; make sure not null to avoid crash if, for y axis, [_isReversed] is
+  &#47;&#47; true, but the user left [_coordShift] with null.
+  if (_coordShift == null) _coordShift = 0.0;
+
+  &#47;&#47; Just a helper
+  double physFromIndex(double index) {
+    return PhysUnits.physFromIndex(
+        index, physStart, physWidth, npoints, _isReversed, center, calib);
+  }
+
+  &#47;&#47; Just a helper
+  double physToIndex(double phys) {
+    return PhysUnits.physToIndex(
+        phys, physStart, physWidth, npoints, _isReversed, center, calib);
+  }
+
+  _attributes = Map.from(AXIS_DEFAULT_ATTRIBUTES); &#47;&#47; init. attributes
+  if (axesAttributes != null) {
+    &#47;&#47; possibly changed attributes as wished by caller
+    _attributes.addAll(axesAttributes);
+  }
+
+  &#47;&#47; find number of desired x labels from attribute NUMBER_AXIS_LABELS
+  &#47;&#47; depending on axis width
+  Map&lt;String, String&gt; numLabelsX =
+      JsonUtils.decodeMSS(_attributes[AxA.NLABELS_X]);
+  Map&lt;String, String&gt; numLabelsY =
+      JsonUtils.decodeMSS(_attributes[AxA.NLABELS_Y]);
+
+  int numberLabels = 6;
+  Map&lt;String, String&gt; numLabels = numLabelsX;
+  if (!isXaxis) numLabels = numLabelsY;
+
+  numLabels.forEach((length, nlabs) {
+    if (axisLength &gt; int.parse(length)) {
+      numberLabels = int.parse(nlabs);
+      return;
+    }
+  });
+
+  double first = start, last = end;
+
+  &#47;&#47; This applies when coordShift is specified, and reverse is specified externally
+  if (_coordShift != null &amp;&amp; _isReversed) &#47;&#47; reverse axis
+  {
+    first = _coordShift - start;
+    last = _coordShift - end;
+&#47;&#47;      _isReversed = true;
+  }
+
+  List&lt;String&gt; displayedXValues;
+
+  &#47;&#47; prepare layout: legend - labels - ticks or ticks - labels - legend, depending on position
+  &#47;&#47; relative to labelsContainer
+  int fontsize = int.parse(_attributes[AxA.FONT_SIZE]);
+
+  int ticksFrom, ticksTo, labelPos, legendPos;
+  String axis_text_color;
+  if (isXaxis) {
+    if (_isReversed) {
+      _coordShift = start + end;
+      first = _coordShift - start;
+      last = _coordShift - end;
+    }
+
+    displayedXValues = genLabels(physFromIndex(first), physFromIndex(last),
+        tightStyle: false, nticks: numberLabels, scale: null);
+
+&#47;&#47;      displayedXValues = genLabels(DSPhys.indexToPhysX(ydata, first),
+&#47;&#47;          DSPhys.indexToPhysX(ydata, last),
+&#47;&#47;          tightStyle: false, nticks: numberLabels, scale: null);
+
+    if (displayedXValues.length &gt; 2) {
+      &#47;&#47; if genLabels() delivered values which are outside &quot;first&quot; and &quot;last&quot;
+      &#47;&#47; try again with an increased &quot;numberLabels&quot; input.
+      &#47;&#47; This mimic could be repeated, if such cases would occur in practice.
+      double firstx = double.parse(displayedXValues.first);
+      double lastx = double.parse(displayedXValues.last);
+      if (firstx &lt; first || lastx &gt; last) {
+        numberLabels++;
+        displayedXValues = genLabels(
+            physFromIndex(first), physFromIndex(last),
+            tightStyle: false, nticks: numberLabels, scale: null);
+      }
+    }
+
+    &#47;&#47; check again whether the sum of all labels would exceed the axis length, and reduce
+    &#47;&#47; the number of labels significantly. This occurs especially when the coordinate numbers are large.
+    double itemp = displayedXValues.length *
+        displayedXValues[displayedXValues.length ~&#47; 2].length *
+        fontsize *
+        0.6;
+    if (itemp.round() &gt; axisLength) {
+      numberLabels = (0.8 * numberLabels).round();
+      displayedXValues = genLabels(physFromIndex(first), physFromIndex(last),
+          tightStyle: false, nticks: numberLabels, scale: null);
+    }
+
+    &#47;&#47; bottom axis
+    ticksFrom = 0;
+    ticksTo = int.parse(_attributes[AxA.TICK_LENGTH]);
+    labelPos = ticksTo + fontsize + 4;
+    legendPos = labelPos + int.parse(_attributes[AxA.LEGENDTEXT_OFFSET_X]);
+    if (position.contains(&quot;t&quot;)) &#47;&#47; top axis
+    {
+      ticksFrom = axisWidth;
+      ticksTo = axisWidth - int.parse(_attributes[AxA.TICK_LENGTH]);
+      labelPos = ticksTo - 4; &#47;&#47; distance between ticks and labels
+      legendPos = labelPos -
+          int.parse(_attributes[AxA
+              .LEGENDTEXT_OFFSET_X]); &#47;&#47;  Note that text y is at the text baseline,
+    }
+    axis_text_color = _attributes[AxA.TEXT_COLOR_X];
+  } else {
+    &#47;&#47; treat y axis or F1 axis
+    if (isXaxisF1) {
+      if (_isReversed) {
+        _coordShift = start + end;
+        first = _coordShift - start;
+        last = _coordShift - end;
+      }
+      displayedXValues = genLabels(physFromIndex(first), physFromIndex(last),
+          tightStyle: false, nticks: numberLabels, scale: null);
+    } else {
+      try {
+        double maxval = physStart;
+        double normalizedMaxval = physWidth;
+        displayedXValues = genLabels(
+            PhysUnits.normalize(first, maxval, normalizedMaxval),
+            PhysUnits.normalize(last, maxval, normalizedMaxval),
+            tightStyle: false,
+            nticks: numberLabels,
+            scale: null);
+      } catch (e) {
+        &#47;&#47; this occurs e.g. if the entire spectrum is 0.0.
+        displayedXValues = [&quot;0.0&quot;];
+      }
+    }
+
+    &#47;&#47; left axis
+    ticksFrom = axisWidth;
+    ticksTo = axisWidth - int.parse(_attributes[AxA.TICK_LENGTH]);
+    labelPos =
+        ticksTo - int.parse(_attributes[AxA.LABELS_OFFSET_Y]); &#47;&#47;fontsize - 4;
+    legendPos =
+        labelPos - int.parse(_attributes[AxA.LEGENDTEXT_LEFT_OFFSET_Y]);
+    if (position.contains(&quot;t&quot;)) {
+      &#47;&#47; right axis
+      ticksFrom = 0;
+      ticksTo = int.parse(_attributes[AxA.TICK_LENGTH]);
+      &#47;&#47; distance between ticks and labels:
+      labelPos = ticksTo + int.parse(_attributes[AxA.LABELS_OFFSET_Y]);
+      &#47;&#47;  Note that text y is at the text baseline:
+      legendPos =
+          labelPos + int.parse(_attributes[AxA.LEGENDTEXT_RIGHT_OFFSET_Y]);
+    }
+    axis_text_color = _attributes[AxA.TEXT_COLOR_Y];
+  } &#47;&#47; end yaxis
+
+  &#47;&#47; draw the labels at the right position in the labelsContainer and draw tick marks
+  List&lt;int&gt; labelPositions = [];
+  double physVal;
+  labelsContainer = SvgSvgElement(); &#47;&#47; now position the labels here
+  TextElement te;
+  LineElement line;
+  int posScreen, linePos, x, y;
+  String textAnchor = &quot;middle&quot;, baselineShift = &quot;0&quot;;
+  extra_space_for_edge_labels_x =
+      int.parse(_attributes[AxA.EXTRA_SPACE_FOR_EDGE_LABELS_X]);
+  extra_space_for_edge_labels_y =
+      int.parse(_attributes[AxA.EXTRA_SPACE_FOR_EDGE_LABELS_Y]);
+
+  for (int i = 0; i &lt; displayedXValues.length; i++) {
+    physVal = double.parse(
+        displayedXValues[i]); &#47;&#47; physical position of an axis label
+
+    if (isXaxis || isXaxisF1) {
+      posScreen = getScreenPos(physToIndex(physVal));
+    } else {
+      double maxval = physStart;
+      double normalizedMaxval = physWidth;
+      &#47;&#47; because polyline has unnormalized values:
+      posScreen = getScreenPos(
+          PhysUnits.undoNormalize(physVal, maxval, normalizedMaxval));
+    }
+
+    &#47;&#47; must come BEFORE range check to keep the list length of
+    &#47;&#47; labelPositions consistent:
+&#47;&#47;      labelPositions.add(posScreen);
+
+    &#47;&#47; don&#39;t display labels lying outside dataArea
+    if (posScreen &lt; 0) continue;
+    if (posScreen &gt; axisLength) continue;
+    labelPositions.add(posScreen);
+
+    te = TextElement();
+
+    if (displayedXValues[i].length &gt; 4 &amp;&amp; physVal.abs() &gt; 99999) {
+      &#47;&#47; display too large numbers in exponential form: 4.00e+8
+      &#47;&#47; with this may digits after point:
+      displayedXValues[i] = physVal.toStringAsExponential(2);
+      &#47;&#47; remove &quot;e&quot; to save space: 4.00+8
+      displayedXValues[i] = displayedXValues[i].replaceAll(&quot;e&quot;, &quot;&quot;);
+    }
+
+    te.text = displayedXValues[i];
+
+    if (isXaxis) {
+      x = posScreen + extra_space_for_edge_labels_x;
+      y = labelPos;
+    } else {
+      x = labelPos;
+      y = posScreen + extra_space_for_edge_labels_y;
+      textAnchor = &quot;end&quot;;
+      if (position.contains(&quot;t&quot;)) {
+        textAnchor = &quot;start&quot;; &#47;&#47; right axis
+      }
+      &#47;&#47; this will center the label text vertically with respect to labelPos
+      baselineShift = &quot;-33%&quot;;
+    }
+
+    SVG.setAttr(te, {
+      SVG.X: &quot;$x&quot;, &#47;&#47; start position of text w&#47;r xaxis area
+      SVG.Y: &quot;$y&quot;, &#47;&#47; relative to bottom of data area
+      SVG.FILL: axis_text_color,
+      SVG.STROKE: &quot;none&quot;,
+      SVG.FONT_SIZE: _attributes[AxA.FONT_SIZE],
+      SVG.TEXT_ANCHOR: &quot;$textAnchor&quot;,
+      SVG.BASELINE_SHIFT: &quot;$baselineShift&quot;,
+      SVG.CURSOR: &quot;default&quot; &#47;&#47; don&#39;t auto-change to text entry cursor shape
+    });
+    labelsContainer.append(te);
+
+    &#47;&#47; draw tick marks if wanted, tick length 0 means no ticks
+    if (_attributes.containsKey(AxA.TICK_LENGTH) &amp;&amp;
+        int.parse(_attributes[AxA.TICK_LENGTH]) &gt; 0) {
+      line = LineElement(); &#47;&#47; line parallel to y axis
+      if (isXaxis) {
+        linePos = posScreen + extra_space_for_edge_labels_x;
+      } else {
+        linePos = posScreen + extra_space_for_edge_labels_y;
+      }
+
+      if (isXaxis) {
+        SVG.setAttr(line, {
+          SVG.X1: &quot;$linePos&quot;,
+          SVG.Y1: &quot;$ticksFrom&quot;,
+          SVG.X2: &quot;$linePos&quot;,
+          SVG.Y2: &quot;$ticksTo&quot;,
+        });
+      } else {
+        SVG.setAttr(line, {
+          SVG.X1: &quot;$ticksFrom&quot;,
+          SVG.Y1: &quot;$linePos&quot;,
+          SVG.X2: &quot;$ticksTo&quot;,
+          SVG.Y2: &quot;${linePos}&quot;,
+        });
+      }
+
+      &#47;&#47; set common attributes
+      SVG.setAttr(line, {
+        SVG.STROKE: _attributes[AxA.STROKE],
+        SVG.STROKE_WIDTH: _attributes[AxA.STROKE_WIDTH]
+      });
+      labelsContainer.append(line);
+    }
+
+&#47;&#47;      &#47;&#47; draw x grid if wanted
+&#47;&#47;      if (position.contains(&quot;g&quot;) &amp;&amp; gridLength != null &amp;&amp; gridLength &gt; 0) {
+&#47;&#47;        &#47;&#47; axesAttributes may contain the grid attributes. If not, XYGrid will use its defaults.
+&#47;&#47;        if (isXaxis) {
+&#47;&#47;          xyGrid =
+&#47;&#47;              XYGrid(labelPositions, null, null, gridLength, axesAttributes);
+&#47;&#47;        } else {
+&#47;&#47;          xyGrid =
+&#47;&#47;              XYGrid(null, labelPositions, gridLength, null, axesAttributes);
+&#47;&#47;        }
+&#47;&#47;      }
+  } &#47;&#47; for(int i= 0; i&lt;displayedXValues.length; i++)
+
+  &#47;&#47; draw x grid if wanted
+  if (position.contains(&quot;g&quot;) &amp;&amp; gridLength != null &amp;&amp; gridLength &gt; 0) {
+    &#47;&#47; axesAttributes may contain the grid attributes. If not, XYGrid will use its defaults.
+    if (isXaxis) {
+      xyGrid =
+          XYGrid(labelPositions, null, null, gridLength, axesAttributes);
+    } else {
+      xyGrid =
+          XYGrid(null, labelPositions, gridLength, null, axesAttributes);
+    }
+  }
+
+  &#47;&#47; add axis legend text (e.g. the axis unit) at the bottom of the axis labels and center the text
+  if (legendText != null &amp;&amp; legendText.trim().isNotEmpty) {
+    te = TextElement();
+    te.text = legendText;
+
+    if (isXaxis) {
+      SVG.setAttr(te, {
+        SVG.X: &quot;${axisLength &#47; 2 + extra_space_for_edge_labels_x}&quot;,
+        &#47;&#47; center text in xaxis area
+        SVG.Y: &quot;$legendPos&quot;,
+        &#47;&#47; offset from xaxis labels
+        SVG.FILL: axis_text_color,
+        SVG.STROKE: &quot;none&quot;,
+        SVG.FONT_SIZE: _attributes[AxA.FONT_SIZE],
+        SVG.TEXT_ANCHOR: &quot;middle&quot;,
+        SVG.CURSOR: &quot;default&quot;
+        &#47;&#47; don&#39;t auto-change to text entry cursor shape
+      });
+    } else {
+      &#47;&#47; Set up the coordinate tranformation to achieve a text rotation around 90 or -90 where the
+      &#47;&#47; text is centered relative to the y axis, and offset from the y axis labels.
+      &#47;&#47; It consists of the actual rotation followed by a translation considering that the
+      &#47;&#47; rotation origin is at (0,0) of the container, and the text anchor being set to &quot;middle&quot;.
+      &#47;&#47; default legend text direction is from bottom to top
+      int legendTextOffset = int.parse(_attributes[
+          AxA.LEGENDTEXT_LEFT_OFFSET_Y]); &#47;&#47; relative to yaxis labels
+      String rotate =
+          &quot;rotate(-90) translate(${-axisLength &#47; 2}, ${legendTextOffset})&quot;;
+
+      if (_attributes[AxA.YLEGENDTEXT_DIRECTION] == &quot;tb&quot;) {
+        &#47;&#47; top to bottom
+        rotate =
+            &quot;rotate(90) translate(${axisLength &#47; 2}, ${-legendTextOffset})&quot;;
+        &#47;&#47; right y axis
+        if (position.contains(&quot;t&quot;)) {
+&#47;&#47;            rotate = &quot;rotate(90) translate(${axisLength&#47;2}, ${-axisWidth + legendTextOffset})&quot;;
+          rotate =
+              &quot;rotate(90) translate(${axisLength &#47; 2}, ${-axisWidth + (axisWidth * 0.22).round()})&quot;;
+        }
+      }
+
+      SVG.setAttr(te, {
+        SVG.X: &quot;0&quot;,
+        SVG.Y: &quot;0&quot;,
+        &#47;&#47; (x,y) = (0,0) is the 90 degree rotation origin
+        SVG.FILL: axis_text_color,
+        SVG.STROKE: &quot;none&quot;,
+        SVG.FONT_SIZE: _attributes[AxA.FONT_SIZE],
+        SVG.TEXT_ANCHOR: &quot;middle&quot;,
+        &#47;&#47; changing this would change the transformation formula above
+        SVG.TRANSFORM: rotate,
+        &#47;&#47; rotates around text origin, more complicated than &quot;writing-mode: tb&quot;
+        SVG.CURSOR: &quot;default&quot;
+        &#47;&#47; don&#39;t auto-change to text entry cursor shape
+      });
+    }
+
+    &#47;&#47; on touch devices make sure that touches on the text don&#39;t get lost
+    te.onTouchStart.listen((UIEvent e) {
+      e.preventDefault();
+      if (touchCallbacks != null &amp;&amp; touchCallbacks.isNotEmpty) {
+        touchCallbacks[0](e);
+      }
+    });
+
+    te.onTouchMove.listen((UIEvent e) {
+      e.preventDefault();
+      if (touchCallbacks != null &amp;&amp; touchCallbacks.length &gt;= 2) {
+        touchCallbacks[1](e);
+      }
+    });
+
+    labelsContainer.append(te);
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_plot_polyline 2.1.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

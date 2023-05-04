@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the PopupMenu constructor from the Class PopupMenu class from the smart_dialogs library, for the Dart programming language.">
+  <title>PopupMenu constructor - PopupMenu class - smart_dialogs library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/PopupMenu-class.html">PopupMenu</a></li>
+    <li class="self-crumb">PopupMenu constructor</li>
+  </ol>
+  <div class="self-name">PopupMenu</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/PopupMenu-class.html">PopupMenu</a></li>
+      <li class="self-crumb">PopupMenu constructor</li>
+    </ol>
+    
+    <h5>PopupMenu class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/PopupMenu-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_dialogs/PopupMenu/PopupMenu.html">PopupMenu</a></li>
+    
+      <li class="section-title">
+        <a href="smart_dialogs/PopupMenu-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_dialogs/PopupMenu/diaTable.html">diaTable</a></li>
+      <li><a href="smart_dialogs/PopupMenu/lastTouchedActionCode.html">lastTouchedActionCode</a></li>
+      <li><a href="smart_dialogs/PopupMenu/lastTouchPoints.html">lastTouchPoints</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/dia.html">dia</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/diaContainer.html">diaContainer</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isModal.html">isModal</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isopen.html">isopen</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/PopupMenu-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_dialogs/PopupMenu/getId.html">getId</a></li>
+      <li><a href="smart_dialogs/PopupMenu/setPopupStyle.html">setPopupStyle</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/close.html">close</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/createShowDia.html">createShowDia</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isOpen.html">isOpen</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/PopupMenu-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/PopupMenu-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_dialogs/PopupMenu/POPUP_SPAN_END.html">POPUP_SPAN_END</a></li>
+      <li><a href="smart_dialogs/PopupMenu/POPUP_SPAN_GREYOUT.html">POPUP_SPAN_GREYOUT</a></li>
+    
+      <li class="section-title"><a href="smart_dialogs/PopupMenu-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_dialogs/PopupMenu/show.html">show</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">PopupMenu</span> constructor</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">PopupMenu</span>(<wbr><span class="parameter" id="-param-parent"><span class="type-annotation">Element</span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="-param-id"><span class="type-annotation">String</span> <span class="parameter-name">id</span>, </span> <span class="parameter" id="-param-htmlItemTexts"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">htmlItemTexts</span>, </span> <span class="parameter" id="-param-buttontypes"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttontypes</span>, </span> <span class="parameter" id="-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="-param-popupCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">popupCallback</span>, </span> <span class="parameter" id="-param-x"><span class="type-annotation">int</span> <span class="parameter-name">x</span>, </span> <span class="parameter" id="-param-y"><span class="type-annotation">int</span> <span class="parameter-name">y</span>, </span> <span class="parameter" id="-param-preventDefault"><span class="type-annotation">bool</span> <span class="parameter-name">preventDefault</span></span>)
+    </section>
+
+    <section class="desc markdown">
+      <p>Shows a popup menu above the <code>parent</code> element (e.g. a div) with:
+ <code>id</code> The popup may optionally get an id (should be unique if the popup
+   is to be identified with it).
+ <code>htmlItemTexts</code> The menu items texts. The format is:
+    "textDiaUtils.SEP_STANaction code". If action code = "TITLE", then
+   this is not an action, but is displayed as a popup title.
+   If text starts with POPUP_SPAN_GREYOUT, the menu item is displayed,
+   but greyed out. If the user clicks on it, no action is performed.
+ <code>buttontypes</code> If null, no special item style is applied to any menu item.
+   If not null, the list must have the same length as <code>htmlItemTexts</code>.
+   If a list entry is null, no special style is applied to the respective
+   menu item. If a list entry is <a href="smart_dialogs/DiaAttr/CHECKBOX.html">DiaAttr.CHECKBOX</a>, a checkbox element is
+   displayed in front of the item text.
+   NOTE: Currently the checked box is provided only to display a status,
+   not react on a checkbox state change. See below.
+ <code>isChecked</code> Must be null, or have the same length as <code>buttontypes</code>. The
+   list members may take on the value null or <a href="smart_dialogs/DiaUtils/FALSE.html">DiaUtils.FALSE</a> or
+   <a href="smart_dialogs/DiaUtils/TRUE.html">DiaUtils.TRUE</a>. This defines whether the respective check button
+   of <code>buttontypes</code> is show as "unchecked" or "checked".
+ <code>popupCallback</code> will be called when an popup item is clicked,
+ <code>x</code>, <code>y</code> are the top left corner coordinates of the popup.
+ <code>preventDefault</code> if false: finger-scrolling the items is enabled for
+   touch screens.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">PopupMenu(
+    Element parent,
+    String id,
+    List&lt;String&gt; htmlItemTexts,
+    List&lt;String&gt; buttontypes,
+    List&lt;String&gt; isChecked,
+    BaseDialogCloseCallback popupCallback,
+    int x,
+    int y,
+    bool preventDefault)
+    : super.noModal(popupCallback) {
+  final int NCOLS = 2; &#47;&#47; adjust if necessary!
+  int nitems = htmlItemTexts.length;
+
+  dia.id = id;
+
+  &#47;&#47; Make sure the popup is always displayed above everything else by giving it a big z-index.
+  &#47;&#47; Especially over the jsme structure display div.
+
+  setPopupStyle(dia, null);
+  Map&lt;String, String&gt; attr = DiaAttr.attr; &#47;&#47; use shortcut
+  &#47;&#47; nodify standad style:
+  parent.append(dia);
+
+  diaTable.style
+    ..borderCollapse = &quot;collapse&quot;
+    ..marginTop = &quot;6px&quot;
+    ..marginBottom = &quot;0px&quot;;
+
+  dia
+    ..append(diaTable)
+    ..onTouchMove.listen((e) {
+      &#47;&#47; Needed on iPad: Otherwise moving the finger over the dialog would move
+      &#47;&#47; the whole browser content up.
+      &#47;&#47; This feature is very good if a text entry field are present,
+      &#47;&#47; to be able to enter text if covered by the keyboard. In our popup
+      &#47;&#47; case that&#39;s not necessary, but rather
+      &#47;&#47; disturbing.
+      if (preventDefault) e.preventDefault();
+&#47;&#47;        lastTouchedActionCode = null;
+&#47;&#47;        lastTouchPoints = getTouchPoints(e);
+    });
+
+&#47;&#47;    TableRowElement row;
+  TableCellElement cell;
+
+  List&lt;TableRowElement&gt; rows = List&lt;TableRowElement&gt;();
+
+  void addEmptyTableRow() {
+    rows.add(TableRowElement());
+
+    cell = TableCellElement();
+    DiaUtils.appendHtml2(cell, &#39;&amp;nbsp;&#39;);
+    cell.colSpan = NCOLS; &#47;&#47; 1 empty row
+    rows.last.append(cell);
+
+    diaTable.append(rows.last);
+  }
+
+  &#47;&#47; add table header
+  &#47;&#47; decode: &quot;displayed text||action code&quot;
+  String displayedText = htmlItemTexts[0].split(DiaUtils.SEP_STAN)[0];
+  String actionCode = htmlItemTexts[0].split(DiaUtils.SEP_STAN)[1];
+  int itemstart = 0;
+  if (actionCode == &quot;TITLE&quot;) {
+    rows.add(TableRowElement());
+    cell = TableCellElement();
+    DiaUtils.appendHtml2(cell, displayedText);
+    cell.colSpan = NCOLS; &#47;&#47; the htmlInfoText spans NCOLS columns
+    cell.style
+      ..textAlign = &quot;center&quot;
+      ..color = attr[DiaAttr.DIALOG_HEADER_COLOR]
+      ..fontSize = &quot;${attr[DiaAttr.DIALOG_HEADER_FONTSIZE]}px&quot;;
+    rows.last.append(cell);
+    diaTable.append(rows.last);
+    addEmptyTableRow();
+    itemstart = 1;
+  }
+
+  for (int i = itemstart; i &lt; nitems; i++) {
+    &#47;&#47; NOTE: for any one reason, the type TableRowElement must be specified inside the loop,
+    &#47;&#47; otherwsie
+    rows.add(TableRowElement());
+    TableRowElement row = rows.last;
+    row.style.color = attr[DiaAttr.DIALOG_TEXT_COLOR]; &#47;&#47; initial setting
+
+    row.onMouseEnter.listen((MouseEvent event) {
+      row.style
+        ..backgroundColor = attr[DiaAttr.POPUP_SELECTION_COLOR]
+        ..color = &quot;white&quot;;
+    });
+
+    row.onMouseLeave.listen((MouseEvent event) {
+      row.style
+        ..backgroundColor = attr[DiaAttr.POPUP_BACKGROUND]
+        ..color = attr[DiaAttr.DIALOG_TEXT_COLOR];
+    });
+
+    &#47;&#47; format is: &quot;displayed text||action code&quot;
+    String displayedText = htmlItemTexts[i].split(DiaUtils.SEP_STAN)[0];
+    String actionCode = htmlItemTexts[i].split(DiaUtils.SEP_STAN)[1];
+
+    &#47;&#47; the first column may contain checkbox or more
+    TableCellElement cell = TableCellElement();
+    cell.id = actionCode;
+    if (buttontypes != null &amp;&amp; isChecked != null) {
+      if (buttontypes[i] == DiaAttr.CHECKBOX &amp;&amp;
+          isChecked[i] != null &amp;&amp;
+          (isChecked[i] == DiaUtils.TRUE || isChecked[i] == DiaUtils.FALSE)) {
+        InputElement cbox = InputElement(type: DiaAttr.CHECKBOX);
+        cbox.checked = DiaUtils.getBoolFromString(isChecked[i]);
+        &#47;&#47;        cbox.value = &quot;checked&quot;; &#47;&#47; TODO ???
+        cbox.style.fontSize = &quot;${attr[DiaAttr.DIALOG_POPUP_FONTSIZE2]}px&quot;;
+        cell.append(cbox);
+      }
+      &#47;&#47; else should not occur
+    } else {
+      &#47;&#47; first column remains empty for now
+      cell.appendText(&quot;&quot;);
+      cell.style
+        ..textAlign = &quot;left&quot;
+        ..cursor = &quot;pointer&quot;
+        ..padding = &quot;7px&quot;
+        ..margin = &quot;.5em 1em&quot;;
+    }
+
+    void execute(String curaction) {
+      &#47;&#47; only a non-greyed item will be executed!
+      if (dia != null &amp;&amp; !displayedText.contains(POPUP_SPAN_GREYOUT)) {
+        close(UserInput(curaction, null, null));
+        dia = null;
+      }
+    }
+
+    void handleTouchStart(TouchEvent e) {
+      lastTouchPoints = DiaUtils.getTouchPoints(e);
+    }
+
+    void handleTouchEnd(TouchEvent e) {
+      Element eventCell = e.target;
+      String curaction = eventCell.id;
+      TouchList tl = e.changedTouches;
+      if (tl == null || tl.isEmpty) return;
+      int lastx = lastTouchPoints[0].x;
+      int lasty = lastTouchPoints[0].y;
+&#47;&#47;        InfoDialog(&quot;touchend=${eventCell.style.width} ${eventCell.style.height} $lastx $lasty ${tl.first.page.x} ${tl.first.page.y}&quot;, null);
+      if ((lastx - tl.first.page.x).abs() &gt; 30 ||
+          (lasty - tl.first.page.y).abs() &gt; 20) {
+        return;
+      }
+      execute(curaction);
+    }
+
+    if (!DiaUtils.hasMouse()) {
+      cell.onTouchStart.listen((TouchEvent e) {
+        handleTouchStart(e);
+      });
+
+      cell.onTouchEnd.listen((TouchEvent e) {
+        &#47;&#47; Note: e.preventDefault() for sidebar div handled in SpecPad.
+        handleTouchEnd(e);
+      });
+    } else {
+      &#47;&#47; this would execute when clicking the first column
+      cell.onClick.listen((MouseEvent e) {
+&#47;&#47;        print(&quot;popup clicked row $i&quot;);
+        Element eventCell = e.target;
+        String curaction = eventCell.id;
+        execute(curaction);
+      });
+    }
+    row.append(cell);
+
+    &#47;&#47; these are the action descriptions
+    cell = TableCellElement();
+    cell.id = actionCode;
+    DiaUtils.appendHtml2(cell, displayedText);
+    cell.style
+      ..textAlign = &quot;left&quot;
+      ..cursor = &quot;pointer&quot;
+      ..paddingBottom = attr[DiaAttr
+          .DIALOG_POPUP_TEXT_CELL_PADDING] &#47;&#47; this and next define the final cell height
+      ..paddingTop = attr[DiaAttr.DIALOG_POPUP_TEXT_CELL_PADDING]
+&#47;&#47;      ..margin = &quot;.5em 1em&quot;
+      ..fontSize = &quot;${attr[DiaAttr.DIALOG_POPUP_FONTSIZE2]}px&quot;;
+
+    DiaUtils.appendHtml2(cell, &quot;&lt;br&gt;&quot;);
+    if (!DiaUtils.hasMouse()) {
+      cell.onTouchStart.listen((TouchEvent e) {
+        handleTouchStart(e);
+      });
+
+      cell.onTouchEnd.listen((TouchEvent e) {
+        &#47;&#47; Note: e.preventDefault() for sidebar div handled in SpecPad.
+        handleTouchEnd(e);
+      });
+    } else {
+      cell.onClick.listen((MouseEvent e) {
+        Element eventCell = e.target;
+        String curaction = eventCell.id;
+        execute(curaction);
+      });
+    }
+
+    row.append(cell);
+
+    diaTable.append(row);
+&#47;&#47;      diaTable.append(createSep(row.style.width));
+  } &#47;&#47; for
+
+  dia.style
+        ..backgroundColor = attr[DiaAttr.POPUP_BACKGROUND]
+        ..background = attr[DiaAttr.POPUP_BACKGROUND]
+        ..position = &quot;fixed&quot;
+        ..left = &quot;${x}px&quot;
+        ..top = &quot;${y}px&quot;
+        ..marginLeft = &quot;0px&quot;
+        ..marginTop = &quot;0px&quot;
+        ..paddingTop = &quot;0px&quot;
+        ..paddingLeft = &quot;0px&quot;
+        ..width = &quot;${diaTable.clientWidth + 6}px&quot; &#47;&#47; like table, +6
+        ..opacity = &quot;1&quot;
+        ..zIndex = &quot;10000000&quot; &#47;&#47; must be above everything
+      ;
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_dialogs 2.1.2
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

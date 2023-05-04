@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.28.2">
+  <meta name="description" content="smart_arrays_compress API docs, for the Dart programming language.">
+  <title>smart_arrays_compress - Dart API docs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://smart.specpad.bplaced.net">smart_arrays_compress package</a></li>
+  </ol>
+  <div class="self-name">smart_arrays_compress</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://smart.specpad.bplaced.net">smart_arrays_compress package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">smart_arrays_compress</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="smart_arrays_compress/smart_arrays_compress-library.html">smart_arrays_compress</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h2 id="smart-arrays-compress">Smart Arrays Compress</h2>
+<h3 id="what-the-package-can-do-for-you">What the package can do for you</h3>
+<p>The compression algorithms provided by this package don't have much to do with audio or video compression. Instead, their purpose is to reduce large arrays to a size suitable for fast interactive viewing on a screen by retaining significant aspects of the array data. For this purpose an array is fragmented into intervals (1D) or submatrices (2D). The minimum and maximum values in these regions constitue the compressed array. You would apply the algorithms to arrays with thousands, ten thousands or even millions of elements. The reduced size should, for example, be chosen to match display resolution if compression is applied for data viewing.</p>
+<p>The package also provides a class that expands an array to a larger size by inserting extra points whose values are computed from their neighbours by linear interpolation of the array data.</p>
+<h3 id="the-major-api-functionalities">The major API functionalities</h3><ul><li>class <code>CompressedArray1D</code></li></ul>
+<p>This example will compress the large specified 1D array to a size of 200 points:</p>
+<p><code>CompressedArray1D c1d =
+      CompressedArray1D.compress(array, 0, array.length - 1, false, 200);</code></p>
+<p>The result is available in <code>c1d.cArray</code>.  </p><ul><li>class <code>CompressedArray2D</code>:   </li></ul>
+<p>This example will compress the large specified 2D array to a size of 200 x 500 points:  </p>
+<p><code>CompressedArray2D c2d = CompressedArray2D();</code></p>
+<p>  <code>c2d.compress(matrix, 0, matrix.length - 1, 0, matrix[0].length - 1, 200,
+      500, true);</code></p>
+<p>The result is available in <code>c2d.cvalsPos</code> and
+<code>c2d.cvalsNeg</code>.  </p><ul><li>class <code>ArrayInterpolator</code></li></ul>
+<p>Example: </p>
+<p><code>List&lt;double&gt; list = [1.0,5.0,3.0,-10.0, -20.0,6.0,4.0,0.0];</code></p>
+<p> <code>Float64List list64 = new Float64List.fromList(list);</code></p>
+<p> <code>Float64List result = ArrayInterpolator.interpolateArray(list64, 4);</code></p>
+<p>Expands an array to a larger size.</p>
+<h4 id="detailed-api">Detailed API</h4>
+<p>Please view the detailed API documentation in the <code>API</code> reference of this package (sidebar at the right of this page).</p>
+<h3 id="related-packages">Related packages</h3>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_base"><code>smart_arrays_base</code>: Basic functions for 1D and 2D arrays</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_numerics"><code>smart_arrays_numerics</code>: Numerics with 1D and 2D arrays</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_dbstore"><code>smart_arrays_dbstore</code>: Store 1D and 2D arrays along with metadata on the local device.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_peaks"><code>smart_arrays_peaks</code>: Detect peaks in 1D and 2D arrays.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_arrays_lmfit"><code>smart_arrays_lmfit</code>: Fits (x, y) data given as arrays to a specified model function using the  Levenberg-Marquardt algorithm.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_lorentz-gauss"><code>smart_lorentz-gauss</code>: Compute Lorentz-Gauss (pseudo-Voigt) line shapes.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_signal_processing"><code>smart_signal_processing</code>: Fourier transform and more.</a></p>
+<p><a href="https://pub.dartlang.org/packages/smart_dialogs"><code>smart_dialogs</code>: Easy-to-use dialogs in Web applications</a></p>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="smart_arrays_compress">
+              <span class="name"><a href="smart_arrays_compress/smart_arrays_compress-library.html">smart_arrays_compress</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_compress 2.0.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

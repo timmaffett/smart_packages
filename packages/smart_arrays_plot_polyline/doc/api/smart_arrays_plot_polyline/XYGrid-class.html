@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the XYGrid class from the smart_arrays_plot_polyline library, for the Dart programming language.">
+  <title>XYGrid class - smart_arrays_plot_polyline library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+    <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+    <li class="self-crumb">XYGrid class</li>
+  </ol>
+  <div class="self-name">XYGrid</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+      <li class="self-crumb">XYGrid class</li>
+    </ol>
+    
+    <h5>smart_arrays_plot_polyline library</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#classes">Classes</a></li>
+      <li><a href="smart_arrays_plot_polyline/Axis-class.html">Axis</a></li>
+      <li><a href="smart_arrays_plot_polyline/JsonUtils-class.html">JsonUtils</a></li>
+      <li><a href="smart_arrays_plot_polyline/Legend-class.html">Legend</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines-class.html">MarkerLines</a></li>
+      <li><a href="smart_arrays_plot_polyline/PhysUnits-class.html">PhysUnits</a></li>
+      <li><a href="smart_arrays_plot_polyline/PlotLayoutSVG-class.html">PlotLayoutSVG</a></li>
+      <li><a href="smart_arrays_plot_polyline/Polyline-class.html">Polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/SimpleContourRenderer-class.html">SimpleContourRenderer</a></li>
+      <li><a href="smart_arrays_plot_polyline/SimplePlot-class.html">SimplePlot</a></li>
+      <li><a href="smart_arrays_plot_polyline/SVG-class.html">SVG</a></li>
+      <li><a href="smart_arrays_plot_polyline/Utils-class.html">Utils</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid-class.html">XYGrid</a></li>
+      <li><a href="smart_arrays_plot_polyline/YZoomRegion-class.html">YZoomRegion</a></li>
+    
+    
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#properties">Properties</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_DEFAULT_ATTRIBUTES.html">POLYLINE_DEFAULT_ATTRIBUTES</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_INITIAL_YSCALE.html">POLYLINE_INITIAL_YSCALE</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_POINT_SHAPE_CIRCLE_EMPTY.html">POLYLINE_POINT_SHAPE_CIRCLE_EMPTY</a></li>
+      <li><a href="smart_arrays_plot_polyline/POLYLINE_POINT_SHAPE_SQUARE_EMPTY.html">POLYLINE_POINT_SHAPE_SQUARE_EMPTY</a></li>
+    
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#enums">Enums</a></li>
+      <li><a href="smart_arrays_plot_polyline/AxA-class.html">AxA</a></li>
+      <li><a href="smart_arrays_plot_polyline/CtourA-class.html">CtourA</a></li>
+      <li><a href="smart_arrays_plot_polyline/LayA-class.html">LayA</a></li>
+      <li><a href="smart_arrays_plot_polyline/LegA-class.html">LegA</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarA-class.html">MarA</a></li>
+      <li><a href="smart_arrays_plot_polyline/PyA-class.html">PyA</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html#typedefs">Typedefs</a></li>
+      <li><a href="smart_arrays_plot_polyline/PhysicalToScreen.html">PhysicalToScreen</a></li>
+      <li><a href="smart_arrays_plot_polyline/TouchCallback.html">TouchCallback</a></li>
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">XYGrid</span> class </h1></div>
+
+    <section class="desc markdown">
+      <p>Draws a grid in form of horizontal or vertical lines, or both.
+The grid is particularly useful when employed in conjunction with the
+<a href="smart_arrays_plot_polyline/Axis-class.html">Axis</a> class to form a coordinate grid positioned at the tick marks of an axis.
+Usage:</p><ol><li>Construct a grid: xyGrid = XYGrid(args)</li><li>Result: The grid was drawn into the SvgSvgElement <a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a> using Svg.</li><li>Set the desired position of <a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a> by setting its
+"x" and "y" Svg attributes. For convenience, do it with SVG.setAttr().
+x and y must be relative to the container in which <a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a>
+will be embedded (plotArea in next step 4).</li><li>Append <a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a> to the desired SvgSvgElement type container
+of your particluar page layout: plotArea.append(xyGrid.gridContainer)</li></ol>
+    </section>
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="XYGrid" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/XYGrid.html">XYGrid</a></span><span class="signature">(<span class="parameter" id="-param-xValues"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">xValues</span>, </span> <span class="parameter" id="-param-yValues"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">yValues</span>, </span> <span class="parameter" id="-param-xLength"><span class="type-annotation">int</span> <span class="parameter-name">xLength</span>, </span> <span class="parameter" id="-param-yLength"><span class="type-annotation">int</span> <span class="parameter-name">yLength</span>, </span> <span class="parameter" id="-param-gridAttr"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/AxA-class.html">AxA</a></span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">gridAttr</span></span>)</span>
+        </dt>
+        <dd>
+          Constructs a grid consisting of lines of length <code>xLength</code> and <code>yLength</code>,
+in pixels, parallel to x and y, respectively.
+<code>xValues</code> and <code>yValues</code> define the x and y positions of the grid lines in
+pixels relative to their container <a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a>.
+<code>xValues.length</code> and <code>yValues.length</code> define the number of
+grid lines parallel to y and x, respectively. If <code>xValues</code> is null or
+empty no lines parallel to y will be drawn.
+If <code>yValues</code> is null or empty no lines parallel to x will be drawn.
+<code>gridAttr</code>: If null, <a href="smart_arrays_plot_polyline/XYGrid/GRID_DEFAULT_ATTRIBUTES.html">GRID_DEFAULT_ATTRIBUTES</a> are used. Otherwise
+ you can define here colors, dashes and more. The attributes specified here
+ override the respective defaults.
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="attributes" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/attributes.html">attributes</a></span>
+          <span class="signature">&#8596; Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/AxA-class.html">AxA</a></span>, <span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="gridContainer" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a></span>
+          <span class="signature">&#8596; SvgSvgElement</span>         
+        </dt>
+        <dd>
+          The axis is drawn into this container by the constructor. You will have
+to place it according to your desired app layout to make it visible in
+your app.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xLength" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/xLength.html">xLength</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="xValues" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/xValues.html">xValues</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yLength" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/yLength.html">yLength</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="yValues" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/yValues.html">yValues</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="smart_arrays_plot_polyline/XYGrid/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="buildActiveGrid" class="callable">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/buildActiveGrid.html">buildActiveGrid</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Draws the grid into a temporary container, and when done,
+replaces <a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a> (possibly already containing a grid) by the
+new temporary container containing the new grid.
+                  
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="smart_arrays_plot_polyline/XYGrid/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="smart_arrays_plot_polyline/XYGrid/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-properties">
+      <h2>Static Properties</h2>
+
+      <dl class="properties">
+        <dt id="GRID_DEFAULT_ATTRIBUTES" class="property">
+          <span class="name"><a href="smart_arrays_plot_polyline/XYGrid/GRID_DEFAULT_ATTRIBUTES.html">GRID_DEFAULT_ATTRIBUTES</a></span>
+          <span class="signature">&#8594; Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/AxA-class.html">AxA</a></span>, <span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+      </dl>
+    </section>
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="smart_arrays_plot_polyline/XYGrid-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/XYGrid.html">XYGrid</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_plot_polyline/XYGrid-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/attributes.html">attributes</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/gridContainer.html">gridContainer</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/xLength.html">xLength</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/xValues.html">xValues</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/yLength.html">yLength</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/yValues.html">yValues</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/XYGrid/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/XYGrid/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/XYGrid-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/buildActiveGrid.html">buildActiveGrid</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/XYGrid/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/XYGrid/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_plot_polyline/XYGrid-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/XYGrid/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/XYGrid-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_arrays_plot_polyline/XYGrid/GRID_DEFAULT_ATTRIBUTES.html">GRID_DEFAULT_ATTRIBUTES</a></li>
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_plot_polyline 2.1.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

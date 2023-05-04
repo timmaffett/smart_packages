@@ -1,0 +1,11 @@
+name: smart_dialogs
+version: "2.1.2"
+author: Dr. Bruno Guigas <specpad@gmail.com>
+description: This package provides easy-to-use dialogs of various types and some other GUI elements (popups, tables, icon panels) for use in Web applications, based on 'dart:html'.
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.0.0
+  pedantic: ^1.7.0

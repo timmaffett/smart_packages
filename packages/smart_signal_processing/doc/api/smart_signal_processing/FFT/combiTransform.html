@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the combiTransform method from the FFT class, for the Dart programming language.">
+  <title>combiTransform method - FFT class - smart_signal_processing library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_signal_processing</a></li>
+    <li><a href="smart_signal_processing/smart_signal_processing-library.html">smart_signal_processing</a></li>
+    <li><a href="smart_signal_processing/FFT-class.html">FFT</a></li>
+    <li class="self-crumb">combiTransform method</li>
+  </ol>
+  <div class="self-name">combiTransform</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_signal_processing</a></li>
+      <li><a href="smart_signal_processing/smart_signal_processing-library.html">smart_signal_processing</a></li>
+      <li><a href="smart_signal_processing/FFT-class.html">FFT</a></li>
+      <li class="self-crumb">combiTransform method</li>
+    </ol>
+    
+    <h5>FFT class</h5>
+    <ol>
+    
+        <li class="section-title"><a href="smart_signal_processing/FFT-class.html#constructors">Constructors</a></li>
+        <li><a href="smart_signal_processing/FFT/FFT.html">FFT</a></li>
+    
+        <li class="section-title inherited">
+            <a href="smart_signal_processing/FFT-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="smart_signal_processing/FFT/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="smart_signal_processing/FFT/runtimeType.html">runtimeType</a></li>
+    
+        <li class="section-title"><a href="smart_signal_processing/FFT-class.html#instance-methods">Methods</a></li>
+        <li><a href="smart_signal_processing/FFT/computeInverseFft.html">computeInverseFft</a></li>
+        <li class="inherited"><a href="smart_signal_processing/FFT/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="smart_signal_processing/FFT/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="smart_signal_processing/FFT-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="smart_signal_processing/FFT/operator_equals.html">operator ==</a></li>
+    
+        <li class="section-title"><a href="smart_signal_processing/FFT-class.html#static-properties">Static properties</a></li>
+        <li><a href="smart_signal_processing/FFT/bcsize.html">bcsize</a></li>
+        <li><a href="smart_signal_processing/FFT/bcstart.html">bcstart</a></li>
+        <li><a href="smart_signal_processing/FFT/complex.html">complex</a></li>
+        <li><a href="smart_signal_processing/FFT/dobc.html">dobc</a></li>
+        <li><a href="smart_signal_processing/FFT/doem.html">doem</a></li>
+        <li><a href="smart_signal_processing/FFT/doft.html">doft</a></li>
+        <li><a href="smart_signal_processing/FFT/dogm.html">dogm</a></li>
+        <li><a href="smart_signal_processing/FFT/ema.html">ema</a></li>
+        <li><a href="smart_signal_processing/FFT/FT_SWAP_MODE_FULL.html">FT_SWAP_MODE_FULL</a></li>
+        <li><a href="smart_signal_processing/FFT/FT_SWAP_MODE_HALF.html">FT_SWAP_MODE_HALF</a></li>
+        <li><a href="smart_signal_processing/FFT/FT_SWAP_MODE_NO.html">FT_SWAP_MODE_NO</a></li>
+        <li><a href="smart_signal_processing/FFT/ftzerofill.html">ftzerofill</a></li>
+        <li><a href="smart_signal_processing/FFT/gmr.html">gmr</a></li>
+        <li><a href="smart_signal_processing/FFT/gms.html">gms</a></li>
+        <li><a href="smart_signal_processing/FFT/groupDelay.html">groupDelay</a></li>
+        <li><a href="smart_signal_processing/FFT/swapMode.html">swapMode</a></li>
+    
+        <li class="section-title"><a href="smart_signal_processing/FFT-class.html#static-methods">Static methods</a></li>
+        <li><a href="smart_signal_processing/FFT/combiTransform.html">combiTransform</a></li>
+        <li><a href="smart_signal_processing/FFT/phascor.html">phascor</a></li>
+        <li><a href="smart_signal_processing/FFT/reverseBits.html">reverseBits</a></li>
+        <li><a href="smart_signal_processing/FFT/transform.html">transform</a></li>
+        <li><a href="smart_signal_processing/FFT/transformRadix2.html">transformRadix2</a></li>
+        <li><a href="smart_signal_processing/FFT/transformShuffled.html">transformShuffled</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">combiTransform</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span>&gt;</span></span>
+            <span class="name ">combiTransform</span>
+(<wbr><span class="parameter" id="combiTransform-param-complexArray2D"><span class="type-annotation">Float64List</span> <span class="parameter-name">complexArray2D</span>, </span> <span class="parameter" id="combiTransform-param-args"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">Object</span>&gt;</span></span> <span class="parameter-name">args</span>, </span> <span class="parameter" id="combiTransform-param-nrows"><span class="type-annotation">int</span> <span class="parameter-name">nrows</span>, </span> <span class="parameter" id="combiTransform-param-userFTSize"><span class="type-annotation">int</span> <span class="parameter-name">userFTSize</span>, </span> <span class="parameter" id="combiTransform-param-rcb"><span class="type-annotation"><a href="smart_signal_processing/RowDoneCallback.html">RowDoneCallback</a></span> <span class="parameter-name">rcb</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Processes <code>complexArray2D</code> by treating it as a 2D array with <code>nrows</code> (=1 for 1D).
+Each row is assumed to be complex: (re, im, re, im, ..)
+Returns null for 1D, while <code>complexArray2D</code> contain the processing result.
+Otherwise returns a list with 2 entries: The reals and the imaginaries (which
+can be an empty array if processing does not generate imaginaries).
+Processing means:
+bcoffset - em - gm - ft for each row of <code>complexArray2D</code>,
+in this sequence, depending on args<a href="smart_signal_processing/FFT/dobc.html">dobc</a>, ..doem, ..dogm, ..doft.
+Processing is performed for each of the rows.
+The function rcb, if not null, will be called with the row number
+after processing a row.
+If <code>userFTSize</code> is not null, the transform size  of each row
+is adjusted respectively: (zero-filling if bigger, cut-off if smaller)
+NOTE: bc/em/gm are do not consider <code>userFTSize</code>.
+If a row is not a power of two, it is zero-filled to the next power of 2.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">static List&lt;List&lt;Float64List&gt;&gt; combiTransform(
+    Float64List complexArray2D,
+    Map&lt;String, Object&gt; args,
+    int nrows,
+    int userFTSize,
+    RowDoneCallback rcb) {
+  List&lt;Float64List&gt; real2d, imag2d, reim;
+  int rowLength = complexArray2D.length ~&#47; nrows;
+  real2d = List&lt;Float64List&gt;();
+  imag2d = List&lt;Float64List&gt;();
+  Float64List yValues;
+  for (int i = 0; i &lt; nrows; i++) {
+    if (nrows == 1) {
+      yValues = complexArray2D;
+    } else {
+      yValues = Array1D.getRow(complexArray2D, i, nrows);
+    }
+
+    if (args[dobc]) {
+      BaseLine.bcOffset(yValues, args[complex], args[bcstart], args[bcsize]);
+    }
+    if (args[doem]) {
+      WinFunc.expMult(yValues, args[ema], args[complex], args[groupDelay]);
+    }
+    if (args[dogm]) {
+      WinFunc.gaussMult(yValues, args[gmr], args[gms], args[complex]);
+    }
+
+    if (args[doft]) {
+      yValues = Array1D.zeroFill(yValues, userFTSize, true);
+      reim = transformShuffled(yValues, args[groupDelay], args[swapMode]);
+      real2d.add(reim[0]); &#47;&#47; after transform: reals+imags
+      imag2d.add(reim[1]);
+    }
+
+    if (!args[doft]) {
+      &#47;&#47; replace original fidvalues by result
+      for (int k = 0; k &lt; yValues.length; k++) {
+        complexArray2D[i * rowLength + k] = yValues[k];
+      }
+    }
+
+    if (rcb != null) rcb(i);
+  }
+
+  if (args[doft]) {
+    return [real2d, imag2d]; &#47;&#47; Two 2D arrays
+  } else {
+    return null; &#47;&#47; fidValues were replaced
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_signal_processing
+      2.1.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

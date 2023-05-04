@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the findContour method from the ContourFinder class, for the Dart programming language.">
+  <title>findContour method - ContourFinder class - smart_arrays_contour_finder library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_contour_finder</a></li>
+    <li><a href="smart_arrays_contour_finder/smart_arrays_contour_finder-library.html">smart_arrays_contour_finder</a></li>
+    <li><a href="smart_arrays_contour_finder/ContourFinder-class.html">ContourFinder</a></li>
+    <li class="self-crumb">findContour method</li>
+  </ol>
+  <div class="self-name">findContour</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_contour_finder</a></li>
+      <li><a href="smart_arrays_contour_finder/smart_arrays_contour_finder-library.html">smart_arrays_contour_finder</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder-class.html">ContourFinder</a></li>
+      <li class="self-crumb">findContour method</li>
+    </ol>
+    
+    <h5>ContourFinder class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_contour_finder/ContourFinder-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/ContourFinder.html">ContourFinder</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_contour_finder/ContourFinder-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/contourRenderer.html">contourRenderer</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/h.html">h</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/sh.html">sh</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/xh.html">xh</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/yh.html">yh</a></li>
+      <li class="inherited"><a href="smart_arrays_contour_finder/ContourFinder/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_contour_finder/ContourFinder/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_contour_finder/ContourFinder-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/findContour.html">findContour</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/xsect.html">xsect</a></li>
+      <li><a href="smart_arrays_contour_finder/ContourFinder/ysect.html">ysect</a></li>
+      <li class="inherited"><a href="smart_arrays_contour_finder/ContourFinder/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_contour_finder/ContourFinder/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_contour_finder/ContourFinder-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_contour_finder/ContourFinder/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">findContour</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">void</span>
+            <span class="name ">findContour</span>
+(<wbr><span class="parameter" id="findContour-param-d"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Float64List</span>&gt;</span></span> <span class="parameter-name">d</span>, </span> <span class="parameter" id="findContour-param-ilb"><span class="type-annotation">int</span> <span class="parameter-name">ilb</span>, </span> <span class="parameter" id="findContour-param-iub"><span class="type-annotation">int</span> <span class="parameter-name">iub</span>, </span> <span class="parameter" id="findContour-param-jlb"><span class="type-annotation">int</span> <span class="parameter-name">jlb</span>, </span> <span class="parameter" id="findContour-param-jub"><span class="type-annotation">int</span> <span class="parameter-name">jub</span>, </span> <span class="parameter" id="findContour-param-x"><span class="type-annotation">Float64List</span> <span class="parameter-name">x</span>, </span> <span class="parameter" id="findContour-param-y"><span class="type-annotation">Float64List</span> <span class="parameter-name">y</span>, </span> <span class="parameter" id="findContour-param-nc"><span class="type-annotation">int</span> <span class="parameter-name">nc</span>, </span> <span class="parameter" id="findContour-param-z"><span class="type-annotation">Float64List</span> <span class="parameter-name">z</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p><a href="smart_arrays_contour_finder/ContourFinder/findContour.html">findContour</a> is a contouring subroutine for rectangularily spaced data
+It emits calls to a line drawing function, see <a href="smart_arrays_contour_finder/ContourRenderer-class.html">ContourRenderer</a>,
+which draws a contour map. The coordinates emitted are in the same
+units given in the <code>x</code> and<code>y</code> arrays.
+Any number of contour levels may be specified but they must be
+in order of increasing value.
+Patrameters:
+<code>d</code>  - matrix of data to contour
+<code>ilb</code>, <code>iub</code>, <code>jlb</code>, <code>jub</code> - index bounds of data matrix:
+   d(r, s), r = 0...iub, s=0,...jub
+The number of horizontal and vertical data points designated iub and jub:
+  matrix(rowcount, colcount) with rowcount = i = 0,..,nrows-1 (iub) and
+  colcount= j = ncols-1 (jub)
+Graphics:
+The x axis coordinates (left to right) correspond to the colcount j: x(j)
+The y axis coordinates (top to bottom) correspond to the rowcount i: y(i)</p>
+<p>The following two, one dimensional arrays (x and y) contain the horizontal
+and vertical coordinates of each sample points.
+<code>x</code>  - data matrix column coordinates: x<code>0</code> ... x<code>iub</code> (first ... last index)
+<code>y</code>  - data matrix row coordinates: y<code>0</code> ... y<code>jub</code> (first ... last index)
+Two, one dimensional arrays x(0:iub) and y(0:jub) which contain the
+horizontal and vertical coordinates of each sample point.
+This allows for a rectangular grid of samples.
+<code>nc</code> - number of contour levels
+<code>z</code>  - contour levels in increasing order:
+  A one dimensional array z(0:nc-1) that serves as a list of the contour
+  levels in increasing order.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">void findContour(List&lt;Float64List&gt; d, int ilb, int iub, int jlb, int jub,
+    Float64List x, Float64List y, int nc, Float64List z) {
+  int m1;
+  int m2;
+  int m3;
+  int case_value;
+  double dmin;
+  double dmax;
+  double x1 = 0.0;
+  double x2 = 0.0;
+  double y1 = 0.0;
+  double y2 = 0.0;
+  int i, j, k, m;
+
+  &#47;&#47; The indexing of im and jm should be noted as it has to start from zero
+  &#47;&#47; unlike the fortran counter part
+  List&lt;int&gt; im = [0, 1, 1, 0];
+  List&lt;int&gt; jm = [0, 0, 1, 1];
+
+  &#47;&#47; Note that castab is arranged differently from the FORTRAN code because
+  &#47;&#47; Fortran and C&#47;C++ arrays are transposed of each store_quota, in this case
+  &#47;&#47; it is more tricky as castab is in 3 dimension
+  List&lt;List&lt;List&lt;int&gt;&gt;&gt; castab = [
+    [
+      [0, 0, 8],
+      [0, 2, 5],
+      [7, 6, 9]
+    ],
+    [
+      [0, 3, 4],
+      [1, 3, 1],
+      [4, 3, 0]
+    ],
+    [
+      [9, 6, 7],
+      [5, 2, 0],
+      [8, 0, 0]
+    ]
+  ];
+
+  for (j = (jub - 1); j &gt;= jlb; j--) {
+    for (i = ilb; i &lt;= iub - 1; i++) {
+      double temp1, temp2;
+      temp1 = math.min(d[i][j], d[i][j + 1]);
+      temp2 = math.min(d[i + 1][j], d[i + 1][j + 1]);
+      dmin = math.min(temp1, temp2);
+      temp1 = math.max(d[i][j], d[i][j + 1]);
+      temp2 = math.max(d[i + 1][j], d[i + 1][j + 1]);
+      dmax = math.max(temp1, temp2);
+
+      if (dmax &gt;= z[0] &amp;&amp; dmin &lt;= z[nc - 1]) {
+        for (k = 0; k &lt; nc; k++) {
+          if (z[k] &gt;= dmin &amp;&amp; z[k] &lt;= dmax) {
+            for (m = 4; m &gt;= 0; m--) {
+              if (m &gt; 0) {
+                &#47;&#47; The indexing of im and jm should be noted as it has to
+                &#47;&#47; start from zero
+                h[m] = d[i + im[m - 1]][j + jm[m - 1]] - z[k];
+                xh[m] = x[i + im[m - 1]];
+                yh[m] = y[j + jm[m - 1]];
+              } else {
+                h[0] = 0.25 * (h[1] + h[2] + h[3] + h[4]);
+                xh[0] = 0.5 * (x[i] + x[i + 1]);
+                yh[0] = 0.5 * (y[j] + y[j + 1]);
+              }
+              if (h[m] &gt; 0.0) {
+                sh[m] = 1;
+              } else if (h[m] &lt; 0.0) {
+                sh[m] = -1;
+              } else {
+                sh[m] = 0;
+              }
+            }
+            &#47;&#47;
+            &#47;&#47; Note: at this stage the relative heights of the corners and the
+            &#47;&#47; centre are in the h array, and the corresponding coordinates are
+            &#47;&#47; in the xh and yh arrays. The centre of the box is indexed by 0
+            &#47;&#47; and the 4 corners by 1 to 4 as shown below.
+            &#47;&#47; Each triangle is then indexed by the parameter m, and the 3
+            &#47;&#47; vertices of each triangle are indexed by parameters m1,m2,and
+            &#47;&#47; m3.
+            &#47;&#47; It is assumed that the centre of the box is always vertex 2
+            &#47;&#47; though this isimportant only when all 3 vertices lie exactly on
+            &#47;&#47; the same contour level, in which case only the side of the box
+            &#47;&#47; is drawn.
+            &#47;&#47;
+            &#47;&#47;
+            &#47;&#47;      vertex 4 +-------------------+ vertex 3
+            &#47;&#47;               | \               &#47; |
+            &#47;&#47;               |   \    m-3    &#47;   |
+            &#47;&#47;               |     \       &#47;     |
+            &#47;&#47;               |       \   &#47;       |
+            &#47;&#47;               |  m=2    X   m=2   |       the centre is vertex 0
+            &#47;&#47;               |       &#47;   \       |
+            &#47;&#47;               |     &#47;       \     |
+            &#47;&#47;               |   &#47;    m=1    \   |
+            &#47;&#47;               | &#47;               \ |
+            &#47;&#47;      vertex 1 +-------------------+ vertex 2
+            &#47;&#47;
+            &#47;&#47;
+            &#47;&#47;
+            &#47;&#47;               Scan each triangle in the box
+            &#47;&#47;
+            for (m = 1; m &lt;= 4; m++) {
+              m1 = m;
+              m2 = 0;
+              if (m != 4) {
+                m3 = m + 1;
+              } else {
+                m3 = 1;
+              }
+              case_value = castab[sh[m1] + 1][sh[m2] + 1][sh[m3] + 1];
+              if (case_value != 0) {
+                switch (case_value) {
+                  case 1:
+                    &#47;&#47; Line between vertices 1 and 2
+                    x1 = xh[m1];
+                    y1 = yh[m1];
+                    x2 = xh[m2];
+                    y2 = yh[m2];
+                    break;
+                  case 2:
+                    &#47;&#47; Line between vertices 2 and 3
+                    x1 = xh[m2];
+                    y1 = yh[m2];
+                    x2 = xh[m3];
+                    y2 = yh[m3];
+                    break;
+                  case 3:
+                    &#47;&#47; Line between vertices 3 and 1
+                    x1 = xh[m3];
+                    y1 = yh[m3];
+                    x2 = xh[m1];
+                    y2 = yh[m1];
+                    break;
+                  case 4:
+                    &#47;&#47; Line between vertex 1 and side 2-3
+                    x1 = xh[m1];
+                    y1 = yh[m1];
+                    x2 = xsect(m2, m3);
+                    y2 = ysect(m2, m3);
+                    break;
+                  case 5:
+                    &#47;&#47; Line between vertex 2 and side 3-1
+                    x1 = xh[m2];
+                    y1 = yh[m2];
+                    x2 = xsect(m3, m1);
+                    y2 = ysect(m3, m1);
+                    break;
+                  case 6:
+                    &#47;&#47;  Line between vertex 3 and side 1-2
+                    x1 = xh[m3];
+                    y1 = yh[m3];
+                    x2 = xsect(m1, m2);
+                    y2 = ysect(m1, m2);
+                    break;
+                  case 7:
+                    &#47;&#47; Line between sides 1-2 and 2-3
+                    x1 = xsect(m1, m2);
+                    y1 = ysect(m1, m2);
+                    x2 = xsect(m2, m3);
+                    y2 = ysect(m2, m3);
+                    break;
+                  case 8:
+                    &#47;&#47; Line between sides 2-3 and 3-1
+                    x1 = xsect(m2, m3);
+                    y1 = ysect(m2, m3);
+                    x2 = xsect(m3, m1);
+                    y2 = ysect(m3, m1);
+                    break;
+                  case 9:
+                    &#47;&#47; Line between sides 3-1 and 1-2
+                    x1 = xsect(m3, m1);
+                    y1 = ysect(m3, m1);
+                    x2 = xsect(m1, m2);
+                    y2 = ysect(m1, m2);
+                    break;
+                  default:
+                    break;
+                }
+                &#47;&#47; Put your processing code here and comment out the printf
+                &#47;&#47;printf(&quot;%f %f %f %f %f\n&quot;,x1,y1,x2,y2,z[k]);
+&#47;&#47;                  print(&quot;4000=$x1, $y1, $x2, $y2, ${z[k]}&quot;);
+                contourRenderer.drawContourLine(x1, y1, x2, y2, z[k], k);
+&#47;&#47;                  print(&quot;4001&quot;);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_contour_finder 2.0.5
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

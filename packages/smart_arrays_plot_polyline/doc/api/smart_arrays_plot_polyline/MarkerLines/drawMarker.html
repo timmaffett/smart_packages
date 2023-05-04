@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the drawMarker method from the MarkerLines class, for the Dart programming language.">
+  <title>drawMarker method - MarkerLines class - smart_arrays_plot_polyline library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+    <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+    <li><a href="smart_arrays_plot_polyline/MarkerLines-class.html">MarkerLines</a></li>
+    <li class="self-crumb">drawMarker method</li>
+  </ol>
+  <div class="self-name">drawMarker</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_plot_polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/smart_arrays_plot_polyline-library.html">smart_arrays_plot_polyline</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines-class.html">MarkerLines</a></li>
+      <li class="self-crumb">drawMarker method</li>
+    </ol>
+    
+    <h5>MarkerLines class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_plot_polyline/MarkerLines-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines/MarkerLines.html">MarkerLines</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_plot_polyline/MarkerLines-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines/dpy.html">dpy</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/MarkerLines/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/MarkerLines/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/MarkerLines-class.html#instance-methods">Methods</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines/drawMarker.html">drawMarker</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines/drawPolylineMarkers.html">drawPolylineMarkers</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/MarkerLines/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/MarkerLines/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_plot_polyline/MarkerLines-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_plot_polyline/MarkerLines/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="smart_arrays_plot_polyline/MarkerLines-class.html#static-properties">Static properties</a></li>
+      <li><a href="smart_arrays_plot_polyline/MarkerLines/MARKER_DEFAULT_ATTRIBUTES.html">MARKER_DEFAULT_ATTRIBUTES</a></li>
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">drawMarker</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">int</span>
+            <span class="name ">drawMarker</span>
+(<wbr><span class="parameter" id="drawMarker-param-markerTicks"><span class="type-annotation">SvgSvgElement</span> <span class="parameter-name">markerTicks</span>, </span> <span class="parameter" id="drawMarker-param-markerLabels"><span class="type-annotation">SvgSvgElement</span> <span class="parameter-name">markerLabels</span>, </span> <span class="parameter" id="drawMarker-param-peakIx"><span class="type-annotation">double</span> <span class="parameter-name">peakIx</span>, </span> <span class="parameter" id="drawMarker-param-peakLabel"><span class="type-annotation">String</span> <span class="parameter-name">peakLabel</span>, </span> <span class="parameter" id="drawMarker-param-yphys"><span class="type-annotation">double</span> <span class="parameter-name">yphys</span>, </span> <span class="parameter" id="drawMarker-param-lastLabpos"><span class="type-annotation">int</span> <span class="parameter-name">lastLabpos</span>, </span> <span class="parameter" id="drawMarker-param-markerAttr"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_arrays_plot_polyline/MarA-class.html">MarA</a></span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">markerAttr</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Draws a vertical marker line together with a marker text.
+<code>markerTicks</code> - drawing will be performed into this container.
+<code>peakIx</code> - the marker x position will be at this index of the polyline's array.
+<code>peakLabel</code> - the text drawn above the marker line.
+<code>yphys</code> - the polyines array's intensity at <code>peakIx</code>, used to compute
+  the y position of the marker line.
+<code>lastLabpos</code> - the <code>peakLabel</code> is only drawn if it's position is
+  significantly away from <code>lastLabpos</code> (by fontsize). Important when
+  several markers are drawn close to each other.
+<code>markerAttr</code> - any attributes defined in <a href="smart_arrays_plot_polyline/MarA-class.html">MarA</a>. Attributes from
+  <a href="smart_arrays_plot_polyline/MarkerLines/MARKER_DEFAULT_ATTRIBUTES.html">MARKER_DEFAULT_ATTRIBUTES</a> will be used if null or only a subset of
+  the <a href="smart_arrays_plot_polyline/MarA-class.html">MarA</a> attributes are specified.
+Returns the x position of this <code>peakLabel</code>, used to be fed into the
+  next call of this method as <code>lastLabpos</code>.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">int drawMarker(
+    SvgSvgElement markerTicks,
+    SvgSvgElement markerLabels,
+    double peakIx,
+    String peakLabel,
+    double yphys,
+    int lastLabpos,
+    Map&lt;MarA, String&gt; markerAttr) {
+  if (markerAttr == null) {
+    markerAttr = Map.from(MARKER_DEFAULT_ATTRIBUTES);
+  } else {
+    Map&lt;MarA, String&gt; attr = Map.from(MARKER_DEFAULT_ATTRIBUTES);
+    attr.addAll(markerAttr); &#47;&#47; merge with defaults
+    markerAttr = attr;
+  }
+
+  int xpos = dpy.xphysToXscreen(peakIx).round();
+
+  &#47;&#47; draw marker line
+  int ypos = dpy.yphysToYscreen(yphys).round();
+
+  int yposStart = ypos - 10;
+  int yposEnd = yposStart - 30;
+  String tickColor;
+  if (yphys &lt; 0) {
+    ypos = dpy.yphysToYscreen(0.0).round();
+    yposStart = ypos - 10;
+    yposEnd = yposStart - 30;
+    tickColor = markerAttr[MarA.PEAKLAB_MARKER_STROKE_NEG];
+  } else {
+    tickColor = markerAttr[MarA.PEAKLAB_MARKER_STROKE_POS];
+  }
+
+  LineElement liney = LineElement(); &#47;&#47; line parallel to y axis
+  SVG.setAttr(liney, {
+    SVG.X1: &quot;$xpos&quot;,
+    SVG.Y1: &quot;$yposStart&quot;,
+    SVG.X2: &quot;$xpos&quot;,
+    SVG.Y2: &quot;${yposEnd}&quot;,
+    SVG.STROKE: tickColor,
+    SVG.STROKE_WIDTH: &quot;1&quot;
+  });
+
+  markerTicks.append(liney); &#47;&#47; append to ticks container
+
+  &#47;&#47; draw peak label
+  int fontsize = int.parse(markerAttr[MarA.PEAKLAB_FONT_SIZE]);
+  int labposx = xpos - fontsize ~&#47; 3; &#47;&#47; - fontsize*peakLabel.length;
+  if (labposx &gt; lastLabpos + fontsize) {
+    TextElement teLab = TextElement();
+    teLab.text = peakLabel;
+
+    int labposy = yposEnd - fontsize * peakLabel.length ~&#47; 2;
+    SVG.setAttr(teLab, {
+      SVG.X: &quot;${labposx}px&quot;, &#47;&#47; center text in xaxis area
+      SVG.Y: &quot;${labposy}px&quot;, &#47;&#47; offset from xaxis labels
+      SVG.FILL: markerAttr[MarA.PEAKLAB_CHARS_FILL],
+      SVG.STROKE: &quot;none&quot;,
+      SVG.FONT_SIZE: &quot;${fontsize}px&quot;,
+      &quot;transform&quot;: &quot;rotate(90, ${labposx}, ${labposy})&quot;,
+      &quot;cursor&quot;: &quot;default&quot; &#47;&#47; don&#39;t auto-change to text entry cursor shape
+    });
+    markerLabels.append(teLab); &#47;&#47; append to labels container
+    return labposx;
+  }
+  return lastLabpos;
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_plot_polyline 2.1.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

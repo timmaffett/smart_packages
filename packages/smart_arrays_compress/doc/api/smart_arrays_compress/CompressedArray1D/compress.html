@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the compress method from the CompressedArray1D class, for the Dart programming language.">
+  <title>compress method - CompressedArray1D class - smart_arrays_compress library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_arrays_compress</a></li>
+    <li><a href="smart_arrays_compress/smart_arrays_compress-library.html">smart_arrays_compress</a></li>
+    <li><a href="smart_arrays_compress/CompressedArray1D-class.html">CompressedArray1D</a></li>
+    <li class="self-crumb">compress method</li>
+  </ol>
+  <div class="self-name">compress</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_arrays_compress</a></li>
+      <li><a href="smart_arrays_compress/smart_arrays_compress-library.html">smart_arrays_compress</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D-class.html">CompressedArray1D</a></li>
+      <li class="self-crumb">compress method</li>
+    </ol>
+    
+    <h5>CompressedArray1D class</h5>
+    <ol>
+      <li class="section-title"><a href="smart_arrays_compress/CompressedArray1D-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/CompressedArray1D.html">CompressedArray1D</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/CompressedArray1D.sep.html">sep</a></li>
+    
+      <li class="section-title">
+        <a href="smart_arrays_compress/CompressedArray1D-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/cArray.html">cArray</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/cArrayNeg.html">cArrayNeg</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/cArrayPos.html">cArrayPos</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/cpdIndexIncrement.html">cpdIndexIncrement</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/uIndices.html">uIndices</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray1D/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray1D/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_compress/CompressedArray1D-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray1D/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray1D/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_arrays_compress/CompressedArray1D-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_arrays_compress/CompressedArray1D/operator_equals.html">operator ==</a></li>
+    
+    
+      <li class="section-title"><a href="smart_arrays_compress/CompressedArray1D-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/compress.html">compress</a></li>
+      <li><a href="smart_arrays_compress/CompressedArray1D/getCompressionIntervals.html">getCompressionIntervals</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">compress</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype"><a href="smart_arrays_compress/CompressedArray1D-class.html">CompressedArray1D</a></span>
+            <span class="name ">compress</span>
+(<wbr><span class="parameter" id="compress-param-array"><span class="type-annotation">Float64List</span> <span class="parameter-name">array</span>, </span> <span class="parameter" id="compress-param-ixFirst_"><span class="type-annotation">int</span> <span class="parameter-name">ixFirst_</span>, </span> <span class="parameter" id="compress-param-ixLast_"><span class="type-annotation">int</span> <span class="parameter-name">ixLast_</span>, </span> <span class="parameter" id="compress-param-separate"><span class="type-annotation">bool</span> <span class="parameter-name">separate</span>, [</span> <span class="parameter" id="compress-param-newLength"><span class="type-annotation">int</span> <span class="parameter-name">newLength</span></span> ])
+      
+    </section>
+    <section class="desc markdown">
+      <p>Compresses a desired section of an <code>array</code> to a smaller
+<code>newLength</code>, defaulting to 1024.
+<code>ixFirst_</code>, <code>ixLast_</code> are the left and right section limits (indices).
+Returns a <a href="smart_arrays_compress/CompressedArray1D-class.html">CompressedArray1D</a> object with <a href="smart_arrays_compress/CompressedArray1D/cArray.html">cArray</a> being the
+compressed values if <code>separate</code> is false. If true, the compressed values are
+instead stored in 2 arrays, <a href="smart_arrays_compress/CompressedArray1D/cArrayPos.html">cArrayPos</a> and <a href="smart_arrays_compress/CompressedArray1D/cArrayNeg.html">cArrayNeg</a>, with only positive and
+negative values.
+The algorithm fragments the considered section into intervals with a size
+computed from <code>newLength</code>. In each interval, it discards all but 2 values,
+the minimum and maximum.
+NOTE: If <code>newLength</code> is not a divisor of the <code>array</code> length, the last
+compressed values are sampled from a wider index interval than the other
+compressed values!</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">static CompressedArray1D compress(
+    Float64List array, int ixFirst_, int ixLast_, bool separate,
+    [int newLength]) {
+  if (newLength == null) newLength = 1024;
+
+  if (newLength &lt;= 0) newLength = array.length;
+
+  if (newLength % 2 != 0) {
+    newLength += 1; &#47;&#47; make even for the following algorithms
+  }
+
+  int ixFirst = ixFirst_, ixLast = ixLast_;
+
+  &#47;&#47; make some index checks and adjustment if indices out of range
+  if (ixFirst == null) ixFirst = 0;
+  if (ixLast == null) ixLast = array.length - 1;
+
+  if (ixLast &lt;= ixFirst) {
+    ixLast = ixFirst + 1;
+  }
+
+  if (ixFirst &lt; 0 || ixFirst &gt; array.length - 1) ixFirst = 0;
+
+  if (ixLast &gt; array.length - 1 || ixLast &lt; 0) ixLast = array.length - 1;
+
+  &#47;&#47; build subset of full data containing only the data from ixFirst to ixLast
+  int rangeLength = ixLast - ixFirst + 1;
+  Float64List arrayRange;
+  if (rangeLength == array.length) {
+    arrayRange = array;
+  } else {
+    arrayRange = new Float64List(ixLast - ixFirst + 1);
+    for (int i = ixFirst; i &lt; ixLast + 1; i++) {
+      arrayRange[i - ixFirst] = array[i];
+    }
+  }
+
+  List&lt;int&gt; indexList;
+
+  &#47;&#47; return the original data if the input data are too short.
+  &#47;&#47; use all data
+  if (!separate &amp;&amp; arrayRange.length &lt;= 2 * newLength) {
+    indexList = new List&lt;int&gt;(arrayRange.length);
+    for (int i = 0; i &lt; arrayRange.length; i++) {
+      indexList[i] = ixFirst + i;
+    }
+    return new CompressedArray1D(arrayRange, indexList, 1);
+  }
+
+  &#47;&#47; perform the compression:
+  &#47;&#47; First select newLength*2 rangeLength from the original array because
+  &#47;&#47; we need an x for ymax and one for ymin
+  indexList = getCompressionIntervals(arrayRange, newLength * 2, ixFirst);
+
+  int ixLeft, ixRight;
+  List&lt;double&gt; yminMax;
+  Float64List curYvalues;
+  Float64List newYvalues, newYvaluesPos, newYvaluesNeg;
+  if (separate) {
+    newYvaluesPos = new Float64List(newLength);
+    newYvaluesNeg = new Float64List(newLength);
+  } else {
+    newYvalues = new Float64List(newLength * 2);
+  }
+
+  int curix = 0;
+  for (int i = 0; i &lt; indexList.length; i += 2) {
+    ixLeft = indexList[i] - ixFirst;
+    if ((i + 2 &gt; indexList.length - 1) &amp;&amp; (i + 1 &gt; indexList.length - 1)) {
+      ixRight = indexList.last;
+    } else if (i + 2 &gt; indexList.length - 1) {
+      ixRight = indexList[i + 1] - ixFirst;
+    } else {
+      &#47;&#47; we skip one index to double the interval size because from each
+      &#47;&#47; interval we get ymax&#47;ymin
+      ixRight = indexList[i + 2] - ixFirst;
+    }
+
+    curYvalues = new Float64List(ixRight - ixLeft);
+
+    &#47;&#47; extract all y values from interval
+    for (int k = ixLeft; k &lt; ixRight; k++) {
+      curYvalues[k - ixLeft] = arrayRange[k];
+    }
+
+    if (curYvalues.isEmpty) {}
+
+    yminMax = Array1D.getMinMaxVals(curYvalues); &#47;&#47; put min&#47;max in right order
+
+    if (separate) {
+      &#47;&#47; separate the positive and negative values in separate arrays
+      if (curix == newYvaluesPos.length - 1) {
+        yminMax = [array[ixLast - 1], array[ixLast]];
+        print(&quot;XX=$yminMax&quot;);
+      }
+      double min = Array1D.getMinVal(new Float64List.fromList(yminMax));
+      if (min &lt; 0) {
+        newYvaluesNeg[curix] = min;
+      } else if (min &gt; 0) {
+        newYvaluesPos[curix] = min;
+      }
+
+      double max = Array1D.getMaxInRange(
+          new Float64List.fromList(yminMax), null, null);
+      if (max &lt; 0) {
+        newYvaluesNeg[curix] = max;
+      } else if (max &gt; 0) {
+        newYvaluesPos[curix] = max;
+      }
+
+      if (curix &gt; 120) print(&quot;X1000=$i $curix $max $min&quot;);
+      curix++;
+    } else {
+      &#47;&#47; normal case
+      newYvalues[curix] = yminMax[0];
+      curix++;
+      newYvalues[curix] = yminMax[1];
+      curix++;
+    }
+&#47;&#47;    print(&quot;i=$i ixLeft=$ixLeft ixRight=$ixRight yminMax=$yminMax newLength=$newLength ${indexList.length}&quot;);
+  }
+
+  int cpdIndexIncrement = 1;
+  int delta;
+  for (int i = 0; i &lt; indexList.length - 1; i++) &#47;&#47; find largest delta
+  {
+    delta = indexList[i + 1] - indexList[i];
+    if (delta &gt; cpdIndexIncrement) cpdIndexIncrement = delta;
+  }
+
+  if (separate) {
+    return new CompressedArray1D.sep(
+        newYvaluesPos, newYvaluesNeg, indexList, cpdIndexIncrement);
+  } else {
+    return new CompressedArray1D(newYvalues, indexList, cpdIndexIncrement);
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_arrays_compress 2.0.9
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+name: smart_lorentz_gauss
+version: "2.1.2"
+author: Dr. Bruno Guigas <specpad@gmail.com>
+description: Provides functionalities to compute mixed Lorentz-Gauss line shapes, also called n-dimensional Pseudo-Voigt function.
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.1.4
+  pedantic: ^1.7.0
+  smart_arrays_plot_polyline: ^2.0.8

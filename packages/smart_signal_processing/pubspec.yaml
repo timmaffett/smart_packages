@@ -1,0 +1,14 @@
+name: smart_signal_processing
+version: "2.1.1"
+description: Provides useful functions for signal processing such as Fast Fourier Transform, windowing (apodization), variance/standard deviation and others.
+homepage: https://smart.specpad.bplaced.net
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+dependencies:
+  build_runner: ^1.6.2
+  build_web_compilers: ^2.1.4
+  pedantic: ^1.7.0
+  smart_arrays_base: ^2.0.9
+  smart_arrays_plot_polyline: ^2.0.8
+  smart_arrays_sample_data: ^2.0.3
+

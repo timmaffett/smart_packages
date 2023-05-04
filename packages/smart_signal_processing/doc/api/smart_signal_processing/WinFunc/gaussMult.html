@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the gaussMult method from the WinFunc class, for the Dart programming language.">
+  <title>gaussMult method - WinFunc class - smart_signal_processing library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_signal_processing</a></li>
+    <li><a href="smart_signal_processing/smart_signal_processing-library.html">smart_signal_processing</a></li>
+    <li><a href="smart_signal_processing/WinFunc-class.html">WinFunc</a></li>
+    <li class="self-crumb">gaussMult method</li>
+  </ol>
+  <div class="self-name">gaussMult</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_signal_processing</a></li>
+      <li><a href="smart_signal_processing/smart_signal_processing-library.html">smart_signal_processing</a></li>
+      <li><a href="smart_signal_processing/WinFunc-class.html">WinFunc</a></li>
+      <li class="self-crumb">gaussMult method</li>
+    </ol>
+    
+    <h5>WinFunc class</h5>
+    <ol>
+    
+        <li class="section-title"><a href="smart_signal_processing/WinFunc-class.html#constructors">Constructors</a></li>
+        <li><a href="smart_signal_processing/WinFunc/WinFunc.html">WinFunc</a></li>
+    
+        <li class="section-title inherited">
+            <a href="smart_signal_processing/WinFunc-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="smart_signal_processing/WinFunc/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="smart_signal_processing/WinFunc/runtimeType.html">runtimeType</a></li>
+    
+        <li class="section-title inherited"><a href="smart_signal_processing/WinFunc-class.html#instance-methods">Methods</a></li>
+        <li class="inherited"><a href="smart_signal_processing/WinFunc/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="smart_signal_processing/WinFunc/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="smart_signal_processing/WinFunc-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="smart_signal_processing/WinFunc/operator_equals.html">operator ==</a></li>
+    
+    
+        <li class="section-title"><a href="smart_signal_processing/WinFunc-class.html#static-methods">Static methods</a></li>
+        <li><a href="smart_signal_processing/WinFunc/expMult.html">expMult</a></li>
+        <li><a href="smart_signal_processing/WinFunc/gaussMult.html">gaussMult</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">gaussMult</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">void</span>
+            <span class="name ">gaussMult</span>
+(<wbr><span class="parameter" id="gaussMult-param-array"><span class="type-annotation">Float64List</span> <span class="parameter-name">array</span>, </span> <span class="parameter" id="gaussMult-param-r"><span class="type-annotation">double</span> <span class="parameter-name">r</span>, </span> <span class="parameter" id="gaussMult-param-s"><span class="type-annotation">double</span> <span class="parameter-name">s</span>, </span> <span class="parameter" id="gaussMult-param-isComplex"><span class="type-annotation">bool</span> <span class="parameter-name">isComplex</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>This is an in-place pointwise multiplication of an <code>array</code> with an
+Gaussian function ("gm=Gaussian multiply"):
+ fid<code>i</code> = fid<code>i</code> * exp(r<em>i + s</em>i*i)), i=0,..,fid.length-1.
+The Gaussian is computed recursively:</p>
+<ol>
+<li>gm(0) = 1, q(0) = exp(r+s)</li>
+<li>q(i+1) = exp(2*s)*q(i)</li>
+<li>gm(i+1) = q(i)*gm(i)
+If <code>isComplex</code> is true, <code>array</code> is considered as a sequence of complex points,
+<code>re,im,re,im, ... </code> where re (real) and im (imaginary) are on the same scale.</li>
+</ol>
+<p><code>r</code> and <code>s</code> define the Gaussian shape and are application dependent, for example:
+  r = -(PI<em>LB)</em>(AQ/size1),
+  s = (PI<em>LB/(2</em>GB<em>AQ))</em>(AQ/(td-1))*(AQ/(td-1)), td = size-1
+ where
+  LB is the "line broading", given in Hertz,for time signals which
+  would yield this line broadening after Fourier transform. GB determines
+  at which position the maximum of the Gaussian shape occurs.
+  Exammples: LB = -1.0, GB= 0.2. LB is often chosen negative so as to
+  enhance signal resolution after Fourier transform.
+  AQ would be the length of the time signal in seconds, and
+  td the "time domain size", i.e. <code>array</code>.length.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">static void gaussMult(Float64List array, double r, double s, bool isComplex) {
+  int i = 0;
+  double gmi = 1.0;
+  double qi = math.exp(r + s);
+  double fact = math.exp(2 * s);
+  if (isComplex) {
+    i *= 2;
+    while (true) {
+      array[i] = gmi * array[i];
+      array[i + 1] = gmi * array[i + 1];
+
+      if (i + 2 &gt;= array.length) break;
+
+      if (i + 3 &gt;= array.length) break;
+
+      qi = fact * qi;
+      gmi = qi * gmi;
+      i += 2;
+    }
+  } else {
+    &#47;&#47; TODO
+    while (true) {
+      array[i] = gmi * array[i];
+
+      if (i + 1 &gt;= array.length) break;
+
+      qi = fact * qi;
+      gmi = qi * gmi;
+      i += 1;
+    }
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_signal_processing
+      2.1.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

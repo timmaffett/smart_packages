@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the InfoDialog class from the smart_dialogs library, for the Dart programming language.">
+  <title>InfoDialog class - smart_dialogs library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">smart_dialogs</a></li>
+    <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+    <li class="self-crumb">InfoDialog class</li>
+  </ol>
+  <div class="self-name">InfoDialog</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">smart_dialogs</a></li>
+      <li><a href="smart_dialogs/smart_dialogs-library.html">smart_dialogs</a></li>
+      <li class="self-crumb">InfoDialog class</li>
+    </ol>
+    
+    <h5>smart_dialogs library</h5>
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/smart_dialogs-library.html#classes">Classes</a></li>
+      <li><a href="smart_dialogs/ActButton-class.html">ActButton</a></li>
+      <li><a href="smart_dialogs/BaseDialog-class.html">BaseDialog</a></li>
+      <li><a href="smart_dialogs/BasicTable-class.html">BasicTable</a></li>
+      <li><a href="smart_dialogs/ConfirmDialog-class.html">ConfirmDialog</a></li>
+      <li><a href="smart_dialogs/DiaAttr-class.html">DiaAttr</a></li>
+      <li><a href="smart_dialogs/DiaUtils-class.html">DiaUtils</a></li>
+      <li><a href="smart_dialogs/FileSelectionDialog-class.html">FileSelectionDialog</a></li>
+      <li><a href="smart_dialogs/IconPanel-class.html">IconPanel</a></li>
+      <li><a href="smart_dialogs/Info-class.html">Info</a></li>
+      <li><a href="smart_dialogs/InfoDialog-class.html">InfoDialog</a></li>
+      <li><a href="smart_dialogs/InputDialog-class.html">InputDialog</a></li>
+      <li><a href="smart_dialogs/PopupMenu-class.html">PopupMenu</a></li>
+      <li><a href="smart_dialogs/TableAttr-class.html">TableAttr</a></li>
+      <li><a href="smart_dialogs/UserInput-class.html">UserInput</a></li>
+    
+    
+    
+    
+    
+    
+      <li class="section-title"><a href="smart_dialogs/smart_dialogs-library.html#typedefs">Typedefs</a></li>
+      <li><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></li>
+      <li><a href="smart_dialogs/FileSelectionCallback.html">FileSelectionCallback</a></li>
+      <li><a href="smart_dialogs/GetIconCallbacks.html">GetIconCallbacks</a></li>
+      <li><a href="smart_dialogs/IconCallback.html">IconCallback</a></li>
+      <li><a href="smart_dialogs/TableButtonClickListener.html">TableButtonClickListener</a></li>
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">InfoDialog</span> class </h1></div>
+
+    <section class="desc markdown">
+      <p>A modal dialog to display information. No buttons except for a Red Cross to
+close the dialog are provided.</p>
+    </section>
+    
+    <section>
+      <dl class="dl-horizontal">
+        <dt>Inheritance</dt>
+        <dd><ul class="gt-separated dark clazz-relationships">
+          <li>Object</li>
+          <li><a href="smart_dialogs/BaseDialog-class.html">BaseDialog</a></li>
+          <li><a href="smart_dialogs/InputDialog-class.html">InputDialog</a></li>
+          <li>InfoDialog</li>
+        </ul></dd>
+
+
+
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="InfoDialog" class="callable">
+          <span class="name"><a href="smart_dialogs/InfoDialog/InfoDialog.html">InfoDialog</a></span><span class="signature">(<span class="parameter" id="-param-htmlInfoText"><span class="type-annotation">String</span> <span class="parameter-name">htmlInfoText</span>, </span> <span class="parameter" id="-param-closeCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">closeCallback</span></span>)</span>
+        </dt>
+        <dd>
+          Creates and shows a modal dialog with <code>htmlInfoText</code>.
+If <code>closeCallback</code> is not null it will be called with the user input
+button code <a href="smart_dialogs/DiaAttr/DIA_ACT_ABORT.html">DiaAttr.DIA_ACT_ABORT</a>.
+Aligns <code>htmlInfoText</code> centered in the cell.
+        </dd>
+        <dt id="InfoDialog.alignLeft" class="callable">
+          <span class="name"><a href="smart_dialogs/InfoDialog/InfoDialog.alignLeft.html">InfoDialog.alignLeft</a></span><span class="signature">(<span class="parameter" id="alignLeft-param-htmlInfoText"><span class="type-annotation">String</span> <span class="parameter-name">htmlInfoText</span>, </span> <span class="parameter" id="alignLeft-param-closeCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">closeCallback</span></span>)</span>
+        </dt>
+        <dd>
+          Like <a href="smart_dialogs/InfoDialog-class.html">InfoDialog</a>, but aligns text messages inside dialog left rather
+than centering them.
+        </dd>
+        <dt id="InfoDialog.noModal" class="callable">
+          <span class="name"><a href="smart_dialogs/InfoDialog/InfoDialog.noModal.html">InfoDialog.noModal</a></span><span class="signature">(<span class="parameter" id="noModal-param-htmlInfoText"><span class="type-annotation">String</span> <span class="parameter-name">htmlInfoText</span>, </span> <span class="parameter" id="noModal-param-closeCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">closeCallback</span></span>)</span>
+        </dt>
+        <dd>
+          Like <a href="smart_dialogs/InfoDialog-class.html">InfoDialog</a>, but the dialog is non-modal (non-blocking).
+        </dd>
+        <dt id="InfoDialog.noModalAlignLeft" class="callable">
+          <span class="name"><a href="smart_dialogs/InfoDialog/InfoDialog.noModalAlignLeft.html">InfoDialog.noModalAlignLeft</a></span><span class="signature">(<span class="parameter" id="noModalAlignLeft-param-htmlInfoText"><span class="type-annotation">String</span> <span class="parameter-name">htmlInfoText</span>, </span> <span class="parameter" id="noModalAlignLeft-param-closeCallback"><span class="type-annotation"><a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span> <span class="parameter-name">closeCallback</span></span>)</span>
+        </dt>
+        <dd>
+          Like <a href="smart_dialogs/InfoDialog/InfoDialog.alignLeft.html">InfoDialog.alignLeft</a>, but the dialog is non-modal (non-blocking).
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="actButs" class="property inherited">
+          <span class="name"><a href="smart_dialogs/InputDialog/actButs.html">actButs</a></span>
+          <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_dialogs/ActButton-class.html">ActButton</a></span>&gt;</span></span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="closeCallback" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a></span>
+          <span class="signature">&#8596; <a href="smart_dialogs/BaseDialogCloseCallback.html">BaseDialogCloseCallback</a></span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="dia" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/dia.html">dia</a></span>
+          <span class="signature">&#8596; DivElement</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="diaContainer" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/diaContainer.html">diaContainer</a></span>
+          <span class="signature">&#8596; DivElement</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="diaTable" class="property inherited">
+          <span class="name"><a href="smart_dialogs/InputDialog/diaTable.html">diaTable</a></span>
+          <span class="signature">&#8596; TableElement</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="smart_dialogs/BaseDialog/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="isModal" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/isModal.html">isModal</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="isopen" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/isopen.html">isopen</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="popup" class="property inherited">
+          <span class="name"><a href="smart_dialogs/InputDialog/popup.html">popup</a></span>
+          <span class="signature">&#8596; <a href="smart_dialogs/PopupMenu-class.html">PopupMenu</a></span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="RADIOGROUP1" class="property inherited">
+          <span class="name"><a href="smart_dialogs/InputDialog/RADIOGROUP1.html">RADIOGROUP1</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">final, inherited</div>
+</dd>
+        <dt id="redcross_left" class="property inherited">
+          <span class="name"><a href="smart_dialogs/InputDialog/redcross_left.html">redcross_left</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">read / write, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="close" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/close.html">close</a></span><span class="signature">(<wbr><span class="parameter" id="close-param-userInput"><span class="type-annotation"><a href="smart_dialogs/UserInput-class.html">UserInput</a></span> <span class="parameter-name">userInput</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Closes the dialog.
+<code>userInput</code> is passed on to
+<a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a> if a non-null callback is defined.
+if <code>userInput</code> is null, a non-null one is generated,
+with an empty String a button code.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="createShowDia" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/createShowDia.html">createShowDia</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Performs the dialog creation and display logic.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="init" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/InputDialog/init.html">init</a></span><span class="signature">(<wbr><span class="parameter" id="init-param-buttontype"><span class="type-annotation">String</span> <span class="parameter-name">buttontype</span>, </span> <span class="parameter" id="init-param-htmlTitleText"><span class="type-annotation">String</span> <span class="parameter-name">htmlTitleText</span>, </span> <span class="parameter" id="init-param-inputTextLabelInfo"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">inputTextLabelInfo</span>, </span> <span class="parameter" id="init-param-comboInfoND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">comboInfoND</span>, </span> <span class="parameter" id="init-param-defaultInputTextsND"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">int</span>, <span class="type-parameter">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">defaultInputTextsND</span>, </span> <span class="parameter" id="init-param-sizes"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span> <span class="parameter-name">sizes</span>, </span> <span class="parameter" id="init-param-isChecked"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">isChecked</span>, </span> <span class="parameter" id="init-param-alternateRowColor"><span class="type-annotation">bool</span> <span class="parameter-name">alternateRowColor</span>, </span> <span class="parameter" id="init-param-buttonLabels"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">buttonLabels</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Creates and displays a dialog.
+See <a href="smart_dialogs/InputDialog-class.html">InputDialog</a> and <a href="smart_dialogs/InputDialog/InputDialog.twoD.html">InputDialog.twoD</a> for the arguments.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="isOpen" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/isOpen.html">isOpen</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns true if the dialog is open.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="smart_dialogs/BaseDialog/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="smart_dialogs/BaseDialog/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="smart_dialogs/BaseDialog/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="static-methods">
+      <h2>Static Methods</h2>
+      <dl class="callables">
+        <dt id="show" class="callable">
+          <span class="name"><a href="smart_dialogs/InfoDialog/show.html">show</a></span><span class="signature">(<wbr><span class="parameter" id="show-param-htmlInfoText"><span class="type-annotation">String</span> <span class="parameter-name">htmlInfoText</span></span>)
+            <span class="returntype parameter">&#8594; Future<span class="signature">&lt;<wbr><span class="type-parameter"><a href="smart_dialogs/UserInput-class.html">UserInput</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Shows a modal <a href="smart_dialogs/InfoDialog-class.html">InfoDialog</a> with centered <code>htmlInfoText</code>.
+While <a href="smart_dialogs/InfoDialog-class.html">InfoDialog</a> needs a close callback, this async method
+returns the user input (button code <a href="smart_dialogs/DiaAttr/DIA_ACT_ABORT.html">DiaAttr.DIA_ACT_ABORT</a> when
+the red cross is pressed).
+                  <div class="features">override</div>
+</dd>
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="smart_dialogs/InfoDialog-class.html#constructors">Constructors</a></li>
+      <li><a href="smart_dialogs/InfoDialog/InfoDialog.html">InfoDialog</a></li>
+      <li><a href="smart_dialogs/InfoDialog/InfoDialog.alignLeft.html">alignLeft</a></li>
+      <li><a href="smart_dialogs/InfoDialog/InfoDialog.noModal.html">noModal</a></li>
+      <li><a href="smart_dialogs/InfoDialog/InfoDialog.noModalAlignLeft.html">noModalAlignLeft</a></li>
+    
+      <li class="section-title inherited">
+        <a href="smart_dialogs/InfoDialog-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="smart_dialogs/InputDialog/actButs.html">actButs</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/closeCallback.html">closeCallback</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/dia.html">dia</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/diaContainer.html">diaContainer</a></li>
+      <li class="inherited"><a href="smart_dialogs/InputDialog/diaTable.html">diaTable</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isModal.html">isModal</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isopen.html">isopen</a></li>
+      <li class="inherited"><a href="smart_dialogs/InputDialog/popup.html">popup</a></li>
+      <li class="inherited"><a href="smart_dialogs/InputDialog/RADIOGROUP1.html">RADIOGROUP1</a></li>
+      <li class="inherited"><a href="smart_dialogs/InputDialog/redcross_left.html">redcross_left</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/InfoDialog-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/close.html">close</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/createShowDia.html">createShowDia</a></li>
+      <li class="inherited"><a href="smart_dialogs/InputDialog/init.html">init</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/isOpen.html">isOpen</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="smart_dialogs/InfoDialog-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="smart_dialogs/BaseDialog/operator_equals.html">operator ==</a></li>
+    
+    
+      <li class="section-title"><a href="smart_dialogs/InfoDialog-class.html#static-methods">Static methods</a></li>
+      <li><a href="smart_dialogs/InfoDialog/show.html">show</a></li>
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    smart_dialogs 2.1.2
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>
