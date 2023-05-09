@@ -1,6 +1,6 @@
 // Copyright (c) 2019, Dr. Bruno Guigas. All rights reserved. Use of this source
 // code is governed by a BSD-style license that can be found in the LICENSE file.
-import 'package:smart_arrays_base/smart_arrays_base.dart';
+import '../lib/smart_arrays_base.dart';
 import "dart:typed_data";
 
 main() {
@@ -8,18 +8,18 @@ main() {
   // The number before the decimal point is the row number, the number
   // after the decimal point is the column number.
   final int NROWS = 123, NCOLS = 234;
-  List<Float64List> matrix = List(NROWS);
+  List<Float64List?> workmatrix = List<Float64List?>.filled(NROWS, null);
   for (int i = 0; i < NROWS; i++) {
     Float64List row = Float64List(NCOLS);
 
     for (int k = 0; k < NCOLS; k++) {
       row[k] = double.parse("$i.$k");
     }
-    matrix[i] = row;
+    workmatrix[i] = row;
   }
-
-  Float64List row100 = Array2D.getRow(matrix, 101); // extract row 101
-  Float64List col100 = Array2D.getColumn(matrix, 105); // extract column 105
+  List<Float64List> matrix = workmatrix as List<Float64List>;  // once its created and filled with valid lists
+  Float64List? row100 = Array2D.getRow(matrix, 101); // extract row 101
+  Float64List? col100 = Array2D.getColumn(matrix, 105); // extract column 105
 
   // get the submatrix including rows 100-109 and columns 200-219.
   List<Float64List> sub_matrix =
