@@ -36,7 +36,7 @@ class Array2D {
   /// Returns null if [col] is outside range.
   /// The result is a new Float64List!
   /// Modifying the col will therefore NOT modify the matrix!
-  static Float64List getColumn(List<Float64List> matrix, int col) {
+  static Float64List? getColumn(List<Float64List> matrix, int col) {
     if (col < 0 || col >= matrix[0].length) return null;
     int nrows = matrix.length; // col length
     Float64List result = new Float64List(nrows);
@@ -50,7 +50,7 @@ class Array2D {
   /// Returns null if [row] of range.
   /// The result is the original row in the matrix, not a new list!
   /// Modifying the row will therefore modify the matrix!
-  static Float64List getRow(List<Float64List> matrix, int row) {
+  static Float64List? getRow(List<Float64List> matrix, int row) {
     if (row < 0 || row >= matrix.length) return null;
     return matrix[row];
   }
@@ -58,18 +58,22 @@ class Array2D {
   /// Returns the maximum value in the column [col] of [matrix]. If
   /// [firstRow] and [lastRow] are not null, the maximum search inside [col]
   /// is performed from [firstRow], inclusive, to [lastRow], also inclusive.
+  /// Returns double.negativeInfinity is error occurs from invalid parameters.
   static double getColumnMax(
       List<Float64List> matrix, int col, int firstRow, int lastRow) {
-    Float64List coldata = getColumn(matrix, col);
+    Float64List? coldata = getColumn(matrix, col);
+    if(coldata==null) return double.negativeInfinity;
     return Array1D.getMaxInRange(coldata, firstRow, lastRow);
   }
 
   /// Returns the maximum value in the row [row] of [matrix]. If
   /// [firstCol] and [lastCol] are not null, the maximum search inside [row]
   /// is performed from [firstCol], inclusive, to [lastCol], also inclusive.
+  /// Returns double.negativeInfinity is error occurs from invalid parameters.
   static double getRowMax(
       List<Float64List> matrix, int row, int firstCol, int lastCol) {
-    Float64List rowdata = getRow(matrix, row);
+    Float64List? rowdata = getRow(matrix, row);
+    if(rowdata==null) return double.negativeInfinity;
     return Array1D.getMaxInRange(rowdata, firstCol, lastCol);
   }
 
@@ -87,21 +91,26 @@ class Array2D {
   /// the rows between [firstIx] and [lastIx] (both indices inclusive).
   /// [firstIx] and [lastIx] are allowed to be null (at the same time). Then
   /// teh whole matrix is projected onto the axis defined by [type].
-  static Float64List getProjection(
+  static Float64List? getProjection(
       List<Float64List> matrix, int firstIx, int lastIx, MatrixProjSlice type) {
-    Float64List result;
-    if (type == MatrixProjSlice.PROJ_ROW) {
-      int ncols = matrix[0].length; // = rowlength!
-      result = new Float64List(ncols);
-      for (int j = 0; j < ncols; j++) {
-        result[j] = getColumnMax(matrix, j, firstIx, lastIx);
-      }
-    } else if (type == MatrixProjSlice.PROJ_COL) {
-      int nrows = matrix.length; // = collength!
-      result = new Float64List(nrows);
-      for (int j = 0; j < nrows; j++) {
-        result[j] = getRowMax(matrix, j, firstIx, lastIx);
-      }
+    Float64List? result;
+    switch(type) {
+      case MatrixProjSlice.PROJ_ROW:
+        int ncols = matrix[0].length; // = rowlength!
+        result = new Float64List(ncols);
+        for (int j = 0; j < ncols; j++) {
+          result[j] = getColumnMax(matrix, j, firstIx, lastIx);
+        }
+        break;
+      case MatrixProjSlice.PROJ_COL:
+        int nrows = matrix.length; // = collength!
+        result = new Float64List(nrows);
+        for (int j = 0; j < nrows; j++) {
+          result[j] = getRowMax(matrix, j, firstIx, lastIx);
+        }
+        break;
+      default:
+        result = null; // error this was not a projection type
     }
     return result;
   }
@@ -111,7 +120,7 @@ class Array2D {
   /// [type] = POS: adds the positive or zero values of [a1] and [a2] only
   /// [type] = one of [Array1D.POS],  [Array1D.NEG],  [Array1D.POSNEG] to
   /// take into account only positive, negative, or all values to build the sum.
-  static Float64List getSumRowsCols(
+  static Float64List? getSumRowsCols(
       List<Float64List> matrix, bool sumRows, int type) {
     int ncols = matrix[0].length; // = rowlength!
     int nrows = matrix.length; // = collength
@@ -124,11 +133,12 @@ class Array2D {
         cursum = Array1D.addArrays(matrix[i], cursum, type);
       }
     } else {
-      Float64List curcol;
+      Float64List? curcol;
       cursum = new Float64List(nrows);
       for (int i = 0; i < ncols; i++) // all cols
       {
         curcol = getColumn(matrix, i);
+        if(curcol==null) return null;
         cursum = Array1D.addArrays(curcol, cursum, type);
       }
     }
@@ -141,11 +151,11 @@ class Array2D {
     int nrows = matrix.length;
 
     double ymin = double.maxFinite;
-    int ymin_index_col = -1, ymin_index_row;
+    int ymin_index_col = -1, ymin_index_row = -1;
     double ymax = -double.maxFinite;
-    int ymax_index_col = -1, ymax_index_row;
+    int ymax_index_col = -1, ymax_index_row = -1;
     List<dynamic> temp;
-    // search for min
+    // search for min and max
     for (int i = 0; i < nrows; i++) {
       temp = Array1D.getMin(matrix[i]);
       if (temp[0] < ymin) {
@@ -153,11 +163,6 @@ class Array2D {
         ymin_index_col = temp[1];
         ymin_index_row = i;
       }
-    }
-
-    // search for max
-    for (int i = 0; i < nrows; i++) {
-      temp = Array1D.getMax(matrix[i]);
       if (temp[0] > ymax) {
         ymax = temp[0];
         ymax_index_col = temp[1];
@@ -176,7 +181,7 @@ class Array2D {
   /// It is not relevant wheter rows1 is < or > row2, or col1 < or > col2.
   /// See also [Array1D.splitArray] to make a 2D array from the result.
   /// See also [getSubmatrix].
-  static Float64List getSubmatrixAs1D(
+  static Float64List? getSubmatrixAs1D(
       List<Float64List> matrix, int row1, int row2, int col1, int col2) {
     // Enable for check
 //    if(row1 < 0 || row2 < 0 || col1 < 0 ||col2 < 0 || row1 > sizef1-1 || row2 > sizef1-1 ||
@@ -205,7 +210,8 @@ class Array2D {
     int ncols = (col2 - col1 + 1).abs();
 
     if (row1 == row2) {
-      Float64List row = Array2D.getRow(matrix, firstRow);
+      Float64List? row = Array2D.getRow(matrix, firstRow);
+      if(row==null) return null;
       Float64List result = new Float64List(ncols);
       for (int i = 0; i < ncols; i++) {
         result[i] = row[firstCol + i];
@@ -214,7 +220,8 @@ class Array2D {
     }
 
     if (col1 == col2) {
-      Float64List col = Array2D.getColumn(matrix, firstCol);
+      Float64List? col = Array2D.getColumn(matrix, firstCol);
+      if(col==null) return null;
       Float64List result = new Float64List(nrows);
       for (int i = 0; i < nrows; i++) {
         result[i] = col[firstRow + i];
@@ -283,22 +290,21 @@ class Array2D {
 
     Float64List resultRow;
     Float64List inputRow;
-    List<Float64List> result = new List<Float64List>(nrows);
+    List<Float64List?> result = List<Float64List?>.filled(nrows, null);
     double curval;
     int destrow = 0;
     for (int i = firstRow; i < endRow; i++) {
       inputRow = matrix[i];
-      resultRow = new Float64List(ncols); // will contain zeroes!
+
+      resultRow = Float64List(ncols); // will contain zeroes!
       for (int j = 0; j < ncols; j++) {
         curval = inputRow[firstCol + j];
-        if (negLevels != null) {
-          if (negLevels && curval > 0 || !negLevels && curval < 0) curval = 0.0;
-        }
+        if (negLevels && curval > 0 || !negLevels && curval < 0) curval = 0.0;
         resultRow[j] = curval;
       }
       result[destrow++] = resultRow;
     }
-    return result;
+    return result as List<Float64List>;
   }
 
   /// Appends each row of [rows] to [matrix].
@@ -347,17 +353,18 @@ class Array2D {
   /// [0] = sum of All matrix values in the region
   /// [1] = sum of the POSITIVE matrix values in the region
   /// [2] = sum of the NEGATIVE matrix values in the region
-  static Float64List integrateRegion(List<Float64List> matrix, int startRow,
+  static Float64List? integrateRegion(List<Float64List> matrix, int startRow,
       int endRow, int startCol, int endCol) {
-    Float64List submatrixAs1D =
+    Float64List? submatrixAs1D =
         getSubmatrixAs1D(matrix, startRow, endRow, startCol, endCol);
-
+    if(submatrixAs1D==null) return null;
+    
     double sumAll = 0.0, sumPos = 0.0, sumNeg = 0.0;
     submatrixAs1D.forEach((double matrixValue) {
       sumAll += matrixValue;
       if (matrixValue > 0) sumPos += matrixValue;
       if (matrixValue < 0) sumNeg += matrixValue;
     });
-    return new Float64List.fromList([sumAll, sumPos, sumNeg]);
+    return Float64List.fromList([sumAll, sumPos, sumNeg]);
   }
 } // Array2D
