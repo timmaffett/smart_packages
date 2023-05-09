@@ -1,7 +1,7 @@
 // Copyright (c) 2019, Dr. Bruno Guigas. All rights reserved. Use of this source
 // code is governed by a BSD-style license that can be found in the LICENSE file.
-import '../lib/smart_arrays_base.dart';
 import "dart:typed_data";
+import '../lib/smart_arrays_base.dart';
 
 main() {
   // Create a matrix whose elements have the form row.col, e.g. 120.231.
