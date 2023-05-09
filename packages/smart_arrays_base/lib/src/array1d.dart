@@ -145,7 +145,7 @@ class Array1D {
   /// Conditions: row >= 0. If array.length cannot be divided by nrows without
   /// a remainder, the repective part of [array] can't be obtained.
   /// [array] will remain unmodified.
-  static Float64List getRow(Float64List array, int row, int nrows) {
+  static Float64List? getRow(Float64List array, int row, int nrows) {
     if (row < 0 || row >= nrows) return null;
     int rowLength = array.length ~/ nrows;
     Float64List result = new Float64List(rowLength);
@@ -198,12 +198,10 @@ class Array1D {
   static List<dynamic> getMax(Float64List array) {
     double max_value = -double.maxFinite;
     int max_index = -1;
-    if (array != null) {
-      for (int i = 0; i < array.length; i += 1) {
-        if (array[i] != null && array[i] > max_value) {
-          max_value = array[i];
-          max_index = i;
-        }
+    for (int i = 0; i < array.length; i += 1) {
+      if (array[i] > max_value) {
+        max_value = array[i];
+        max_index = i;
       }
     }
     return [max_value, max_index];
@@ -217,12 +215,10 @@ class Array1D {
   static List<int> getMaxIntPos(List<int> array) {
     int max_value = -1;
     int max_index = -1;
-    if (array != null) {
-      for (int i = 0; i < array.length; i += 1) {
-        if (array[i] != null && array[i] > max_value) {
-          max_value = array[i];
-          max_index = i;
-        }
+    for (int i = 0; i < array.length; i += 1) {
+      if (array[i] > max_value) {
+        max_value = array[i];
+        max_index = i;
       }
     }
     return [max_value, max_index];
@@ -235,16 +231,11 @@ class Array1D {
   /// [array] may contain null values, they are skipped.
   /// Returns the maximum, if 2 maxima with the same value exist,
   /// the 1st one is returned.
-  static double getMaxInRange(Float64List arr, int firstIx, int lastIx) {
+  static double getMaxInRange(Float64List arr, [int? firstIx, int? lastIx]) {
     double max_value = -double.maxFinite;
-    if (arr == null) return max_value;
 
-    double curval;
-
-    if (firstIx == null && lastIx == null) {
-      firstIx = 0;
-      lastIx = arr.length - 1;
-    }
+    firstIx ??= 0;
+    lastIx ??= arr.length - 1;
 
     int n = lastIx - firstIx + 1;
     if (n < 0) {
@@ -256,9 +247,8 @@ class Array1D {
     if (lastIx > arr.length - 1) lastIx = arr.length - 1; // security check
 
     for (int i = firstIx; i <= lastIx; i += 1) {
-      curval = arr[i];
-      if (curval != null && curval > max_value) {
-        max_value = curval;
+      if (arr[i] > max_value) {
+        max_value = arr[i];
       }
     }
     return max_value;
@@ -276,12 +266,10 @@ class Array1D {
 
     double max_value = -double.maxFinite;
     int max_index = -1;
-    if (array != null) {
-      for (int i = startix; i < endix; i += incr) {
-        if (array[i] != null && array[i] > max_value) {
-          max_value = array[i];
-          max_index = i;
-        }
+    for (int i = startix; i < endix; i += incr) {
+      if (array[i] > max_value) {
+        max_value = array[i];
+        max_index = i;
       }
     }
 //  print("max=$max_value");
@@ -295,12 +283,10 @@ class Array1D {
   static List<dynamic> getMin(Float64List array) {
     double min_value = double.maxFinite;
     int min_index = -1;
-    if (array != null) {
-      for (int i = 0; i < array.length; i += 1) {
-        if (array[i] != null && array[i] < min_value) {
-          min_value = array[i];
-          min_index = i;
-        }
+    for (int i = 0; i < array.length; i += 1) {
+      if (array[i] < min_value) {
+        min_value = array[i];
+        min_index = i;
       }
     }
 //  print("min=$min_value");
@@ -310,13 +296,9 @@ class Array1D {
   /// Returns the minimum value of the numbers in [array].
   static double getMinVal(Float64List array) {
     double min_value = double.maxFinite;
-    double curval;
-    if (array != null) {
-      for (int i = 0; i < array.length; i += 1) {
-        curval = array[i];
-        if (curval != null && curval < min_value) {
-          min_value = curval;
-        }
+    for (int i = 0; i < array.length; i += 1) {
+      if (array[i] < min_value) {
+        min_value = array[i];
       }
     }
     return min_value;
@@ -334,12 +316,10 @@ class Array1D {
 
     double min_value = double.maxFinite;
     int min_index = -1;
-    if (array != null) {
-      for (int i = startix; i < endix; i += incr) {
-        if (array[i] != null && array[i] < min_value) {
-          min_value = array[i];
-          min_index = i;
-        }
+    for (int i = startix; i < endix; i += incr) {
+      if (array[i] < min_value) {
+        min_value = array[i];
+        min_index = i;
       }
     }
 //  print("min=$min_value");
@@ -352,21 +332,15 @@ class Array1D {
   static List<double> getMinMaxVals(Float64List array) {
     int max_index = -1;
     double max_value = -double.maxFinite;
-    double curval;
-    for (int i = 0; i < array.length; i++) {
-      curval = array[i];
-      if (curval > max_value) {
-        max_value = curval;
-        max_index = i;
-      }
-    }
-
     var min_index = -1;
     var min_value = double.maxFinite;
     for (int i = 0; i < array.length; i++) {
-      curval = array[i];
-      if (curval < min_value) {
-        min_value = curval;
+      if (array[i] > max_value) {
+        max_value = array[i];
+        max_index = i;
+      }
+      if (array[i] < min_value) {
+        min_value = array[i];
         min_index = i;
       }
     }
@@ -383,7 +357,7 @@ class Array1D {
   /// can't be divided by [size] without remainder.
   /// If [size] is 0 or equal or greater than the length of [array], the result
   /// will contain [array] as its single row.
-  static List<Float64List> splitArray(Float64List array, int size) {
+  static List<Float64List?> splitArray(Float64List array, int size) {
     int len = array.length;
     if (size >= len || size == 0) return [array];
     int nrows = len ~/ size;
@@ -393,12 +367,12 @@ class Array1D {
       lastsubrowLength = len.remainder(size);
     }
 
-    List<Float64List> result = new List<Float64List>(nrows);
+    List<Float64List?> result = List<Float64List?>.filled(nrows, null);
     int arrix = 0;
     for (int i = 0; i < nrows; i++) {
       int rowlen = size;
       if (i == nrows - 1 && lastsubrowLength > 0) rowlen = lastsubrowLength;
-      Float64List row = new Float64List(rowlen);
+      Float64List row = Float64List(rowlen);
       for (int k = 0; k < rowlen; k++) {
         row[k] = array[arrix++];
       }
@@ -435,7 +409,7 @@ class Array1D {
     Float64List result = array;
 
     int ftsize = array.length;
-    if (newLength != null && newLength != ftsize) {
+    if (newLength != ftsize) {
       ftsize = newLength;
       result = Float64List(ftsize); // is autofilled with 0.0
       for (int i = 0; i < array.length; i++) {
