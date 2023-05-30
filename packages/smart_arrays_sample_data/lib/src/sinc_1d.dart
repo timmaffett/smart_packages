@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 /// Sine cardinal ("sinc") generator.
 class Sinc1D {
-  Float64List _array, _xValues;
+  late Float64List _array, _xValues;
 
   /// Computes the "sine cardinal" = "sinc" function
   ///   f(x) = offset + amplitude*sin(x+phase)/(x+phase)

@@ -10,6 +10,6 @@ dependencies:
   build_web_compilers: ^3.0.0
   lints: ^2.0.1
   smart_arrays_numerics: #^3.0.0
-    path: ../smart_arrays_numerics  
-  smart_arrays_plot_polyline: #^3.0.0
-    path: ../smart_arrays_plot_polyline
+    path: ../smart_arrays_numerics
+
+    

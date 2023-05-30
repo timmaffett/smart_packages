@@ -23,8 +23,8 @@ main() async {
 
   // Compute "experimental data" to be fitted to a Gaussian:
   // We compute an exact Gaussian, then add some random noise to it.
-  List<double> computeGaussianArray(List<double> params, double noiseAmpl) {
-    List<double> yvals = List(NPOINTS);
+  List<double> computeGaussianArray(List<double> params, double? noiseAmpl) {
+    List<double> yvals = List<double>.filled(NPOINTS,0.0);
     math.Random rand = math.Random();
     for (int i = 0; i < NPOINTS; i++) {
       yvals[i] = fitFunctionGAUSS(i.toDouble(), params);
@@ -44,7 +44,7 @@ main() async {
   final List<double> INITIAL_PARS = [a * 0.8, c * 0.9, w * 1.2, y0];
 
   // use these fitting options
-  Map<String, List<String>> fitOptions = {
+  Map<String, List<String?>> fitOptions = {
     LMfit.FIT_OPT_TOLERANCE: ["1e-10"],
     LMfit.PARAM_DELTA_CONVERGE: ["0.0001"],
     LMfit.MAX_ITERATIONS: ["200"],
@@ -58,10 +58,10 @@ main() async {
 
   // from the fit result, compute the Gaussian fit curve
   List<double> fittedPars = [
-    double.parse(fitResult[LMfit.PARAMS][0]), // a
-    double.parse(fitResult[LMfit.PARAMS][1]), // c
-    double.parse(fitResult[LMfit.PARAMS][2]), // w
-    double.parse(fitResult[LMfit.PARAMS][3]) // y0
+    double.parse(fitResult[LMfit.PARAMS]![0]), // a
+    double.parse(fitResult[LMfit.PARAMS]![1]), // c
+    double.parse(fitResult[LMfit.PARAMS]![2]), // w
+    double.parse(fitResult[LMfit.PARAMS]![3]) // y0
   ];
   List<double> fittedGaussian = computeGaussianArray(fittedPars, null);
 
@@ -73,10 +73,10 @@ main() async {
     ${fittedPars[1].toStringAsFixed(2)},
     ${fittedPars[2].toStringAsFixed(2)},
     ${fittedPars[3].toStringAsFixed(2)}]""",
-    "iterations=${fitResult[LMfit.ITERATIONS][0]}",
-    "stop reason=${fitResult[LMfit.STOP_REASON][0]}",
-    "time [milliseconds]=${fitResult[LMfit.TIME][0]}",
-    "chi squared=${fitResult[LMfit.CHI2][0]}",
+    "iterations=${fitResult[LMfit.ITERATIONS]![0]}",
+    "stop reason=${fitResult[LMfit.STOP_REASON]![0]}",
+    "time [milliseconds]=${fitResult[LMfit.TIME]![0]}",
+    "chi squared=${fitResult[LMfit.CHI2]![0]}",
     "",
     "Reload app to change the experimental points!"
   ];
@@ -145,6 +145,6 @@ void plot(List<double> expGaussian, List<double> fittedGaussian,
   };
 
   // append the fitResultPrintOut legend to the plot's data area
-  Legend legend2 = SimplePlot.createLegend(legend2Attr, null);
-  plot.pl.dataArea.append(legend2.legendContainer);
+  Legend legend2 = SimplePlot.createLegend(legend2Attr, null)!;
+  plot.pl.dataAreas.add(legend2.legendContainer);
 }

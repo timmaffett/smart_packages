@@ -21,9 +21,9 @@ class BasicTable {
   /// A button with text contents and action code, e.g. "BUTTON||Apply||dothis"
   static final String BUTTON = "BUTTON";
 
-  TableElement table; // contains the dialog
+  late TableElement table; // contains the dialog
   List<List<String>> tableData; // what the table will display
-  Map<String, String> attr;
+  late Map<String, String> attr;
 
   /// Creates the html TableElement [table] from [tableData] with
   /// [tableData].length rows and [tableData][0].length columns
@@ -39,7 +39,7 @@ class BasicTable {
   ///     button with html text. The id is assigned to the button element.
   ///  2) contents = EMPTY_INPUT_CELL --> this will display a single-line text field.
   ///  3) contents = EMPTY_TEXT_AREA --> this will display a text area.
-  BasicTable(this.tableData, TableButtonClickListener buttonClickListener) {
+  BasicTable(this.tableData, TableButtonClickListener? buttonClickListener) {
     table = TableElement();
 
     TableAttr.initAttrFromDefaults();
@@ -80,7 +80,7 @@ class BasicTable {
         if (k > 1) {
           // make a separating border between columns
           cell.style
-            ..borderLeft = attr[TableAttr.TABLE_INNER_CELL_LEFT_BORDER_COLOR] +
+            ..borderLeft = attr[TableAttr.TABLE_INNER_CELL_LEFT_BORDER_COLOR]! +
                 " 1px solid";
         }
 
@@ -106,7 +106,7 @@ class BasicTable {
           but.id = butinfo[2]; // id serves as button action code
 //          print("table_base.dart=${but.text} ${but.id}");
           but.onClick.listen((Event event) {
-            buttonClickListener(but); // call back with clicked button
+            buttonClickListener?.call(but); // call back with clicked button
           });
 
           cell.append(but);

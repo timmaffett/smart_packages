@@ -5,7 +5,7 @@ import 'dart:html';
 import '../smart_dialogs.dart';
 
 /// Called with the user [selectedFiles]
-typedef void FileSelectionCallback(List<File> selectedFiles);
+typedef void FileSelectionCallback(List<File>? selectedFiles);
 
 /// This class provides a dialog containing a system button from which the
 /// system's file selection dialog can be opened.
@@ -22,7 +22,7 @@ class FileSelectionDialog extends BaseDialog {
   ) : super(null) {
     assert(fileSelectionCallback != null);
 
-    Map<String, String> attr = DiaAttr.attr; // use shortcut
+    Map<String, String?> attr = DiaAttr.attr; // use shortcut
 
     TableElement table = TableElement();
     table.style
@@ -49,9 +49,9 @@ class FileSelectionDialog extends BaseDialog {
     row2.append(textCell);
     row3.append(buttonCell);
 
-    dia.append(table);
+    dia!.append(table);
 
-    int delIconSize = int.parse(attr[DiaAttr.DIALOG_CROSS_FONTSIZE]);
+    int delIconSize = int.parse(attr[DiaAttr.DIALOG_CROSS_FONTSIZE]!);
     delCell.style
       ..color = "red"
       ..fontSize = "${delIconSize}px"
@@ -62,19 +62,19 @@ class FileSelectionDialog extends BaseDialog {
       if (dia != null) {
         close(UserInput(
             DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
-        dia = null;
+        //OBSOLETE//dia = null;
         fileSelectionCallback(null); // signal no system file dialog shown
       }
     });
 
-    int fontsizeTxT = int.parse(attr[DiaAttr.DIALOG_HELP_TEXT_FONTSIZE]);
+    int fontsizeTxT = int.parse(attr[DiaAttr.DIALOG_HELP_TEXT_FONTSIZE]!);
     textCell.style
       ..paddingTop = "12px" // leave some space to the delete icon
       ..paddingBottom = "16px"
       ..fontSize = "$fontsizeTxT";
 
     DiaUtils.appendHtml2(textCell, htmlInfoText);
-    dia.style.color = "${attr[DiaAttr.DIALOG_TEXT_COLOR]}";
+    dia!.style.color = "${attr[DiaAttr.DIALOG_TEXT_COLOR]}";
 
     InputElement inputBut = InputElement(type: "file");
     inputBut.multiple = true;
@@ -87,10 +87,9 @@ class FileSelectionDialog extends BaseDialog {
       if (dia != null) {
         close(UserInput(
             DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
-        dia = null;
+        //OBSOLETE//dia = null;
       }
-      List<File> selectedFiles = inputBut.files;
-      fileSelectionCallback(selectedFiles); // return user selection to caller
+      fileSelectionCallback(inputBut.files); // return user selection to caller
     });
 
     // html document requires input elements to be inside a form element:
@@ -99,13 +98,13 @@ class FileSelectionDialog extends BaseDialog {
     buttonCell.append(form);
 
     // center the dialog vertically
-    int marginTop = diaContainer.clientHeight ~/ 2 - dia.clientHeight ~/ 2;
+    int marginTop = diaContainer!.clientHeight ~/ 2 - dia!.clientHeight ~/ 2;
     marginTop -= (marginTop * 0.2).round(); //shift up for optical reasons
     if (DiaUtils.isTablet()) {
       marginTop = 0; // dialog at top to minimize coverage by soft keyboard
     }
 
-    dia.style
+    dia!.style
           ..width =
               "${inputBut.clientWidth + 30}px" // make popup as wide as the its contents
           ..marginTop = "${marginTop}px" // This centers the dialog vertically
@@ -116,7 +115,7 @@ class FileSelectionDialog extends BaseDialog {
         if (dia != null) {
           close(UserInput(
               DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
-          dia = null;
+          //OBSOLETE//dia = null;
         }
       }
     });

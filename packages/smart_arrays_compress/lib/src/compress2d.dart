@@ -8,7 +8,7 @@ import 'dart:typed_data';
 /// See [README.md] of this package about when this class should be employed.
 class CompressedArray2D {
   /// compression result
-  List<Float64List> cvalsPos, cvalsNeg;
+  late List<Float64List> cvalsPos, cvalsNeg;
 
   CompressedArray2D();
 
@@ -53,7 +53,7 @@ class CompressedArray2D {
       colLast = col1;
     }
 
-    List<double> cellsize =
+    List<double>? cellsize =
         computeCellsize(row1, row2, col1, col2, nrowsNew, ncolsNew);
     if (cellsize == null) return; // security exit, no compression can be done
     double cellsizeRow = cellsize[0];
@@ -64,7 +64,7 @@ class CompressedArray2D {
 
     cvalsPos = [];
     cvalsNeg = [];
-    Float64List smallMatrix, newrowPos, newrowNeg;
+    Float64List? smallMatrix, newrowPos, newrowNeg;
     double curvalPos, curvalNeg;
     int irowsNew = 0, icolsNew; // current count of destination rows, cols
     int rowFrom, colFrom;
@@ -97,7 +97,7 @@ class CompressedArray2D {
           print("compress2D=$e <br> $rowFrom $rowTo $colFrom $colTo");
         }
 
-        curvalPos = Array1D.getMaxInRange(smallMatrix, null, null);
+        curvalPos = Array1D.getMaxInRange(smallMatrix!, null, null);
         if (curvalPos > 0) {
           newrowPos[icolsNew] = curvalPos; // only values > 0 to be used
         }
@@ -126,7 +126,7 @@ class CompressedArray2D {
   /// Used by [compress]: Returns the cellsize [cellsizeRow, cellsizeCol]
   /// (corresponding to the interval size in 1D).
   /// Returns null is nothing to compress.
-  static List<double> computeCellsize(
+  static List<double>? computeCellsize(
       int row1, int row2, int col1, int col2, int nrowsNew, int ncolsNew) {
     Stopwatch stopwatch = new Stopwatch();
     stopwatch.start();

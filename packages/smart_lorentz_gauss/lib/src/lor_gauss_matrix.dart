@@ -7,8 +7,8 @@ import 'lor_gauss.dart';
 /// Computes a matrix containing a sum auf 2D Lorentz-Gauss functions
 /// (a "2D spectrum").
 class LorentzGaussMatrix {
-  List<Float64List> _matrix; // the matrix
-  Float64List _xColCoord, _yRowCoord;
+  late List<Float64List?> _matrix; // the matrix
+  late Float64List _xColCoord, _yRowCoord;
 
   /// [c], [w] must be in the range (0, rows_cols[0/1])
   /// Computes a matrix containing a sum of two-dimensional mixed Gauss-Lorentz
@@ -26,9 +26,9 @@ class LorentzGaussMatrix {
   /// of the current shape value.
   LorentzGaussMatrix(List<int> rows_cols, List<double> a, List<List<double>> c,
       List<List<double>> w, List<List<double>> m,
-      [double noiseAmpl]) {
+      [double? noiseAmpl]) {
     int nrows = rows_cols[0], ncols = rows_cols[1];
-    _matrix = List<Float64List>(nrows); // the matrix
+    _matrix = List<Float64List?>.filled(nrows,null); // the matrix
     _xColCoord = Float64List(ncols); // its col coordinates
     _yRowCoord = Float64List(nrows); // its row coordinates
 
@@ -53,7 +53,7 @@ class LorentzGaussMatrix {
   }
 
   /// Returns the computed matrix with the sum of the Lorentz-Gauss functions.
-  List<Float64List> get matrix => _matrix;
+  List<Float64List> get matrix => _matrix as List<Float64List>;
 
   /// Returns the "x" (column coodinate) values where the matrix was computed,
   /// divided by the number of columns (i.e. normalized to 0.0 ... 1.0).
@@ -66,12 +66,13 @@ class LorentzGaussMatrix {
   /// Adds matr2 to matr1 and returns the modified matr1.
   /// The matrices must have the same number of rows and colmuns.
   static List<Float64List> addToM(
-      List<Float64List> matr1, List<Float64List> matr2) {
+      List<Float64List?> matr1, List<Float64List?> matr2) {
     for (int i = 0; i < matr1.length; i++) {
-      for (int k = 0; k < matr1[0].length; k++) {
-        matr1[i][k] += matr2[i][k];
+      if(matr1[i]==null) continue;
+      for (int k = 0; k < matr1[0]!.length; k++) {
+        matr1[i]![k] += matr2[i]![k];
       }
     }
-    return matr1;
+    return matr1 as List<Float64List>; // if we got here it had no null entries...
   }
 }

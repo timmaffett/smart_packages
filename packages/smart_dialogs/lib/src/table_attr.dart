@@ -48,7 +48,7 @@ class TableAttr {
   /// Initializes the dialog attributes depending on the used device from
   /// the respective defaults.
   static void initAttrFromDefaults() {
-    if (attr == null) attr = Map.from(ATTR_DEFAULTS);
+    attr = Map.from(ATTR_DEFAULTS);
   }
 
   /// Sets the table attributes specified in [myAttr]. Overrides
@@ -59,7 +59,7 @@ class TableAttr {
     if (attr == null) initAttrFromDefaults();
     if (myAttr == null) return;
     for (String attrName in myAttr.keys) {
-      attr[attrName] = myAttr[attrName];
+      attr[attrName] = myAttr[attrName]!;
     }
   }
 
@@ -76,7 +76,7 @@ class TableAttr {
           ..backgroundColor = attr[TABLE_BACKGROUND_COLOR]
           ..background = attr[TABLE_BACKGROUND_COLOR]
           ..color = attr[TABLE_TEXT_COLOR]
-          ..borderRadius = attr[TABLE_BORDER_RADIUS]
+          ..borderRadius = attr[TABLE_BORDER_RADIUS]!
           ..border = attr[TABLE_OUTER_BORDER]
           ..borderSpacing = "0" // space between cells and border around table
         // Note: without collapse (versus "separate"), the table cell border of 2

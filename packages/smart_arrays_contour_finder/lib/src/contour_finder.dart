@@ -17,10 +17,10 @@ import 'contour_renderer.dart';
 /// For details of the algorithm see http://paulbourke.net/papers/conrec or
 ///  https://debrief.github.io/tutorial/contouring_algorithm.html.
 class ContourFinder {
-  List<double> h = List<double>(5);
-  List<int> sh = List<int>(5);
-  List<double> xh = List<double>(5);
-  List<double> yh = List<double>(5);
+  List<double> h = List<double>.filled(5,0.0);
+  List<int> sh = List<int>.filled(5,0);
+  List<double> xh = List<double>.filled(5,0.0);
+  List<double> yh = List<double>.filled(5,0.0);
 
   /// Object that knows how to draw the contour
   ContourRenderer contourRenderer;

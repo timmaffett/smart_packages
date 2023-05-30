@@ -15,7 +15,8 @@ import 'dart:math' as math;
 ///  a * (1-m[i])*exp(-FGAUSS*((x[i]-c[i])/w[i])^2)}
 class LorentzGauss extends LineShapeND {
   /// defaults for [fGauss] and [fLorentz]
-  final double FGAUSS = 4 * math.log(2), FLORENTZ = 4.0;
+  static const double FGAUSS = 4 * 0.30102999566 /*math.log(2)*/;
+  static const double FLORENTZ = 4.0;
 
   /// centers, widths, L/G mixing factors
   List<double> c, w, m;
@@ -23,13 +24,13 @@ class LorentzGauss extends LineShapeND {
   double a;
 
   /// combination of parameters above in an array
-  List<double> pars;
+  late List<double> pars;
 
   /// line shape dimension
   int dim = 0;
 
   /// factors for shape consistency (see constructor comment)
-  double fGauss, fLorentz;
+  late double fGauss, fLorentz;
 
   /// Constructs a mixed Gauss-Lorentz shape defined by:
   /// [a] - amplitude,
@@ -48,15 +49,18 @@ class LorentzGauss extends LineShapeND {
   /// used here ensure that [w] is the line width at half maximum height
   /// for L, G, and mixed mode.
   LorentzGauss.fromPars(this.a, this.c, this.w, this.m,
-      [this.fGauss, this.fLorentz]) {
+      [double? fGauss, double? fLorentz]) {
     if (fGauss == null) fGauss = FGAUSS;
     if (fLorentz == null) fLorentz = FLORENTZ;
+    this.fGauss = fGauss;
+    this.fLorentz = fLorentz;
+
     dim = c.length;
     if (dim != w.length || dim != m.length) {
       throw "List size error\n. Expected: $dim";
     }
 
-    pars = List<double>(1 + c.length + w.length + m.length);
+    pars = List<double>.filled(1 + c.length + w.length + m.length,0.0);
     pars[0] = a;
     for (int i = 0; i < dim; i++) {
       pars[i + 1] = c[i];
@@ -115,7 +119,7 @@ class LorentzGauss extends LineShapeND {
   /// [c], [w] must be in the range (0, rows_cols)
   static Float64List array1D(
       int npoints, double a, double c, double w, double m, double noiseAmpl,
-      [double fGauss, double fLorentz]) {
+      [double? fGauss, double? fLorentz]) {
     LorentzGauss lg = LorentzGauss.fromPars(a, [c], [w], [m], fGauss, fLorentz);
     Float64List yvals = Float64List(npoints);
     math.Random rand = math.Random();
@@ -136,12 +140,12 @@ class LorentzGauss extends LineShapeND {
   /// are arrays of length 2.
   /// [c], [w] must be in the range (0, rows_cols[0/1])
   static List<Float64List> array2D(List<int> rows_cols, double a,
-      List<double> c, List<double> w, List<double> m, double noiseAmpl,
-      [double fGauss, double fLorentz]) {
+      List<double> c, List<double> w, List<double> m, double? noiseAmpl,
+      [double? fGauss, double? fLorentz]) {
     LorentzGauss lg = LorentzGauss.fromPars(a, c, w, m, fGauss, fLorentz);
 
     int nrows = rows_cols[0], ncols = rows_cols[1];
-    List<Float64List> matrix = List(nrows);
+    List<Float64List?> matrix = List<Float64List?>.filled(nrows,null);
     math.Random rand = math.Random();
     for (int i = 0; i < nrows; i++) {
       Float64List currow = Float64List(ncols);
@@ -155,14 +159,14 @@ class LorentzGauss extends LineShapeND {
       }
       matrix[i] = currow;
     }
-    return matrix;
+    return matrix as List<Float64List>;
   }
 }
 
 /// Defines an n-dimensional abstract shape.
 abstract class LineShapeND {
-  Object shapeParameters; // e.g. List<double>, ...
-  double integral;
+  Object? shapeParameters; // e.g. List<double>, ...
+  double integral=0.0;
   bool integralCalculated = false;
   final String NOT_IMPL = "Method not implemented";
 
@@ -186,7 +190,7 @@ abstract class LineShapeND {
     int dim = xxx.length;
     int npoints = xxx[0].length;
     Float64List values = Float64List(npoints);
-    List<double> curpoint = List<double>(dim);
+    List<double> curpoint = List<double>.filled(dim,0.0);
 
     integral = 0.0;
     for (int i = 0; i < npoints; i++) {
@@ -218,7 +222,7 @@ abstract class LineShapeND {
   }
 
   /// Returns teh shape parameters
-  Object getShapeParams() {
+  Object? getShapeParams() {
     return shapeParameters;
   }
 

@@ -72,14 +72,13 @@ List<List<double>> mixingFactors = [
 /// magenta, positive ones in blue.
 SimpleContourRenderer createSimpleContourRenderer() {
   /// Sets up the graphics 2D context to which drawing will be performed.
-  Element ccel = document.getElementById("contour_canvas");
-  CanvasElement contourCanvas = ccel; // cast
+  CanvasElement contourCanvas = document.getElementById("contour_canvas")! as CanvasElement;
   contourCanvas.style
     ..position = "absolute"
     ..backgroundColor = "transparent";
 
   SimpleContourRenderer sctr = SimpleContourRenderer(
-      contourCanvas, contourCanvas.width,  contourCanvas.height, 0, 0, null);
+      contourCanvas, contourCanvas.width!,  contourCanvas.height!, 0, 0, null);
   return sctr;
 }
 

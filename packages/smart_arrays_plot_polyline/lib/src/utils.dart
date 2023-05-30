@@ -33,7 +33,7 @@ class Utils {
   ///   Fruit banana_fruit = enumFromString<Fruit>(Fruit.values, "Fruit.banana");
   ///  or just
   ///   Fruit banana_fruit = enumFromString<Fruit>(Fruit.values, "banana");
-  static T enumFromString<T>(Iterable<T> values, String value) {
+  static T? enumFromString<T>(Iterable<T?> values, String value) {
     String val = value;
     if (!value.contains(".")) {
       String enumType = values.first.toString().split(".").first;

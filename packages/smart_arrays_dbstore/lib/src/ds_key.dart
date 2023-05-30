@@ -9,7 +9,7 @@ class DSKey {
   static final String DSKEY_SEP = "_--_"; // not longer, name length limits!
   static String defaultDatatype = "datatype-undefined";
 
-  String _datasetName, _projectName, _dataType;
+  late String _datasetName, _projectName, _dataType;
 
   /// Constructs a [DSKey] from [datasetName], [projectName], [dataType].
   /// [projectName] serves to classify data into the same or different
@@ -20,7 +20,7 @@ class DSKey {
   /// between "raw measurement data" and "processed data".
   /// NOTE: All arguments MUST be non-null and non-empty, otherwise they will
   /// get a default value: "undefined_name", etc.
-  DSKey(String datasetName, String projectName, String dataType) {
+  DSKey(String? datasetName, String? projectName, String? dataType) {
     _init(datasetName, projectName, dataType);
   }
 
@@ -37,7 +37,7 @@ class DSKey {
   }
 
   /// Needed because we have various constructors
-  void _init(String datasetName, String projectName, String dataType) {
+  void _init(String? datasetName, String? projectName, String? dataType) {
     if (datasetName == null) {
       datasetName = "";
     }
@@ -109,7 +109,7 @@ class DSKey {
 
   /// Returns a list of encoded dskeys from a list of dskeys.
   static List<String> encodeList(List<DSKey> dskeys) {
-    List<String> eDskeys = List<String>(dskeys.length);
+    List<String> eDskeys = List<String>.filled(dskeys.length,'');
     for (int i = 0; i < dskeys.length; i++) {
       eDskeys[i] = dskeys[i].encode();
     }
@@ -118,11 +118,11 @@ class DSKey {
 
   /// Returns a list of dskeys from a list of encoded dskeys.
   static List<DSKey> decodeList(List<String> eDskeys) {
-    List<DSKey> dskeys = List<DSKey>(eDskeys.length);
+    List<DSKey?> dskeys = List<DSKey?>.filled(eDskeys.length,null);
     for (int i = 0; i < dskeys.length; i++) {
       dskeys[i] = DSKey.fromEncoded(eDskeys[i]);
     }
-    return dskeys;
+    return dskeys as List<DSKey>;
   }
 
   /// Returns a new [DSKey] whose [datasetName] was exchanged by

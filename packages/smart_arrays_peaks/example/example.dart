@@ -23,7 +23,7 @@ main() {
 
   // Pick peaks on [array], neglect "noise peaks"
   List<int> peakIndices = PeakPicker1D.detectPeaks(
-      array, 0, array.length, 2 * NOISE, 0.001, PeakPicker1D.PICK_POSNEG, 0);
+      array, 0, array.length, 2 * NOISE, 0.001, PeakPicker1D.PICK_POSNEG, 0)!;
 
   // Compute a sample 2D matrix with a negative and a positive peak
   // (the sum of 2 Lorentzian line shapes
@@ -70,7 +70,7 @@ void plotResult(
     List<Float64List> matrix,
     List<int> peakIndices,
     List<List<int>> peakIndices2D,
-    List<Map<MarA, String>> markerAttrList) {
+    List<Map<MarA, String>>? markerAttrList) {
   // get divs from 'example.html' (application and plot containers)
   DivElement appDiv = (querySelector("#app_div") as DivElement);
   DivElement plotDiv = (querySelector("#plot_div") as DivElement);
@@ -109,8 +109,8 @@ void plotResult(
       [array], plotDiv, plotAttr, xaxisAttr, yaxisAttr, legendAttr, null);
 
   // setup peak marker: Use peak indices and respective array values for output
-  List<double> markerIndices = List(peakIndices.length);
-  List<String> markerLabels = List(peakIndices.length);
+  List<double> markerIndices = List<double>.filled(peakIndices.length,0.0);
+  List<String> markerLabels = List<String>.filled(peakIndices.length,'');
   for (int i = 0; i < peakIndices.length; i++) {
     int ipeak = peakIndices[i];
     markerIndices[i] = ipeak.toDouble();
@@ -118,7 +118,7 @@ void plotResult(
   }
 
   // draw the peak markers
-  splot.polylines[0].drawMarkers(markerIndices, markerLabels, markerAttrList);
+  splot.polylines[0]!.drawMarkers(markerIndices, markerLabels, markerAttrList);
 
   List<String> peak2DPrintout = [];
   peak2DPrintout.add("Result of Lorentz-Gauss matrix peak picking");
@@ -135,11 +135,11 @@ void plotResult(
     LegA.TOP_TITLE: "2D peak picking result:",
     LegA.SUB_TITLES: json.encode(peak2DPrintout),
     LegA.TEXT_COLOR: "darkgreen",
-    LegA.X: "${splot.pl.dataAreaRect.width ~/ 3}",
+    LegA.X: "${splot.pl.dataAreaRects[0]!.width ~/ 3}",
     LegA.Y: "100"
   };
 
   // append the fitResultPrintOut legend to the plot's data area
-  Legend legend2 = SimplePlot.createLegend(legend2Attr, null);
-  splot.pl.dataArea.append(legend2.legendContainer);
+  Legend legend2 = SimplePlot.createLegend(legend2Attr, null)!;
+  splot.pl.dataAreas.add(legend2.legendContainer);
 }

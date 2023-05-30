@@ -18,14 +18,14 @@ class PhysUnits {
   /// [calib] is an optional calibration factor. If not null, both [physStart]
   /// and [physWidth] are multiplied with calib.
   static double physFromIndex(double index, double physStart, double physWidth,
-      int n, bool center, bool increasing, double calib) {
+      int n, bool center, bool? increasing, double? calib) {
     if (calib != null) {
       physStart *= calib;
       physWidth *= calib;
     }
     double physX;
     double delta = physWidth / n; // we'll get n sections of length delta
-    if (!increasing) delta = -delta;
+    if (increasing==null || !increasing) delta = -delta;
     if (center) {
       physX = physStart + (index + 0.5) * delta;
     } else {
@@ -38,14 +38,14 @@ class PhysUnits {
   /// This is the inverse of [getPhysXFromDataIndex]:
   /// Returns the index corresponding to the physcial unit [physX].
   static double physToIndex(double physX, double physStart, double physWidth,
-      int n, bool center, bool increasing, double calib) {
+      int n, bool center, bool? increasing, double? calib) {
     if (calib != null) {
       physStart *= calib;
       physWidth *= calib;
     }
     double index;
     double delta = physWidth / n; // we'll get n sections of length delta
-    if (!increasing) delta = -delta;
+    if (increasing==null || !increasing) delta = -delta;
 
     if (center) {
       index = (physX - physStart) / delta - 0.5;

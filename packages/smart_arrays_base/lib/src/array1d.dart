@@ -357,7 +357,7 @@ class Array1D {
   /// can't be divided by [size] without remainder.
   /// If [size] is 0 or equal or greater than the length of [array], the result
   /// will contain [array] as its single row.
-  static List<Float64List?> splitArray(Float64List array, int size) {
+  static List<Float64List> splitArray(Float64List array, int size) {
     int len = array.length;
     if (size >= len || size == 0) return [array];
     int nrows = len ~/ size;
@@ -378,7 +378,7 @@ class Array1D {
       }
       result[i] = row;
     }
-    return result;
+    return result as List<Float64List>;
   }
 
   /// Rotates [array] to the right by [n] positions in place. For example,

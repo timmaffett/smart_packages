@@ -9,10 +9,10 @@ import 'dart:typed_data';
 /// See [README.md] of this package about when this class should be employed.
 class CompressedArray1D {
   /// The compressed array: if positive and negative array values not to be separated
-  Float64List cArray;
+  Float64List cArray=Float64List(0);
 
   /// The compressed array: if positive and negative array values to be separated
-  Float64List cArrayPos, cArrayNeg;
+  Float64List cArrayPos=Float64List(0), cArrayNeg=Float64List(0);
 
   /// Indices in the original uncompressed array (same length as cValues).
   /// Can be used to find out from which orginal index range a value in the compressed
@@ -40,8 +40,8 @@ class CompressedArray1D {
   /// compressed values are sampled from a wider index interval than the other
   /// compressed values!
   static CompressedArray1D compress(
-      Float64List array, int ixFirst_, int ixLast_, bool separate,
-      [int newLength]) {
+      Float64List array, int? ixFirst_, int? ixLast_, bool separate,
+      [int? newLength]) {
     if (newLength == null) newLength = 1024;
 
     if (newLength <= 0) newLength = array.length;
@@ -50,11 +50,12 @@ class CompressedArray1D {
       newLength += 1; // make even for the following algorithms
     }
 
+    // make some index checks and adjustment if indices out of range
+    if (ixFirst_ == null) ixFirst_ = 0;
+    if (ixLast_ == null) ixLast_ = array.length - 1;
+
     int ixFirst = ixFirst_, ixLast = ixLast_;
 
-    // make some index checks and adjustment if indices out of range
-    if (ixFirst == null) ixFirst = 0;
-    if (ixLast == null) ixLast = array.length - 1;
 
     if (ixLast <= ixFirst) {
       ixLast = ixFirst + 1;
@@ -81,7 +82,7 @@ class CompressedArray1D {
     // return the original data if the input data are too short.
     // use all data
     if (!separate && arrayRange.length <= 2 * newLength) {
-      indexList = new List<int>(arrayRange.length);
+      indexList = new List<int>.filled(arrayRange.length, 0);
       for (int i = 0; i < arrayRange.length; i++) {
         indexList[i] = ixFirst + i;
       }
@@ -95,13 +96,16 @@ class CompressedArray1D {
 
     int ixLeft, ixRight;
     List<double> yminMax;
-    Float64List curYvalues;
-    Float64List newYvalues, newYvaluesPos, newYvaluesNeg;
+    Float64List? curYvalues;
+    Float64List? newYvalues;
+    Float64List? newYvaluesPos;
+    Float64List? newYvaluesNeg;
+
     if (separate) {
-      newYvaluesPos = new Float64List(newLength);
-      newYvaluesNeg = new Float64List(newLength);
+      newYvaluesPos = Float64List(newLength);
+      newYvaluesNeg = Float64List(newLength);
     } else {
-      newYvalues = new Float64List(newLength * 2);
+      newYvalues = Float64List(newLength * 2);
     }
 
     int curix = 0;
@@ -130,13 +134,13 @@ class CompressedArray1D {
 
       if (separate) {
         // separate the positive and negative values in separate arrays
-        if (curix == newYvaluesPos.length - 1) {
+        if (curix == newYvaluesPos!.length - 1) {
           yminMax = [array[ixLast - 1], array[ixLast]];
           print("XX=$yminMax");
         }
         double min = Array1D.getMinVal(new Float64List.fromList(yminMax));
         if (min < 0) {
-          newYvaluesNeg[curix] = min;
+          newYvaluesNeg![curix] = min;
         } else if (min > 0) {
           newYvaluesPos[curix] = min;
         }
@@ -144,7 +148,7 @@ class CompressedArray1D {
         double max = Array1D.getMaxInRange(
             new Float64List.fromList(yminMax), null, null);
         if (max < 0) {
-          newYvaluesNeg[curix] = max;
+          newYvaluesNeg![curix] = max;
         } else if (max > 0) {
           newYvaluesPos[curix] = max;
         }
@@ -153,7 +157,7 @@ class CompressedArray1D {
         curix++;
       } else {
         // normal case
-        newYvalues[curix] = yminMax[0];
+        newYvalues![curix] = yminMax[0];
         curix++;
         newYvalues[curix] = yminMax[1];
         curix++;
@@ -171,9 +175,9 @@ class CompressedArray1D {
 
     if (separate) {
       return new CompressedArray1D.sep(
-          newYvaluesPos, newYvaluesNeg, indexList, cpdIndexIncrement);
+          newYvaluesPos!, newYvaluesNeg!, indexList, cpdIndexIncrement);
     } else {
-      return new CompressedArray1D(newYvalues, indexList, cpdIndexIncrement);
+      return new CompressedArray1D(newYvalues!, indexList, cpdIndexIncrement);
     }
   }
 

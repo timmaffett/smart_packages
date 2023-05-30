@@ -4,7 +4,6 @@
 import 'dart:html';
 import 'dart:async';
 import 'dart:indexed_db';
-import 'package:pedantic/pedantic.dart';
 
 /// The purpose of this class is to provide functionalities allowing one to
 /// store and retrieve key-value String pairs ("properties") in a database of
@@ -34,7 +33,7 @@ class PropStore {
 
   /// When reading a property from our store, we read it from the cache for speed.
   /// Respectively all methods in this class must make sure the cache is uptodate.
-  Map<String, String> propCache;
+  late Map<String, String> propCache;
 
   /// The name of the database used by [PropStore]
   String dbnameProp;
@@ -46,7 +45,7 @@ class PropStore {
   /// Requires that loadProps() was called: This allows for getting a property
   /// without waiting (no async method!).
   /// Returns null if [propName] not found.
-  String propGet(String propName) {
+  String? propGet(String propName) {
     return propCache[propName];
   }
 
@@ -58,7 +57,7 @@ class PropStore {
   /// is true if the db could not be opened or created.
   Future<String> propSave(String propName, String propValue) async {
 //    print("prop_store.dart 1000=opendb");
-    Database db = await openPropDB();
+    Database? db = await openPropDB();
     if (db == null) {
       return Future.value(null);
     }
@@ -84,7 +83,7 @@ class PropStore {
 
   /// Deletes [propName] from the db. Returns false on error.
   Future<bool> propDel(String propName) async {
-    Database db = await openPropDB();
+    Database? db = await openPropDB();
     if (db == null) {
       return Future.value(false);
     }
@@ -109,7 +108,7 @@ class PropStore {
   /// the returned Map is empty. Returns null if the data base can't be created,
   /// e.g. due to lack of browser support.
   Future<Map<String, String>> loadProps() async {
-    Database db = await openPropDB();
+    Database? db = await openPropDB();
     if (db == null) {
       return Future.value(null);
     }
@@ -147,11 +146,11 @@ class PropStore {
   /// Opens or creates a db of name [dbnameProp], as supplied to the constructor.
   /// Opens if db exists, creates if db doesn't exist.
   /// Returns the db. Returns null if browser doesn't support indexeddb.
-  Future<Database> openPropDB() async {
+  Future<Database?> openPropDB() async {
     if (!IdbFactory.supported) {
       return null;
     }
-    return await window.indexedDB.open(dbnameProp,
+    return await window.indexedDB!.open(dbnameProp,
         version: DB_VERSION_PROP, onUpgradeNeeded: _initPropDB);
   }
 
@@ -164,7 +163,7 @@ class PropStore {
     // We set autoIncrement=false because we supply our own unique
     // keys (= property names) for the store.
     for (String storename in objectstoreList) {
-      if (!db.objectStoreNames.contains(storename)) {
+      if (!db.objectStoreNames!.contains(storename)) {
         db.createObjectStore(storename, autoIncrement: false);
       }
     }
@@ -183,7 +182,7 @@ class PropStore {
 
     cursors = store.openCursor(autoAdvance: true).asBroadcastStream();
     cursors.listen((cursor) {
-      keyList.add(cursor.key);
+      keyList.add(cursor.key as String);
     });
 
     return cursors.length.then((_) {

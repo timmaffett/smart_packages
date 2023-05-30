@@ -10,10 +10,10 @@ dependencies:
   build_web_compilers: ^3.0.0
   lints: ^2.0.1
   smart_arrays_base: #^3.0.0
-      path: ../smart_arrays_base
+    path: ../smart_arrays_base
   smart_arrays_compress: #^3.0.0
-      path: ../smart_arrays_compress
+    path: ../smart_arrays_compress
   smart_arrays_sample_data: #^3.0.0
-      path: ../smart_arrays_sample_data
+    path: ../smart_arrays_sample_data
   smart_arrays_contour_finder: #^3.0.0
     path: ../smart_arrays_contour_finder

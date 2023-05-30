@@ -12,12 +12,12 @@ import 'utils.dart';
 /// embedded in the layout e.g. using [SimplePlot.mult] of this package.
 class PlotLayoutSVG {
   /// Layout attributes
-  Map<LayA, String> attr;
+  late Map<LayA, String> attr;
 
   /// [plotDiv] will contain the graphics, it's size must be as wished by
   /// the user.
   DivElement plotDiv;
-  math.Rectangle<int> dataInsets;
+  late math.Rectangle<int> dataInsets;
 
   /// List of [left, top, width, height] in plotDiv fractions (0...1)
   /// [plotSizes.length] = number of plots
@@ -27,16 +27,16 @@ class PlotLayoutSVG {
   /// added to [plotDiv] and contains the entire plot. [dataArea] is added
   /// to [plotArea] and contains the polylines and the legend. The axes are
   /// drawn outside the [dataArea] but within the [plotArea].
-  List<SvgSvgElement> plotAreas, dataAreas;
+  late List<SvgSvgElement?> plotAreas, dataAreas;
 
   /// For 2D plots
-  List<CanvasElement> contourCanvases;
+  late List<CanvasElement?> contourCanvases;
 
   /// A frame around the 'dataArea'.
-  List<RectElement> dataAreaBorders, plotAreaBorders;
+  late List<RectElement?> dataAreaBorders, plotAreaBorders;
 
   /// The coordinates with respect to their container
-  List<math.Rectangle<int>> plotAreaRects,
+  late List<math.Rectangle<int>?> plotAreaRects,
       dataAreaRects,
       xaxisRects,
       yaxisRects;
@@ -70,28 +70,28 @@ class PlotLayoutSVG {
   /// the attributes contained in [layoutAttr] will override the respective
   /// default attributes.
   PlotLayoutSVG.mult(this.plotDiv, bool withCanvas, this.plotSizes,
-      Map<LayA, String> layoutAttr) {
+      Map<LayA, String>? layoutAttr) {
     if (layoutAttr == null) {
       attr = Map.from(LAYOUT_DEFAULT_ATTRIBUTES);
     } else {
       attr.addAll(LAYOUT_DEFAULT_ATTRIBUTES);
     }
     // Reserve space in pixels for the axes labels and a border around everthing.
-    int xaxAreaHeight = int.parse(attr[LayA.X_AXIS_AREA_HEIGHT]),
-        yaxAreaWidth = int.parse(attr[LayA.Y_AXIS_AREA_WIDTH]),
-        borderAreaSize = int.parse(attr[LayA.BORDER_AREA_SIZE]),
-        frameSize = int.parse(attr[LayA.FRAME_SIZE]);
+    int xaxAreaHeight = int.parse(attr[LayA.X_AXIS_AREA_HEIGHT] ?? '0'),
+        yaxAreaWidth = int.parse(attr[LayA.Y_AXIS_AREA_WIDTH] ?? '0'),
+        borderAreaSize = int.parse(attr[LayA.BORDER_AREA_SIZE] ?? '0'),
+        frameSize = int.parse(attr[LayA.FRAME_SIZE] ?? '0');
 
     int nplots = plotSizes.length;
-    dataAreas = List(nplots);
-    plotAreas = List(nplots);
-    dataAreaBorders = List(nplots);
-    plotAreaBorders = List(nplots);
-    plotAreaRects = List(nplots);
-    dataAreaRects = List(nplots);
-    xaxisRects = List(nplots);
-    yaxisRects = List(nplots);
-    contourCanvases = List(nplots);
+    dataAreas = List<SvgSvgElement?>.filled(nplots,null,growable:true);
+    plotAreas = List<SvgSvgElement?>.filled(nplots,null);
+    dataAreaBorders = List<RectElement?>.filled(nplots,null);
+    plotAreaBorders = List<RectElement?>.filled(nplots,null);
+    plotAreaRects = List<math.Rectangle<int>?>.filled(nplots,null);
+    dataAreaRects = List<math.Rectangle<int>?>.filled(nplots,null);
+    xaxisRects = List<math.Rectangle<int>?>.filled(nplots,null);
+    yaxisRects = List<math.Rectangle<int>?>.filled(nplots,null);
+    contourCanvases = List<CanvasElement?>.filled(nplots,null);
 
     dataInsets = math.Rectangle<int>(borderAreaSize, borderAreaSize, 0, 0);
     SvgSvgElement plotAreasCont = SvgSvgElement();
@@ -128,70 +128,70 @@ class PlotLayoutSVG {
       dataAreaRects[i] = math.Rectangle<int>(
           yaxAreaWidth,
           dataInsets.top,
-          plotAreaRects[i].width - yaxAreaWidth - dataInsets.left,
-          plotAreaRects[i].height - xaxAreaHeight);
+          plotAreaRects[i]!.width - yaxAreaWidth - dataInsets.left,
+          plotAreaRects[i]!.height - xaxAreaHeight);
 
 //      print("i=$i, dataarea=${dataAreaRects[i]}");
 
       // will contain the x axis tic marks and text labels
       xaxisRects[i] = math.Rectangle<int>(
-          dataAreaRects[i].left,
-          dataAreaRects[i].top + dataAreaRects[i].height,
-          dataAreaRects[i].width,
+          dataAreaRects[i]!.left,
+          dataAreaRects[i]!.top + dataAreaRects[i]!.height,
+          dataAreaRects[i]!.width,
           xaxAreaHeight);
 
       // will contain the y axis tic marks and text labels
-      yaxisRects[i] = math.Rectangle<int>(dataAreaRects[i].left - yaxAreaWidth,
-          dataAreaRects[i].top, yaxAreaWidth, dataAreaRects[i].height);
+      yaxisRects[i] = math.Rectangle<int>(dataAreaRects[i]!.left - yaxAreaWidth,
+          dataAreaRects[i]!.top, yaxAreaWidth, dataAreaRects[i]!.height);
 
       // will contain all axes and the data area (polylines and legend)
       plotAreas[i] = SvgSvgElement();
-      SVG.setAttr(plotAreas[i], {
-        SVG.X: "${plotAreaRects[i].left}",
-        SVG.Y: "${plotAreaRects[i].top}",
-        SVG.WIDTH: "${plotAreaRects[i].width}",
-        SVG.HEIGHT: "${plotAreaRects[i].height}",
+      SVG.setAttr(plotAreas[i]!, {
+        SVG.X: "${plotAreaRects[i]!.left}",
+        SVG.Y: "${plotAreaRects[i]!.top}",
+        SVG.WIDTH: "${plotAreaRects[i]!.width}",
+        SVG.HEIGHT: "${plotAreaRects[i]!.height}",
       });
 
       // a border around the plot area
       plotAreaBorders[i] = RectElement();
-      int bw = int.parse(attr[LayA.PLOT_AREA_BORDER_WIDTH]);
-      SVG.setAttr(plotAreaBorders[i], {
-        SVG.X: "${plotAreaRects[i].left + bw}",
-        SVG.Y: "${plotAreaRects[i].top + bw}",
-        SVG.WIDTH: "${plotAreaRects[i].width - 2 * bw}",
-        SVG.HEIGHT: "${plotAreaRects[i].height - 2 * bw}",
+      int bw = int.parse(attr[LayA.PLOT_AREA_BORDER_WIDTH] ?? '0');
+      SVG.setAttr(plotAreaBorders[i]!, {
+        SVG.X: "${plotAreaRects[i]!.left + bw}",
+        SVG.Y: "${plotAreaRects[i]!.top + bw}",
+        SVG.WIDTH: "${plotAreaRects[i]!.width - 2 * bw}",
+        SVG.HEIGHT: "${plotAreaRects[i]!.height - 2 * bw}",
         SVG.FILL: "none",
-        SVG.STROKE: attr[LayA.PLOT_AREA_BORDER_COLOR],
-        SVG.STROKE_WIDTH: attr[LayA.PLOT_AREA_BORDER_WIDTH]
+        SVG.STROKE: attr[LayA.PLOT_AREA_BORDER_COLOR] ?? 'black',
+        SVG.STROKE_WIDTH: attr[LayA.PLOT_AREA_BORDER_WIDTH] ?? '0'
       });
 
       // will contain polylines and legend
       dataAreas[i] = SvgSvgElement();
-      SVG.setAttr(dataAreas[i], {
-        SVG.X: "${dataAreaRects[i].left}",
-        SVG.Y: "${dataAreaRects[i].top}",
-        SVG.WIDTH: "${dataAreaRects[i].width}",
-        SVG.HEIGHT: "${dataAreaRects[i].height}",
+      SVG.setAttr(dataAreas[i]!, {
+        SVG.X: "${dataAreaRects[i]!.left}",
+        SVG.Y: "${dataAreaRects[i]!.top}",
+        SVG.WIDTH: "${dataAreaRects[i]!.width}",
+        SVG.HEIGHT: "${dataAreaRects[i]!.height}",
       });
 
       // a border around the data area
       dataAreaBorders[i] = RectElement();
-      SVG.setAttr(dataAreaBorders[i], {
-        SVG.X: "${dataAreaRects[i].left}",
-        SVG.Y: "${dataAreaRects[i].top}",
-        SVG.WIDTH: "${dataAreaRects[i].width}",
-        SVG.HEIGHT: "${dataAreaRects[i].height}",
+      SVG.setAttr(dataAreaBorders[i]!, {
+        SVG.X: "${dataAreaRects[i]!.left}",
+        SVG.Y: "${dataAreaRects[i]!.top}",
+        SVG.WIDTH: "${dataAreaRects[i]!.width}",
+        SVG.HEIGHT: "${dataAreaRects[i]!.height}",
         SVG.FILL: "none",
-        SVG.STROKE: attr[LayA.DATA_AREA_BORDER_COLOR],
-        SVG.STROKE_WIDTH: attr[LayA.DATA_AREA_BORDER_WIDTH]
+        SVG.STROKE: attr[LayA.DATA_AREA_BORDER_COLOR] ?? 'black',
+        SVG.STROKE_WIDTH: attr[LayA.DATA_AREA_BORDER_WIDTH] ?? '0'
       });
 
       if (withCanvas) {
         // Put the first contour in its own canvas. More canvases needed for more contours!
         contourCanvases[i] = CanvasElement(
-            width: plotAreaRects[i].width, height: plotAreaRects[i].height);
-        contourCanvases[i].style
+            width: plotAreaRects[i]!.width, height: plotAreaRects[i]!.height);
+        contourCanvases[i]!.style
           ..left = "0px" // could be omitted, 0 is default
           ..top = "0px"
           ..position = "absolute"
@@ -207,15 +207,15 @@ class PlotLayoutSVG {
       // now stack the plot containers.
       // needed to position 2d canvas and its contents properly:
       plotDiv.style.position = "relative";
-      plotAreas[i].append(dataAreas[i]);
-      plotAreas[i].append(dataAreaBorders[i]); // draw above dataArea
+      plotAreas[i]!.append(dataAreas[i]!);
+      plotAreas[i]!.append(dataAreaBorders[i]!); // draw above dataArea
       // add canvas before plotArea, so plotArea will be above it
       if (contourCanvases[i] != null) {
-        plotAreasCont.append(contourCanvases[i]);
+        plotAreasCont.append(contourCanvases[i]!);
       }
-      plotAreasCont.append(plotAreas[i]);
+      plotAreasCont.append(plotAreas[i]!);
       if (bw > 0) {
-        plotAreasCont.append(plotAreaBorders[i]);
+        plotAreasCont.append(plotAreaBorders[i]!);
       }
     }
     plotDiv.append(plotAreasCont); // append entire layout to div

@@ -7,7 +7,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:indexed_db';
 
-import 'package:pedantic/pedantic.dart';
 import 'package:smart_arrays_base/smart_arrays_base.dart';
 
 import '../smart_arrays_dbstore.dart';
@@ -111,7 +110,7 @@ class DSetDB extends DSetStore {
   /// {dskey.encode(): number}
   /// It is saved in the global properties store [propStore] under the key
   /// [DS_DB_NAMES] by [dbnamesSave].
-  Map<String, int> dbnamesMap;
+  late Map<String, int> dbnamesMap;
 
   /// The db's "base name" identical to all [DSet] databases managed by this [DSetDB].
   String dbBaseName;
@@ -183,7 +182,7 @@ class DSetDB extends DSetStore {
   /// The database name is implicitely defined by [dskey].
   /// Existing metadata will be overridden.
   Future<bool> dsmetaSave(DSKey dskey, DSet ds) async {
-    String dbname = dbnameGet(dskey);
+    String? dbname = dbnameGet(dskey);
     if (dbname == null) {
       dbname = dbnameCreate(dskey); // creates/stores new dbname
       await dbnamePut(dskey, dbname); // update list
@@ -217,7 +216,7 @@ class DSetDB extends DSetStore {
       // this occurs e.g. when a database was created for testing purposes
       db.close();
       await dbnameRemove(dskey); // no longer use this db
-      unawaited(window.indexedDB
+      unawaited(window.indexedDB!
           .deleteDatabase(dbname)); // not necessary to wait for completion
       throw "$storename of database $dbname does not exist:<br>$e";
     }
@@ -243,7 +242,7 @@ class DSetDB extends DSetStore {
   }
 
   /// Error message from [matrixLoad]
-  static String load_error;
+  static String? load_error;
 
   /// Inverse of [matrixSave]. See also comment there.
   /// Returns the matrix stored in the database [db] (whose name is derived from
@@ -322,7 +321,7 @@ class DSetDB extends DSetStore {
       throw ("No data specified: '$dskey'.");
     }
 
-    String dbname = dbnameGet(dskey);
+    String? dbname = dbnameGet(dskey);
     if (dbname == null) {
       dbname = dbnameCreate(dskey); // creates/stores new dbname
       await dbnamePut(dskey, dbname); // update list
@@ -374,7 +373,7 @@ class DSetDB extends DSetStore {
         }
       }
 
-      List<Float64List> ybuffer = List<Float64List>(); // storage buffer
+      List<Float64List> ybuffer = []; //OBSOLETE//List<Float64List>(); // storage buffer
 
       for (int i = 0; i < nrows; i++) {
         // split a row if already a single row is bigger that MAXSIZE
@@ -382,7 +381,7 @@ class DSetDB extends DSetStore {
             Array1D.splitArray(matrix[i], subrow_length);
         Array2D.appendRows(subrows, ybuffer);
 
-        String ext;
+        late String ext;
         if (subrow_length > 0) {
           // store a single row: store all subrows into which the row was
           // split in the case ncols exceeds MAXSIZE.
@@ -457,7 +456,7 @@ class DSetDB extends DSetStore {
 
   /// Returns the value of the property [propName] from the [propStore]
   /// maintained by this [DSetStore].
-  String gpropGet(String propName) {
+  String? gpropGet(String propName) {
     return propStore.propGet(propName);
   }
 
@@ -480,7 +479,7 @@ class DSetDB extends DSetStore {
   /// an object store whose name is [componentKey].
   /// Therefore we delete here the entire contents of object store [componentKey].
   Future dscompDel(DSKey dskey, String componentKey) async {
-    String dbname = dbnameGet(dskey);
+    String? dbname = dbnameGet(dskey);
     if (dbname == null) return Future.value(null); // dataset does not exist
 
     Database db;
@@ -510,14 +509,14 @@ class DSetDB extends DSetStore {
     Completer<bool> cpl = Completer();
     for (DSKey dskey in dskeys) {
       if (!imagOnly) {
-        String dbname = dbnameGet(dskey);
+        String? dbname = dbnameGet(dskey);
         if (dbname == null) {
           return Future.value(false); // dataset does not exist
         }
 
         try {
           await dbnameRemove(dskey);
-          await window.indexedDB.deleteDatabase(dbname);
+          await window.indexedDB!.deleteDatabase(dbname);
         } catch (e) {
           continue; // dataset does not exist
         }
@@ -548,7 +547,7 @@ class DSetDB extends DSetStore {
   /// exist, or an error occured. Handles both cases:  Data are stored in a
   /// single block or in several blocks by [dscompSave].
   Future<List<Float64List>> dscompLoad(DSKey dskey, String dsc) async {
-    String dbname = dbnameGet(dskey);
+    String? dbname = dbnameGet(dskey);
     if (dbname == null) return Future.value(null); // dataset does not exist
 
     Database db;
@@ -561,7 +560,7 @@ class DSetDB extends DSetStore {
 
     Object value;
     Completer<List<Float64List>> cpl = Completer();
-    List<Float64List> matrix;
+    late List<Float64List> matrix;
     int nblocks = 0; // counts blocks of rows stored in one piece
     int rowsPerBlock = 0; // counts the rows in a block
     int subrow_length = 0; // >0 if a row gets split before storing
@@ -581,8 +580,8 @@ class DSetDB extends DSetStore {
       }
     } else if (subrow_length > 0) {
       // data stored in nblocks subrows. rowsPerBlock subrows form a row.
-      matrix = List<Float64List>();
-      List<Float64List> partialRows = List<Float64List>(rowsPerBlock);
+      matrix = []; //OBSOLETE//List<Float64List>();
+      List<Float64List?> partialRows = List<Float64List?>.filled(rowsPerBlock,null);
       int partialRowCount = 0;
       for (int i = 0; i < nblocks; i++) {
         String ext = "$BLK_SEP$i";
@@ -595,15 +594,15 @@ class DSetDB extends DSetStore {
 
         if (partialRowCount == rowsPerBlock) {
           // build row from subrows
-          Float64List row = Array2D.join(partialRows);
+          Float64List row = Array2D.join(partialRows as List<Float64List>);
           matrix.add(row);
-          partialRows = List<Float64List>(rowsPerBlock);
+          partialRows = List<Float64List?>.filled(rowsPerBlock,null);
           partialRowCount = 0;
         }
       }
     } else {
       // data stored in nblocks rows
-      matrix = List<Float64List>();
+      matrix = []; //OBSOLETE//List<Float64List>();
       List<Float64List> rows;
       for (int i = 0; i < nblocks; i++) {
         String ext = "$BLK_SEP$i";
@@ -611,8 +610,8 @@ class DSetDB extends DSetStore {
         value = await matrixLoad(db, dsc, dsc + ext);
         if (value is List<Float64List>) {
           rows = value;
+          Array2D.appendRows(rows, matrix);
         }
-        Array2D.appendRows(rows, matrix);
       }
     }
 
@@ -624,15 +623,15 @@ class DSetDB extends DSetStore {
   /// Returns the metadata of a dataset identified by [dskey].
   /// Returns null on error or no metadata.
   /// The error message is then available in [load_meta_error].
-  Future<Map<String, String>> dsmetaLoad(DSKey dskey) async {
-    String dbname = dbnameGet(dskey);
+  Future<Map<String, String>?> dsmetaLoad(DSKey dskey) async {
+    String? dbname = dbnameGet(dskey);
     if (dbname == null) return Future.value(null);
 
     Completer<Map<String, String>> cpl = Completer();
-    Map<String, String> attr = await dsmetaLoad_db(dbname);
+    Map<String, String>? attr = await dsmetaLoad_db(dbname);
     if (attr == null) return Future.value(null);
     if (attr.keys.length == 1 && attr.keys.first == "ERR") {
-      DSetStore.load_meta_error = attr["ERR"];
+      DSetStore.load_meta_error = attr["ERR"] ?? '';
       cpl.complete(null);
     } else {
       cpl.complete(attr);
@@ -651,7 +650,7 @@ class DSetDB extends DSetStore {
   /// stored.
   Future<bool> dsExist(DSKey dskey) async {
     Completer<bool> cpl = Completer();
-    Map<String, Object> attr = await dsmetaLoad(dskey);
+    Map<String, Object>? attr = await dsmetaLoad(dskey);
     if (attr == null) {
       cpl.complete(false);
     } else {
@@ -669,7 +668,7 @@ class DSetDB extends DSetStore {
   /// Note: if a database with [dbname] doesn't exist, also null is returned.
   /// However, afterwards a database with this name was created, with no content.
   /// It will later be re-used when one is needed. No harm otherwise.
-  Future<Map<String, String>> dsmetaLoad_db(String dbname) async {
+  Future<Map<String, String>?> dsmetaLoad_db(String dbname) async {
     Database db;
     try {
       db = await dbOpen(dbname);
@@ -681,7 +680,7 @@ class DSetDB extends DSetStore {
     // store and key in store: As used in [dsmetaSave]
     String storename = DSetStore.DSC_META;
     String dataKey = DSetStore.DSC_META;
-    Transaction transaction;
+    Transaction? transaction;
     try {
       transaction = db.transaction(storename, 'readonly');
     } catch (e) {
@@ -719,7 +718,7 @@ class DSetDB extends DSetStore {
   /// database. After creation, [onUpgradeNeeded] gets called where the object
   /// store[s] in the db can be crated.
   Future<Database> dbOpen(String dbname) async {
-    return await window.indexedDB.open(dbname,
+    return await window.indexedDB!.open(dbname,
         version: DB_VERSION_YDATA, onUpgradeNeeded: dbCreateStores);
   }
 
@@ -735,7 +734,7 @@ class DSetDB extends DSetStore {
     // be retrieved then using a properly generated index then rather than
     // and own key).
     for (String storename in DSC_OBJECT_STORES) {
-      if (!db.objectStoreNames.contains(storename)) {
+      if (!db.objectStoreNames!.contains(storename)) {
         db.createObjectStore(storename, autoIncrement: false);
       }
     }
@@ -746,7 +745,7 @@ class DSetDB extends DSetStore {
   /// [dbnamesMap] would remain empty.
   /// Note that [propStore] is available after calling [createDSetStore].
   void dbnamesInit() {
-    String json1 = propStore.propGet(DS_DB_NAMES); // stored jsonified
+    String? json1 = propStore.propGet(DS_DB_NAMES); // stored jsonified
     if (json1 != null && json1.isNotEmpty) {
       dbnamesMap = UtilsJson.decodeMSI(json1);
 //      try {
@@ -778,7 +777,7 @@ class DSetDB extends DSetStore {
   /// Returns the name of the database where the dataset defined by [dskey]
   /// is stored. Locates [dskey] in [dbnamesMap]. Returns null if [dskey]
   /// is not there.
-  String dbnameGet(DSKey dskey) {
+  String? dbnameGet(DSKey dskey) {
     if (dskey.isEmty) return null;
     if (dbnamesMap == null || dbnamesMap.isEmpty) {
       dbnamesInit();
@@ -825,7 +824,7 @@ class DSetDB extends DSetStore {
 
   /// Returns the [DSKey] belonging to the data base number [dbnum] in
   /// [dbnamesMap]. Returns null if not existing.
-  DSKey dskeyGet(int dbnum) {
+  DSKey? dskeyGet(int dbnum) {
     if (dbnamesMap == null || dbnamesMap.isEmpty) {
       dbnamesInit();
       if (dbnamesMap == null || dbnamesMap.isEmpty) return null;
@@ -906,7 +905,7 @@ class DSetDB extends DSetStore {
         create_dsstore_error = DSetStore.IDB_NOT_SUPPORTED;
         cpl.complete(null);
       } else {
-        await dstore.dbnamesInit();
+        dstore.dbnamesInit();
         cpl.complete(dstore);
       }
     }
@@ -914,7 +913,7 @@ class DSetDB extends DSetStore {
   }
 
   /// Contains message when [createDSetStore] failed
-  static String create_dsstore_error;
+  static String? create_dsstore_error;
 
   /// Saves the property defined by the key [propName] and its value [propValue]
   /// in the database [db] inside the object store with [objectStoreName].
@@ -962,8 +961,8 @@ class DSetDB extends DSetStore {
   static Future<bool> persistent() async {
     Navigator navigator = window.navigator;
     bool granted = false;
-    if (navigator.storage != null && navigator.storage.persist != null) {
-      granted = await navigator.storage.persist();
+    if (navigator.storage != null && navigator.storage!.persist != null) {
+      granted = await navigator.storage!.persist();
     }
 
     Completer<bool> cpl = Completer<bool>();
@@ -977,8 +976,8 @@ class DSetDB extends DSetStore {
   static Future<bool> persistentAlert() async {
     Navigator navigator = window.navigator;
     bool granted = false;
-    if (navigator.storage != null && navigator.storage.persist != null) {
-      granted = await navigator.storage.persist();
+    if (navigator.storage != null && navigator.storage!.persist != null) {
+      granted = await navigator.storage!.persist();
     }
 
     Completer<bool> cpl = Completer<bool>();

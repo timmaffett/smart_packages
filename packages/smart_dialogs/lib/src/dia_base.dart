@@ -21,11 +21,11 @@ typedef void BaseDialogCloseCallback(UserInput userInput);
 /// [InputDialog], [FileSelectionDialog], [IconPanel], [PopupMenu].
 class BaseDialog {
   // the "glass" pane covering the application to make the dialog modal:
-  DivElement dia; // the actual dialog
-  DivElement diaContainer; // contains [dia] only if dialog is modal
+  late DivElement dia; // the actual dialog
+  late DivElement diaContainer; // contains [dia] only if dialog is modal
 //  String closeReturnValue;
-  BaseDialogCloseCallback closeCallback;
-  bool isModal; // true if the this dialog is modal
+  BaseDialogCloseCallback? closeCallback;
+  late bool isModal; // true if the this dialog is modal
   bool isopen = false; // true if dialog is open
 
   /// Creates and shows a modal dialog with a [closeCallback] invoked when the
@@ -46,13 +46,13 @@ class BaseDialog {
   void createShowDia() {
     dia = DivElement(); // create the dialog box
 
-    DiaAttr.setDialogStyle2(dia); // initialize the style with defaults
+    DiaAttr.setDialogStyle2(dia!); // initialize the style with defaults
 
     // make some style attributes dependent on the modality and append
     // the dialog box the document body
     if (isModal) {
       diaContainer = DivElement();
-      diaContainer.style
+      diaContainer!.style
         ..position = "absolute" // so as to cover app-div completely
         ..top = "0"
         ..left = "0"
@@ -67,7 +67,7 @@ class BaseDialog {
         ..zIndex = "${DiaAttr.ZINDEX_DIALOG}"
         ..overflowY = "auto"; // scrollbar if too many item cells in dialog
 
-      document.body.append(diaContainer);
+      document.body!.append(diaContainer);
 
       dia.style
 //      ..width = "${18}em" // width MUST be set by callers, must NOT be set here!
@@ -81,7 +81,7 @@ class BaseDialog {
             ..left = "0"
             ..width = "300px" // def. width, usually overidden, e.g. PopupMenu
           ;
-      document.body.append(dia);
+      document.body!.append(dia);
     }
 
     // define the "stacking" of dialogs
@@ -94,7 +94,8 @@ class BaseDialog {
   /// [closeCallback] if a non-null callback is defined.
   /// if [userInput] is null, a non-null one is generated,
   /// with an empty String a button code.
-  void close(UserInput userInput) {
+  void close(UserInput? userInput) {
+    if(dia==null) return;
     isopen = false;
 //    closeReturnValue = userInput.buttonCode;
     dia.remove();
@@ -105,7 +106,7 @@ class BaseDialog {
       if (userInput == null) {
         userInput = UserInput("", null, this);
       }
-      closeCallback(userInput);
+      closeCallback!(userInput);
     }
   }
 
@@ -131,8 +132,8 @@ class BaseDialog {
 class UserInput {
   static final int IX_CBUT = 0; // index of checkbox state
   String _buttonCode;
-  Map<int, List<String>> fields;
-  BaseDialog dia;
+  Map<int, List<String>>? fields;
+  BaseDialog? dia;
 
   /// Creates a [UserInput] from:
   /// [_buttonCode] of the pressed dialog button,
@@ -155,15 +156,15 @@ class UserInput {
   ///
   /// , 0.1, 3.0] (line with a button and
   ///   two text fields, each containing "0.5, -1.0" and "0.1, 3.0".
-  List<String> getUserInput(int line) {
-    return fields[line].sublist(1);
+  List<String>? getUserInput(int line) {
+    return fields?[line]?.sublist(1);
   }
 
   /// Returns "true" or "false" or "null" (as a String!) if the check button
   /// or radio button of [line] >= 0 is
   /// checked, not checked, or not existing.
-  String getCheckedState(int line) {
-    return fields[line][IX_CBUT];
+  String? getCheckedState(int line) {
+    return fields?[line]?[IX_CBUT];
   }
 
   String get buttonCode {

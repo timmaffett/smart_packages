@@ -65,7 +65,7 @@ abstract class DSetStore {
   /// overridden of required, depending on a concrete implementation of this
   /// class.
   static int MAX_STORES = 50;
-  PropStore propStore;
+  late PropStore propStore;
 
   /// Saves the metadata [meta] of the [dset] under [dskey].
   Future<bool> dsmetaSave(DSKey dskey, DSet dset);
@@ -96,7 +96,7 @@ abstract class DSetStore {
   /// Returns the metadata of a dataset stored under [dskey].
   /// Returns null on error or no metadata.
   /// The error message is then available in [load_meta_error].
-  Future<Map<String, String>> dsmetaLoad(DSKey dskey);
+  Future<Map<String, String>?> dsmetaLoad(DSKey dskey);
 
   /// Inverse of [dscompSave]: Returns [matrix] stored under [dskey]
   /// as the dataset component [dsc]. Returns null if the component doesn't
@@ -111,7 +111,7 @@ abstract class DSetStore {
   /// the [PropStore] common ("global") to all datasets of this [DSetStore].
   /// Returns [propName] in the case of success, null if failed. The latter
   /// is true if the db could not be opened or created.
-  Future<String> gpropSave(String propName, String propValue);
+  Future<String?> gpropSave(String propName, String propValue);
 
   /// Returns true if [project] exists in this [DSetStore].
   bool projectExists(String project);
@@ -123,7 +123,7 @@ abstract class DSetStore {
 
   /// Returns the value of the property [propName] from the [propStore]
   /// maintained by this [DSetStore].
-  String gpropGet(String propName);
+  String? gpropGet(String propName);
 
   /// Deletes all datasets managed by this [DSetStore] that belong to the
   /// project [projectName].
@@ -159,9 +159,9 @@ abstract class DSetStore {
 
     if (ds.values2D != null) {
       // 2D data
-      yValues = ds.values2D;
-      yPositive = ds.compressedPos; // compression of reals
-      yNegative = ds.compressedNeg;
+      yValues = ds.values2D!;
+      yPositive = ds.compressedPos!; // compression of reals
+      yNegative = ds.compressedNeg!;
 
       // save real data
       await dscompSave(dskey, yValues, DSetStore.DSC_REAL);
@@ -175,9 +175,9 @@ abstract class DSetStore {
 
       // save imags
       if (ds.values2DImag != null) {
-        yValuesImag = ds.values2DImag[0]; // 2ii
-        yValuesImagIR = ds.values2DImag[1]; // 2ir
-        yValuesImagRI = ds.values2DImag[2]; // 2ri
+        yValuesImag = ds.values2DImag![0]!; // 2ii
+        yValuesImagIR = ds.values2DImag![1]!; // 2ir
+        yValuesImagRI = ds.values2DImag![2]!; // 2ri
         if (yValuesImag != null) {
           await dscompSave(dskey, yValuesImag, DSetStore.DSC_IMAG);
         }
@@ -190,10 +190,10 @@ abstract class DSetStore {
       }
     } else {
       // 1D data
-      yValues = [ds.values];
+      yValues = [ds.values!];
       await dscompSave(dskey, yValues, DSetStore.DSC_REAL);
       if (ds.valuesImag != null) {
-        yValuesImag = [ds.valuesImag];
+        yValuesImag = [ds.valuesImag!];
         await dscompSave(dskey, yValuesImag, DSetStore.DSC_IMAG);
       }
     }
@@ -210,7 +210,7 @@ abstract class DSetStore {
   /// separately using [dscompLoad].
   /// Throws an error message in case of a problem.
   Future<DSet> dsLoad(DSKey dskey) async {
-    Map<String, Object> attr1 = await dsmetaLoad(dskey);
+    Map<String, Object>? attr1 = await dsmetaLoad(dskey);
     Map<String, String> attr = {};
     if (attr1 != null) {
       attr = Map.from(attr1);
@@ -261,7 +261,7 @@ abstract class DSetStore {
       }
     } else {
       if (imag != null) {
-        dsSource.values2DImag[0] = imag; // 2D: 2ii. 2ri+2ir not handled.
+        dsSource.values2DImag![0] = imag; // 2D: 2ii. 2ri+2ir not handled.
       }
     }
 
@@ -275,5 +275,5 @@ abstract class DSetStore {
   //---------------- static methods ---------------
 
   /// Contains message when [dsmetaLoad] failed
-  static String load_meta_error;
+  static String? load_meta_error;
 }

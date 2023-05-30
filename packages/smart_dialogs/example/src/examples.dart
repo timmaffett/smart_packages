@@ -15,7 +15,7 @@ void showInfoDialog() async {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void showConfirmDialog() async {
+Future<void> showConfirmDialog() async {
   UserInput uin = await Info.confirm(
       "A modal ConfirmDialog.<br>" +
           "Any dialog may have multiple buttons.<br>" +
@@ -38,7 +38,7 @@ void showConfirmDialog() async {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void showSingleLineInputDialog() async {
+Future<void> showSingleLineInputDialog() async {
   UserInput uin = await Info.get(
       null, // no check button or radio button
       "A single-line input dialog.", // title
@@ -46,13 +46,13 @@ void showSingleLineInputDialog() async {
       null, // not required because arg1 is null
       ['my-new-name'], // default new value
       [20], // width of text input field
-      [null], // not required because arg1 is null
+      [''], // not required because arg1 is null
       false, // not required because single line input
       null); // null means just an OK button is shown
 
   // evaluate buttons pressed
   if (uin.buttonCode == DiaAttr.DIA_ACT_BUT1) {
-    String newname = uin.getUserInput(0)[0];
+    String newname = uin.getUserInput(0)?[0] ?? '';
     await Info.show("You entered:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>'$newname'");
   } else if (uin.buttonCode == DiaAttr.DIA_ACT_ABORT) {
     main(); // redisplay examples
@@ -71,14 +71,14 @@ void showMultiLineInputDialog() async {
       null, // not required because arg1 is null
       ["my-new-name", ".com"], // default new value
       [20, 20], // width of text input fields
-      [null, null], // not required because arg1 is null
+      ['', ''], // not required because arg1 is null
       false, // not required because single line input
       null); // null means just an OK button is shown
 
   // evaluate buttons pressed
   if (uin.buttonCode == DiaAttr.DIA_ACT_BUT1) {
-    String newname = uin.getUserInput(0)[0]; // [0]: don't expect csv input
-    String newext = uin.getUserInput(1)[0];
+    String newname = uin.getUserInput(0)?[0] ?? ''; // [0]: don't expect csv input
+    String newext = uin.getUserInput(1)?[0] ?? '';
     await Info.show("You entered:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>" +
         "'$newname'<br>'$newext'");
   } else if (uin.buttonCode == DiaAttr.DIA_ACT_ABORT) {
@@ -90,7 +90,7 @@ void showMultiLineInputDialog() async {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void showAdvancedInputDialogCheckButtons() async {
+Future<void> showAdvancedInputDialogCheckButtons() async {
   // define combo box contents
   final String COMBO_EXP = "Exponential", COMBO_GAUS = "Gaussian";
   final List<String> COMBO_SELECTIONS = [COMBO_EXP, COMBO_GAUS];
@@ -105,10 +105,10 @@ void showAdvancedInputDialogCheckButtons() async {
 
   // default values of text entry fields and combo box
   final Map<int, List<String>> defPars = {
-    LINE_BC: [DiaUtils.FALSE, null],
+    LINE_BC: [DiaUtils.FALSE, ''],
     LINE_WINFUNC: ['true', COMBO_EXP],
-    LINE_EM: [null, '0.3'],
-    LINE_GM: [null, '0.5, -1.0'],
+    LINE_EM: ['', '0.3'],
+    LINE_GM: ['', '0.5, -1.0'],
     LINE_FT: [DiaUtils.TRUE, '${16 * 1024}']
   };
 
@@ -130,19 +130,19 @@ void showAdvancedInputDialogCheckButtons() async {
       labels, // text entry field labels
       [null, COMBO_SELECTIONS, null, null, null], // 1 combo box present
       [
-        defPars[LINE_BC][IX_INPUT], // default text field contents
-        defPars[LINE_WINFUNC][IX_INPUT],
-        defPars[LINE_EM][IX_INPUT],
-        defPars[LINE_GM][IX_INPUT],
+        defPars[LINE_BC]![IX_INPUT], // default text field contents
+        defPars[LINE_WINFUNC]![IX_INPUT],
+        defPars[LINE_EM]![IX_INPUT],
+        defPars[LINE_GM]![IX_INPUT],
         "${16 * 1024}"
       ],
       [0, 7, 7, 7, 7], // text entry field widths
       [
-        defPars[LINE_BC][IX_CBUT], // initial check button states
-        defPars[LINE_WINFUNC][IX_CBUT],
-        defPars[LINE_EM][IX_CBUT],
-        defPars[LINE_GM][IX_CBUT],
-        defPars[LINE_FT][IX_CBUT]
+        defPars[LINE_BC]![IX_CBUT], // initial check button states
+        defPars[LINE_WINFUNC]![IX_CBUT],
+        defPars[LINE_EM]![IX_CBUT],
+        defPars[LINE_GM]![IX_CBUT],
+        defPars[LINE_FT]![IX_CBUT]
       ],
       false, // no alternate line coloring
       null // buttons, null means just an OK button
@@ -167,7 +167,7 @@ void showAdvancedInputDialogCheckButtons() async {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void showAdvancedInputDialogRadioButtons() async {
+Future<void> showAdvancedInputDialogRadioButtons() async {
   // define combo box contents
   final String COMBO_LORENTZ = "Lorentz",
       COMBO_GAUSS_LOR = "Gauss-Lorentz",
@@ -199,12 +199,12 @@ void showAdvancedInputDialogRadioButtons() async {
 
   // default values of text entry fields and combo box
   Map<int, List<String>> defPars = {
-    LINE_REMOVE: ['false', null],
+    LINE_REMOVE: ['false', ''],
     LINE_AUTOPICK: ['true', "3.14"],
     LINE_NOISE_FACT: ['false', '1.0'],
     LINE_PEAK_SIGN: ['false', COMBO_PICK_POS],
     LINE_FIT_PEAKS: ['false', COMBO_LORENTZ],
-    LINE_SHOW_TABLE: ['false', null],
+    LINE_SHOW_TABLE: ['false', ''],
   };
 
   // text labels
@@ -226,21 +226,21 @@ void showAdvancedInputDialogRadioButtons() async {
       labels, // text entry field labels
       [null, null, null, COMBO_SELECTIONS_PEAK, COMBO_SELECTIONS_FIT, null],
       [
-        defPars[LINE_REMOVE][IX_INPUT], // default text field contents
-        defPars[LINE_AUTOPICK][IX_INPUT],
-        defPars[LINE_NOISE_FACT][IX_INPUT],
-        defPars[LINE_PEAK_SIGN][IX_INPUT],
-        defPars[LINE_FIT_PEAKS][IX_INPUT],
-        defPars[LINE_SHOW_TABLE][IX_INPUT]
+        defPars[LINE_REMOVE]![IX_INPUT], // default text field contents
+        defPars[LINE_AUTOPICK]![IX_INPUT],
+        defPars[LINE_NOISE_FACT]![IX_INPUT],
+        defPars[LINE_PEAK_SIGN]![IX_INPUT],
+        defPars[LINE_FIT_PEAKS]![IX_INPUT],
+        defPars[LINE_SHOW_TABLE]![IX_INPUT]
       ],
       [0, 10, 10, 10, 10, 0], // text entry field widths
       [
-        defPars[LINE_REMOVE][IX_CBUT], // defaults of radio buttons
-        defPars[LINE_AUTOPICK][IX_CBUT],
-        defPars[LINE_NOISE_FACT][IX_CBUT],
-        defPars[LINE_PEAK_SIGN][IX_CBUT],
-        defPars[LINE_FIT_PEAKS][IX_CBUT],
-        defPars[LINE_SHOW_TABLE][IX_CBUT]
+        defPars[LINE_REMOVE]![IX_CBUT], // defaults of radio buttons
+        defPars[LINE_AUTOPICK]![IX_CBUT],
+        defPars[LINE_NOISE_FACT]![IX_CBUT],
+        defPars[LINE_PEAK_SIGN]![IX_CBUT],
+        defPars[LINE_FIT_PEAKS]![IX_CBUT],
+        defPars[LINE_SHOW_TABLE]![IX_CBUT]
       ],
       true, // alternate line coloring
       ["Execute"] // Single button at bottom of dialog
@@ -265,7 +265,7 @@ void showAdvancedInputDialogRadioButtons() async {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void showAdvancedInputDialog2D() async {
+Future<void> showAdvancedInputDialog2D() async {
   final String COMBO_NO_ACTION = "No action",
       COMBO_EXP = "Exponential",
       COMBO_GAUS = "Gaussian",
@@ -288,22 +288,22 @@ void showAdvancedInputDialog2D() async {
 
   // default values for text entry fields, column 1
   Map<int, List<String>> defPars = {
-    LINE_BC: ['false', null],
+    LINE_BC: ['false', ''],
     LINE_WINFUNC: ['true', COMBO_EXP],
-    LINE_EM: [null, '0.3'],
-    LINE_GM: [null, '0.5, -1.0'],
+    LINE_EM: ['', '0.3'],
+    LINE_GM: ['', '0.5, -1.0'],
     LINE_FT_TYPE: ['true', COMBO_FT_COMPLEX],
-    LINE_FTSIZE: [null, '']
+    LINE_FTSIZE: ['', '']
   };
 
   // default values for text entry fields, column 2
   Map<int, List<String>> defParsCol2 = {
-    LINE_BC: ['false', null],
+    LINE_BC: ['false', ''],
     LINE_WINFUNC: ['true', COMBO_GAUS],
-    LINE_EM: [null, '0.5'],
-    LINE_GM: [null, '0.1, -1.0'],
+    LINE_EM: ['', '0.5'],
+    LINE_GM: ['', '0.1, -1.0'],
     LINE_FT_TYPE: ['true', COMBO_FT_COMPLEX],
-    LINE_FTSIZE: [null, '']
+    LINE_FTSIZE: ['', '']
   };
 
   // text labels
@@ -343,30 +343,30 @@ void showAdvancedInputDialog2D() async {
       },
       {
         InputDialog.COL1: [
-          defPars[LINE_BC][IX_INPUT], // default text field contents, col 1
-          defPars[LINE_WINFUNC][IX_INPUT],
-          defPars[LINE_EM][IX_INPUT],
-          defPars[LINE_GM][IX_INPUT],
-          defPars[LINE_FT_TYPE][IX_INPUT],
+          defPars[LINE_BC]![IX_INPUT], // default text field contents, col 1
+          defPars[LINE_WINFUNC]![IX_INPUT],
+          defPars[LINE_EM]![IX_INPUT],
+          defPars[LINE_GM]![IX_INPUT],
+          defPars[LINE_FT_TYPE]![IX_INPUT],
           "${4 * 1024}"
         ],
         InputDialog.COL2: [
-          defParsCol2[LINE_BC][IX_INPUT], // default text field contents, col 2
-          defParsCol2[LINE_WINFUNC][IX_INPUT],
-          defParsCol2[LINE_EM][IX_INPUT],
-          defParsCol2[LINE_GM][IX_INPUT],
-          defPars[LINE_FT_TYPE][IX_INPUT],
+          defParsCol2[LINE_BC]![IX_INPUT], // default text field contents, col 2
+          defParsCol2[LINE_WINFUNC]![IX_INPUT],
+          defParsCol2[LINE_EM]![IX_INPUT],
+          defParsCol2[LINE_GM]![IX_INPUT],
+          defPars[LINE_FT_TYPE]![IX_INPUT],
           "512"
         ]
       },
       [0, 7, 7, 7, 7, 7], // text field widths
       [
-        defPars[LINE_BC][IX_CBOX], // default radio button states
-        defPars[LINE_WINFUNC][IX_CBOX],
-        defPars[LINE_EM][IX_CBOX],
-        defPars[LINE_GM][IX_CBOX],
-        defPars[LINE_FT_TYPE][IX_CBOX],
-        defPars[LINE_FTSIZE][IX_CBOX]
+        defPars[LINE_BC]![IX_CBOX], // default radio button states
+        defPars[LINE_WINFUNC]![IX_CBOX],
+        defPars[LINE_EM]![IX_CBOX],
+        defPars[LINE_GM]![IX_CBOX],
+        defPars[LINE_FT_TYPE]![IX_CBOX],
+        defPars[LINE_FTSIZE]![IX_CBOX]
       ],
       false, // no alternating line color
       null); // null = just an OK button is displayed
@@ -383,10 +383,10 @@ void showAdvancedInputDialog2D() async {
     StringBuffer out = StringBuffer();
     out.write("Collected user input<br><br>");
     for (int i = 0; i < defPars.keys.length; i++) {
-      String val_checked = uin.getCheckedState(i);
-      int nvals = uin.getUserInput(i).length ~/ 2; // cvs per column
-      List<String> vals_col1 = uin.getUserInput(i).sublist(0, nvals);
-      List<String> vals_col2 = uin.getUserInput(i).sublist(nvals);
+      String val_checked = uin.getCheckedState(i) ?? '';
+      int nvals = uin.getUserInput(i)?.length??0 ~/ 2; // cvs per column
+      List<String> vals_col1 = uin.getUserInput(i)?.sublist(0, nvals) ?? [];
+      List<String> vals_col2 = uin.getUserInput(i)?.sublist(nvals) ?? [];
 
       out.write("${labels[i]}: Radio=${val_checked}");
       out.write(", Col1=${vals_col1}");
@@ -410,15 +410,15 @@ void showNonModalDialog() {
   }
 
   showAdvancedInputDialog2D(); // first show a modal dialog
-  String buttontype;
+  String? buttontype;
   String htmlTitleText = '${RED}' +
       'This is a non-modal dialog displayed in addition to a modal one.' +
       'You can still work inside the modal dialog';
 
   // show the non-modal one with trivial parameters
-  List<String> inputTextLabelInfo;
-  List<int> sizes;
-  List<String> isChecked;
+  List<String>? inputTextLabelInfo;
+  List<int>? sizes;
+  List<String>? isChecked;
   bool alternateRowColor = false;
   List<String> buttonLabels = []; // don't show any buttons at bottom
   InputDialog.noModal(buttontype, htmlTitleText, inputTextLabelInfo, null, null,
@@ -428,7 +428,7 @@ void showNonModalDialog() {
 ////////////////////////////////////////////////////////////////////////////////
 
 class DialogAttributeChanger {
-  static Map<String, String> dia_attr_saved, but_attr_saved;
+  static Map<String, String>? dia_attr_saved, but_attr_saved;
 
   static changeDialogAttributes() async {
     void change() {
@@ -451,8 +451,8 @@ class DialogAttributeChanger {
     }
 
     void reset() {
-      DiaAttr.setAttr(Map.from(dia_attr_saved));
-      ActButton.setAttr(Map.from(but_attr_saved));
+      DiaAttr.setAttr(Map.from(dia_attr_saved ?? {}));
+      ActButton.setAttr(Map.from(but_attr_saved ?? {}));
     }
 
     // first save the default attributes
@@ -461,7 +461,7 @@ class DialogAttributeChanger {
     }
 
     if (but_attr_saved == null) {
-      but_attr_saved = Map.from(ActButton.but_attr);
+      but_attr_saved = Map.from(ActButton.but_attr ?? {});
     }
 
     // open the example dialog
@@ -507,14 +507,14 @@ showIconPanel() async {
     "info-white-24.png"
   ];
 
-  IconPanel iconPanel;
+  IconPanel? iconPanel;
   List<IconCallback> getIconCallbacks() {
     void out(String iconName) async {
       UserInput uin = await Info.confirm(
           "'$iconName' icon pressed!" +
               "<br>Hit 'Close' to close the icon panel.",
           ["Close"]);
-      if (uin.buttonCode == DiaAttr.DIA_ACT_BUT1) iconPanel.close(null);
+      if (uin.buttonCode == DiaAttr.DIA_ACT_BUT1) iconPanel?.close(null);
     }
 
     void asteriskCallback(UIEvent e) {
@@ -576,7 +576,7 @@ showIconPanel() async {
 showFileInputDialog() async {
   // Called when user selected 1 or more files in the system's file dialog,
   // but not of the user cancelled it.
-  void fileInputCallback(List<File> fileList) async {
+  void fileInputCallback(List<File>? fileList) async {
     final RED = '<span style="color:red">';
     if (fileList == null) {
       // no system file dialog was displayed
@@ -641,8 +641,8 @@ void showPopupMenu() async {
   ];
 
   final int size = POPUP_ITEMS.length;
-  List<String> button_types = List(size);
-  List<String> is_checked = List(size);
+  List<String> button_types = []; //OBSOLETE//List(size);
+  List<String> is_checked = []; //OBSOLETE//List(size);
 
   // last popup item gets displayed with a "checked" checkbox.
   button_types[size - 1] = DiaAttr.CHECKBOX;
@@ -657,7 +657,7 @@ void showPopupMenu() async {
   UserInput ui = await PopupMenu.show(
       popupParent, "", POPUP_ITEMS, button_types, is_checked, x, y, true);
   String popupAction = ui.buttonCode;
-  UserInput cui;
+  UserInput? cui;
   for (String item in POPUP_ITEMS) {
     List<String> textAct = item.split(DiaUtils.SEP_STAN);
     String itemText = textAct[0];
@@ -669,7 +669,7 @@ void showPopupMenu() async {
     }
   }
 
-  if (cui.buttonCode == DiaAttr.DIA_ACT_ABORT) {
+  if (cui?.buttonCode == DiaAttr.DIA_ACT_ABORT) {
     main(); // redisplay examples
   } else {
     showPopupMenu();
@@ -705,7 +705,7 @@ void showSimpleTable() {
 ////////////////////////////////////////////////////////////////////////////////
 
 void showInterActiveTable() {
-  BasicTable btable;
+  late BasicTable btable;
   // table closed
   void closeCallback(UserInput userInput) async {
     main(); // redisplay examples
@@ -714,14 +714,14 @@ void showInterActiveTable() {
   // called when a table button clicked:
   // finds out which button was clicked and what the user entered into the
   // text entry fields.
-  tableButtonClickListener(ButtonElement button) {
+  void tableButtonClickListener(ButtonElement button) {
     TableElement table = btable.getTable; // the displayed table element
     TableRowElement row;
     dynamic inputField; // expected in our case: TextAreaElement or InputElement
     StringBuffer userInput = StringBuffer();
     userInput.write("Contents of text entry fields:<br>");
 
-    String newValue;
+    String newValue='';
     final int TF_COL = 3; // only this column contains text fields
     // find the text entry fields in the table and collect their contents
     for (int i = 1; i < table.rows.length; i++) {

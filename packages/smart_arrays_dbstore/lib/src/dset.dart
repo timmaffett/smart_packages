@@ -43,15 +43,18 @@ import '../smart_arrays_dbstore.dart';
 ///
 /// Usage of this class: see [example.dart].
 class DSet {
+  /// Only for 1D datasets: the 2 arrays which can be stored, e.g. real part
+  Float64List? values;
+
   /// Only for 1D datasets: the 2 arrays which can be stored, e.g. real + imag part
   /// [valuesImag] may be null
-  Float64List values, valuesImag;
+  Float64List? valuesImag;
 
   /// Only for 2D datasets: the matrix data to be stored, e.g. the "real" matrix
-  List<Float64List> values2D; // 2D data, reals only
+  List<Float64List>? values2D; // 2D data, reals only
 
   /// The optional additional matrices (e.g. imaginary parts ii, ir, ri)
-  List<List<Float64List>> values2DImag;
+  List<List<Float64List>?>? values2DImag;
 
   /// The metadata. May also hold more complex data types such as Lists or Maps
   /// if stored as jsonified String.
@@ -59,39 +62,40 @@ class DSet {
 
   /// The value of a _audittrail entry (which is defined to be a String) may
   /// also be a JSON String from a List or a Map.
-  List<Map<String, String>> audittrail;
+  List<Map<String, String>>? audittrail;
 
   /// Optional compressed version of 2D data (see pub package 'smart_arrays_compress'
   /// on how to compress a matrix)
-  List<Float64List> compressedPos, compressedNeg;
+  List<Float64List>? compressedPos, compressedNeg;
 
   /// Optional projections of 2D data (see pub package 'smart_arrays_base'
   /// on how to computes projections of a matrix)
-  Float64List projRows, projCols;
+  Float64List? projRows, projCols;
 
   /// the data ranges over all data values, computed automatically at
   /// [DSet] construction time.
-  double vmin, vmax;
+  double? vmin, vmax;
 
   /// indices of vmin, vmax within [values].
-  int vmin_index, vmax_index;
+  int? vmin_index, vmax_index;
 
   /// the data sizes, computed automatically at [DSet] construction time.
   /// For 2D, [size] is the # columns, [sizef1] the # of rows.
-  int size, sizef1;
+  int? size, sizef1;
 
   /// If this function is non-null, it will get called with [meta] as its
   /// argument upon while the [DSet] is created. It allows users to
   /// initialize [meta] with specific properties.
-  static DSetInit dsetInit;
+  static DSetInit? dsetInit;
 
   /// Creates a 1D [DSet]. Argument descriptions see above. If [meta] is null,
   /// an empty Map is created.
   DSet(this.values, this.valuesImag, this.meta) {
     assert(valuesImag == null ||
-        valuesImag.isEmpty ||
-        values.length == valuesImag.length);
-    if (valuesImag != null && valuesImag.isEmpty) {
+        valuesImag!.isEmpty ||
+        values == null ||
+        values!.length == valuesImag!.length);
+    if (valuesImag != null && valuesImag!.isEmpty) {
       valuesImag = null;
     }
     init();
@@ -100,17 +104,17 @@ class DSet {
   /// Creates a 2D [DSet]. Argument descriptions see above. If [meta] is null,
   /// an empty Map is created.
   DSet.twoD(this.values2D, this.values2DImag, this.meta) {
-    assert(values2DImag == null || values2DImag.length == 3);
+    assert(values2DImag == null || values2DImag!.length == 3);
 
-    if (values2DImag != null && values2DImag.length == 3) {
-      if (values2DImag[0] != null && values2DImag[0].isEmpty) {
-        values2DImag[0] = null;
+    if (values2DImag != null && values2DImag!.length == 3) {
+      if (values2DImag![0] != null && values2DImag![0]!.isEmpty) {
+        values2DImag![0] = null;
       }
-      if (values2DImag[1] != null && values2DImag[1].isEmpty) {
-        values2DImag[1] = null;
+      if (values2DImag![1] != null && values2DImag![1]!.isEmpty) {
+        values2DImag![1] = null;
       }
-      if (values2DImag[2] != null && values2DImag[2].isEmpty) {
-        values2DImag[2] = null;
+      if (values2DImag![2] != null && values2DImag![2]!.isEmpty) {
+        values2DImag![2] = null;
       }
     }
     init();
@@ -123,7 +127,7 @@ class DSet {
     }
     // if provided, call a user-defined function to do something with [meta]
     if (dsetInit != null) {
-      dsetInit(meta);
+      dsetInit!.call(meta);
     }
     DSAuditTrail.init(this); // Decode if existing, or create new one
     initY();
@@ -131,20 +135,20 @@ class DSet {
 
   /// Sets sizes and minmax values for a newly created dataset
   void initY() {
-    if (values2D == null) {
-      size = values.length;
-      List temp = Array1D.getMin(values);
+    if (values2D == null && values!=null) {
+      size = values!.length;
+      List temp = Array1D.getMin(values!);
       vmin = temp[0];
       vmin_index = temp[1];
 
-      temp = Array1D.getMax(values);
+      temp = Array1D.getMax(values!);
       vmax = temp[0];
       vmax_index = temp[1];
-    } else if (values2D != null && values2D.isNotEmpty) {
-      size = values2D[0].length;
-      sizef1 = values2D.length;
+    } else if (values2D != null && values2D!.isNotEmpty) {
+      size = values2D![0].length;
+      sizef1 = values2D!.length;
 
-      MinMax minmax = Array2D.getMinMax(values2D);
+      MinMax minmax = Array2D.getMinMax(values2D!);
       vmin = minmax.minValue;
       vmax = minmax.maxValue;
       vmin_index = minmax.minValueIndexRow;
@@ -157,7 +161,7 @@ class DSet {
 
   /// Returns the [dskey] under which this [DSet] was stored in a [DSetStore]
   /// using the setter below.
-  DSKey get dskey => DSKey.fromEncoded(meta[DSET_DSKEY]);
+  DSKey get dskey => DSKey.fromEncoded(meta[DSET_DSKEY]!);
 
   /// Saves [dskey] as encoded String in [meta]. Recommended use:
   /// When this [DSet] is stored in a database using [DSetStore], it gets

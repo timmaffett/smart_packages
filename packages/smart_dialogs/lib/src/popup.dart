@@ -16,8 +16,8 @@ class PopupMenu extends BaseDialog {
       POPUP_SPAN_END = "</span>";
 
   TableElement diaTable = TableElement(); // contains the dialog
-  String lastTouchedActionCode;
-  List<math.Point<int>> lastTouchPoints;
+  String lastTouchedActionCode='';
+  List<math.Point<int>> lastTouchPoints=[];
 
   /// Shows a popup menu above the [parent] element (e.g. a div) with:
   ///  [id] The popup may optionally get an id (should be unique if the popup
@@ -46,9 +46,9 @@ class PopupMenu extends BaseDialog {
       Element parent,
       String id,
       List<String> htmlItemTexts,
-      List<String> buttontypes,
-      List<String> isChecked,
-      BaseDialogCloseCallback popupCallback,
+      List<String>? buttontypes,
+      List<String>? isChecked,
+      BaseDialogCloseCallback? popupCallback,
       int x,
       int y,
       bool preventDefault)
@@ -62,7 +62,7 @@ class PopupMenu extends BaseDialog {
     // Especially over the jsme structure display div.
 
     setPopupStyle(dia, null);
-    Map<String, String> attr = DiaAttr.attr; // use shortcut
+    Map<String, String?> attr = DiaAttr.attr; // use shortcut
     // nodify standad style:
     parent.append(dia);
 
@@ -88,7 +88,7 @@ class PopupMenu extends BaseDialog {
 //    TableRowElement row;
     TableCellElement cell;
 
-    List<TableRowElement> rows = List<TableRowElement>();
+    List<TableRowElement> rows = []; //OBSOLETE//List<TableRowElement>();
 
     void addEmptyTableRow() {
       rows.add(TableRowElement());
@@ -172,7 +172,7 @@ class PopupMenu extends BaseDialog {
         // only a non-greyed item will be executed!
         if (dia != null && !displayedText.contains(POPUP_SPAN_GREYOUT)) {
           close(UserInput(curaction, null, null));
-          dia = null;
+          //OBSOLETE//dia = null;
         }
       }
 
@@ -181,9 +181,10 @@ class PopupMenu extends BaseDialog {
       }
 
       void handleTouchEnd(TouchEvent e) {
-        Element eventCell = e.target;
+        if(e.changedTouches==null) return;
+        Element eventCell = e.target as Element;
         String curaction = eventCell.id;
-        TouchList tl = e.changedTouches;
+        TouchList tl = e.changedTouches!;
         if (tl == null || tl.isEmpty) return;
         int lastx = lastTouchPoints[0].x;
         int lasty = lastTouchPoints[0].y;
@@ -208,7 +209,7 @@ class PopupMenu extends BaseDialog {
         // this would execute when clicking the first column
         cell.onClick.listen((MouseEvent e) {
 //        print("popup clicked row $i");
-          Element eventCell = e.target;
+          Element eventCell = e.target as Element;
           String curaction = eventCell.id;
           execute(curaction);
         });
@@ -240,7 +241,7 @@ class PopupMenu extends BaseDialog {
         });
       } else {
         cell.onClick.listen((MouseEvent e) {
-          Element eventCell = e.target;
+          Element eventCell = e.target as Element;
           String curaction = eventCell.id;
           execute(curaction);
         });
@@ -269,11 +270,11 @@ class PopupMenu extends BaseDialog {
   }
 
   String getId() {
-    if (dia == null) return null;
+    if (dia == null) return '';
     return dia.id;
   }
 
-  void setPopupStyle(Element dia, int width) {
+  void setPopupStyle(Element dia, int? width) {
     dia.style
 //    ..background = "linear-gradient(to bottom, #EEEEEE, white)"
           ..backgroundColor = DiaAttr.attr[DiaAttr.POPUP_BACKGROUND]
@@ -290,7 +291,7 @@ class PopupMenu extends BaseDialog {
               "0 6px 10px rgba(0, 0, 0, 0.4)" //"0 6px 12px $dialog_border_color" // 0 3px 7px rgba(0, 0, 0, 0.3);
           ..fontSize = "${DiaAttr.attr[DiaAttr.DIALOG_POPUP_FONTSIZE2]}px"
           ..lineHeight = "110%"
-          ..opacity = DiaAttr.attr[DiaAttr.DIALOG_WIN_OPACITY]
+          ..opacity = DiaAttr.attr[DiaAttr.DIALOG_WIN_OPACITY]!
           ..zIndex = "${DiaAttr.ZINDEX_POPUP}"
 //  ..filter = "alpha(opacity=60)";
         ;

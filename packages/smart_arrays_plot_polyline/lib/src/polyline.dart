@@ -29,45 +29,45 @@ import 'marker_lines.dart';
 ///  same dataArea (see above). The result will be a "polyline multi view" to
 ///  visualize several arrays at the same time.
 class Polyline {
-  Map<PyA, String> attr; // id, attributes
-  CompressedArray1D cpd;
-  PolylineElement polyline; // the drawn function
+  late Map<PyA, String> attr; // id, attributes
+  late CompressedArray1D cpd;
+  PolylineElement? polyline; // the drawn function
   List<GeometryElement> pointShapes = [];
-  TextElement polylineMarker;
-  int insetx, insety, insety2;
+  TextElement? polylineMarker;
+  late int insetx, insety, insety2;
   int dataAreaWidth,
-      dataAreaHeight,
-      effectivePolylineWidth,
+      dataAreaHeight;
+  late int effectivePolylineWidth,
       effectivePolylineHeight;
-  double refYmax; // maximum y value will become refYmax
-  int ixFirst, ixLast; // first and last index on screen
-  int xsFirst,
-      xsLast; // first and last screen x of polyline relative to dataArea
-  int ysLast; // last screen y of polyline relative to dataArea
-  int ysMin, ysMax; // smallest and biggest y screen value of polyline
-  double yysMin, yysMax; // the physical y values corresponding to ysMin, ysMax
-  int xshift, yshift1, yshift2; // additional offset in pixels
-  double xscale;
-  double yscale;
+  double? refYmax; // maximum y value will become refYmax
+  int? ixFirst, ixLast; // first and last index on screen
+  int xsFirst=0,
+      xsLast=0; // first and last screen x of polyline relative to dataArea
+  late int ysLast; // last screen y of polyline relative to dataArea
+  late int ysMin, ysMax; // smallest and biggest y screen value of polyline
+  double yysMin=0, yysMax=0; // the physical y values corresponding to ysMin, ysMax
+  late int xshift, yshift1, yshift2; // additional offset in pixels
+  late double xscale;
+  late double yscale;
   Float64List array; // x values for which the constructor was called
-  Float64List xValues;
-  RectElement selectionIcon; // a graphics rectangle to mark this polyline
+  late Float64List xValues;
+  RectElement? selectionIcon; // a graphics rectangle to mark this polyline
   bool _isSelected = false;
   bool get isSelected => _isSelected;
-  int xselectionIcon;
-  int yselectionIcon;
-  bool clipDataAtYBoundary;
+  int? xselectionIcon;
+  int? yselectionIcon;
+  late bool clipDataAtYBoundary;
 
-  int strokeWidth;
-  SvgSvgElement polylineContainer;
+  late int strokeWidth;
+  late SvgSvgElement polylineContainer;
   // a rectangular region around this polyline drawn by the user to zoom in
-  YZoomRegion zoomRegion;
+  YZoomRegion? zoomRegion;
 
   // This is the viewport defining the x and y ranges currently displayed by this [polyline]
-  double xmin, xmax;
-  double ymin, ymax;
+  late double xmin, xmax;
+  late double ymin, ymax;
   // constants for linear tranformation from physical to screen coordinates in ys = -a*y + b
-  double a, b;
+  double? a, b;
   bool useWebgl = false;
 
   /// Draws (plots) [array] into [polylineContainer]. The latter must be appended
@@ -135,9 +135,9 @@ class Polyline {
       this.dataAreaWidth,
       this.dataAreaHeight,
       this.zoomRegion,
-      double ymin,
-      double ymax,
-      Map<PyA, String> uAttr) {
+      double? ymin,
+      double? ymax,
+      Map<PyA, String>? uAttr) {
     attr = Map.from(POLYLINE_DEFAULT_ATTRIBUTES); // init. attributes
     if (uAttr != null) {
       attr.addAll(uAttr); // merge with defaults
@@ -147,19 +147,19 @@ class Polyline {
     // this is for example used for multiple data display when a data set should be displayed with the same expansion
     // as the previously loaded one.
     if (attr[PyA.OVERRIDE_IXFIRST] != null) {
-      ixFirst = int.parse(attr[PyA.OVERRIDE_IXFIRST]);
+      ixFirst = int.parse(attr[PyA.OVERRIDE_IXFIRST] ?? '0');
       attr.remove(PyA.OVERRIDE_IXFIRST); // this was a once-only action!
     }
     if (attr[PyA.OVERRIDE_IXLAST] != null) {
-      ixLast = int.parse(attr[PyA.OVERRIDE_IXLAST]);
+      ixLast = int.parse(attr[PyA.OVERRIDE_IXLAST] ?? '0');
       attr.remove(PyA.OVERRIDE_IXLAST);
     }
     assertIndexes();
 
-    clipDataAtYBoundary = Utils.parseBool(attr[PyA.DRAW_OUTSIDE_Y_VIEWPORT]);
+    clipDataAtYBoundary = Utils.parseBool(attr[PyA.DRAW_OUTSIDE_Y_VIEWPORT] ?? '0');
 
-    insetx = int.parse(attr[PyA.INSETX]);
-    insety = int.parse(attr[PyA.INSETY]);
+    insetx = int.parse(attr[PyA.INSETX] ?? '0');
+    insety = int.parse(attr[PyA.INSETY] ?? '0');
     insety2 = insety; // TODO for now, define own attr.
 
     // compress here and NOT in genPolyline() because e.g. in vertical scaling genPolyline() gets
@@ -170,7 +170,7 @@ class Polyline {
 //    xmin = getMin(cpd.xValues)[0]; xmax = getMax(cpd.xValues)[0];
 
     cpd = CompressedArray1D.compress(
-        array, ixFirst, ixLast, false, int.parse(attr[PyA.COMPRESSION_LENGTH]));
+        array, ixFirst, ixLast, false, int.parse(attr[PyA.COMPRESSION_LENGTH] ?? '0'));
 //    print("polyline.dart 1010=${yValues}");
 //    print("polyline.dart 1015=${cpd.cArray} $ixFirst $ixLast");
 
@@ -208,15 +208,15 @@ class Polyline {
       ixLast = array.length - 1;
     }
 
-    if (ixLast <= ixFirst) {
-      ixLast = ixFirst + 1;
+    if (ixLast! <= ixFirst!) {
+      ixLast = ixFirst! + 1;
     }
 
-    if (ixFirst < 0 || ixFirst > array.length - 1) {
+    if (ixFirst! < 0 || ixFirst! > array.length - 1) {
       ixFirst = 0;
     }
 
-    if (ixLast > array.length - 1 || ixLast < 0) {
+    if (ixLast! > array.length - 1 || ixLast! < 0) {
       ixLast = array.length - 1;
     }
   }
@@ -227,27 +227,27 @@ class Polyline {
       refYmax = null; // local y scaling
     } else {
       // y scaling such that ymax will become this value:
-      refYmax = double.parse(attr[PyA.REFYMAX]);
+      refYmax = double.parse(attr[PyA.REFYMAX] ?? '0');
     }
 
     if (refYmax != null && ymax.abs() > 0.0001) {
       // the result will be that this polyline gets scaled rel. to refYmax
       double normFactor = 1.0;
-      normFactor = refYmax / ymax;
+      normFactor = refYmax! / ymax;
       ymin = normFactor * ymin;
       ymax = normFactor * ymax;
     }
 
     StringBuffer points = StringBuffer(); // xs ys pairs
 
-    xshift = int.parse(attr[PyA.XSHIFT]);
-    yshift1 = int.parse(attr[PyA.YSHIFT1]);
-    yshift2 = int.parse(attr[PyA.YSHIFT2]);
-    xscale = double.parse(attr[PyA.XSCALE]);
-    yscale = double.parse(attr[PyA.YSCALE]);
+    xshift = int.parse(attr[PyA.XSHIFT] ?? '0');
+    yshift1 = int.parse(attr[PyA.YSHIFT1] ?? '0');
+    yshift2 = int.parse(attr[PyA.YSHIFT2] ?? '0');
+    xscale = double.parse(attr[PyA.XSCALE] ?? '0');
+    yscale = double.parse(attr[PyA.YSCALE] ?? '0');
     if (attr[PyA.YSCALE2] != null) {
       // apply 2nd yscale factor if present
-      yscale *= double.parse(attr[PyA.YSCALE2]);
+      yscale *= double.parse(attr[PyA.YSCALE2] ?? '0');
     }
 //    print("3=$yscale");
     // considering the inset of the polyline within the data area
@@ -256,7 +256,7 @@ class Polyline {
 
     double x, y; // user coordinates
 //    double xscreen, yscreen; // screen coordinates relative to dataArea origin
-    int xs, ys; // rounded screen coordinates relative to dataArea origin
+    int xs=0, ys=0; // rounded screen coordinates relative to dataArea origin
 
     int npnts = xValues.length; //cpd.xValues.length;
     ysMin = 1000 * 1000;
@@ -306,22 +306,22 @@ class Polyline {
     } // for(int i=0; i<npnts; i++)
 
     if (polyline != null) {
-      polyline.remove();
+      polyline!.remove();
     }
     polyline = PolylineElement(); // to be added to a container
     setSelected(isSelected);
 
-    polyline
-      ..setAttribute(SVG.STROKE, attr[PyA.STROKE])
+    polyline!
+      ..setAttribute(SVG.STROKE, attr[PyA.STROKE] ?? 'black')
       ..setAttribute(SVG.FILL, "none")
 //    ..setAttribute(FONT_SIZE, attributes[PyA.STROKE]) // ??
       ..setAttribute("points", points.toString());
 
     if (attr[PyA.ROTATE] != null) {
-      polyline.setAttribute(SVG.TRANSFORM, attr[PyA.ROTATE]);
+      polyline!.setAttribute(SVG.TRANSFORM, attr[PyA.ROTATE] ?? '0');
     }
 
-    polylineContainer.append(polyline);
+    polylineContainer.append(polyline!);
 
     ysLast = ys;
     //(yphysToXscreen(cpd.yValues[0]) + ys)~/2); //yphysToXscreen(0.0));
@@ -369,21 +369,21 @@ class Polyline {
   /// by [yphysToXscreen].
   /// If this method is called prior to calling [yphysToXscreen] the constants
   /// a and b and not available yet, null is returned.
-  double yScreenToYphys(int yscreen) {
+  double? yScreenToYphys(int yscreen) {
     if (a == null || b == null) {
       return null;
     }
 
     // the following checks are important for y axis labelling!
-    if (a.abs() < 1.0e-10 && yscreen <= 0) {
+    if (a!.abs() < 1.0e-10 && yscreen <= 0) {
       return ymax / yscale;
     }
 
-    if (a.abs() < 1.0e-10 && yscreen >= dataAreaHeight) {
+    if (a!.abs() < 1.0e-10 && yscreen >= dataAreaHeight) {
       return -ymax / yscale;
     }
 
-    double y = -(yscreen - b) / a;
+    double y = -(yscreen - b!) / a!;
     return y;
   }
 
@@ -397,13 +397,13 @@ class Polyline {
 
     if (zoomRegion != null) {
       double a2, b2;
-      if ((zoomRegion.ybottom - zoomRegion.ytop).abs() < 0.000001) {
+      if ((zoomRegion!.ybottom - zoomRegion!.ytop).abs() < 0.000001) {
         a2 = 1.0; // TODO right?
         b2 = -he / 2;
 //        yscale = 1.0; // ori
       } else {
-        a2 = -he / (zoomRegion.ybottom - zoomRegion.ytop);
-        b2 = insety + a2 * zoomRegion.ytop; // ori
+        a2 = -he / (zoomRegion!.ybottom - zoomRegion!.ytop);
+        b2 = insety + a2 * zoomRegion!.ytop; // ori
       }
       yscale = 1.0;
       yshift1 = 0;
@@ -425,8 +425,8 @@ class Polyline {
 //      a = a2*yscale; b = b2;
     } else {
       // screen position of polyline value 0 point in % of effective view height: 0.5 means centered.
-      double ysLeft = double.parse(attr[PyA.YPOSITION_ZERO]); // orig
-      double yix1 = double.parse(attr[PyA.YIX1]);
+      double ysLeft = double.parse(attr[PyA.YPOSITION_ZERO] ?? '0'); // orig
+      double yix1 = double.parse(attr[PyA.YIX1] ?? '0');
       double ys1, ys2, yix2;
 
       // yscale is the accumulated user interactive mouse wheel scaling factor
@@ -473,8 +473,8 @@ class Polyline {
         a = -(ys2 - ys1) / (yix2 - yix1);
       }
 
-      b = ys1 + a * yix1 + yshift1 + yshift2;
-      yscreen = -a * y + b;
+      b = ys1 + a! * yix1 + yshift1 + yshift2;
+      yscreen = -a! * y + b!;
     }
 
     try {
@@ -547,36 +547,36 @@ class Polyline {
   /// Sets selection state, changes stroke of polyline and filling of
   /// selectionRect.
   void setSelected(bool select) {
-    String stroke = attr[PyA.STROKE], fill;
+    String stroke = attr[PyA.STROKE] ?? 'black', fill;
     if (select) {
-      strokeWidth = int.parse(attr[PyA.STROKE_WIDTH_HILITE]);
-      fill = attr[PyA.STROKE];
+      strokeWidth = int.parse(attr[PyA.STROKE_WIDTH_HILITE] ?? '0');
+      fill = attr[PyA.STROKE] ?? 'black';
     } else {
-      strokeWidth = int.parse(attr[PyA.STROKE_WIDTH]);
+      strokeWidth = int.parse(attr[PyA.STROKE_WIDTH] ?? '0');
       fill = "none";
     }
     _isSelected = select;
 
     // changing an attribute will, in svg, directly be effective
-    polyline.setAttribute(SVG.STROKE_WIDTH, "$strokeWidth");
+    polyline!.setAttribute(SVG.STROKE_WIDTH, "$strokeWidth");
 
     if (selectionIcon != null) {
-      SVG.setAttr(selectionIcon, {SVG.STROKE: "$stroke", SVG.FILL: "$fill"});
+      SVG.setAttr(selectionIcon!, {SVG.STROKE: "$stroke", SVG.FILL: "$fill"});
     }
   }
 
   /// Adds a selection rectangle at [xs, ys] of polylineContainer
   /// If [xs] is null, the last rectangle is redrawn if there was one.
-  void addSelectionIcon(int xs, int ys) {
+  void addSelectionIcon(int? xs, int? ys) {
     if (selectionIcon != null) {
-      selectionIcon.remove(); // already there
+      selectionIcon!.remove(); // already there
     }
 
     if (xs == null) {
       if (xselectionIcon != null && yselectionIcon != null) // redraw last
       {
-        xs = xselectionIcon;
-        ys = yselectionIcon;
+        xs = xselectionIcon!;
+        ys = yselectionIcon!;
       } else {
         if (xsLast != null && ysLast != null) {
           xs = xsLast;
@@ -587,25 +587,25 @@ class Polyline {
       }
     }
 
-    int width = int.parse(attr[PyA.SELECTION_ICON_WIDTH]), height = width;
+    int width = int.parse(attr[PyA.SELECTION_ICON_WIDTH] ?? '0'), height = width;
 
     // PyA.SELECTION_ICON_OUTSIDE is false e.g. for integrals
     if (attr[PyA.SELECTION_ICON_OUTSIDE] == Utils.TRUE &&
-        xs > dataAreaWidth - insetx ~/ 2) {
+        xs! > dataAreaWidth - insetx ~/ 2) {
       xs = dataAreaWidth -
           width; // make sure icon remains visible inside data area
     }
 
-    xselectionIcon = xs + 2;
+    xselectionIcon = xs! + 2;
 
-    yselectionIcon = ys - height ~/ 2;
-    String stroke = attr[PyA.STROKE], fill = "white";
+    yselectionIcon = ys! - height ~/ 2;
+    String stroke = attr[PyA.STROKE]  ?? 'black', fill = "white";
     if (isSelected) {
-      fill = attr[PyA.STROKE];
+      fill = attr[PyA.STROKE] ?? '1';
     }
 
     selectionIcon = RectElement();
-    SVG.setAttr(selectionIcon, {
+    SVG.setAttr(selectionIcon!, {
       "x": "$xselectionIcon",
       "y": "$yselectionIcon",
       "width": "$width",
@@ -614,25 +614,25 @@ class Polyline {
       SVG.FILL: "$fill"
     });
 
-    polylineContainer.append(selectionIcon);
+    polylineContainer.append(selectionIcon!);
   }
 
   /// Removes the selection icon if there
   void removeSelectionIcon() {
-    if (selectionIcon != null) selectionIcon.remove(); // already there
+    if (selectionIcon != null) selectionIcon!.remove(); // already there
     selectionIcon = null;
   }
 
   /// Returns the specs of the selectionRect.
-  math.Rectangle getSelectionRectangleMath() {
+  math.Rectangle? getSelectionRectangleMath() {
     if (selectionIcon == null) {
       return null;
     }
     return math.Rectangle(
-        int.parse(selectionIcon.attributes[SVG.X]),
-        int.parse(selectionIcon.attributes[SVG.Y]),
-        int.parse(selectionIcon.attributes[SVG.WIDTH]),
-        int.parse(selectionIcon.attributes[SVG.HEIGHT]));
+        int.parse(selectionIcon!.attributes[SVG.X] ?? '0'),
+        int.parse(selectionIcon!.attributes[SVG.Y] ?? '0'),
+        int.parse(selectionIcon!.attributes[SVG.WIDTH] ?? '0'),
+        int.parse(selectionIcon!.attributes[SVG.HEIGHT] ?? '0'));
   }
 
   /// Adds a list of points to [polylineContainer]. The list must be
@@ -649,7 +649,7 @@ class Polyline {
       pointShapes.clear();
     }
 
-    String markerAttr = attr[PyA.POINT_LIST];
+    String markerAttr = attr[PyA.POINT_LIST] ?? '';
     if (markerAttr == null || markerAttr.isEmpty) return;
 
     List<String> xyvals = JsonUtils.decodeLS(markerAttr);
@@ -675,28 +675,28 @@ class Polyline {
   /// [xs], [ys]. If the text is appended right of the polyline it requires that
   /// the user extended polyAttr[PyA.INSETX] by the length of the text in pixels.
   void addMarkerText(int xs, int ys) {
-    if (polylineMarker != null) polylineMarker.remove();
-    if (attr[PyA.MARKER_TEXT] == null || attr[PyA.MARKER_TEXT].isEmpty) return;
+    if (polylineMarker != null) polylineMarker!.remove();
+    if (attr[PyA.MARKER_TEXT] == null || attr[PyA.MARKER_TEXT]!.isEmpty) return;
     polylineMarker = TextElement();
-    polylineMarker.text = attr[PyA.MARKER_TEXT];
-    int fontsize = int.parse(attr[PyA.MARKER_FONTSIZE]);
-    SVG.setAttr(polylineMarker, {
+    polylineMarker!.text = attr[PyA.MARKER_TEXT];
+    int fontsize = int.parse(attr[PyA.MARKER_FONTSIZE] ?? '0');
+    SVG.setAttr(polylineMarker!, {
       "x": "${xs + 8}",
       "y": "${ys + fontsize ~/ 4}",
       SVG.FONT_SIZE: "${fontsize}",
-      SVG.FILL: attr[PyA.STROKE],
+      SVG.FILL: attr[PyA.STROKE] ?? 'black',
       SVG.STROKE: "none",
     });
-    polylineContainer.append(polylineMarker);
+    polylineContainer.append(polylineMarker!);
   }
 
   /// Creates a point shape for the screen position
   /// [mxs, mys] with the geometric form [shape].
   GeometryElement createPointShape(int mxs, int mys, String shape) {
     GeometryElement pointShape;
-    String stroke = attr[PyA.POINT_LIST_STROKE], fill = "white";
+    String stroke = attr[PyA.POINT_LIST_STROKE] ?? 'black', fill = "white";
     if (stroke == null) {
-      stroke = attr[PyA.STROKE]; // use polyline stroke
+      stroke = attr[PyA.STROKE] ?? 'black'; // use polyline stroke
     }
     if (shape == POLYLINE_POINT_SHAPE_SQUARE_EMPTY) {
       int width = 8, height = width;
@@ -709,7 +709,7 @@ class Polyline {
         SVG.STROKE: "$stroke",
         SVG.FILL: "$fill"
       });
-    } else if (shape == POLYLINE_POINT_SHAPE_CIRCLE_EMPTY) {
+    } else  { //if (shape == POLYLINE_POINT_SHAPE_CIRCLE_EMPTY) {
       int radius = 6;
       pointShape = CircleElement();
       SVG.setAttr(pointShape, {
@@ -777,7 +777,7 @@ class Polyline {
   ///   are used. Otherwise, the length of this array must be the same as that of
   ///   [markerIndices].
   void drawMarkers(List<double> markerIndices, List<String> markerLabels,
-      List<Map<MarA, String>> markerAttrList) {
+      List<Map<MarA, String>>? markerAttrList) {
     MarkerLines(this)
         .drawPolylineMarkers(markerIndices, markerLabels, markerAttrList);
   }
@@ -785,7 +785,7 @@ class Polyline {
 
 /// An intensity (y) region defined by a selection rectangle
 class YZoomRegion {
-  double ytop, ybottom; // corresponding physical coordinates
+  late double ytop, ybottom; // corresponding physical coordinates
 
   YZoomRegion(this.ytop, this.ybottom);
 

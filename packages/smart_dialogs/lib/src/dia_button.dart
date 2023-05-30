@@ -9,7 +9,7 @@ import 'dart:html';
 /// Use [setAttr] to modify attributes.
 class ActButton {
   /// The button active attribute values
-  static Map<String, String> but_attr;
+  static Map<String, String>? but_attr;
 
   /// The attribute definitions
   static final String BUT_BACKGROUND = "BUT_BACKGROUND",
@@ -50,7 +50,7 @@ class ActButton {
   };
 
   /// The action button
-  ButtonElement but;
+  late ButtonElement but;
 
   /// Creates the button
   ActButton() {
@@ -72,53 +72,53 @@ class ActButton {
     if (but_attr == null) initAttrFromDefaults();
     if (myAttr == null) return;
     for (String attrName in myAttr.keys) {
-      but_attr[attrName] = myAttr[attrName];
+      but_attr![attrName] = myAttr[attrName]!;
     }
   }
 
   /// Sets the button attributes from [but_attr]
   void setButtonStyle() {
     but.style
-      ..display = but_attr[BUT_DISPLAY]
-      ..borderRadius = but_attr[BUT_BORDER_RADIUS]
-      ..border = but_attr[BUT_BORDER]
-      ..fontSize = but_attr[BUT_FONT_SIZE]
-      ..padding = but_attr[BUT_PADDING]
+      ..display = but_attr![BUT_DISPLAY]
+      ..borderRadius = but_attr![BUT_BORDER_RADIUS]!
+      ..border = but_attr![BUT_BORDER]
+      ..fontSize = but_attr![BUT_FONT_SIZE]
+      ..padding = but_attr![BUT_PADDING]
       ..background =
-          but_attr[BUT_BACKGROUND] // must be identical to SVG_BUTTON_COLOR
-      ..color = but_attr[BUT_COLOR]
-      ..borderBottom = but_attr[BUT_BORDER_BOTTOM]
-      ..fontSmoothing = but_attr[BUT_FONT_SMOOTHING]
+          but_attr![BUT_BACKGROUND] // must be identical to SVG_BUTTON_COLOR
+      ..color = but_attr![BUT_COLOR]
+      ..borderBottom = but_attr![BUT_BORDER_BOTTOM]
+      ..fontSmoothing = but_attr![BUT_FONT_SMOOTHING]!
       //..-webkit-font-smoothing=
-      ..fontWeight = but_attr[BUT_FONT_WEIGHT]
-      ..margin = but_attr[BUT_MARGIN]
-      ..textAlign = but_attr[BUT_TEXT_ALIGN]
-      ..opacity = but_attr[BUT_OPACITY_LEAVE];
+      ..fontWeight = but_attr![BUT_FONT_WEIGHT]
+      ..margin = but_attr![BUT_MARGIN]
+      ..textAlign = but_attr![BUT_TEXT_ALIGN]
+      ..opacity = but_attr![BUT_OPACITY_LEAVE]!;
 
     but.onMouseOver.listen((e) {
       but.style
-        ..opacity = but_attr[BUT_OPACITY_OVER]
-        ..cursor = but_attr[BUT_CURSOR_POINTER];
+        ..opacity = but_attr![BUT_OPACITY_OVER]!
+        ..cursor = but_attr![BUT_CURSOR_POINTER];
     });
 
     but.onMouseLeave.listen((e) {
       but.style
-        ..opacity = but_attr[BUT_OPACITY_LEAVE]
-        ..cursor = but_attr[BUT_CURSOR_AUTO];
+        ..opacity = but_attr![BUT_OPACITY_LEAVE]!
+        ..cursor = but_attr![BUT_CURSOR_AUTO];
     });
 
     // focus acquired
     but.onFocus.listen((e) {
       but.style
-        ..opacity = but_attr[BUT_OPACITY_OVER]
-        ..cursor = but_attr[BUT_CURSOR_POINTER];
+        ..opacity = but_attr![BUT_OPACITY_OVER]!
+        ..cursor = but_attr![BUT_CURSOR_POINTER];
     });
 
     // focus lost
     but.onBlur.listen((e) {
       but.style
-        ..opacity = but_attr[BUT_OPACITY_LEAVE]
-        ..cursor = but_attr[BUT_CURSOR_AUTO];
+        ..opacity = but_attr![BUT_OPACITY_LEAVE]!
+        ..cursor = but_attr![BUT_CURSOR_AUTO];
     });
   }
 }
