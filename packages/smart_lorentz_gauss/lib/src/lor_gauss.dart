@@ -15,7 +15,7 @@ import 'dart:math' as math;
 ///  a * (1-m[i])*exp(-FGAUSS*((x[i]-c[i])/w[i])^2)}
 class LorentzGauss extends LineShapeND {
   /// defaults for [fGauss] and [fLorentz]
-  static const double FGAUSS = 4 * 0.30102999566 /*math.log(2)*/;
+  static final double FGAUSS = 4.0 * math.log(2);
   static const double FLORENTZ = 4.0;
 
   /// centers, widths, L/G mixing factors

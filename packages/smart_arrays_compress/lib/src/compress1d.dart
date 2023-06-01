@@ -138,7 +138,7 @@ class CompressedArray1D {
           yminMax = [array[ixLast - 1], array[ixLast]];
           print("XX=$yminMax");
         }
-        double min = Array1D.getMinVal(new Float64List.fromList(yminMax));
+        double min = Array1D.getMinVal(Float64List.fromList(yminMax));
         if (min < 0) {
           newYvaluesNeg![curix] = min;
         } else if (min > 0) {
@@ -146,7 +146,7 @@ class CompressedArray1D {
         }
 
         double max = Array1D.getMaxInRange(
-            new Float64List.fromList(yminMax), null, null);
+            Float64List.fromList(yminMax), null, null);
         if (max < 0) {
           newYvaluesNeg![curix] = max;
         } else if (max > 0) {

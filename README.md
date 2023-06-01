@@ -131,5 +131,5 @@ This package provides frequently used functions for signal processing:
 
 --------------------------------------------------------------
 
-The smart_XXXX packages are now updated and maintained by Tim Maffett, timmaffett@gmail.com
+The *smart_* series of packages were ported to full null safety and otherwise updated and maintained by Tim Maffett, timmaffett@gmail.com
 They were originally authored by Dr. Bruno Guigas, Ernst Renz-Str. 16, 76646 Bruchsal, Phone: +4972574167, Germany, specpad@gmail.com

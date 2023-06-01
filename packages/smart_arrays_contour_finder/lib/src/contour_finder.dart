@@ -17,10 +17,10 @@ import 'contour_renderer.dart';
 /// For details of the algorithm see http://paulbourke.net/papers/conrec or
 ///  https://debrief.github.io/tutorial/contouring_algorithm.html.
 class ContourFinder {
-  List<double> h = List<double>.filled(5,0.0);
-  List<int> sh = List<int>.filled(5,0);
-  List<double> xh = List<double>.filled(5,0.0);
-  List<double> yh = List<double>.filled(5,0.0);
+  List<double> h = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];//List<double>.filled(5,0.0);
+  List<int> sh = [0, 0, 0, 0, 0, 0]; //List<int>.filled(5,0);
+  List<double> xh = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //List<double>.filled(5,0.0);
+  List<double> yh = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //List<double>.filled(5,0.0);
 
   /// Object that knows how to draw the contour
   ContourRenderer contourRenderer;
@@ -237,10 +237,9 @@ class ContourFinder {
                       break;
                   }
                   // Put your processing code here and comment out the printf
-                  //printf("%f %f %f %f %f\n",x1,y1,x2,y2,z[k]);
-//                  print("4000=$x1, $y1, $x2, $y2, ${z[k]}");
+                  // print("4000= m=$m case_value=$case_value x1=$x1, y1=$y1, x2=$x2, y2=$y2, z[$k]=${z[k]}");
                   contourRenderer.drawContourLine(x1, y1, x2, y2, z[k], k);
-//                  print("4001");
+                  //print("4001");
                 }
               }
             }

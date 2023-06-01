@@ -98,7 +98,7 @@ packages:
     source: hosted
     version: "2.2.0"
   build_runner:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: build_runner
       sha256: "87e06c939450b9b94e3e1bb2d46e0e9780adbff5500d3969f2ba2de6bbb860cb"
@@ -114,7 +114,7 @@ packages:
     source: hosted
     version: "7.2.8"
   build_web_compilers:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: build_web_compilers
       sha256: ee45348ba9c2dfd2e165c0adf69311970fa620c6669c345ab533e16d0d119e3d
@@ -266,7 +266,7 @@ packages:
     source: hosted
     version: "4.8.1"
   lints:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: lints
       sha256: "6b0206b0bf4f04961fc5438198ccb3a885685cd67d4d4a32cc20ad7f8adbe015"

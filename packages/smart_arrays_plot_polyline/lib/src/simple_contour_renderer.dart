@@ -61,7 +61,7 @@ class SimpleContourRenderer implements ContourRenderer {
     int x1, x2, y1, y2;
 
 
-print('drawContourLine  startX=$startX startY=$startY endX=$endX  endY=$endY');
+//DEBUG//print('drawContourLine  startX=$startX startY=$startY endX=$endX  endY=$endY');
 
     if (attr[CtourA.ROTATE] == "true") {
       // Some apps need to rotate the contour by -90 deg. around the data area center
@@ -81,7 +81,7 @@ print('drawContourLine  startX=$startX startY=$startY endX=$endX  endY=$endY');
       y2 = yToScreen(1 - endY);
     }
 
-print('attr[CtourA.ROTATE]=${attr[CtourA.ROTATE]}  x1=$x1 y1=$y1 x2=$x2  y2=$y2');
+//DEBUG//print('attr[CtourA.ROTATE]=${attr[CtourA.ROTATE]}  x1=$x1 y1=$y1 x2=$x2  y2=$y2');
 
 
 //    int x1 = (startY * dataAreaWidth).round() + dataAreaX;

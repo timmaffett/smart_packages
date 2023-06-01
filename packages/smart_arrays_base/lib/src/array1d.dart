@@ -246,7 +246,7 @@ class Array1D {
 
     if (lastIx > arr.length - 1) lastIx = arr.length - 1; // security check
 
-    for (int i = firstIx; i <= lastIx; i += 1) {
+    for (int i = firstIx; i <= lastIx; i++) {
       if (arr[i] > max_value) {
         max_value = arr[i];
       }
@@ -283,7 +283,7 @@ class Array1D {
   static List<dynamic> getMin(Float64List array) {
     double min_value = double.maxFinite;
     int min_index = -1;
-    for (int i = 0; i < array.length; i += 1) {
+    for (int i = 0; i < array.length; i++) {
       if (array[i] < min_value) {
         min_value = array[i];
         min_index = i;

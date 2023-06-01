@@ -23,6 +23,10 @@ class MinMax {
   int minValueIndexRow, maxValueIndexRow;
   MinMax(this.minValue, this.maxValue, this.minValueIndexCol,
       this.maxValueIndexCol, this.minValueIndexRow, this.maxValueIndexRow);
+
+  String toString() {
+    return 'MinMax( minValue:$minValue maxValue:$maxValue minValueIndexCol:$minValueIndexCol minValueIndexRow:$minValueIndexRow maxValueIndexCol:$maxValueIndexCol maxValueIndexRow:$maxValueIndexRow )';
+  }
 }
 
 /// This class provides utility functions for 2D arrays (matrices):
@@ -163,6 +167,7 @@ class Array2D {
         ymin_index_col = temp[1];
         ymin_index_row = i;
       }
+      temp = Array1D.getMax(matrix[i]);
       if (temp[0] > ymax) {
         ymax = temp[0];
         ymax_index_col = temp[1];
