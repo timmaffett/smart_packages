@@ -13,8 +13,13 @@ class DiaAttr {
       ZINDEX_DIALOG = 1000 * 1000 * 90,
       ZINDEX_ICONPANEL = 1000 * 1000 * 80;
 
+  static Map<String, String?>? _attr;
+
   /// The currently active dialog attributes defining the dialog style
-  static Map<String, String> attr;
+  static Map<String, String?> get attr {
+      if(_attr==null) initAttrFromDefaults();
+      return _attr!;
+  }
 
   /// dialog action names
   static final String DIA_ACT_OK = "DIA_ACT_OK",
@@ -161,11 +166,11 @@ class DiaAttr {
   /// Initializes the dialog attributes depending on the used device from
   /// the respective defaults.
   static void initAttrFromDefaults() {
-    attr = Map.from(DiaAttr.ATTR_DIALOGS_DESKTOP);
+    _attr = Map.from(DiaAttr.ATTR_DIALOGS_DESKTOP);
     if (DiaUtils.isPhone()) {
-      attr = Map.from(DiaAttr.ATTR_DIALOGS_PHONE);
+      _attr = Map.from(DiaAttr.ATTR_DIALOGS_PHONE);
     } else if (DiaUtils.isTablet()) {
-      attr = Map.from(DiaAttr.ATTR_DIALOGS_TABLET);
+      _attr = Map.from(DiaAttr.ATTR_DIALOGS_TABLET);
     }
   }
 
@@ -173,19 +178,15 @@ class DiaAttr {
   /// the respective current values (e.g. the defaults).
   /// Example:
   /// setAttr({DIALOG_HEADER_TEXTALIGN: "left",DIALOG_HEADER_FONTSIZE: "20"});
-  static void setAttr(Map<String, String> myAttr) {
-    if (attr == null) initAttrFromDefaults();
+  static void setAttr(Map<String, String>? myAttr) {
     if (myAttr == null) return;
     for (String attrName in myAttr.keys) {
-      attr[attrName] = myAttr[attrName];
+      attr[attrName] = myAttr[attrName]!;
     }
   }
 
   /// Sets some dialog styles for [dia].
   static void setDialogStyle(Element dia) {
-    if (attr == null) {
-      initAttrFromDefaults();
-    }
     dia.style
       ..background = attr[DIALOG_BACKGROUND]
       ..padding = "12px 16px 12px 16px"
@@ -193,15 +194,15 @@ class DiaAttr {
       ..border = "0" //"1px solid rgba(0, 100, 0, 0.3);"//"0"
       ..borderTop = "1px solid ${attr[DIALOG_TOPBAR_COLOR]}"
       ..borderRadius = "${attr[DIALOG_BORDER_RADIUS]}px"
-      ..boxShadow = attr[DIALOG_BOX_SHADOW]
+      ..boxShadow = attr[DIALOG_BOX_SHADOW]!
       ..fontSize = "${attr[DIALOG_TEXT_FONTSIZE]}px"
       ..lineHeight = "100%"
-      ..opacity = attr[DIALOG_WIN_OPACITY];
+      ..opacity = attr[DIALOG_WIN_OPACITY]!;
   }
 
   /// Sets some other dialog styles for [dia]
   static void setDialogStyle2(Element dia) {
-    if (attr == null) {
+    if (_attr == null) {
       initAttrFromDefaults();
     }
     dia.style
@@ -213,9 +214,9 @@ class DiaAttr {
       ..border = "0" //"1px solid rgba(0, 100, 0, 0.3);"//"0"
       ..borderTop = "1px solid ${attr[DIALOG_TOPBAR_COLOR]}"
       ..borderRadius = "${attr[DIALOG_BORDER_RADIUS]}px"
-      ..boxShadow = attr[DIALOG_BOX_SHADOW]
+      ..boxShadow = attr[DIALOG_BOX_SHADOW]!
       ..fontSize = "${attr[DIALOG_TEXT_FONTSIZE]}px"
       ..lineHeight = "100%"
-      ..opacity = attr[DIALOG_WIN_OPACITY];
+      ..opacity = attr[DIALOG_WIN_OPACITY]!;
   }
 } // DiaAttr

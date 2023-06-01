@@ -5,8 +5,8 @@ import 'dart:math' as math;
 
 /// Generates a 2D array from the function f(x,y)=x*sin(y)+y*cos(x).
 class XsinYcos2D {
-  List<Float64List> _matrix; // the matrix
-  Float64List _xColCoord, _yRowCoord;
+  late List<Float64List> _matrix; // the matrix
+  late Float64List _xColCoord, _yRowCoord;
 
   /// Computes the function f(x,y)=x*sin(y)+y*cos(x).
   /// Returns a 2D array with [nrows] rows and [ncols] columns.
@@ -16,7 +16,7 @@ class XsinYcos2D {
   /// [ystart], respectively.
   /// The start coodinates must be specified in radians (1 rad= 360 degr / 2*pi).
   XsinYcos2D(int nrows, int ncols, double xstart, double ystart) {
-    _matrix = List<Float64List>(nrows); // the matrix
+    List<Float64List?> work_matrix = List<Float64List?>.filled(nrows, null); // the matrix
     _xColCoord = Float64List(ncols); // its col coordinates
     _yRowCoord = Float64List(nrows); // its row coordinates
 
@@ -31,6 +31,7 @@ class XsinYcos2D {
         _xColCoord[k] = k / (ncols - 1); // normalize to 0.0 ... 1.0
       }
     }
+    _matrix  = work_matrix as List<Float64List>;
   }
 
   /// Returns the computed matrix.

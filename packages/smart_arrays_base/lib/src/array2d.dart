@@ -23,6 +23,10 @@ class MinMax {
   int minValueIndexRow, maxValueIndexRow;
   MinMax(this.minValue, this.maxValue, this.minValueIndexCol,
       this.maxValueIndexCol, this.minValueIndexRow, this.maxValueIndexRow);
+
+  String toString() {
+    return 'MinMax( minValue:$minValue maxValue:$maxValue minValueIndexCol:$minValueIndexCol minValueIndexRow:$minValueIndexRow maxValueIndexCol:$maxValueIndexCol maxValueIndexRow:$maxValueIndexRow )';
+  }
 }
 
 /// This class provides utility functions for 2D arrays (matrices):
@@ -163,6 +167,7 @@ class Array2D {
         ymin_index_col = temp[1];
         ymin_index_row = i;
       }
+      temp = Array1D.getMax(matrix[i]);
       if (temp[0] > ymax) {
         ymax = temp[0];
         ymax_index_col = temp[1];
@@ -290,21 +295,20 @@ class Array2D {
 
     Float64List resultRow;
     Float64List inputRow;
-    List<Float64List?> result = List<Float64List?>.filled(nrows, null);
+    List<Float64List> result = List<Float64List>.filled(nrows, Float64List(ncols));
     double curval;
     int destrow = 0;
     for (int i = firstRow; i < endRow; i++) {
       inputRow = matrix[i];
 
-      resultRow = Float64List(ncols); // will contain zeroes!
+      resultRow = result[destrow++]; // will contain zeroes!
       for (int j = 0; j < ncols; j++) {
         curval = inputRow[firstCol + j];
         if (negLevels && curval > 0 || !negLevels && curval < 0) curval = 0.0;
         resultRow[j] = curval;
       }
-      result[destrow++] = resultRow;
     }
-    return result as List<Float64List>;
+    return result;
   }
 
   /// Appends each row of [rows] to [matrix].

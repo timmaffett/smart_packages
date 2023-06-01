@@ -33,14 +33,13 @@ main() {
   // Example 2: compress a 2D array
   // Create a large matrix with random numbers between -1 and 1.
   final int NROWS = 1234, NCOLS = 2345, NROWS_NEW = 200, NCOLS_NEW = 500;
-  List<Float64List> matrix = List(NROWS);
+  List<Float64List> matrix = List<Float64List>.filled(NROWS, Float64List(NCOLS));
   for (int i = 0; i < NROWS; i++) {
-    Float64List row = Float64List(NCOLS);
+    Float64List row = matrix[i];
 
     for (int k = 0; k < NCOLS; k++) {
       row[k] = 2 * rand.nextDouble() - 1.0;
     }
-    matrix[i] = row;
   }
 
   // fill in some non-random values acting as minima and maxima

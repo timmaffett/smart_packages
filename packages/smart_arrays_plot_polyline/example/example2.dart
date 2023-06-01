@@ -22,10 +22,10 @@ main() {
   ];
 
   // setup the attributes for each plot
-  List<List<Map<PyA, String>>> plotAttr = List(dataArrays.length);
-  List<Map<AxA, String>> xaxisAttr = List(dataArrays.length),
-      yaxisAttr = List(dataArrays.length);
-  List<Map<LegA, String>> legendAttr = List(dataArrays.length);
+  List<List<Map<PyA, String>?>?> plotAttr = List<List<Map<PyA, String>?>?>.filled(dataArrays.length,null);
+  List<Map<AxA, String>?> xaxisAttr = List<Map<AxA, String>?>.filled(dataArrays.length,null),
+      yaxisAttr = List<Map<AxA, String>?>.filled(dataArrays.length,null);
+  List<Map<LegA, String>?> legendAttr = List<Map<LegA, String>?>.filled(dataArrays.length,null);
 
   plotAttr[0] = [
     {PyA.YPOSITION_ZERO: "0.8"}, // rel. y position of the value 0

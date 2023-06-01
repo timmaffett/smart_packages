@@ -2,10 +2,11 @@ name: smart_arrays_base
 version: "3.0.0"
 description: Provides basic functionalities for 1- and 2-dimensional arrays. Minima/maxima. Split, shuffle, swap, extract, extend. Submatrices, rows, columns, projections, sums.
 homepage: https://github.com/timmaffett/smart_packages
+publish_to: none
 environment:
   sdk: '>=2.19.0 <4.0.0'
-dependencies:
-  build_runner: ^1.6.2
-  build_web_compilers: ^2.0.0
-  pedantic: ^1.7.0
 
+dev-dependencies:
+  build_runner: ^2.0.0
+  build_web_compilers: ^3.0.0
+  lints: ^2.0.1

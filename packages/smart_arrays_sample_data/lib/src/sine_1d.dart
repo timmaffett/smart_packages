@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 /// Sine wave generator, optional with noise added.
 class Sine1D {
-  Float64List _array, _xValues;
+  late Float64List _array, _xValues;
 
   /// Computes the sine function
   ///   f(x) = offset + amplitude*(sin(x+phase) + noiseValue),

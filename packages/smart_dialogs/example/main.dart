@@ -2,7 +2,7 @@
 // code is governed by a BSD-style license that can be found in the LICENSE file.
 //
 // To execute this example, visit the following page:
-//   https://smart.specpad.bplaced.net/smart_dialogs/example.html
+//   https://timmaffett.github.io/smart_packages/smart_dialogs/example.html
 
 import 'package:smart_dialogs/smart_dialogs.dart';
 
@@ -15,8 +15,8 @@ main() {
 
 /// Displays a dialog to select and execute examples
 class ExampleDispatcher {
-  static List<String> itemsChecked;
-  static DivElement app_div;
+  static List<String>? itemsChecked;
+  static late DivElement app_div;
 
   List<String> items = [
     "Info Dialog",
@@ -61,7 +61,7 @@ class ExampleDispatcher {
     app_div = (querySelector("#app_div") as DivElement);
     if (itemsChecked == null) {
       itemsChecked = List<String>.filled(items.length, DiaUtils.FALSE);
-      itemsChecked[0] = DiaUtils.TRUE;
+      itemsChecked![0] = DiaUtils.TRUE;
     }
 
     UserInput uin = await Info.get(
@@ -75,12 +75,11 @@ class ExampleDispatcher {
         itemsChecked,
         true,
         null);
-
     if (uin.buttonCode == DiaAttr.DIA_ACT_OK) {
-      itemsChecked = List<String>.filled(itemsChecked.length, DiaUtils.FALSE);
+      itemsChecked = List<String>.filled(items.length, DiaUtils.FALSE);
       for (int i = 0; i < items.length; i++) {
         if (uin.getCheckedState(i) == DiaUtils.TRUE) {
-          itemsChecked[i] = DiaUtils.TRUE;
+          itemsChecked![i] = DiaUtils.TRUE;
           DiaAttr.initAttrFromDefaults();
           await itemsFuncs[i](); // execute selected example
           break;

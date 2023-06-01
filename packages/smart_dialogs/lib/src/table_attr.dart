@@ -48,26 +48,28 @@ class TableAttr {
   /// Initializes the dialog attributes depending on the used device from
   /// the respective defaults.
   static void initAttrFromDefaults() {
-    if (attr == null) attr = Map.from(ATTR_DEFAULTS);
+    attr = Map.from(ATTR_DEFAULTS);
   }
 
   /// Sets the table attributes specified in [myAttr]. Overrides
   /// the respective current values (e.g. the defaults).
   /// Example:
   /// setAttr({TABLE_HIGHLIGHT_COLOR: "red",TABLE_BUTTON_FONTSIZE: "20"});
-  static void setAttr(Map<String, String> myAttr) {
-    if (attr == null) initAttrFromDefaults();
+  static void setAttr(Map<String, String>? myAttr) {
+    //null safety not possible//if (attr == null) {
+    //  initAttrFromDefaults();
+    //}
     if (myAttr == null) return;
     for (String attrName in myAttr.keys) {
-      attr[attrName] = myAttr[attrName];
+      attr[attrName] = myAttr[attrName]!;
     }
   }
 
   /// Sets some table styles for [table].
   static void setTableStyle(TableElement table) {
-    if (attr == null) {
-      initAttrFromDefaults();
-    }
+    //null safety not possible//if (attr == null) {
+    //  initAttrFromDefaults();
+    //}
 
     table.style
           ..margin = "1em 0" // t r b l
@@ -76,7 +78,7 @@ class TableAttr {
           ..backgroundColor = attr[TABLE_BACKGROUND_COLOR]
           ..background = attr[TABLE_BACKGROUND_COLOR]
           ..color = attr[TABLE_TEXT_COLOR]
-          ..borderRadius = attr[TABLE_BORDER_RADIUS]
+          ..borderRadius = attr[TABLE_BORDER_RADIUS]!
           ..border = attr[TABLE_OUTER_BORDER]
           ..borderSpacing = "0" // space between cells and border around table
         // Note: without collapse (versus "separate"), the table cell border of 2
@@ -91,9 +93,9 @@ class TableAttr {
 
   /// Defines the style of a table [row] used as a table header
   static void setRowStyleHeader(TableRowElement row) {
-    if (attr == null) {
-      initAttrFromDefaults();
-    }
+    //null safety not possible//if (attr == null) {
+    //  initAttrFromDefaults();
+    //}
     row.style
       ..backgroundColor = attr[TABLE_HEADER_BACKGROUND_COLOR]
       ..color = attr[TABLE_HEADER_TEXT_COLOR]

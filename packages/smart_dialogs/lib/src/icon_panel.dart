@@ -20,9 +20,9 @@ class IconPanel extends BaseDialog {
   static final String POPUP_SPAN_GREYOUT = "<span style='color:lightgrey'>";
 
   TableElement diaTable = TableElement();
-  String lastTouchedActionCode;
-  List<math.Point<int>> _lastTouchPoints;
-  String _iconStyle;
+  String lastTouchedActionCode='';
+  List<math.Point<int>>? _lastTouchPoints;
+  late String _iconStyle;
 
   /// Creates and displays a panel with icons. Each icon may have a callback
   /// function executed when the icon is clicked.
@@ -66,7 +66,7 @@ class IconPanel extends BaseDialog {
     // Especially over the jsme structure display div.
 
     setStyle(dia, null);
-    Map<String, String> attr = DiaAttr.attr; // use shortcut
+    Map<String, String?> attr = DiaAttr.attr; // use shortcut
     // nodify standad style:
     parent.append(dia);
 
@@ -92,20 +92,20 @@ class IconPanel extends BaseDialog {
 
     int nrows = nitems ~/ ncols;
     if (nitems.remainder(ncols) > 0) nrows++;
-    List<TableRowElement> rows = List<TableRowElement>(nrows);
+    List<TableRowElement?> rows = List<TableRowElement?>.filled(nrows,null);
 
     // add table header
     // decode: "iconName||action code"
     int iconcount = 0;
     int iconPadding = 5;
     String iconName;
-    IconCallback iconCallback;
+    IconCallback? iconCallback;
     TableCellElement cell;
     for (int i = 0; i < nrows; i++) {
       // NOTE: for any one reason, the type TableRowElement must be specified inside the loop,
       // otherwsie
       rows[i] = TableRowElement();
-      TableRowElement row = rows[i];
+      TableRowElement row = rows[i]!;
       row.style
         ..color = attr[DiaAttr.DIALOG_TEXT_COLOR] // initial setting
         ..cursor = "pointer"
@@ -118,10 +118,10 @@ class IconPanel extends BaseDialog {
       void executIconFunction(UIEvent e) {
         TableCellElement eventCell;
         if (e.target is ImageElement) {
-          ImageElement icon = e.target; // event fired by icon
-          eventCell = icon.parent;
+          ImageElement icon = e.target! as ImageElement; // event fired by icon
+          eventCell = icon.parent! as TableCellElement;
         } else if (e.target is TableCellElement) {
-          eventCell = e.target; // event fired by cell
+          eventCell = e.target as TableCellElement; // event fired by cell
         } else {
           return;
         }
@@ -132,14 +132,15 @@ class IconPanel extends BaseDialog {
         List<IconCallback> iconCallbacks = getIconCallbacks();
         assert(iconNames.length == iconCallbacks.length);
         iconCallback = iconCallbacks[touchedIconNo];
-        if (iconCallback != null) iconCallback(e);
+        if (iconCallback != null) iconCallback!(e);
       }
 
       void handleTouchEnd(TouchEvent e) {
-        TouchList tl = e.changedTouches;
-        if (tl == null || tl.isEmpty) return;
-        int lastx = _lastTouchPoints[0].x;
-        int lasty = _lastTouchPoints[0].y;
+        if(e.changedTouches==null) return;
+        TouchList tl = e.changedTouches!;
+        if (tl.isEmpty) return;
+        int lastx = _lastTouchPoints?[0].x ?? 0;
+        int lasty = _lastTouchPoints?[0].y ?? 0;
         if ((lastx - tl.first.page.x).abs() > 30 ||
             (lasty - tl.first.page.y).abs() > 20) {
           return;
@@ -148,13 +149,13 @@ class IconPanel extends BaseDialog {
       }
 
       // these are the icons in the current row
-      List<TableCellElement> iconCells = List<TableCellElement>(ncols);
+      List<TableCellElement?> iconCells = List<TableCellElement?>.filled(ncols,null);
       for (int k = 0; k < ncols; k++) {
         // format is: "icon name||action code"
         iconName = iconNames[iconcount];
 
         iconCells[k] = TableCellElement();
-        cell = iconCells[k];
+        cell = iconCells[k]!;
         cell.id = "$iconcount"; // will indentify iconCallback
         DiaUtils.appendHtml2(
             cell, """<img src="${iconPath}/${iconName}" $_iconStyle>""");
@@ -166,12 +167,12 @@ class IconPanel extends BaseDialog {
             ;
 
         cell.onMouseEnter.listen((MouseEvent event) {
-          iconCells[k].style
+          iconCells[k]!.style
             ..backgroundColor = attr[DiaAttr.POPUP_SELECTION_COLOR];
         });
 
         cell.onMouseLeave.listen((MouseEvent event) {
-          iconCells[k].style
+          iconCells[k]!.style
             ..backgroundColor = attr[DiaAttr.ICONPANEL_BACKGROUND];
         });
 
@@ -211,12 +212,11 @@ class IconPanel extends BaseDialog {
 
   /// Returns the id of this panel.
   String getId() {
-    if (dia == null) return null;
     return dia.id;
   }
 
   /// Sets some styles for this icon panel.
-  void setStyle(Element dia, int width) {
+  void setStyle(Element dia, int? width) {
     dia.style
       ..backgroundColor = DiaAttr.attr[DiaAttr.ICONPANEL_BACKGROUND]
       ..background = DiaAttr.attr[DiaAttr.ICONPANEL_BACKGROUND]

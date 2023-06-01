@@ -10,7 +10,7 @@ This package provides frequently used functions for signal processing:
 - Phase-shifts (rotates in the complex plane) a complex-valued array.
 
 ### Example
-- The provided example can be directly executed via https://smart.specpad.bplaced.net/smart_signal_processing/example.html.
+- The provided example can be directly executed via https://timmaffett.github.io/smart_packages/smart_signal_processing/example.html.
 
 - Or, download the package and execute the file `example/example.html` in your browser.
 

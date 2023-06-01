@@ -52,18 +52,18 @@ class UtilsJson {
   static List<Float64List> decodeLF64L(String jsn) {
     dynamic res = json.decode(jsn);
 
-    List<Float64List> levels = List<Float64List>(res.length);
+    List<Float64List?> levels = List<Float64List?>.filled(res.length,null);
     for (int k = 0; k < res.length; k++) {
       if (res[k] == null) {
         levels[k] = null;
       } else {
         levels[k] = Float64List(res[k].length);
-        for (int i = 0; i < levels[k].length; i++) {
-          levels[k][i] = res[k][i];
+        for (int i = 0; i < levels[k]!.length; i++) {
+          levels[k]![i] = res[k][i];
         }
       }
     }
-    return levels;
+    return levels as List<Float64List>;
   }
 
   /// [jsn] to be encoded as Map<String, String>
@@ -131,15 +131,15 @@ class UtilsJson {
   static Map<String, Map<String, List<Map<String, String>>>> decodeMSMSLMSS(
       String jsn) {
     Map<String, dynamic> m1dyn = json.decode(jsn);
-    Map<String, Map> m1 = m1dyn.cast<String, Map>();
+    Map<String, Map?> m1 = m1dyn.cast<String, Map?>();
 
     Map<String, Map<String, List<Map<String, String>>>> m1new = {};
     for (String key1 in m1.keys) {
-      Map<String, dynamic> m2dyn = m1[key1];
+      Map<String, dynamic> m2dyn = m1[key1] as Map<String, dynamic>;
       Map<String, List> m2 = m2dyn.cast<String, List>();
       Map<String, List<Map<String, String>>> m2new = {};
       for (String key2 in m2.keys) {
-        List<dynamic> ld = m2[key2];
+        List<dynamic> ld = m2[key2]!;
         List<Map> l1 = ld.cast<Map>();
         List<Map<String, String>> l1new = [];
         for (Map m3dyn in l1) {

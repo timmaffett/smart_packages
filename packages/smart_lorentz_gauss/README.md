@@ -5,7 +5,7 @@
 This package provides functionalities to compute an n-dimensional mixed Lorentz-Gauss line shape, also called an n-dimensional Pseudo-Voigt function. Typically such functions occur in spectroscopic data originating from electro-magnetic radiation. The function can for example be used for fitting or deconvolution of such data, or for simulating (computing) spectra, i.e. as a superposition of several shapes with different parameters.
 
 ### Example
-- The provided example can be directly executed via https://smart.specpad.bplaced.net/smart_lorentz_gauss/example.html. The result will be displayed in the browser.
+- The provided example can be directly executed via https://timmaffett.github.io/smart_packages/smart_lorentz_gauss/example.html. The result will be displayed in the browser.
 
 - Or, download the package and execute the file `example/example.html` in your browser.
 

@@ -11,7 +11,7 @@ class Sigma {
   /// Returns the mean value of the numbers in [array]
   /// in the region [ixstart, ixend] (ixend exclusive)
   /// [ixstart] and [ixend] may be null, equivalent to the left/rightmost index.
-  static double meanValue(Float64List array, int ixstart, int ixend) {
+  static double meanValue(Float64List array, int? ixstart, int? ixend) {
     if (ixstart == null) ixstart = 0;
     if (ixend == null) ixend = array.length - 1;
     double mean = 0.0;
@@ -26,7 +26,7 @@ class Sigma {
   /// Returns the variance of the numbers in [array] in the region [ixstart, ixend]
   /// (ixend exclusive): variance = mean(x**2) - (mean(x))**2
   /// [ixstart] and [ixend] may be null, equivalent to the left/rightmost index.
-  static double variance(Float64List array, int ixstart, int ixend) {
+  static double variance(Float64List array, int? ixstart, int? ixend) {
     if (ixstart == null) ixstart = 0;
     if (ixend == null) ixend = array.length - 1;
     double mean = meanValue(array, ixstart, ixend);
@@ -45,7 +45,7 @@ class Sigma {
   /// Returns the standard deviation of the numbers in [array] in the region
   /// [ixstart, ixend] (ixend exclusive): sigma = Sqrt(variance(arr))
   /// [ixstart] and [ixend] may be null, equivalent to the left/rightmost index.
-  static double sigma(Float64List array, int ixstart, int ixend) {
+  static double sigma(Float64List array, int? ixstart, int? ixend) {
     if (ixstart == null) ixstart = 0;
     if (ixend == null) ixend = array.length - 1;
     return math.sqrt(variance(array, ixstart, ixend));
@@ -70,8 +70,12 @@ class Sigma {
     noisRowMin = noisRowMax - nrowsNoise;
     noisColMax = ncolsNoise;
     noisColMin = 0;
-    Float64List noisreg = Array2D.getSubmatrixAs1D(
+    Float64List? tmp = Array2D.getSubmatrixAs1D(
         matrix, noisRowMin, noisRowMax, noisColMin, noisColMax);
+    if(tmp==null) {
+      throw ArgumentError('Array2D.getSubmatrixAs1D unexpectedly returned null');
+    };
+    Float64List noisreg = tmp;
     for (int i = 0; i < noisreg.length; i++) {
       if (posneg == SIGMA_POS_ONLY && noisreg[i] < 0) {
         noisreg[i] = 0.0;

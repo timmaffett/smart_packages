@@ -17,11 +17,11 @@ class Phase {
   ///
   /// [inverse] = true ==> reverse phasing (sine terms will change sign
   ///  according to an inverse rotation in the complex plane)
-  void phase(Float64List reals, Float64List imags, double a0, double a1,
+  void phase(Float64List reals, Float64List? imags, double a0, double a1,
       bool inverse) {
     if (imags == null || (imags.length != reals.length)) {
       throw """real and imaginary spectrum have unequal sizes: 
-     ${reals.length} + ' / ' + ${imags.length}""";
+     ${reals.length} + ' / ' + ${imags?.length}""";
     }
 
     double real, imag, realnew, imagnew;
@@ -57,10 +57,10 @@ class Phase {
   ///  reals[i] := sqrt(reals[i]**2 + imags[i]**2) if [sqrt] is true ("magnitude")
   ///
   /// [imags] remains unchanged!
-  void magnitude(Float64List reals, Float64List imags, bool sqrt) {
+  void magnitude(Float64List reals, Float64List? imags, bool sqrt) {
     if (imags == null || (imags.length != reals.length)) {
       throw """real and imaginary spectrum have unequal sizes: 
-     ${reals.length} + ' / ' + ${imags.length}""";
+     ${reals.length} + ' / ' + ${imags?.length}""";
     }
 
     double real, imag, realnew;

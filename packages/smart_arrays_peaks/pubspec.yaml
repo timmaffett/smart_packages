@@ -2,14 +2,16 @@ name: smart_arrays_peaks
 version: "3.0.0"
 description: Provides functions to detect (search, pick) peaks (maximum values) in one- or two-dimensional arrays, also suitable for noisy data.
 homepage: https://github.com/timmaffett/smart_packages
+publish_to: none
 environment:
   sdk: '>=2.19.0 <4.0.0'
-dependencies:
-  build_runner: ^1.6.2
-  build_web_compilers: ^2.1.4
-  pedantic: ^1.7.0
-  smart_arrays_base: ^2.0.0
-  smart_arrays_sample_data: ^2.0.3
-  smart_arrays_plot_polyline: ^2.1.0
-  smart_lorentz_gauss: ^2.1.2
 
+dependencies:
+  smart_arrays_base: #^3.0.0
+    path: ../smart_arrays_base
+
+dev-dependencies:
+  build_runner: ^2.0.0
+  build_web_compilers: ^3.0.0
+  lints: ^2.0.1
+  

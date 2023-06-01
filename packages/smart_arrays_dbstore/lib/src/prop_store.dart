@@ -4,7 +4,6 @@
 import 'dart:html';
 import 'dart:async';
 import 'dart:indexed_db';
-import 'package:pedantic/pedantic.dart';
 
 /// The purpose of this class is to provide functionalities allowing one to
 /// store and retrieve key-value String pairs ("properties") in a database of
@@ -34,7 +33,7 @@ class PropStore {
 
   /// When reading a property from our store, we read it from the cache for speed.
   /// Respectively all methods in this class must make sure the cache is uptodate.
-  Map<String, String> propCache;
+  late Map<String, String> propCache;
 
   /// The name of the database used by [PropStore]
   String dbnameProp;
@@ -46,7 +45,7 @@ class PropStore {
   /// Requires that loadProps() was called: This allows for getting a property
   /// without waiting (no async method!).
   /// Returns null if [propName] not found.
-  String propGet(String propName) {
+  String? propGet(String propName) {
     return propCache[propName];
   }
 
@@ -56,26 +55,26 @@ class PropStore {
   /// If [propName] already exists in the db, its value will be overridden.
   /// Returns [propName] in the case of success, null if failed. The latter
   /// is true if the db could not be opened or created.
-  Future<String> propSave(String propName, String propValue) async {
+  Future<String?> propSave(String propName, String propValue) async {
 //    print("prop_store.dart 1000=opendb");
-    Database db = await openPropDB();
+    Database? db = await openPropDB();
     if (db == null) {
       return Future.value(null);
     }
 
 //    print("prop_store.dart 1010=$propName: $propValue");
     propCache[propName] = propValue; // make globally available
-    Transaction transaction = db.transaction(OBJ_STORE_PROP, 'readwrite');
-    ObjectStore objectStore = transaction.objectStore(OBJ_STORE_PROP);
+    Transaction? transaction = db.transaction(OBJ_STORE_PROP, 'readwrite');
+    ObjectStore? objectStore = transaction?.objectStore(OBJ_STORE_PROP);
 
     // add or override propName
     // result, the added key, non needed for now
-    String addedKey = await objectStore.put(propValue, propName);
+    String addedKey = await objectStore?.put(propValue, propName);
     // more request could made here on the object store, they would be q'd.
 
     // The transaction completes after all q'd operations on the object store
     // are complete
-    return transaction.completed.then((_) {
+    return transaction?.completed.then((_) {
       // Return the result of the future.
       db.close();
       return addedKey;
@@ -83,19 +82,19 @@ class PropStore {
   }
 
   /// Deletes [propName] from the db. Returns false on error.
-  Future<bool> propDel(String propName) async {
-    Database db = await openPropDB();
+  Future<bool?> propDel(String propName) async {
+    Database? db = await openPropDB();
     if (db == null) {
       return Future.value(false);
     }
-    Transaction trans;
-    ObjectStore store;
+    Transaction? trans;
+    ObjectStore? store;
 
     String storename = OBJ_STORE_PROP;
     trans = db.transaction(storename, 'readwrite');
-    store = trans.objectStore(storename);
-    unawaited(store.delete(propName)); // TODO need wait here?
-    return trans.completed.then((_) {
+    store = trans?.objectStore(storename);
+    unawaited(store?.delete(propName)); // TODO need wait here?
+    return trans?.completed.then((_) {
       propCache.remove(propName);
       db.close();
       return true;
@@ -108,26 +107,29 @@ class PropStore {
   /// May return an empty Map. Creates the db if not existing. In this case
   /// the returned Map is empty. Returns null if the data base can't be created,
   /// e.g. due to lack of browser support.
-  Future<Map<String, String>> loadProps() async {
-    Database db = await openPropDB();
+  Future<Map<String, String>?> loadProps() async {
+    Database? db = await openPropDB();
     if (db == null) {
       return Future.value(null);
     }
-    List<String> keys = await loadDBKeys(db, OBJ_STORE_PROP);
+    List<String>? keys = await loadDBKeys(db, OBJ_STORE_PROP);
+    if (keys == null) {
+      return Future.value(null);
+    }
 
     Map<String, String> result = {};
 
     String storename = OBJ_STORE_PROP;
-    Transaction transaction = db.transaction(storename, 'readonly');
+    Transaction? transaction = db.transaction(storename, 'readonly');
     if (transaction == null) {
       return Future.value(null);
     }
-    ObjectStore objectStore = transaction.objectStore(storename);
+    ObjectStore? objectStore = transaction.objectStore(storename);
     if (objectStore == null) {
       return Future.value(null);
     }
     for (String propName in keys) {
-      String value = await objectStore.getObject(propName);
+      String? value = await objectStore.getObject(propName);
       if (value != null) {
         result[propName] = value;
       }
@@ -147,11 +149,11 @@ class PropStore {
   /// Opens or creates a db of name [dbnameProp], as supplied to the constructor.
   /// Opens if db exists, creates if db doesn't exist.
   /// Returns the db. Returns null if browser doesn't support indexeddb.
-  Future<Database> openPropDB() async {
+  Future<Database?> openPropDB() async {
     if (!IdbFactory.supported) {
       return null;
     }
-    return await window.indexedDB.open(dbnameProp,
+    return await window.indexedDB!.open(dbnameProp,
         version: DB_VERSION_PROP, onUpgradeNeeded: _initPropDB);
   }
 
@@ -164,7 +166,7 @@ class PropStore {
     // We set autoIncrement=false because we supply our own unique
     // keys (= property names) for the store.
     for (String storename in objectstoreList) {
-      if (!db.objectStoreNames.contains(storename)) {
+      if (!db.objectStoreNames!.contains(storename)) {
         db.createObjectStore(storename, autoIncrement: false);
       }
     }
@@ -174,19 +176,19 @@ class PropStore {
 
   /// Returns all keys in the object store [storename] of data base [db].
   /// Assumes [db] is open.
-  static Future<List<String>> loadDBKeys(Database db, String storename) async {
-    Stream<CursorWithValue> cursors;
+  static Future<List<String>?> loadDBKeys(Database db, String storename) async {
+    Stream<CursorWithValue>? cursors;
     List<String> keyList = [];
 
-    Transaction trans = db.transaction(storename, 'readonly');
-    ObjectStore store = trans.objectStore(storename);
+    Transaction? trans = db.transaction(storename, 'readonly');
+    ObjectStore? store = trans?.objectStore(storename);
 
-    cursors = store.openCursor(autoAdvance: true).asBroadcastStream();
-    cursors.listen((cursor) {
-      keyList.add(cursor.key);
+    cursors = store?.openCursor(autoAdvance: true).asBroadcastStream();
+    cursors?.listen((cursor) {
+      keyList.add(cursor.key as String);
     });
 
-    return cursors.length.then((_) {
+    return cursors?.length.then((_) {
       return keyList;
     });
   }

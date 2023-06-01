@@ -18,14 +18,14 @@ class PhysUnits {
   /// [calib] is an optional calibration factor. If not null, both [physStart]
   /// and [physWidth] are multiplied with calib.
   static double physFromIndex(double index, double physStart, double physWidth,
-      int n, bool center, bool increasing, double calib) {
+      int n, bool center, bool? increasing, double? calib) {
     if (calib != null) {
       physStart *= calib;
       physWidth *= calib;
     }
     double physX;
-    double delta = physWidth / n; // we'll get n sections of length delta
-    if (!increasing) delta = -delta;
+    double delta = n!=0 ? (physWidth / n) : (1); // we'll get n sections of length delta
+    if (increasing==null || !increasing) delta = -delta;
     if (center) {
       physX = physStart + (index + 0.5) * delta;
     } else {
@@ -38,28 +38,26 @@ class PhysUnits {
   /// This is the inverse of [getPhysXFromDataIndex]:
   /// Returns the index corresponding to the physcial unit [physX].
   static double physToIndex(double physX, double physStart, double physWidth,
-      int n, bool center, bool increasing, double calib) {
+      int n, bool center, bool? increasing, double? calib) {
     if (calib != null) {
       physStart *= calib;
       physWidth *= calib;
     }
     double index;
-    double delta = physWidth / n; // we'll get n sections of length delta
-    if (!increasing) delta = -delta;
-
+    double delta = n!=0 ? (physWidth / n) : (1); // we'll get n sections of length delta
+    if (increasing==null || !increasing) delta = -delta;
     if (center) {
       index = (physX - physStart) / delta - 0.5;
     } else {
       index = (physX - physStart) / delta;
     }
-
     return index;
   }
 
   /// Normalizes [num] such that [num2] would obtain the value
   /// [normalizedNum2]. Returns the respective new value for [num].
   /// If [normalizedNum2] is null, [num] is returned.
-  static double normalize(double num, double num2, double normalizedNum2) {
+  static double normalize(double num, double? num2, double? normalizedNum2) {
     double normalizedY = num;
     if (normalizedNum2 != null && num2 != null && num2.abs() > 0.00000001) {
       normalizedY = (num * normalizedNum2) / num2;
@@ -72,7 +70,7 @@ class PhysUnits {
   /// which was fed into [normalize].
   /// If [normalizedNum2] is null, [num] is returned.
   static double undoNormalize(
-      double numNormalized, double num2, double normalizedNum2) {
+      double numNormalized, double? num2, double? normalizedNum2) {
     double unnormalized = numNormalized;
     if (normalizedNum2 != null && num2 != null) {
       unnormalized = (numNormalized * num2) / normalizedNum2;

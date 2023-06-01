@@ -29,7 +29,7 @@ class DiaUtils {
 
   /// Returns the rounded integer value
   /// assuming [cssAttr] is given in pixels, "10", or "10.5px",
-  static double removePx(String cssAttr) {
+  static double removePx(String? cssAttr) {
     if (cssAttr == null || cssAttr.isEmpty) return 28.0;
     return double.parse(cssAttr.replaceFirst("px", ""));
   }
@@ -193,9 +193,9 @@ class DiaUtils {
     if (e is MouseEvent) {
       x = (e.page.x).toInt();
       y = (e.page.y).toInt();
-    } else if (e is TouchEvent && e.touches.isNotEmpty) {
-      x = (e.touches[0].page.x).toInt();
-      y = (e.touches[0].page.y).toInt();
+    } else if (e is TouchEvent && e.touches!=null && e.touches!.isNotEmpty) {
+      x = (e.touches![0].page.x).toInt();
+      y = (e.touches![0].page.y).toInt();
     } else {
       x = 0;
       y = 0;
@@ -209,24 +209,24 @@ class DiaUtils {
   /// Return null if [e] is not touch event or the number of touches is 0.
   static List<Point<int>> getTouchPoints(UIEvent e) {
     int x, y;
-    List<Point<int>> tpoints;
+    List<Point<int>?> tpoints;
     if (e is MouseEvent) {
-      x = e.page.x;
-      y = e.page.y;
+      x = e.page.x.floor();
+      y = e.page.y.floor();
       tpoints = [Point(x, y)];
     } else if (!(e is TouchEvent)) {
       tpoints = [Point(0, 0)];
     } else {
       TouchEvent et = e;
-      if (et.touches == null || et.touches.isEmpty) return null;
+      if (et.touches == null || et.touches!.isEmpty) return [];
 
-      tpoints = List<Point<int>>(et.touches.length);
+      tpoints = List<Point<int>?>.filled(et.touches!.length, null);
       for (int i = 0; i < tpoints.length; i++) {
-        x = et.touches[i].page.x;
-        y = et.touches[i].page.y;
+        x = et.touches![i].page.x.floor();
+        y = et.touches![i].page.y.floor();
         tpoints[i] = Point(x, y);
       }
     }
-    return tpoints;
+    return tpoints as List<Point<int>>;
   }
 } // DiaUtils

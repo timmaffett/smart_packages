@@ -8,12 +8,12 @@ import 'package:smart_arrays_contour_finder/smart_arrays_contour_finder.dart';
 /// However, this renderer is more general and not only suited for drawing
 /// contours, but any kind of lines into a 2D htlm canvas element.
 class SimpleContourRenderer implements ContourRenderer {
-  CanvasRenderingContext2D c2d;
+  late CanvasRenderingContext2D c2d;
   CanvasElement contourCanvas;
-  int last_x1, last_y1, last_x2, last_y2;
+  int? last_x1, last_y1, last_x2, last_y2;
   // size and location of drawing area:
   int dataAreaWidth, dataAreaHeight, dataAreaX, dataAreaY;
-  Map<CtourA, String> attr;
+  late Map<CtourA, String> attr;
 
   /// Creates a renderer which will draw into [contourCanvas].
   /// The data area size and position covered by the drawing is given by
@@ -25,7 +25,7 @@ class SimpleContourRenderer implements ContourRenderer {
       this.dataAreaHeight,
       this.dataAreaX,
       this.dataAreaY,
-      Map<CtourA, String> contourAttr) {
+      Map<CtourA, String>? contourAttr) {
     attr = CONTOUR_DEFAULT_ATTRIBUTES;
     if (contourAttr != null) {
       attr.addAll(contourAttr);
@@ -33,7 +33,7 @@ class SimpleContourRenderer implements ContourRenderer {
     contourCanvas.style
       ..position = "absolute"
       ..backgroundColor = "transparent";
-    c2d = contourCanvas.getContext("2d");
+    c2d = contourCanvas.getContext("2d")! as CanvasRenderingContext2D;
   }
 
   int xToScreen(double x) {
@@ -59,6 +59,10 @@ class SimpleContourRenderer implements ContourRenderer {
   void drawContourLine(double startX, double startY, double endX, double endY,
       double contourLevel, int levelNumber) {
     int x1, x2, y1, y2;
+
+
+//DEBUG//print('drawContourLine  startX=$startX startY=$startY endX=$endX  endY=$endY');
+
     if (attr[CtourA.ROTATE] == "true") {
       // Some apps need to rotate the contour by -90 deg. around the data area center
       // to obtain the typical contour representation. This code shows how to do that.
@@ -76,6 +80,9 @@ class SimpleContourRenderer implements ContourRenderer {
       y1 = yToScreen(1 - startY);
       y2 = yToScreen(1 - endY);
     }
+
+//DEBUG//print('attr[CtourA.ROTATE]=${attr[CtourA.ROTATE]}  x1=$x1 y1=$y1 x2=$x2  y2=$y2');
+
 
 //    int x1 = (startY * dataAreaWidth).round() + dataAreaX;
 //    int x2 = (endY * dataAreaWidth).round() + dataAreaX;
@@ -114,7 +121,7 @@ class SimpleContourRenderer implements ContourRenderer {
       }
     } else {
       if (attr[CtourA.LEVEL_COLORS] != null) {
-        var colors = jsonDecode(attr[CtourA.LEVEL_COLORS]);
+        var colors = jsonDecode(attr[CtourA.LEVEL_COLORS]?? 'black');
         if (colors is List && levelNumber < colors.length) {
           c2d.strokeStyle = colors[levelNumber];
         }

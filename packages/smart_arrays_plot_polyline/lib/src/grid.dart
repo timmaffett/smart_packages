@@ -19,11 +19,11 @@ class XYGrid {
   /// The axis is drawn into this container by the constructor. You will have
   /// to place it according to your desired app layout to make it visible in
   /// your app.
-  SvgSvgElement gridContainer;
+  late SvgSvgElement gridContainer;
 
-  Map<AxA, String> attributes;
-  int xLength, yLength;
-  List<int> xValues, yValues;
+  late Map<AxA, String> attributes;
+  int? xLength, yLength;
+  List<int>? xValues, yValues;
 
   /// Constructs a grid consisting of lines of length [xLength] and [yLength],
   /// in pixels, parallel to x and y, respectively.
@@ -37,7 +37,7 @@ class XYGrid {
   ///  you can define here colors, dashes and more. The attributes specified here
   ///  override the respective defaults.
   XYGrid(this.xValues, this.yValues, this.xLength, this.yLength,
-      Map<AxA, String> gridAttr) {
+      Map<AxA, String>? gridAttr) {
     attributes = Map.from(GRID_DEFAULT_ATTRIBUTES); // init. attributes
     if (gridAttr != null) {
       // possibly changed attributes as wished by caller
@@ -53,18 +53,18 @@ class XYGrid {
     LineElement linex, liney;
     SvgSvgElement anXYGrid = SvgSvgElement();
     if (xValues != null) {
-      for (int i = 0; i < xValues.length; i++) {
-        if (xValues != null && xValues.isNotEmpty) {
+      for (int i = 0; i < xValues!.length; i++) {
+        if (xValues != null && xValues!.isNotEmpty) {
           liney = LineElement(); // line parallel to y axis
           SVG.setAttr(liney, {
-            SVG.X1: "${xValues[i]}",
+            SVG.X1: "${xValues![i]}",
             SVG.Y1: "0",
-            SVG.X2: "${xValues[i]}",
+            SVG.X2: "${xValues![i]}",
             SVG.Y2: "${yLength}",
-            SVG.STROKE: attributes[AxA.XYGRID_STROKE],
-            SVG.STROKE_WIDTH: attributes[AxA.XYGRID_STROKE_WIDTH],
-            SVG.STROKE_OPACITY: attributes[AxA.XYGRID_STROKE_OPACITY],
-            SVG.STROKE_DASHARRY: attributes[AxA.XYGRID_STROKE_DASH],
+            SVG.STROKE: attributes[AxA.XYGRID_STROKE] ?? '',
+            SVG.STROKE_WIDTH: attributes[AxA.XYGRID_STROKE_WIDTH] ?? '',
+            SVG.STROKE_OPACITY: attributes[AxA.XYGRID_STROKE_OPACITY] ?? '',
+            SVG.STROKE_DASHARRY: attributes[AxA.XYGRID_STROKE_DASH] ?? '',
           });
           anXYGrid.append(liney);
         }
@@ -72,18 +72,18 @@ class XYGrid {
     }
 
     if (yValues != null) {
-      for (int i = 0; i < yValues.length; i++) {
-        if (yValues != null && yValues.isNotEmpty) {
+      for (int i = 0; i < yValues!.length; i++) {
+        if (yValues != null && yValues!.isNotEmpty) {
           linex = LineElement(); // line parallel to x axis
           SVG.setAttr(linex, {
             SVG.X1: "0",
-            SVG.Y1: "${yValues[i]}",
+            SVG.Y1: "${yValues![i]}",
             SVG.X2: "${xLength}",
-            SVG.Y2: "${yValues[i]}",
-            SVG.STROKE: attributes[AxA.XYGRID_STROKE],
-            SVG.STROKE_WIDTH: attributes[AxA.XYGRID_STROKE_WIDTH],
-            SVG.STROKE_OPACITY: attributes[AxA.XYGRID_STROKE_OPACITY],
-            SVG.STROKE_DASHARRY: attributes[AxA.XYGRID_STROKE_DASH],
+            SVG.Y2: "${yValues![i]}",
+            SVG.STROKE: attributes[AxA.XYGRID_STROKE] ?? '',
+            SVG.STROKE_WIDTH: attributes[AxA.XYGRID_STROKE_WIDTH] ?? '',
+            SVG.STROKE_OPACITY: attributes[AxA.XYGRID_STROKE_OPACITY] ?? '',
+            SVG.STROKE_DASHARRY: attributes[AxA.XYGRID_STROKE_DASH] ?? '',
           });
 
           anXYGrid.append(linex);

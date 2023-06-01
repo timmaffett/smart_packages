@@ -2,11 +2,15 @@ name: smart_arrays_compress
 version: "3.0.0"
 description: Compresses large one- or two-dimensional arrays (vectors, matrices) to a reduced format retaining minimum and maximum values. Can also expand an array by interpolation.
 homepage: https://github.com/timmaffett/smart_packages
+publish_to: none
 environment:
   sdk: '>=2.19.0 <4.0.0'
-dependencies:
-  build_runner: ^1.6.2
-  build_web_compilers: ^2.0.0
-  pedantic: ^1.7.0
-  smart_arrays_base: ^2.0.9
 
+dependencies:
+  smart_arrays_base: #^3.0.0
+    path: ../smart_arrays_base
+
+dev-dependencies:
+  build_runner: ^2.0.0
+  build_web_compilers: ^3.0.0
+  lints: ^2.0.1

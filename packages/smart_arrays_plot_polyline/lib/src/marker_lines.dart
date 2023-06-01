@@ -1,5 +1,4 @@
 import 'dart:svg';
-import 'utils.dart';
 
 import '../smart_arrays_plot_polyline.dart';
 
@@ -21,21 +20,12 @@ class MarkerLines {
   ///   are used. Otherwise, the length of this array must be the same as that of
   ///   [markerIndices].
   void drawPolylineMarkers(List<double> markerIndices,
-      List<String> markerLabels, List<Map<MarA, String>> markerAttrList) {
-    SvgSvgElement ticksContainer, labelsContainer;
-
-    if (ticksContainer != null) {
-      ticksContainer.remove(); // remove existing ticks
-      ticksContainer = null;
-      labelsContainer.remove(); // remove existing ticks
-      labelsContainer = null;
-    }
-
-    ticksContainer = SvgSvgElement();
-    labelsContainer = SvgSvgElement();
+      List<String>? markerLabels, List<Map<MarA, String>>? markerAttrList) {
+    final ticksContainer = SvgSvgElement();
+    final labelsContainer = SvgSvgElement();
 
     int lastLabpos = 0; // remember last drawn label position
-    Map<MarA, String> markerAttr;
+    Map<MarA, String>? markerAttr;
     int nticks = markerIndices.length;
     if (markerLabels != null && markerLabels.length != nticks) {
       throw ("markerIndices and markerLabels must have same length!");
@@ -46,7 +36,7 @@ class MarkerLines {
         markerAttr = markerAttrList[i];
       }
       drawMarker(ticksContainer, labelsContainer, markerIndices[i],
-          markerLabels[i], yphys, lastLabpos, markerAttr);
+          markerLabels?[i] ?? '', yphys, lastLabpos, markerAttr);
     }
 
     dpy.polylineContainer..append(ticksContainer)..append(labelsContainer);
@@ -73,7 +63,7 @@ class MarkerLines {
       String peakLabel,
       double yphys,
       int lastLabpos,
-      Map<MarA, String> markerAttr) {
+      Map<MarA, String>? markerAttr) {
     if (markerAttr == null) {
       markerAttr = Map.from(MARKER_DEFAULT_ATTRIBUTES);
     } else {
@@ -94,9 +84,9 @@ class MarkerLines {
       ypos = dpy.yphysToYscreen(0.0).round();
       yposStart = ypos - 10;
       yposEnd = yposStart - 30;
-      tickColor = markerAttr[MarA.PEAKLAB_MARKER_STROKE_NEG];
+      tickColor = markerAttr[MarA.PEAKLAB_MARKER_STROKE_NEG]!;
     } else {
-      tickColor = markerAttr[MarA.PEAKLAB_MARKER_STROKE_POS];
+      tickColor = markerAttr[MarA.PEAKLAB_MARKER_STROKE_POS]!;
     }
 
     LineElement liney = LineElement(); // line parallel to y axis
@@ -112,7 +102,7 @@ class MarkerLines {
     markerTicks.append(liney); // append to ticks container
 
     // draw peak label
-    int fontsize = int.parse(markerAttr[MarA.PEAKLAB_FONT_SIZE]);
+    int fontsize = int.parse(markerAttr[MarA.PEAKLAB_FONT_SIZE]!);
     int labposx = xpos - fontsize ~/ 3; // - fontsize*peakLabel.length;
     if (labposx > lastLabpos + fontsize) {
       TextElement teLab = TextElement();
@@ -122,7 +112,7 @@ class MarkerLines {
       SVG.setAttr(teLab, {
         SVG.X: "${labposx}px", // center text in xaxis area
         SVG.Y: "${labposy}px", // offset from xaxis labels
-        SVG.FILL: markerAttr[MarA.PEAKLAB_CHARS_FILL],
+        SVG.FILL: markerAttr[MarA.PEAKLAB_CHARS_FILL]!,
         SVG.STROKE: "none",
         SVG.FONT_SIZE: "${fontsize}px",
         "transform": "rotate(90, ${labposx}, ${labposy})",

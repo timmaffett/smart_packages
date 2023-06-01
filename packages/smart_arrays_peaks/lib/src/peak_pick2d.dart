@@ -8,7 +8,7 @@ import '../smart_arrays_peaks.dart';
 class PeakPicker2D {
   // rowPeaks: key=row, value=list of the peak indices in that row
   // colPeaks: key=col, value=list of the peak indices in that col
-  Map<int, List<int>> rowPeaks, colPeaks;
+  late Map<int, List<int>> rowPeaks, colPeaks;
 
   PeakPicker2D();
 
@@ -49,7 +49,7 @@ class PeakPicker2D {
     // if yes, at the 2D peak to the list.
     rowPeaks.forEach((int row, List<int> cols) {
       cols.forEach((int col) {
-        if (colPeaks.containsKey(col) && colPeaks[col].contains(row)) {
+        if (colPeaks.containsKey(col) && colPeaks[col]!.contains(row)) {
           peaklist.add([row, col]);
         }
       });
@@ -81,12 +81,12 @@ class PeakPicker2D {
       int maxPeaks) {
     rowPeaks = Map<int, List<int>>();
     Float64List row;
-    List<int> peaks1D;
+    List<int>? peaks1D;
     for (int i = startRow; i < endRow; i++) {
       row = matrix[i];
       peaks1D = PeakPicker1D.detectPeaks(
           row, startCol, endCol, noise, threshold, peakSign, maxPeaks);
-      if (peaks1D.isNotEmpty) rowPeaks[i] = peaks1D;
+      if (peaks1D!=null && peaks1D.isNotEmpty) rowPeaks[i] = peaks1D;
     }
 
     List<List<int>> peaklist = [];
@@ -165,13 +165,14 @@ class PeakPicker2D {
       String peakSign,
       int maxPeaks) {
     colPeaks = Map<int, List<int>>();
-    Float64List col;
-    List<int> peaks1D;
+    Float64List? col;
+    List<int>? peaks1D;
     for (int i = startCol; i < endCol; i++) {
       col = Array2D.getColumn(matrix, i);
+      if(col==null) throw ArgumentError('Array2D.getColumn() returned null in detectColPeaks');
       peaks1D = PeakPicker1D.detectPeaks(
           col, startRow, endRow, noise, threshold, peakSign, maxPeaks);
-      if (peaks1D.isNotEmpty) colPeaks[i] = peaks1D;
+      if (peaks1D!=null && peaks1D.isNotEmpty) colPeaks[i] = peaks1D;
     }
   }
 

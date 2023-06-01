@@ -246,7 +246,7 @@ class Array1D {
 
     if (lastIx > arr.length - 1) lastIx = arr.length - 1; // security check
 
-    for (int i = firstIx; i <= lastIx; i += 1) {
+    for (int i = firstIx; i <= lastIx; i++) {
       if (arr[i] > max_value) {
         max_value = arr[i];
       }
@@ -283,7 +283,7 @@ class Array1D {
   static List<dynamic> getMin(Float64List array) {
     double min_value = double.maxFinite;
     int min_index = -1;
-    for (int i = 0; i < array.length; i += 1) {
+    for (int i = 0; i < array.length; i++) {
       if (array[i] < min_value) {
         min_value = array[i];
         min_index = i;
@@ -357,7 +357,7 @@ class Array1D {
   /// can't be divided by [size] without remainder.
   /// If [size] is 0 or equal or greater than the length of [array], the result
   /// will contain [array] as its single row.
-  static List<Float64List?> splitArray(Float64List array, int size) {
+  static List<Float64List> splitArray(Float64List array, int size) {
     int len = array.length;
     if (size >= len || size == 0) return [array];
     int nrows = len ~/ size;
@@ -367,16 +367,18 @@ class Array1D {
       lastsubrowLength = len.remainder(size);
     }
 
-    List<Float64List?> result = List<Float64List?>.filled(nrows, null);
+    List<Float64List> result = List<Float64List>.filled(nrows, Float64List(size));
     int arrix = 0;
     for (int i = 0; i < nrows; i++) {
       int rowlen = size;
+      Float64List row = result[i];
       if (i == nrows - 1 && lastsubrowLength > 0) rowlen = lastsubrowLength;
-      Float64List row = Float64List(rowlen);
+      if(rowlen!=size) {
+        row = result[i] = Float64List(rowlen);
+      }
       for (int k = 0; k < rowlen; k++) {
         row[k] = array[arrix++];
       }
-      result[i] = row;
     }
     return result;
   }

@@ -22,9 +22,9 @@ class PeakPicker1D {
   /// biggest peaks (or smallest for negative peaks).
   /// Returns a list of sorted indices where the peaks occur in [array].
   //   (could be empty, but not null).
-  static List<int> detectPeaks(Float64List array, int ixstart, int ixend,
+  static List<int>? detectPeaks(Float64List array, int ixstart, int ixend,
       double noise, double threshold, String peakSign, int maxPeaks) {
-    List<int> negpeaks, result;
+    List<int>? negpeaks, result;
     if (peakSign == PICK_POS) {
       result = detectPeaks0(
           array, ixstart, ixend, noise, threshold, false, maxPeaks);

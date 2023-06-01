@@ -25,16 +25,17 @@ class Legend {
 //  Map<Aleg, String> textAttributes;
   Map<String, RectElement> textMarkers =
       Map<String, RectElement>(); // id, rectangle
-  int dy;
+  late int dy;
   int rectbordersize = 6;
-  int colored_rect_width; // small colored rect left of text
+  int colored_rect_width = 0; // small colored rect left of text
   int text_marker_xoffset = 6; // with respect to legend left edge
   final String LEGEND_ID = "legend";
   SvgSvgElement legendContainer = SvgSvgElement();
-  RectElement bgRectangle;
-  int fontsize; // pixels
-  int nlines, curlineNo;
-  String topTitle; // always at top of the legend if present, no color rect.
+  RectElement? bgRectangle;
+  int fontsize = 10; // pixels
+  int nlines;
+  late int curlineNo;
+  String? topTitle; // always at top of the legend if present, no color rect.
 
   /// Constructs a Legend with optional [legendAttributes]. If null,
   /// LEGEND_DEFAULT_ATTRIBUTES will apply. If not null the specified attributes
@@ -50,48 +51,49 @@ class Legend {
   ///  If a toptitle is specified, set it at the top of the legend.
   ///  A toptitle is to be stored in legendAttributes[LegA.TOP_TITLE].
   ///  Subtitles (each subtitle on a separate line
-  Legend(Map<LegA, String> legendAttributes, this.nlines) {
+  Legend(Map<LegA, String>? legendAttributes, this.nlines) {
     curlineNo = nlines;
 
     attrMap[LEGEND_ID] = Map.from(LEGEND_DEFAULT_ATTRIBUTES);
 
     if (legendAttributes != null && legendAttributes.isNotEmpty) {
-      attrMap[LEGEND_ID].addAll(legendAttributes); // merge
+      attrMap[LEGEND_ID]!.addAll(legendAttributes); // merge
     }
 
 //    textAttributes = attrMap[LEGEND_ID]; // contained in same map
 
-    legendContainer.setAttribute(SVG.X, attrMap[LEGEND_ID][LegA.X]);
-    legendContainer.setAttribute(SVG.Y, attrMap[LEGEND_ID][LegA.Y]);
+    legendContainer.setAttribute(SVG.X, attrMap[LEGEND_ID]![LegA.X] ?? '');
+    legendContainer.setAttribute(SVG.Y, attrMap[LEGEND_ID]![LegA.Y] ?? '');
 
-    colored_rect_width = int.parse(attrMap[LEGEND_ID][LegA.COLORED_RECT_WIDTH]);
+    colored_rect_width = int.parse(attrMap[LEGEND_ID]![LegA.COLORED_RECT_WIDTH] ?? '0');
 
     // if a toptitle is specified, set it at the top of the legend.
     // the position handling is done in setText()
-    topTitle = attrMap[LEGEND_ID][LegA.TOP_TITLE];
-    if (topTitle != null && topTitle.isNotEmpty) {
-      initSetText(TOP_TITLE_ID, topTitle, null);
+    topTitle = attrMap[LEGEND_ID]![LegA.TOP_TITLE];
+    if (topTitle != null && topTitle!.isNotEmpty) {
+      initSetText(TOP_TITLE_ID, topTitle!, null);
     }
   }
 
   /// Replaces the legend text with [id] by the new [text] and draws the text
   /// marker rectangle in front of the text. [stroke] defines the color of the
   /// text marker rectangle.If [stroke] is null, no rectangle will be drawn.
-  void initSetText(String id, String text, String stroke) {
-    textElements[id] = TextElement();
-    textElements[id].text = text;
-    fontsize = int.parse(attrMap[LEGEND_ID][LegA.FONT_SIZE]);
+  void initSetText(String id, String text, String? stroke) {
+    final newTextElementForId = TextElement();
+    textElements[id] = newTextElementForId;
+    newTextElementForId.text = text;
+    fontsize = int.parse(attrMap[LEGEND_ID]![LegA.FONT_SIZE] ?? '10');
 //    fontsize = int.parse(textElements[id]
 //        .attributes[POLYLINE_LEGEND_FONT_SIZE]); // this is used elsewhere!
-    textElements[id].setAttribute(SVG.FONT_SIZE, "${fontsize}");
-    textElements[id]
-        .setAttribute(SVG.FILL, attrMap[LEGEND_ID][LegA.TEXT_COLOR]);
+    newTextElementForId.setAttribute(SVG.FONT_SIZE, "${fontsize}");
+    newTextElementForId
+        .setAttribute(SVG.FILL, attrMap[LEGEND_ID]![LegA.TEXT_COLOR] ?? 'black');
 //    textAttributes[SVG.FONT_SIZE] = "${fontsize}";
 //    setAttr(textElements[id], textAttributes);
     // add a small extra space to the font size
 //    int deltay = fontsize +
 //        int.parse(textElements[id].attributes[Aleg.POLYLINE_LEGEND_LINESEP]);
-    int deltay = fontsize + int.parse(attrMap[LEGEND_ID][LegA.LINESEP]);
+    int deltay = fontsize + int.parse(attrMap[LEGEND_ID]![LegA.LINESEP] ?? '0');
 
     dy = curlineNo * deltay;
 
@@ -114,11 +116,11 @@ class Legend {
 
     curlineNo--;
 
-    legendContainer.append(textElements[id]);
+    legendContainer.append(textElements[id]!);
 
-    textElements[id]
+    newTextElementForId
         .setAttribute(SVG.X, "${xoffs}"); // x position of text begin
-    textElements[id]
+    newTextElementForId
         .setAttribute(SVG.Y, "$dy"); // y position of text (baseline)
 
     // color indicator for legend text: drawn left of the text, but not
@@ -135,7 +137,7 @@ class Legend {
   /// If [stroke] is null, no rectangle will be drawn.
   /// If there is no legend text to replace, the legend text will be set
   /// initally from [text].
-  void setText(String id, String text, String stroke) {
+  void setText(String id, String text, String? stroke) {
 //    if(text == null)
 //    {
 //      if(bgRectangle != null)
@@ -144,7 +146,7 @@ class Legend {
 //    }
 
     if (textElements.containsKey(id)) {
-      TextElement te = textElements[id];
+      TextElement te = textElements[id]!;
       te.text = text;
       te.replaceWith(te);
     } else {
@@ -162,12 +164,12 @@ class Legend {
   /// Replaces the legend text and associated text marker rectangle of [id].
   void removeText(String id) {
     if (textElements.containsKey(id)) {
-      textElements[id].remove(); // text element from legendArea
+      textElements[id]!.remove(); // text element from legendArea
       textElements.remove(id);
     }
 
     if (textMarkers.containsKey(id)) {
-      textMarkers[id].remove(); // rect from legendArea
+      textMarkers[id]!.remove(); // rect from legendArea
       textMarkers.remove(id);
     }
     curlineNo = nlines; // reset y position
@@ -180,7 +182,7 @@ class Legend {
   /// The following attributes from the legend attributes will apply: BG_OPACITY, BG_COLOR.
   void addBGRectangle_(int deltay) {
     if (bgRectangle != null) {
-      bgRectangle.remove(); // remove the one from the last draw
+      bgRectangle!.remove(); // remove the one from the last draw
     }
 
     bgRectangle = RectElement();
@@ -190,19 +192,19 @@ class Legend {
 
     // at the very first call rendering is not complete, so use arbitrary value
     // This could be made better: TODO number of text chars times "font-size"
-    int rectWidth = int.parse(attrMap[LEGEND_ID][LegA.BG_WIDTH]);
+    int rectWidth = int.parse(attrMap[LEGEND_ID]![LegA.BG_WIDTH] ?? '0');
     if (rectWidth == 0) return;
-    int rectHeight = int.parse(attrMap[LEGEND_ID][LegA.BG_HEIGTH]);
+    int rectHeight = int.parse(attrMap[LEGEND_ID]![LegA.BG_HEIGTH] ?? '0');
 
-    bgRectangle.attributes[SVG.X] = "$rectX";
-    bgRectangle.attributes[SVG.Y] = "$rectY";
-    bgRectangle.attributes[SVG.WIDTH] = "$rectWidth";
-    bgRectangle.attributes[SVG.HEIGHT] = "$rectHeight";
-    bgRectangle.attributes[SVG.FILL] = attrMap[LEGEND_ID][LegA.BG_COLOR];
-    bgRectangle.attributes[SVG.FILL_OPACITY] =
-        attrMap[LEGEND_ID][LegA.BG_OPACITY];
+    bgRectangle!.attributes[SVG.X] = "$rectX";
+    bgRectangle!.attributes[SVG.Y] = "$rectY";
+    bgRectangle!.attributes[SVG.WIDTH] = "$rectWidth";
+    bgRectangle!.attributes[SVG.HEIGHT] = "$rectHeight";
+    bgRectangle!.attributes[SVG.FILL] = attrMap[LEGEND_ID]![LegA.BG_COLOR] ?? '';
+    bgRectangle!.attributes[SVG.FILL_OPACITY] =
+        attrMap[LEGEND_ID]![LegA.BG_OPACITY] ?? '';
 
-    legendContainer.append(bgRectangle);
+    legendContainer.append(bgRectangle!);
   }
 
   /// Adds a text marker rectangle to the left of the text with [id], with the fill
@@ -211,13 +213,13 @@ class Legend {
   RectElement genTextMarkerRectangle_(String id, String stroke, int deltay) {
     RectElement r = RectElement();
 
-    int rectHeight = int.parse(attrMap[LEGEND_ID][LegA.COLORED_RECT_HEIGHT]);
+    int rectHeight = int.parse(attrMap[LEGEND_ID]![LegA.COLORED_RECT_HEIGHT] ?? '0');
     int rectWidth = colored_rect_width;
 
     int rectX =
         rectbordersize; // rel.to legendArea, rectY, rectWidth, rectHeight;
 
-    int f = int.parse(attrMap[LEGEND_ID][LegA.FONT_SIZE]);
+    int f = int.parse(attrMap[LEGEND_ID]![LegA.FONT_SIZE] ?? '10');
     int rectY = deltay + f ~/ 2;
 
     r.attributes[SVG.X] = "$rectX";

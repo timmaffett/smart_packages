@@ -161,21 +161,21 @@ class FFT {
   ///   and of the seconds half of the real data points is reversed after transform.
   ///   The same is applied to the imaginary data points.
   static List<Float64List> transformShuffled(
-      Float64List complArray, String groupDelay, int swapMode,
+      Float64List complArray, String? groupDelay, int swapMode,
       [bool isComplex = true]) {
     // reim in new, shuffledArray remains unchanged.
-    List<Float64List> reim;
+    List<Float64List?> work_reim;
     if (isComplex) {
-      reim = Array1D.unshuffle(complArray); // returns 2 new arrays
+      work_reim = Array1D.unshuffle(complArray); // returns 2 new arrays
     } else {
-      reim = List<Float64List>(2); // creates 2 new arrays
-      reim[0] = Float64List(complArray.length);
+      work_reim = List<Float64List?>.filled(2,null); // creates 2 new arrays
+      work_reim[0] = Float64List(complArray.length);
       for (int i = 0; i < complArray.length; i++) {
-        reim[0][i] = complArray[i];
+        work_reim[0]![i] = complArray[i];
       }
-      reim[1] = Float64List(complArray.length);
+      work_reim[1] = Float64List(complArray.length);
     }
-
+    List<Float64List> reim = work_reim as List<Float64List>;
     // negation of every other (complex) point needed
     // e.g. data with bruker groupDelay -1, but DECIM and DSPFVS > 0
     if (swapMode == FT_SWAP_MODE_FULL) {
@@ -261,42 +261,44 @@ class FFT {
   /// is adjusted respectively: (zero-filling if bigger, cut-off if smaller)
   /// NOTE: bc/em/gm are do not consider [userFTSize].
   /// If a row is not a power of two, it is zero-filled to the next power of 2.
-  static List<List<Float64List>> combiTransform(
+  static List<List<Float64List>>? combiTransform(
       Float64List complexArray2D,
-      Map<String, Object> args,
+      Map<String, Object?> args,
       int nrows,
       int userFTSize,
-      RowDoneCallback rcb) {
+      RowDoneCallback? rcb) {
     List<Float64List> real2d, imag2d, reim;
     int rowLength = complexArray2D.length ~/ nrows;
-    real2d = List<Float64List>();
-    imag2d = List<Float64List>();
+    real2d = [];
+    imag2d = [];
     Float64List yValues;
     for (int i = 0; i < nrows; i++) {
       if (nrows == 1) {
         yValues = complexArray2D;
       } else {
-        yValues = Array1D.getRow(complexArray2D, i, nrows);
+        Float64List? tmp = Array1D.getRow(complexArray2D, i, nrows);
+        if(tmp==null) return null;
+        yValues = tmp;
       }
 
-      if (args[dobc]) {
-        BaseLine.bcOffset(yValues, args[complex], args[bcstart], args[bcsize]);
+      if (args[dobc]!=null && args[dobc] is bool && args[dobc] as bool) {
+        BaseLine.bcOffset(yValues, args[complex] as bool, args[bcstart] as int, args[bcsize] as int);
       }
-      if (args[doem]) {
-        WinFunc.expMult(yValues, args[ema], args[complex], args[groupDelay]);
+      if(args[doem]!=null && args[doem] is bool && args[doem] as bool) {
+        WinFunc.expMult(yValues, args[ema] as double, args[complex] as bool, args[groupDelay] as String);
       }
-      if (args[dogm]) {
-        WinFunc.gaussMult(yValues, args[gmr], args[gms], args[complex]);
+      if (args[dogm]!=null && args[dogm] is bool && args[dogm] as bool) {
+        WinFunc.gaussMult(yValues, args[gmr] as double, args[gms] as double, args[complex] as bool);
       }
 
-      if (args[doft]) {
+      if (args[doft] as bool) {
         yValues = Array1D.zeroFill(yValues, userFTSize, true);
-        reim = transformShuffled(yValues, args[groupDelay], args[swapMode]);
+        reim = transformShuffled(yValues, args[groupDelay] as String?, args[swapMode] as int);
         real2d.add(reim[0]); // after transform: reals+imags
         imag2d.add(reim[1]);
       }
 
-      if (!args[doft]) {
+      if (!(args[doft] as bool)) {
         // replace original fidvalues by result
         for (int k = 0; k < yValues.length; k++) {
           complexArray2D[i * rowLength + k] = yValues[k];
@@ -306,7 +308,7 @@ class FFT {
       if (rcb != null) rcb(i);
     }
 
-    if (args[doft]) {
+    if (args[doft] as bool) {
       return [real2d, imag2d]; // Two 2D arrays
     } else {
       return null; // fidValues were replaced

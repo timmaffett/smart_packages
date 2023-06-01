@@ -1,6 +1,8 @@
 ## Smart Arrays Base
 
 ### Version history
+ 3.0.0 - 2023-05-30 null safety changes
+
  2.1.0 - 2019-10-05 now sdk 2.5.0 in pubspec.yaml
  
  2.0.0 - 2019-03-09 First version available on pub site

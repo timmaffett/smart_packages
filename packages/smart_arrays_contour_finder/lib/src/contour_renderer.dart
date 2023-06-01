@@ -1,6 +1,5 @@
 // Copyright (c) 2019, Dr. Bruno Guigas. All rights reserved. Use of this source
 // code is governed by a BSD-style license that can be found in the LICENSE file.
-import 'package:smart_arrays_contour_finder/smart_arrays_contour_finder.dart';
 
 /// Users of [ContourFinder] must provide an implementation of this class.
 abstract class ContourRenderer {
