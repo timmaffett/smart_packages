@@ -52,7 +52,7 @@ Future<void> showSingleLineInputDialog() async {
 
   // evaluate buttons pressed
   if (uin.buttonCode == DiaAttr.DIA_ACT_BUT1) {
-    String newname = uin.getUserInput(0)?[0] ?? '';
+    String? newname = uin.getUserInput(0)?[0];
     await Info.show("You entered:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>'$newname'");
   } else if (uin.buttonCode == DiaAttr.DIA_ACT_ABORT) {
     main(); // redisplay examples
@@ -77,8 +77,8 @@ void showMultiLineInputDialog() async {
 
   // evaluate buttons pressed
   if (uin.buttonCode == DiaAttr.DIA_ACT_BUT1) {
-    String newname = uin.getUserInput(0)?[0] ?? ''; // [0]: don't expect csv input
-    String newext = uin.getUserInput(1)?[0] ?? '';
+    String? newname = uin.getUserInput(0)?[0]; // [0]: don't expect csv input
+    String? newext = uin.getUserInput(1)?[0];
     await Info.show("You entered:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>" +
         "'$newname'<br>'$newext'");
   } else if (uin.buttonCode == DiaAttr.DIA_ACT_ABORT) {
@@ -383,10 +383,10 @@ Future<void> showAdvancedInputDialog2D() async {
     StringBuffer out = StringBuffer();
     out.write("Collected user input<br><br>");
     for (int i = 0; i < defPars.keys.length; i++) {
-      String val_checked = uin.getCheckedState(i) ?? '';
+      String? val_checked = uin.getCheckedState(i);
       int nvals = uin.getUserInput(i)?.length??0 ~/ 2; // cvs per column
-      List<String> vals_col1 = uin.getUserInput(i)?.sublist(0, nvals) ?? [];
-      List<String> vals_col2 = uin.getUserInput(i)?.sublist(nvals) ?? [];
+      List<String?>? vals_col1 = uin.getUserInput(i)?.sublist(0, nvals);
+      List<String?>? vals_col2 = uin.getUserInput(i)?.sublist(nvals);
 
       out.write("${labels[i]}: Radio=${val_checked}");
       out.write(", Col1=${vals_col1}");
@@ -641,8 +641,8 @@ void showPopupMenu() async {
   ];
 
   final int size = POPUP_ITEMS.length;
-  List<String> button_types = []; //OBSOLETE//List(size);
-  List<String> is_checked = []; //OBSOLETE//List(size);
+  List<String> button_types = List<String>.filled(size,'');
+  List<String> is_checked = List<String>.filled(size,'');
 
   // last popup item gets displayed with a "checked" checkbox.
   button_types[size - 1] = DiaAttr.CHECKBOX;

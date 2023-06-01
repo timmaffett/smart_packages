@@ -188,7 +188,7 @@ class DiaAttr {
   /// Sets some dialog styles for [dia].
   static void setDialogStyle(Element dia) {
     dia.style
-      ..background = attr![DIALOG_BACKGROUND]
+      ..background = attr[DIALOG_BACKGROUND]
       ..padding = "12px 16px 12px 16px"
       ..margin = "1em auto" // will center dialog along x
       ..border = "0" //"1px solid rgba(0, 100, 0, 0.3);"//"0"

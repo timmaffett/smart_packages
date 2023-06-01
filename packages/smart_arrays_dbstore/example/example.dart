@@ -13,7 +13,7 @@ main() async {
   const DS_DB_NAME_BASE = "testdb.", DS_DB_NAME_GLOB = "testdb_glob";
 
   // create a dataset storage handler
-  DSetStore dsStore =
+  DSetStore? dsStore =
       await DSetDB.createDSetStore(DS_DB_NAME_BASE, DS_DB_NAME_GLOB);
   if (dsStore == null) {
     printError();
@@ -24,7 +24,7 @@ main() async {
   VECTOR_METADATA["Storage Date"] = DateTime.now().toIso8601String();
 
   // create a dataset from VECTOR, its "imaginary" part, and its metadata
-  DSet ds1 = DSet(VECTOR, VECTOR_IMAG, VECTOR_METADATA);
+  DSet? ds1 = DSet(VECTOR, VECTOR_IMAG, VECTOR_METADATA);
 
   // Create a key under which [ds1] gets stored in the database.
   // The first argument is the actual dataset name, the 2nd allows one to put
@@ -36,7 +36,7 @@ main() async {
   MATRIX_METADATA["Storage Date"] = DateTime.now().toIso8601String();
 
   // create a dataset from MATRIX and its metadata, no "imaginary" data present
-  DSet ds2 = DSet.twoD(MATRIX, null, MATRIX_METADATA);
+  DSet? ds2 = DSet.twoD(MATRIX, null, MATRIX_METADATA);
 
   // Create a key under which [ds2] gets stored in the database.
   // We store it under the category "project-2".
@@ -51,18 +51,18 @@ main() async {
   // create dataset storage handler for our databases
   dsStore = await DSetDB.createDSetStore(DS_DB_NAME_BASE, DS_DB_NAME_GLOB);
 
-  print("Comment=${dsStore.gpropGet("Comment")}");
-  print("Projects defined=${dsStore.projectsGet().keys}");
+  print("Comment=${dsStore?.gpropGet("Comment")}");
+  print("Projects defined=${dsStore?.projectsGet().keys}");
 
   // now load and print the datasets with their metadata
-  ds1 = await dsStore.dsLoad(dskey1);
-  print("Loaded vector=${ds1.values}");
-  print("The vector's metadata=${ds1.meta}");
-  print("Imag=${(await dsStore.dscompLoad(dskey1, DSetStore.DSC_IMAG))[0]}");
+  ds1 = await dsStore?.dsLoad(dskey1);
+  print("Loaded vector=${ds1?.values}");
+  print("The vector's metadata=${ds1?.meta}");
+  print("Imag=${(await dsStore?.dscompLoad(dskey1, DSetStore.DSC_IMAG))?[0]}");
 
-  ds2 = await dsStore.dsLoad(dskey2);
-  print("Loaded matrix=${ds2.values2D}");
-  print("The matrix's metadata=${ds2.meta}");
+  ds2 = await dsStore?.dsLoad(dskey2);
+  print("Loaded matrix=${ds2?.values2D}");
+  print("The matrix's metadata=${ds2?.meta}");
 }
 
 final Float64List VECTOR =

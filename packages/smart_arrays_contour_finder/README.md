@@ -4,7 +4,7 @@
 The purpose of this package is to contour the three-dimensional surface represented by the values f(x,y) of a matrix with coordinate axes x and y. The detected contour lines are passed on to a user-provided renderer e.g. for graphical displaying the contours. 
 
 ### Example
-- The provided example can be directly executed via https://smart.specpad.bplaced.net/smart_arrays_contour_finder/example.html.
+- The provided example can be directly executed via https://timmaffett.github.io/smart_packages/smart_arrays_contour_finder/example.html.
 - Or, download the package and execute the file `example/example.html` in your browser.
 
 ### The major API functionalities

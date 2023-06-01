@@ -68,7 +68,7 @@ class ActButton {
   /// the respective current values (e.g. the defaults).
   /// Example:
   /// setAttr({BUT_COLOR: "red",BUT_FONT_SIZE: "20px"});
-  static void setAttr(Map<String, String> myAttr) {
+  static void setAttr(Map<String, String>? myAttr) {
     if (but_attr == null) initAttrFromDefaults();
     if (myAttr == null) return;
     for (String attrName in myAttr.keys) {

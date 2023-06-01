@@ -24,7 +24,7 @@ main() {
 
   // print the result.
   print("Result 1D: Compression interval length = ${c1d.cpdIndexIncrement}");
-  print("Result 1D: cValues.length = ${c1d.cArray!.length}");
+  print("Result 1D: cValues.length = ${c1d.cArray.length}");
   print("Result 1D: uIndices.length = ${c1d.uIndices.length}");
   print("Result 1D: cValues = ${c1d.cArray}");
   print("Result 1D: uIndices = ${c1d.uIndices}");
@@ -33,18 +33,14 @@ main() {
   // Example 2: compress a 2D array
   // Create a large matrix with random numbers between -1 and 1.
   final int NROWS = 1234, NCOLS = 2345, NROWS_NEW = 200, NCOLS_NEW = 500;
-  List<Float64List?> work_matrix = List<Float64List?>.filled(NROWS, null);
+  List<Float64List> matrix = List<Float64List>.filled(NROWS, Float64List(NCOLS));
   for (int i = 0; i < NROWS; i++) {
-    Float64List row = Float64List(NCOLS);
+    Float64List row = matrix[i];
 
     for (int k = 0; k < NCOLS; k++) {
       row[k] = 2 * rand.nextDouble() - 1.0;
     }
-    work_matrix[i] = row;
   }
-
-  // now it's created they are all non null
-  List<Float64List> matrix = work_matrix as List<Float64List>;
 
   // fill in some non-random values acting as minima and maxima
   matrix[30][40] = 100;

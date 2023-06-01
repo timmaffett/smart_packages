@@ -10,7 +10,7 @@ import 'package:smart_arrays_contour_finder/smart_arrays_contour_finder.dart';
 class SimpleContourRenderer implements ContourRenderer {
   late CanvasRenderingContext2D c2d;
   CanvasElement contourCanvas;
-  int last_x1=0, last_y1=0, last_x2=0, last_y2=0;
+  int? last_x1, last_y1, last_x2, last_y2;
   // size and location of drawing area:
   int dataAreaWidth, dataAreaHeight, dataAreaX, dataAreaY;
   late Map<CtourA, String> attr;
@@ -59,6 +59,10 @@ class SimpleContourRenderer implements ContourRenderer {
   void drawContourLine(double startX, double startY, double endX, double endY,
       double contourLevel, int levelNumber) {
     int x1, x2, y1, y2;
+
+
+print('drawContourLine  startX=$startX startY=$startY endX=$endX  endY=$endY');
+
     if (attr[CtourA.ROTATE] == "true") {
       // Some apps need to rotate the contour by -90 deg. around the data area center
       // to obtain the typical contour representation. This code shows how to do that.
@@ -76,6 +80,9 @@ class SimpleContourRenderer implements ContourRenderer {
       y1 = yToScreen(1 - startY);
       y2 = yToScreen(1 - endY);
     }
+
+print('attr[CtourA.ROTATE]=${attr[CtourA.ROTATE]}  x1=$x1 y1=$y1 x2=$x2  y2=$y2');
+
 
 //    int x1 = (startY * dataAreaWidth).round() + dataAreaX;
 //    int x2 = (endY * dataAreaWidth).round() + dataAreaX;

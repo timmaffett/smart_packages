@@ -367,18 +367,20 @@ class Array1D {
       lastsubrowLength = len.remainder(size);
     }
 
-    List<Float64List?> result = List<Float64List?>.filled(nrows, null);
+    List<Float64List> result = List<Float64List>.filled(nrows, Float64List(size));
     int arrix = 0;
     for (int i = 0; i < nrows; i++) {
       int rowlen = size;
+      Float64List row = result[i];
       if (i == nrows - 1 && lastsubrowLength > 0) rowlen = lastsubrowLength;
-      Float64List row = Float64List(rowlen);
+      if(rowlen!=size) {
+        row = result[i] = Float64List(rowlen);
+      }
       for (int k = 0; k < rowlen; k++) {
         row[k] = array[arrix++];
       }
-      result[i] = row;
     }
-    return result as List<Float64List>;
+    return result;
   }
 
   /// Rotates [array] to the right by [n] positions in place. For example,

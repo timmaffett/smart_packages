@@ -20,8 +20,6 @@ class FileSelectionDialog extends BaseDialog {
     String htmlInfoText,
     FileSelectionCallback fileSelectionCallback,
   ) : super(null) {
-    assert(fileSelectionCallback != null);
-
     Map<String, String?> attr = DiaAttr.attr; // use shortcut
 
     TableElement table = TableElement();
@@ -49,7 +47,7 @@ class FileSelectionDialog extends BaseDialog {
     row2.append(textCell);
     row3.append(buttonCell);
 
-    dia!.append(table);
+    dia.append(table);
 
     int delIconSize = int.parse(attr[DiaAttr.DIALOG_CROSS_FONTSIZE]!);
     delCell.style
@@ -59,12 +57,9 @@ class FileSelectionDialog extends BaseDialog {
       ..cursor = "pointer";
     DiaUtils.appendHtml2(delCell, DiaUtils.UNICODE_DELETE_CROSS);
     delCell.onClick.listen((UIEvent e) {
-      if (dia != null) {
         close(UserInput(
             DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
-        //OBSOLETE//dia = null;
         fileSelectionCallback(null); // signal no system file dialog shown
-      }
     });
 
     int fontsizeTxT = int.parse(attr[DiaAttr.DIALOG_HELP_TEXT_FONTSIZE]!);
@@ -74,7 +69,7 @@ class FileSelectionDialog extends BaseDialog {
       ..fontSize = "$fontsizeTxT";
 
     DiaUtils.appendHtml2(textCell, htmlInfoText);
-    dia!.style.color = "${attr[DiaAttr.DIALOG_TEXT_COLOR]}";
+    dia.style.color = "${attr[DiaAttr.DIALOG_TEXT_COLOR]}";
 
     InputElement inputBut = InputElement(type: "file");
     inputBut.multiple = true;
@@ -84,11 +79,8 @@ class FileSelectionDialog extends BaseDialog {
     // [dia] will be closed via the onClick function immediately, even before the
     // file browser dialog is closed by the user.
     inputBut.onChange.listen((Event e) {
-      if (dia != null) {
-        close(UserInput(
-            DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
-        //OBSOLETE//dia = null;
-      }
+      close(UserInput(
+          DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
       fileSelectionCallback(inputBut.files); // return user selection to caller
     });
 
@@ -98,13 +90,13 @@ class FileSelectionDialog extends BaseDialog {
     buttonCell.append(form);
 
     // center the dialog vertically
-    int marginTop = diaContainer!.clientHeight ~/ 2 - dia!.clientHeight ~/ 2;
+    int marginTop = ((diaContainer?.clientHeight ?? 0) ~/ 2) - dia.clientHeight ~/ 2;
     marginTop -= (marginTop * 0.2).round(); //shift up for optical reasons
     if (DiaUtils.isTablet()) {
       marginTop = 0; // dialog at top to minimize coverage by soft keyboard
     }
 
-    dia!.style
+    dia.style
           ..width =
               "${inputBut.clientWidth + 30}px" // make popup as wide as the its contents
           ..marginTop = "${marginTop}px" // This centers the dialog vertically
@@ -112,11 +104,8 @@ class FileSelectionDialog extends BaseDialog {
 
     document.onKeyDown.listen((KeyboardEvent e) {
       if (e.keyCode == KeyCode.ESC) {
-        if (dia != null) {
-          close(UserInput(
-              DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
-          //OBSOLETE//dia = null;
-        }
+        close(UserInput(
+            DiaAttr.DIA_ACT_ABORT, null, null)); // just close the dialog
       }
     });
   } // FileSelectionDialog()

@@ -38,14 +38,16 @@ class Numerics {
 
   /// Returns new matrix, the pointwise multiplication of [matr] with [c].
   List<List<double>> dotCM(double c, List<List<double>> matr) {
-    List<List<double>?> result = List<List<double>?>.filled(matr.length, null);
+    //OBSOLETE//List<List<double>?> result = List<List<double>?>.filled(matr.length, null);  
+    List<List<double>> result = List<List<double>>.generate(matr.length, (_) => List<double>.filled(matr[0].length,0.0));
+
     for (int i = 0; i < matr.length; i++) {
-      result[i] = List<double>.filled(matr[0].length, 0.0);
+      //OBSOLETE//result[i] = List<double>.filled(matr[0].length, 0.0);
       for (int k = 0; k < matr[0].length; k++) {
-        result[i]![k] = matr[i][k] * c;
+        result[i][k] = matr[i][k] * c;
       }
     }
-    return result as List<List<double>>;
+    return result;
   }
 
   /// Returns new vector, the pointwise square root of [vec].
@@ -63,12 +65,12 @@ class Numerics {
     int p = x.length;
     int q = y.length;
     int r = y[0].length;
-    List<List<double>?> ret = List<List<double>?>.filled(p,null);
+    List<List<double>> ret = List<List<double>>.generate(p, (_) => List<double>.filled(r,0.0));
     List<double> foo, bar;
     double woo;
 
     for (i = p - 1; i >= 0; i--) {
-      foo = List<double>.filled(r,0.0);
+      foo = ret[i];
       bar = x[i];
       for (k = r - 1; k >= 0; k--) {
         woo = bar[q - 1] * y[q - 1][k];
@@ -81,9 +83,8 @@ class Numerics {
         }
         foo[k] = woo;
       }
-      ret[i] = foo;
     }
-    return ret as List<List<double>>;
+    return ret;
   }
 
   /// Returns columns [j] of [A] in [x].
@@ -103,22 +104,23 @@ class Numerics {
     List<double> v = List<double>.filled(p,0.0);
     List<double> xj;
     int m = x.length, n = y[0].length;
-    List<List<double>?> A = List<List<double>?>.filled(m, null);
+    List<List<double>> A = List<List<double>>.generate(m, (_) => List<double>.filled(n,0.0));
+
     int i, j;
     --p;
     --m;
-    for (i = m; i != -1; --i) {
-      A[i] = List<double>.filled(n,0.0);
-    }
+    //PRE_GENERATEOBSOLETE//for (i = m; i != -1; --i) {
+    //PRE_GENERATE//  A[i] = List<double>.filled(n,0.0);
+    //PRE_GENERATE//}
     --n;
     for (i = n; i != -1; --i) {
       _getCol(y, i, v);
       for (j = m; j != -1; --j) {
         xj = x[j];
-        A[j]![i] = dotVV(xj, v);
+        A[j][i] = dotVV(xj, v);
       }
     }
-    return A as List<List<double>>;
+    return A;
   }
 
   /// Returns product of matrices [matr1] and [matr2]. Suitable sizes required!
@@ -132,14 +134,16 @@ class Numerics {
 
   /// Returns pointwise sum of [matr1] and [matr2] in a new matrix.
   List<List<double>> addMM(List<List<double>> matr1, List<List<double>> matr2) {
-    List<List<double>?> result = List<List<double>?>.filled(matr1.length, null);
+    //OBSOLETE//List<List<double>?> result = List<List<double>?>.filled(matr1.length, null);
+    List<List<double>> result = List<List<double>>.generate(matr1.length, (_) => List<double>.filled(matr1[0].length,0.0));
+
     for (int i = 0; i < matr1.length; i++) {
-      result[i] = List<double>.filled(matr1[0].length,0.0);
+      //OBSOLETE//result[i] = List<double>.filled(matr1[0].length,0.0);
       for (int k = 0; k < matr1[0].length; k++) {
-        result[i]![k] = matr1[i][k] + matr2[i][k];
+        result[i][k] = matr1[i][k] + matr2[i][k];
       }
     }
-    return result as List<List<double>>;
+    return result;
   }
 
   /// Returns pointwise sum of [vec1] and [vec2] in a new vector.
@@ -164,11 +168,11 @@ class Numerics {
 
   /// Returns a new [nrows] x [ncols] matrix. All elements are set to [value].
   List<List<double>> createMatrix(int nrows, int ncols, double value) {
-    List<List<double>?> matrix = List<List<double>?>.filled(nrows,null);
-    for (int i = 0; i < nrows; i++) {
-      matrix[i] = List<double>.filled(ncols,value);
-    }
-    return matrix as List<List<double>>;
+    List<List<double>> matrix = List<List<double>>.generate(nrows, (_) => List<double>.filled(ncols,value));
+    //PRE_GENERATE//for (int i = 0; i < nrows; i++) {
+    //PRE_GENERATE//  matrix[i] = List<double>.filled(ncols,value);
+    //PRE_GENERATE//}
+    return matrix;
   }
 
   /// Creates [n] x [n] diagonal matrix with [value].
@@ -197,27 +201,29 @@ class Numerics {
   List<List<double>> transpose(List<List<double>> matrix) {
     int nrows = matrix[0].length; // of result
     int ncols = matrix.length;
-    List<List<double>?> ret = List<List<double>?>.filled(nrows,null);
+    //OBSOLETE//List<List<double>> ret = List<List<double>?>.filled(nrows,null);
+    List<List<double>> ret = List<List<double>>.generate(nrows, (_) => List<double>.filled(ncols,0.0));
+
     int i, j;
     List<double> A0, A1, Bj;
 
-    for (j = 0; j < nrows; j++) {
-      ret[j] = List<double>.filled(ncols,0.0);
-    }
+    //OBSOLETE//for (j = 0; j < nrows; j++) {
+    //OBSOLETE//  ret[j] = List<double>.filled(ncols,0.0);
+    //OBSOLETE//}
     for (i = ncols - 1; i >= 1; i -= 2) {
       A1 = matrix[i];
       A0 = matrix[i - 1];
       for (j = nrows - 1; j >= 1; --j) {
-        Bj = ret[j]!;
+        Bj = ret[j];
         Bj[i] = A1[j];
         Bj[i - 1] = A0[j];
         --j;
-        Bj = ret[j]!;
+        Bj = ret[j];
         Bj[i] = A1[j];
         Bj[i - 1] = A0[j];
       }
       if (j == 0) {
-        Bj = ret[0]!;
+        Bj = ret[0];
         Bj[i] = A1[0];
         Bj[i - 1] = A0[0];
       }
@@ -225,15 +231,15 @@ class Numerics {
     if (i == 0) {
       A0 = matrix[0];
       for (j = nrows - 1; j >= 1; --j) {
-        ret[j]![0] = A0[j];
+        ret[j][0] = A0[j];
         --j;
-        ret[j]![0] = A0[j];
+        ret[j][0] = A0[j];
       }
       if (j == 0) {
-        ret[0]![0] = A0[0];
+        ret[0][0] = A0[0];
       }
     }
-    return ret as List<List<double>>;
+    return ret;
   }
 
   /// Computes and returns the inverse of an invertible matrix [mat].

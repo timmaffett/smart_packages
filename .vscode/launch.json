@@ -1,0 +1,116 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "smart_arrays_base",
+            "cwd": "packages\\smart_arrays_base",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_compress",
+            "cwd": "packages\\smart_arrays_compress",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_contour_finder",
+            "cwd": "packages\\smart_arrays_contour_finder",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_dbstore",
+            "cwd": "packages\\smart_arrays_dbstore",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_lmfit",
+            "cwd": "packages\\smart_arrays_lmfit",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_numerics",
+            "cwd": "packages\\smart_arrays_numerics",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_peaks",
+            "cwd": "packages\\smart_arrays_peaks",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_plot_polyline",
+            "cwd": "packages\\smart_arrays_plot_polyline",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_arrays_sample_data",
+            "cwd": "packages\\smart_arrays_sample_data",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_dialogs",
+            "cwd": "packages\\smart_dialogs",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_lorentz_gauss",
+            "cwd": "packages\\smart_lorentz_gauss",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_signal_processing",
+            "cwd": "packages\\smart_signal_processing",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "example",
+            "cwd": "packages\\smart_arrays_contour_finder\\example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "example",
+            "cwd": "packages\\smart_arrays_lmfit\\example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "example",
+            "cwd": "packages\\smart_arrays_peaks\\example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "example",
+            "cwd": "packages\\smart_arrays_sample_data\\example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "example",
+            "cwd": "packages\\smart_lorentz_gauss\\example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "example",
+            "cwd": "packages\\smart_signal_processing\\example",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}

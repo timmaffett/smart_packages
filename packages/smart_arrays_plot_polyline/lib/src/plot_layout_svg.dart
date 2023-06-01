@@ -4,8 +4,6 @@ import 'dart:math' as math;
 
 import 'package:smart_arrays_plot_polyline/smart_arrays_plot_polyline.dart';
 
-import 'utils.dart';
-
 /// Computes a plot layout for drawing with SVG, but also for 2D html:
 /// Sets up the graphics containers and their relative coordinates and sizes.
 /// The layout will be contained in a div element. Several plots can be
@@ -83,7 +81,7 @@ class PlotLayoutSVG {
         frameSize = int.parse(attr[LayA.FRAME_SIZE] ?? '0');
 
     int nplots = plotSizes.length;
-    dataAreas = List<SvgSvgElement?>.filled(nplots,null,growable:true);
+    dataAreas = List<SvgSvgElement?>.filled(nplots,null);
     plotAreas = List<SvgSvgElement?>.filled(nplots,null);
     dataAreaBorders = List<RectElement?>.filled(nplots,null);
     plotAreaBorders = List<RectElement?>.filled(nplots,null);

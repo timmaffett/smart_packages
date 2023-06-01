@@ -1,5 +1,4 @@
 import 'dart:svg';
-import 'utils.dart';
 
 import '../smart_arrays_plot_polyline.dart';
 
@@ -21,7 +20,7 @@ class MarkerLines {
   ///   are used. Otherwise, the length of this array must be the same as that of
   ///   [markerIndices].
   void drawPolylineMarkers(List<double> markerIndices,
-      List<String> markerLabels, List<Map<MarA, String>>? markerAttrList) {
+      List<String>? markerLabels, List<Map<MarA, String>>? markerAttrList) {
     final ticksContainer = SvgSvgElement();
     final labelsContainer = SvgSvgElement();
 
@@ -37,7 +36,7 @@ class MarkerLines {
         markerAttr = markerAttrList[i];
       }
       drawMarker(ticksContainer, labelsContainer, markerIndices[i],
-          markerLabels[i], yphys, lastLabpos, markerAttr);
+          markerLabels?[i] ?? '', yphys, lastLabpos, markerAttr);
     }
 
     dpy.polylineContainer..append(ticksContainer)..append(labelsContainer);

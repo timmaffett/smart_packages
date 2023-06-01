@@ -58,7 +58,7 @@ class DSet {
 
   /// The metadata. May also hold more complex data types such as Lists or Maps
   /// if stored as jsonified String.
-  Map<String, String> meta; // metadata
+  Map<String, String>? meta; // metadata
 
   /// The value of a _audittrail entry (which is defined to be a String) may
   /// also be a JSON String from a List or a Map.
@@ -127,7 +127,7 @@ class DSet {
     }
     // if provided, call a user-defined function to do something with [meta]
     if (dsetInit != null) {
-      dsetInit!.call(meta);
+      dsetInit!.call(meta!);
     }
     DSAuditTrail.init(this); // Decode if existing, or create new one
     initY();
@@ -161,7 +161,7 @@ class DSet {
 
   /// Returns the [dskey] under which this [DSet] was stored in a [DSetStore]
   /// using the setter below.
-  DSKey get dskey => DSKey.fromEncoded(meta[DSET_DSKEY]!);
+  DSKey get dskey => DSKey.fromEncoded(meta![DSET_DSKEY]!);
 
   /// Saves [dskey] as encoded String in [meta]. Recommended use:
   /// When this [DSet] is stored in a database using [DSetStore], it gets
@@ -170,7 +170,7 @@ class DSet {
   /// out under which key a dataset was stored.
   /// Note: Renaming a dataset must account for that!
   set encodedDskey(DSKey dskey) {
-    meta[DSET_DSKEY] = dskey.encode();
+    meta![DSET_DSKEY] = dskey.encode();
   }
 
   /// See [is1D] and [encodedDskey] for explanation

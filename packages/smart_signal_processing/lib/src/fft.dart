@@ -266,11 +266,11 @@ class FFT {
       Map<String, Object?> args,
       int nrows,
       int userFTSize,
-      RowDoneCallback rcb) {
+      RowDoneCallback? rcb) {
     List<Float64List> real2d, imag2d, reim;
     int rowLength = complexArray2D.length ~/ nrows;
-    real2d = []; //OBSOLETE//List<Float64List>();
-    imag2d = []; //OBSOLETE//List<Float64List>();
+    real2d = [];
+    imag2d = [];
     Float64List yValues;
     for (int i = 0; i < nrows; i++) {
       if (nrows == 1) {

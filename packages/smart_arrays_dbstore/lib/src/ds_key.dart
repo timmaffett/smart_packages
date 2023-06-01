@@ -20,14 +20,13 @@ class DSKey {
   /// between "raw measurement data" and "processed data".
   /// NOTE: All arguments MUST be non-null and non-empty, otherwise they will
   /// get a default value: "undefined_name", etc.
-  DSKey(String? datasetName, String? projectName, String? dataType) {
+  DSKey(String datasetName, String projectName, String dataType) {
     _init(datasetName, projectName, dataType);
   }
 
   /// Constructs a [DSKey] from and encoded dskey [eDskey]. Inverse of [encode].
   DSKey.fromEncoded(String eDskey) {
-    if (eDskey == null ||
-        eDskey.isEmpty ||
+    if (eDskey.isEmpty ||
         eDskey.split(DSKEY_SEP).length != 3) {
       _init("name-undefined", "project-undefined", "datatype-undefined");
     } else {
@@ -55,13 +54,13 @@ class DSKey {
   /// Encodes this [DSKey] into a single String.
   /// See [DSKey.fromEncoded].
   String encode() {
-    if (_datasetName == null || _datasetName.isEmpty) {
+    if (_datasetName.isEmpty) {
       _datasetName = "name-undefined";
     }
-    if (_projectName == null || _projectName.isEmpty) {
+    if (_projectName.isEmpty) {
       _projectName = "project-undefined";
     }
-    if (_dataType == null || _dataType.isEmpty) {
+    if (_dataType.isEmpty) {
       _dataType = defaultDatatype;
     }
     return "$_datasetName$DSKEY_SEP$_projectName$DSKEY_SEP$_dataType";
@@ -79,13 +78,13 @@ class DSKey {
   /// Returns true if this [DSKey]'s datasetName, or projectName, or dataType
   /// are not valid (null or empty).
   bool get isEmty {
-    if (_datasetName == null || _datasetName.isEmpty) {
+    if (_datasetName.isEmpty) {
       return true;
     }
-    if (_projectName == null || _projectName.isEmpty) {
+    if (_projectName.isEmpty) {
       return true;
     }
-    if (_dataType == null || _dataType.isEmpty) {
+    if (_dataType.isEmpty) {
       return true;
     }
     return false;
@@ -109,20 +108,14 @@ class DSKey {
 
   /// Returns a list of encoded dskeys from a list of dskeys.
   static List<String> encodeList(List<DSKey> dskeys) {
-    List<String> eDskeys = List<String>.filled(dskeys.length,'');
-    for (int i = 0; i < dskeys.length; i++) {
-      eDskeys[i] = dskeys[i].encode();
-    }
+    List<String> eDskeys = List<String>.generate(dskeys.length,(index) => dskeys[index].encode());
     return eDskeys;
   }
 
   /// Returns a list of dskeys from a list of encoded dskeys.
   static List<DSKey> decodeList(List<String> eDskeys) {
-    List<DSKey?> dskeys = List<DSKey?>.filled(eDskeys.length,null);
-    for (int i = 0; i < dskeys.length; i++) {
-      dskeys[i] = DSKey.fromEncoded(eDskeys[i]);
-    }
-    return dskeys as List<DSKey>;
+    List<DSKey> dskeys = List<DSKey>.generate(eDskeys.length, (index) => DSKey.fromEncoded(eDskeys[index]));
+    return dskeys;
   }
 
   /// Returns a new [DSKey] whose [datasetName] was exchanged by
@@ -159,7 +152,7 @@ class DSKey {
   /// does no longer play a role.
   /// Returns [datasetName] if it not occur in [dskeys].
   static String mkUniqueName(
-      List<DSKey> dskeys, String datasetName, List<String> extensions) {
+      List<DSKey> dskeys, String datasetName, List<String>? extensions) {
     if (extensions != null && extensions.isNotEmpty) {
       datasetName = removeExtensions(datasetName, extensions);
     }
@@ -233,7 +226,7 @@ class DSKey {
   ///  dskey = "cyclops_--_Project-1_--_Spectrum"
   ///   ==> returns "cyclops / Project-1"
   static String makeDisplayName(DSKey dskey) {
-    if (dskey._projectName != null) {
+    if (dskey._projectName.isNotEmpty) {
       return "${dskey._datasetName} / ${dskey._projectName}";
     }
     return "${dskey._datasetName}";

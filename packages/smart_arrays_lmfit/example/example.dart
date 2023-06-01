@@ -53,15 +53,14 @@ main() async {
 
   // start fitting the "experimental data" to a Gaussian, wait till done
   LMfit lm = LMfit();
-  Map<String, List<String>> fitResult = await lm.lmfit(
-      fitFunctionGAUSS, null, expGaussian, INITIAL_PARS, fitOptions);
-
+  Map<String, List<String?>> fitResult = await lm.lmfit(fitFunctionGAUSS, null, expGaussian, INITIAL_PARS, fitOptions);
+  
   // from the fit result, compute the Gaussian fit curve
   List<double> fittedPars = [
-    double.parse(fitResult[LMfit.PARAMS]![0]), // a
-    double.parse(fitResult[LMfit.PARAMS]![1]), // c
-    double.parse(fitResult[LMfit.PARAMS]![2]), // w
-    double.parse(fitResult[LMfit.PARAMS]![3]) // y0
+    double.parse(fitResult[LMfit.PARAMS]?[0] ?? '-1'), // a
+    double.parse(fitResult[LMfit.PARAMS]?[1] ?? '-1'), // c
+    double.parse(fitResult[LMfit.PARAMS]?[2] ?? '-1'), // w
+    double.parse(fitResult[LMfit.PARAMS]?[3] ?? '-1') // y0
   ];
   List<double> fittedGaussian = computeGaussianArray(fittedPars, null);
 
@@ -146,5 +145,6 @@ void plot(List<double> expGaussian, List<double> fittedGaussian,
 
   // append the fitResultPrintOut legend to the plot's data area
   Legend legend2 = SimplePlot.createLegend(legend2Attr, null)!;
-  plot.pl.dataAreas.add(legend2.legendContainer);
+
+  plot.pl.dataAreas[0]!.append(legend2.legendContainer);
 }

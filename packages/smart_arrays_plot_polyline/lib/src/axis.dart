@@ -245,7 +245,7 @@ class Axis {
             axisAreaWidth,
             gridLength,
             physToScreen, () {
-          axesAttributes[AxA.POSITION] = axesAttributes[AxA.POSITION]??'' + "y"; // convert axis to vertical
+          axesAttributes[AxA.POSITION] = axesAttributes[AxA.POSITION]! + "y"; // convert axis to vertical
           return axesAttributes;
         }(), touchCallbacks);
 
@@ -254,7 +254,7 @@ class Axis {
   Axis(
       int? npoints,
       final double start,
-      double? end,
+      double end,
       double? physStart,
       double? physWidth,
       bool? center,
@@ -262,15 +262,14 @@ class Axis {
       this._coordShift,
       final int axisLength,
       final int axisWidth,
-      final int gridLength,
+      final int? gridLength,
       this.physToScreen,
-      Map<AxA, String> axesAttributes,
+      Map<AxA, String>? axesAttributes,
       List<TouchCallback>? touchCallbacks) {
-    String legendText = axesAttributes[AxA.LEGENDTEXT] ?? '';
-    String position = axesAttributes[AxA.POSITION] ?? '';
+    String? legendText = axesAttributes?[AxA.LEGENDTEXT] ?? null;
+    String position = axesAttributes?[AxA.POSITION] ?? 'bg';
     if (position.contains('-')) _isReversed = true;
 
-    if(end==null) end = 0;
     bool isXaxis = true;
     bool isXaxisF1 = false;
     if (position.contains("y")) {
@@ -289,13 +288,13 @@ class Axis {
     // Just a helper
     double physFromIndex(double index) {
       return PhysUnits.physFromIndex(
-          index, physStart??0, physWidth??0, npoints??0, _isReversed, center, calib);
+          index, physStart??0, physWidth??0, npoints ?? 0, _isReversed, center, calib);
     }
 
     // Just a helper
     double physToIndex(double phys) {
       return PhysUnits.physToIndex(
-          phys, physStart??0, physWidth??0, npoints??0, _isReversed, center, calib);
+          phys, physStart??0, physWidth??0, npoints ?? 0, _isReversed, center, calib);
     }
 
     _attributes = Map.from(AXIS_DEFAULT_ATTRIBUTES); // init. attributes
@@ -328,7 +327,7 @@ class Axis {
     if (_coordShift != null && _isReversed) // reverse axis
     {
       first = _coordShift! - start;
-      last = _coordShift! - (end ?? 0);
+      last = _coordShift! - end;
 //      _isReversed = true;
     }
 
@@ -346,7 +345,6 @@ class Axis {
         first = _coordShift! - start;
         last = _coordShift! - end;
       }
-
       displayedXValues = genLabels(physFromIndex(first), physFromIndex(last),
           tightStyle: false, nticks: numberLabels, scale: null);
 
@@ -382,17 +380,17 @@ class Axis {
 
       // bottom axis
       ticksFrom = 0;
-      ticksTo = int.parse(_attributes[AxA.TICK_LENGTH] ?? '0');
+      ticksTo = int.parse(_attributes[AxA.TICK_LENGTH] ?? '6');
       labelPos = ticksTo + fontsize + 4;
-      legendPos = labelPos + int.parse(_attributes[AxA.LEGENDTEXT_OFFSET_X] ?? '0');
+      legendPos = labelPos + int.parse(_attributes[AxA.LEGENDTEXT_OFFSET_X] ?? '20');
       if (position.contains("t")) // top axis
       {
         ticksFrom = axisWidth;
-        ticksTo = axisWidth - int.parse(_attributes[AxA.TICK_LENGTH] ?? '0');
+        ticksTo = axisWidth - int.parse(_attributes[AxA.TICK_LENGTH] ?? '6');
         labelPos = ticksTo - 4; // distance between ticks and labels
         legendPos = labelPos -
             int.parse(_attributes[AxA
-                .LEGENDTEXT_OFFSET_X] ?? '0'); //  Note that text y is at the text baseline,
+                .LEGENDTEXT_OFFSET_X] ?? '20'); //  Note that text y is at the text baseline,
       }
       axis_text_color = _attributes[AxA.TEXT_COLOR_X] ?? 'black';
     } else {
@@ -407,8 +405,8 @@ class Axis {
             tightStyle: false, nticks: numberLabels, scale: null);
       } else {
         try {
-          double maxval = physStart ?? 0;
-          double normalizedMaxval = physWidth ?? 0;
+          double? maxval = physStart;
+          double? normalizedMaxval = physWidth;
           displayedXValues = genLabels(
               PhysUnits.normalize(first, maxval, normalizedMaxval),
               PhysUnits.normalize(last, maxval, normalizedMaxval),
@@ -423,20 +421,20 @@ class Axis {
 
       // left axis
       ticksFrom = axisWidth;
-      ticksTo = axisWidth - int.parse(_attributes[AxA.TICK_LENGTH] ?? '0');
+      ticksTo = axisWidth - int.parse(_attributes[AxA.TICK_LENGTH] ?? '6');
       labelPos =
-          ticksTo - int.parse(_attributes[AxA.LABELS_OFFSET_Y] ?? '0'); //fontsize - 4;
+          ticksTo - int.parse(_attributes[AxA.LABELS_OFFSET_Y] ?? '2'); //fontsize - 4;
       legendPos =
-          labelPos - int.parse(_attributes[AxA.LEGENDTEXT_LEFT_OFFSET_Y] ?? '0');
+          labelPos - int.parse(_attributes[AxA.LEGENDTEXT_LEFT_OFFSET_Y] ?? '30');
       if (position.contains("t")) {
         // right axis
         ticksFrom = 0;
-        ticksTo = int.parse(_attributes[AxA.TICK_LENGTH] ?? '0');
+        ticksTo = int.parse(_attributes[AxA.TICK_LENGTH] ?? '6');
         // distance between ticks and labels:
-        labelPos = ticksTo + int.parse(_attributes[AxA.LABELS_OFFSET_Y] ?? '0');
+        labelPos = ticksTo + int.parse(_attributes[AxA.LABELS_OFFSET_Y] ?? '2');
         //  Note that text y is at the text baseline:
         legendPos =
-            labelPos + int.parse(_attributes[AxA.LEGENDTEXT_RIGHT_OFFSET_Y] ?? '0');
+            labelPos + int.parse(_attributes[AxA.LEGENDTEXT_RIGHT_OFFSET_Y] ?? '30');
       }
       axis_text_color = _attributes[AxA.TEXT_COLOR_Y] ?? 'black';
     } // end yaxis
@@ -450,9 +448,9 @@ class Axis {
     int posScreen, linePos, x, y;
     String textAnchor = "middle", baselineShift = "0";
     extra_space_for_edge_labels_x =
-        int.parse(_attributes[AxA.EXTRA_SPACE_FOR_EDGE_LABELS_X] ?? '0');
+        int.parse(_attributes[AxA.EXTRA_SPACE_FOR_EDGE_LABELS_X] ?? '50');
     extra_space_for_edge_labels_y =
-        int.parse(_attributes[AxA.EXTRA_SPACE_FOR_EDGE_LABELS_Y] ?? '0');
+        int.parse(_attributes[AxA.EXTRA_SPACE_FOR_EDGE_LABELS_Y] ?? '10');
 
     for (int i = 0; i < displayedXValues.length; i++) {
       physVal = double.parse(
@@ -461,8 +459,8 @@ class Axis {
       if (isXaxis || isXaxisF1) {
         posScreen = getScreenPos(physToIndex(physVal));
       } else {
-        double maxval = physStart ?? 0;
-        double normalizedMaxval = physWidth ?? 0;
+        double? maxval = physStart;
+        double? normalizedMaxval = physWidth;
         // because polyline has unnormalized values:
         posScreen = getScreenPos(
             PhysUnits.undoNormalize(physVal, maxval, normalizedMaxval));
@@ -517,7 +515,7 @@ class Axis {
 
       // draw tick marks if wanted, tick length 0 means no ticks
       if (_attributes.containsKey(AxA.TICK_LENGTH) &&
-          int.parse(_attributes[AxA.TICK_LENGTH] ?? '0') > 0) {
+          int.parse(_attributes[AxA.TICK_LENGTH] ?? '6') > 0) {
         line = LineElement(); // line parallel to y axis
         if (isXaxis) {
           linePos = posScreen + extra_space_for_edge_labels_x;
@@ -543,8 +541,8 @@ class Axis {
 
         // set common attributes
         SVG.setAttr(line, {
-          SVG.STROKE: _attributes[AxA.STROKE] ?? '',
-          SVG.STROKE_WIDTH: _attributes[AxA.STROKE_WIDTH] ?? ''
+          SVG.STROKE: _attributes[AxA.STROKE] ?? 'black',
+          SVG.STROKE_WIDTH: _attributes[AxA.STROKE_WIDTH] ?? '1'
         });
         labelsContainer.append(line);
       }
@@ -587,7 +585,7 @@ class Axis {
           // offset from xaxis labels
           SVG.FILL: axis_text_color,
           SVG.STROKE: "none",
-          SVG.FONT_SIZE: _attributes[AxA.FONT_SIZE] ?? '10',
+          SVG.FONT_SIZE: _attributes[AxA.FONT_SIZE] ?? '18',
           SVG.TEXT_ANCHOR: "middle",
           SVG.CURSOR: "default"
           // don't auto-change to text entry cursor shape
@@ -599,7 +597,7 @@ class Axis {
         // rotation origin is at (0,0) of the container, and the text anchor being set to "middle".
         // default legend text direction is from bottom to top
         int legendTextOffset = int.parse(_attributes[
-            AxA.LEGENDTEXT_LEFT_OFFSET_Y] ?? '0'); // relative to yaxis labels
+            AxA.LEGENDTEXT_LEFT_OFFSET_Y] ?? '30'); // relative to yaxis labels
         String rotate =
             "rotate(-90) translate(${-axisLength / 2}, ${legendTextOffset})";
 
@@ -621,7 +619,7 @@ class Axis {
           // (x,y) = (0,0) is the 90 degree rotation origin
           SVG.FILL: axis_text_color,
           SVG.STROKE: "none",
-          SVG.FONT_SIZE: _attributes[AxA.FONT_SIZE] ?? '10',
+          SVG.FONT_SIZE: _attributes[AxA.FONT_SIZE] ?? '18',
           SVG.TEXT_ANCHOR: "middle",
           // changing this would change the transformation formula above
           SVG.TRANSFORM: rotate,
@@ -660,6 +658,7 @@ class Axis {
     }
     // convert physical to screen coordinates (must use orig. values!)
     int posScreen = physToScreen(physval).round();
+
     return posScreen;
   }
 
@@ -727,7 +726,8 @@ class Axis {
       min = right;
       max = left;
     }
-
+    assert(min!=max, 'min=$min should not be equal to max=$max');
+    
     // find min, max, and interval
     double range = nicenum(max - min, false);
     double d = nicenum(range / (nticks - 1), true); //  tick mark spacing
@@ -735,7 +735,7 @@ class Axis {
     double graphmax = (max / d).ceil() * d; //  graph range max
 
     // define # of fractional digits to show
-    int nfrac = scale ?? 1;
+    int? nfrac = scale;
     if (nfrac == null) {
       double log10d = math.log(d) / math.ln10;
       nfrac = math.max(-log10d.floor(), 0);

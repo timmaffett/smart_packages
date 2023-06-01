@@ -51,7 +51,7 @@ class Legend {
   ///  If a toptitle is specified, set it at the top of the legend.
   ///  A toptitle is to be stored in legendAttributes[LegA.TOP_TITLE].
   ///  Subtitles (each subtitle on a separate line
-  Legend(Map<LegA, String> legendAttributes, this.nlines) {
+  Legend(Map<LegA, String>? legendAttributes, this.nlines) {
     curlineNo = nlines;
 
     attrMap[LEGEND_ID] = Map.from(LEGEND_DEFAULT_ATTRIBUTES);

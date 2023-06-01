@@ -22,7 +22,7 @@ typedef void BaseDialogCloseCallback(UserInput userInput);
 class BaseDialog {
   // the "glass" pane covering the application to make the dialog modal:
   late DivElement dia; // the actual dialog
-  late DivElement diaContainer; // contains [dia] only if dialog is modal
+  DivElement? diaContainer; // contains [dia] only if dialog is modal
 //  String closeReturnValue;
   BaseDialogCloseCallback? closeCallback;
   late bool isModal; // true if the this dialog is modal
@@ -46,7 +46,7 @@ class BaseDialog {
   void createShowDia() {
     dia = DivElement(); // create the dialog box
 
-    DiaAttr.setDialogStyle2(dia!); // initialize the style with defaults
+    DiaAttr.setDialogStyle2(dia); // initialize the style with defaults
 
     // make some style attributes dependent on the modality and append
     // the dialog box the document body
@@ -67,13 +67,13 @@ class BaseDialog {
         ..zIndex = "${DiaAttr.ZINDEX_DIALOG}"
         ..overflowY = "auto"; // scrollbar if too many item cells in dialog
 
-      document.body!.append(diaContainer);
+      document.body!.append(diaContainer!);
 
       dia.style
 //      ..width = "${18}em" // width MUST be set by callers, must NOT be set here!
         ..color = DiaAttr.attr[DiaAttr.DIALOG_TEXT_COLOR];
 
-      diaContainer.append(dia);
+      diaContainer!.append(dia);
     } else {
       dia.style
             ..position = "absolute" // rel. to entire application (body)
@@ -95,12 +95,11 @@ class BaseDialog {
   /// if [userInput] is null, a non-null one is generated,
   /// with an empty String a button code.
   void close(UserInput? userInput) {
-    if(dia==null) return;
     isopen = false;
 //    closeReturnValue = userInput.buttonCode;
     dia.remove();
-    if (isModal) {
-      diaContainer.remove();
+    if (isModal && diaContainer!=null) {
+      diaContainer!.remove();
     }
     if (closeCallback != null) {
       if (userInput == null) {
@@ -132,7 +131,7 @@ class BaseDialog {
 class UserInput {
   static final int IX_CBUT = 0; // index of checkbox state
   String _buttonCode;
-  Map<int, List<String>>? fields;
+  Map<int, List<String?>>? fields;
   BaseDialog? dia;
 
   /// Creates a [UserInput] from:
@@ -156,7 +155,7 @@ class UserInput {
   ///
   /// , 0.1, 3.0] (line with a button and
   ///   two text fields, each containing "0.5, -1.0" and "0.1, 3.0".
-  List<String>? getUserInput(int line) {
+  List<String?>? getUserInput(int line) {
     return fields?[line]?.sublist(1);
   }
 
@@ -168,10 +167,6 @@ class UserInput {
   }
 
   String get buttonCode {
-    if (_buttonCode == null) {
-      return "";
-    } else {
-      return _buttonCode;
-    }
+    return _buttonCode;
   }
 } // UserInput

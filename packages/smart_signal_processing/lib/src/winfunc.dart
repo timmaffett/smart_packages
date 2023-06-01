@@ -27,7 +27,7 @@ class WinFunc {
   ///     case AQ would be the length of the time signal in seconds, and
   ///     td the "time domain size", i.e. [array].length.
   static void expMult(
-      Float64List array, double a, bool isComplex, String groupDelay) {
+      Float64List array, double a, bool isComplex, String? groupDelay) {
     int i = 0;
     if (groupDelay != null && double.parse(groupDelay) > 0) {
       i = double.parse(groupDelay).round();

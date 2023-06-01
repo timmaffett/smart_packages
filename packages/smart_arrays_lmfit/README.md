@@ -7,7 +7,7 @@ The purpose of this package is to fit "experimental data" to a "fit function" re
 This curve fitter is using the Levenberg-Marquardt algorithm. The Dart implementation here was derived from https://github.com/reptillicus/jsfit.
 
 ### Example
-- The provided example can be directly executed via https://smart.specpad.bplaced.net/smart_arrays_lmfit/example.html.
+- The provided example can be directly executed via https://timmaffett.github.io/smart_packages/smart_arrays_lmfit/example.html.
 
 - Or, download a package and execute the file `example/example.html` in your browser.
 

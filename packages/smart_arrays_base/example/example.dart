@@ -8,16 +8,13 @@ main() {
   // The number before the decimal point is the row number, the number
   // after the decimal point is the column number.
   final int NROWS = 123, NCOLS = 234;
-  List<Float64List?> workmatrix = List<Float64List?>.filled(NROWS, null);
+  List<Float64List> matrix = List<Float64List>.filled(NROWS, Float64List(NCOLS));
   for (int i = 0; i < NROWS; i++) {
-    Float64List row = Float64List(NCOLS);
-
+    Float64List row = matrix[i];
     for (int k = 0; k < NCOLS; k++) {
       row[k] = double.parse("$i.$k");
     }
-    workmatrix[i] = row;
-  }
-  List<Float64List> matrix = workmatrix as List<Float64List>;  // once its created and filled with valid lists
+  }  // once its created and filled with valid lists
   Float64List? row100 = Array2D.getRow(matrix, 101); // extract row 101
   Float64List? col100 = Array2D.getColumn(matrix, 105); // extract column 105
 

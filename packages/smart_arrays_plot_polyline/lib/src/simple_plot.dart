@@ -41,7 +41,7 @@ class SimplePlot {
 
   List<String>? poly_colors;
 
-  SimplePlot(
+   SimplePlot(
       List<Float64List> arrays,
       DivElement plotDiv,
       List<Map<PyA, String>> plotAttr,

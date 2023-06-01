@@ -5,7 +5,7 @@
 This package provides functions that detect peaks (maximum values) in one- or two-dimensional arrays. Peak detection (peak search, peak picking) does not simply mean finding maximum values. Data originating from measurements are often subject to noise, i.e. random small variations of the measured values. The provided algorithms therefore allow you to specify a noise value to exclude noise effects from peak search. 
 
 ### Example
-- The provided example can be directly executed via https://smart.specpad.bplaced.net/smart_arrays_peaks/example.html.
+- The provided example can be directly executed via https://timmaffett.github.io/smart_packages/smart_arrays_peaks/example.html.
 - Or, download and unpack the package, then execute the file `example/example.html` in your browser.
 
 ### The major API functionalities

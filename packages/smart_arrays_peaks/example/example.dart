@@ -141,5 +141,5 @@ void plotResult(
 
   // append the fitResultPrintOut legend to the plot's data area
   Legend legend2 = SimplePlot.createLegend(legend2Attr, null)!;
-  splot.pl.dataAreas.add(legend2.legendContainer);
+  splot.pl.dataAreas[0]!.append(legend2.legendContainer);
 }

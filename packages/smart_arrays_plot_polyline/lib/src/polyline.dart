@@ -41,9 +41,9 @@ class Polyline {
       effectivePolylineHeight;
   double? refYmax; // maximum y value will become refYmax
   int? ixFirst, ixLast; // first and last index on screen
-  int xsFirst=0,
+  int? xsFirst=0,
       xsLast=0; // first and last screen x of polyline relative to dataArea
-  late int ysLast; // last screen y of polyline relative to dataArea
+  int? ysLast; // last screen y of polyline relative to dataArea
   late int ysMin, ysMax; // smallest and biggest y screen value of polyline
   double yysMin=0, yysMax=0; // the physical y values corresponding to ysMin, ysMax
   late int xshift, yshift1, yshift2; // additional offset in pixels
@@ -601,7 +601,7 @@ class Polyline {
     yselectionIcon = ys! - height ~/ 2;
     String stroke = attr[PyA.STROKE]  ?? 'black', fill = "white";
     if (isSelected) {
-      fill = attr[PyA.STROKE] ?? '1';
+      fill = attr[PyA.STROKE] ?? 'black';
     }
 
     selectionIcon = RectElement();
@@ -642,14 +642,14 @@ class Polyline {
   /// SQUARE_EMPTY, CIRCLE_EMPTY, ...
   void addPointShapes() {
     // remove existing point shapes
-    if (pointShapes != null && pointShapes.isNotEmpty) {
+    if (pointShapes.isNotEmpty) {
       for (GeometryElement shape in pointShapes) {
         shape.remove();
       }
       pointShapes.clear();
     }
 
-    String markerAttr = attr[PyA.POINT_LIST] ?? '';
+    String? markerAttr = attr[PyA.POINT_LIST];
     if (markerAttr == null || markerAttr.isEmpty) return;
 
     List<String> xyvals = JsonUtils.decodeLS(markerAttr);
@@ -694,7 +694,8 @@ class Polyline {
   /// [mxs, mys] with the geometric form [shape].
   GeometryElement createPointShape(int mxs, int mys, String shape) {
     GeometryElement pointShape;
-    String stroke = attr[PyA.POINT_LIST_STROKE] ?? 'black', fill = "white";
+    String? stroke = attr[PyA.POINT_LIST_STROKE];
+    String fill = "white";
     if (stroke == null) {
       stroke = attr[PyA.STROKE] ?? 'black'; // use polyline stroke
     }

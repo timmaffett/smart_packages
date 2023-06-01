@@ -290,21 +290,20 @@ class Array2D {
 
     Float64List resultRow;
     Float64List inputRow;
-    List<Float64List?> result = List<Float64List?>.filled(nrows, null);
+    List<Float64List> result = List<Float64List>.filled(nrows, Float64List(ncols));
     double curval;
     int destrow = 0;
     for (int i = firstRow; i < endRow; i++) {
       inputRow = matrix[i];
 
-      resultRow = Float64List(ncols); // will contain zeroes!
+      resultRow = result[destrow++]; // will contain zeroes!
       for (int j = 0; j < ncols; j++) {
         curval = inputRow[firstCol + j];
         if (negLevels && curval > 0 || !negLevels && curval < 0) curval = 0.0;
         resultRow[j] = curval;
       }
-      result[destrow++] = resultRow;
     }
-    return result as List<Float64List>;
+    return result;
   }
 
   /// Appends each row of [rows] to [matrix].

@@ -20,7 +20,7 @@ Then your are exactly right here. The focus of this package is the ease-of-use o
 
 ### Display the examples
 - Click here to view the examples:
- [smart_dialog examples](https://smart.specpad.bplaced.net/smart_dialogs/example.html)
+ [smart_dialog examples](https://timmaffett.github.io/smart_packages/smart_dialogs/example.html)
  
  - Or, download and unpack the package, then execute the file `example/example.html` in your browser.
 

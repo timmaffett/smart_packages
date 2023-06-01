@@ -68,7 +68,7 @@ abstract class DSetStore {
   late PropStore propStore;
 
   /// Saves the metadata [meta] of the [dset] under [dskey].
-  Future<bool> dsmetaSave(DSKey dskey, DSet dset);
+  Future<bool?> dsmetaSave(DSKey dskey, DSet dset);
 
   /// Saves [matrix] as the dataset component [dsc], e.g. as
   /// [DSC_REAL], under the identifier [DSKey]. A p otentially existing [dsc]
@@ -101,11 +101,11 @@ abstract class DSetStore {
   /// Inverse of [dscompSave]: Returns [matrix] stored under [dskey]
   /// as the dataset component [dsc]. Returns null if the component doesn't
   /// exist, or any error occured.
-  Future<List<Float64List>> dscompLoad(DSKey dskey, String dsc);
+  Future<List<Float64List>?> dscompLoad(DSKey dskey, String dsc);
 
   /// Deletes the property [propName] from the [PropStore] common ("global") to
   /// all datasets of this [DSetStore]. Returns true if succeeded.
-  Future<bool> gpropDel(String propName);
+  Future<bool?> gpropDel(String propName);
 
   /// Saves the property with name [propName] and with value [propValue] to
   /// the [PropStore] common ("global") to all datasets of this [DSetStore].
@@ -143,12 +143,12 @@ abstract class DSetStore {
   /// Saves the dataset [ds] under the identifier [dskey] in this store.
   /// If [ds] already exists, it is overriden silently.
   /// Throws an error message in case of a problem.
-  Future dsSave(DSKey dskey, DSet ds) async {
+  Future dsSave(DSKey dskey, DSet? ds) async {
     if (ds == null) {
       throw ("No data specified: '$dskey'.");
     }
 
-    List<Float64List> yValues,
+    List<Float64List>? yValues,
         yValuesImag,
         yValuesImagIR,
         yValuesImagRI,
@@ -175,9 +175,9 @@ abstract class DSetStore {
 
       // save imags
       if (ds.values2DImag != null) {
-        yValuesImag = ds.values2DImag![0]!; // 2ii
-        yValuesImagIR = ds.values2DImag![1]!; // 2ir
-        yValuesImagRI = ds.values2DImag![2]!; // 2ri
+        yValuesImag = ds.values2DImag![0]; // 2ii
+        yValuesImagIR = ds.values2DImag![1]; // 2ir
+        yValuesImagRI = ds.values2DImag![2]; // 2ri
         if (yValuesImag != null) {
           await dscompSave(dskey, yValuesImag, DSetStore.DSC_IMAG);
         }
@@ -209,14 +209,14 @@ abstract class DSetStore {
   /// arrays might be large. They have to be loaded, when needed,
   /// separately using [dscompLoad].
   /// Throws an error message in case of a problem.
-  Future<DSet> dsLoad(DSKey dskey) async {
+  Future<DSet?> dsLoad(DSKey dskey) async {
     Map<String, Object>? attr1 = await dsmetaLoad(dskey);
     Map<String, String> attr = {};
     if (attr1 != null) {
       attr = Map.from(attr1);
     }
 
-    List<Float64List> reals = await dscompLoad(dskey, DSetStore.DSC_REAL);
+    List<Float64List>? reals = await dscompLoad(dskey, DSetStore.DSC_REAL);
     if (reals == null) {
       return Future.value(null);
     }
@@ -234,8 +234,8 @@ abstract class DSetStore {
   /// Returns null if no such component there, or on error.
   /// For 1D datasets, the result has only 1 List entry which is the DSC_IMAG
   /// component. For 2D, the result is the DSC_IMAG matrix.
-  Future<List<Float64List>> dsimagLoad(DSKey dskey) async {
-    List<Float64List> imags = await dscompLoad(dskey, DSetStore.DSC_IMAG);
+  Future<List<Float64List>?> dsimagLoad(DSKey dskey) async {
+    List<Float64List>? imags = await dscompLoad(dskey, DSetStore.DSC_IMAG);
     if (imags == null) {
       return Future.value(null);
     }
@@ -248,13 +248,13 @@ abstract class DSetStore {
   ///  are present, these are not copied (TODO).
   ///  Returns false if error. Also throws error message.
   Future<bool> dsCopy(DSKey sourceDskey, DSKey destDskey) async {
-    DSet dsSource = await dsLoad(sourceDskey);
+    DSet? dsSource = await dsLoad(sourceDskey);
     if (dsSource == null) {
       return Future.value(false);
     }
 
     Completer<bool> cpl = Completer();
-    List<Float64List> imag = await dsimagLoad(sourceDskey);
+    List<Float64List>? imag = await dsimagLoad(sourceDskey);
     if (dsSource.is1D) {
       if (imag != null) {
         dsSource.valuesImag = imag[0];

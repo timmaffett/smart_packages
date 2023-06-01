@@ -26,7 +26,8 @@ class LMfit {
   late double epsilon;
 
   late FitFunction model;
-  late List<double> xvals, yvals, userWeights, initialParams;
+  late List<double> xvals, yvals, initialParams;
+  List<double>? userWeights; 
   late Map<String, List<String?>> options;
 
   late List<double> weights, params;
@@ -291,10 +292,10 @@ class LMfit {
         if (entry == null) {
           continue;
         }
-        List<String> entryItems = entry.split(" ");
+        List<String?> entryItems = entry.split(" ");
         if (entryItems[2] != "null" && entryItems[3] != "null") {
-          double limit1 = double.parse(entryItems[2]);
-          double limit2 = double.parse(entryItems[3]);
+          double limit1 = double.parse(entryItems[2]!);
+          double limit2 = double.parse(entryItems[3]!);
           if (pars[k] < limit1) {
             pars[k] = limit1;
           }
@@ -471,12 +472,12 @@ class LMfit {
     //number of observations
     nvals = xvals.length;
     //the weights array, if it exists. If not, set all points to have unit weights
-    if (userWeights == null || userWeights.length != nvals) {
+    if (userWeights == null || userWeights!.length != nvals) {
       weightedFit = false;
       weights = List<double>.filled(nvals,0.0);
       weights.fillRange(0, nvals, 1.0);
     } else {
-      weights = userWeights;
+      weights = userWeights!;
       weightedFit = true;
     }
 
@@ -501,7 +502,7 @@ class LMfit {
     //number of jac calcs
     numJac = 0;
     //the default fitter options
-    Map<String, List<String>> defaultOptions = {
+    Map<String, List<String?>> defaultOptions = {
       MAX_ITERATIONS: ["200"],
       "debug": ["false"],
       FIT_OPT_TOLERANCE: ["1e-10"],
@@ -595,7 +596,7 @@ class LMfit {
   /// result stringified, on the other, rather than as dynamic values.
   /// NOTE: If [xvals] is null, it is created automatically with the values
   ///  [0.0, 1.0, 2.0, ... , yvals.length-1].
-  Future<Map<String, List<String>>> lmfit(
+  Future<Map<String, List<String?>>> lmfit(
       FitFunction fitFunction,
       List<double>? xvals,
       List<double> yvals,
@@ -607,11 +608,11 @@ class LMfit {
         xvals[i] = i.toDouble();
       }
     }
-    Completer<Map<String, List<String>>> cpl = Completer();
+    Completer<Map<String, List<String?>>> cpl = Completer();
 
     LMfit lmfit = LMfit();
-    Map<String, List<String>> fitResult = {};
-    List<String> li;
+    Map<String, List<String?>> fitResult = {};
+    List<String?> li;
     List<double> userWeights = []; // no non-null such weights for now
     try {
       //print("fitcurve 1000=$initialPars");
@@ -630,12 +631,12 @@ class LMfit {
         li.add(fitResultSD["parameterErrors"][i].toString());
       }
       fitResult[LMfit.PARAMETER_ERRORS] = li;
-      fitResult[LMfit.CHI2] = <String>[fitResultSD["chi2"].toString()];
-      fitResult[LMfit.CHI2RED] = <String>[fitResultSD["chi2red"].toString()];
-      fitResult[LMfit.ITERATIONS] = <String>[
+      fitResult[LMfit.CHI2] = <String?>[fitResultSD["chi2"].toString()];
+      fitResult[LMfit.CHI2RED] = <String?>[fitResultSD["chi2red"].toString()];
+      fitResult[LMfit.ITERATIONS] = <String?>[
         fitResultSD["iterations"].toString()
       ];
-      fitResult[LMfit.STOP_REASON] = <String>[
+      fitResult[LMfit.STOP_REASON] = <String?>[
         fitResultSD["stopReason"].toString()
       ];
       li = [];
@@ -646,11 +647,12 @@ class LMfit {
       li = [];
       li.add(fitResultSD["time"].toString());
       fitResult[LMfit.TIME] = li;
-    } catch (e) {
+    } catch (e, st) {
       //print("LMfit: fitcurve 1000error=${e}");
       fitResult = {
         FIT_ERROR: ["LMfit: 1000 error=<br>" + "${e}"]
       };
+      print('$e stacktrace=$st');
     }
     cpl.complete(fitResult);
     return Future.value(fitResult);
@@ -658,12 +660,12 @@ class LMfit {
 
   /// Convenience method as an alternative for [lmfit] where x- and y values
   /// can be specified as Float64List instead of List<double>.
-  Future<Map<String, List<String>>> lmfitF64(
+  Future<Map<String, List<String?>>> lmfitF64(
       FitFunction fitFunction,
       Float64List xvalsF64,
       Float64List yvalsF64,
       List<double> initialPars,
-      Map<String, List<String>> fitOptions) async {
+      Map<String, List<String?>> fitOptions) async {
     List<double> xvals = List.from(xvalsF64);
     List<double> yvals = List.from(yvalsF64);
     return lmfit(fitFunction, xvals, yvals, initialPars, fitOptions);

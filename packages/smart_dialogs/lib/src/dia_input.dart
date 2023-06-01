@@ -19,7 +19,7 @@ class InputDialog extends BaseDialog {
       READ_ONLY = "||++++||",
       ENABLE_TEXTINPUT_COMBO = "+||+",
       DISABLE_COMBO_SELECTION = "?||?";
-  late PopupMenu popup;
+  PopupMenu? popup;
   TableElement diaTable = TableElement(); // contains the dialog
   // 0 = no input dialog is open, and no special actions pending (default)
   // 1 = input dialog is open
@@ -28,7 +28,7 @@ class InputDialog extends BaseDialog {
   final String RADIOGROUP1 = "radiogroup1";
 //  Map<String, String> attr;
   bool redcross_left = false;
-  List<ActButton> actButs = [];
+  List<ActButton?> actButs = [];
 
   /// NOTE: In many cases it is not necessary to use the constructors.
   ///  It is easier to inoke the utilities Info.show(), Info.get(), Info,get2D(),
@@ -76,7 +76,7 @@ class InputDialog extends BaseDialog {
       String htmlTitleText,
       List<String>? textLabels,
       List<List<String>?>? comboInfo,
-      List<String>? defaultInputTexts,
+      List<String?>? defaultInputTexts,
       List<int>? widths,
       List<String>? isChecked,
       BaseDialogCloseCallback? closeCallback,
@@ -88,7 +88,7 @@ class InputDialog extends BaseDialog {
         htmlTitleText,
         textLabels,
         {COL1: comboInfo},
-        {COL1: defaultInputTexts??[]},
+        {COL1: defaultInputTexts},
         widths,
         isChecked,
         alternateRowColor,
@@ -138,7 +138,7 @@ class InputDialog extends BaseDialog {
         htmlTitleText,
         inputTextLabelInfo,
         {COL1: comboInfo},
-        {COL1: defaultInputTexts??[]},
+        {COL1: defaultInputTexts},
         sizes,
         isChecked,
         alternateRowColor,
@@ -152,12 +152,12 @@ class InputDialog extends BaseDialog {
       String htmlTitleText,
       List<String>? inputTextLabelInfo,
       Map<int, List<List<String>?>?>? comboInfoND,
-      Map<int, List<String>?>? defaultInputTextsND,
+      Map<int, List<String?>?>? defaultInputTextsND,
       List<int>? sizes,
-      List<String>? isChecked,
+      List<String?>? isChecked,
       bool? alternateRowColor,
-      List<String>? buttonLabels) {
-    List<String>? defaultInputTexts, defaultInputTexts2D;
+      List<String?>? buttonLabels) {
+    List<String?>? defaultInputTexts, defaultInputTexts2D;
     List<List<String>?>? comboInfo1D, comboInfo2D;
     alternateRowColor ??= false;
     Map<String, String?> attr = DiaAttr.attr; // use shortcut
@@ -196,13 +196,13 @@ class InputDialog extends BaseDialog {
 
     bool showAbortIcon = true; // as of now, we always show an abort icon
     int delIconSize = int.parse(attr[DiaAttr.DIALOG_CROSS_FONTSIZE]!);
-    late TableCellElement delCell;
+    TableCellElement? delCell;
     List<TableCellElement?> fakeCells = List<TableCellElement?>.filled(NCOLS - 1, null);
     String alignCross = "right";
     if (redcross_left) {
       alignCross = "left";
     }
-    if (showAbortIcon != null && showAbortIcon) {
+    if (showAbortIcon) {
       delCell = TableCellElement();
       // we need this for delCell to be rightmost
       for (int i = 0; i < NCOLS - 1; i++) {
@@ -217,7 +217,7 @@ class InputDialog extends BaseDialog {
       DiaUtils.appendHtml2(delCell, DiaUtils.UNICODE_DELETE_CROSS);
       delCell.onClick.listen((UIEvent e) {
         // close dialog if clicked into the del icon.
-        Rectangle rect = delCell.getBoundingClientRect();
+        Rectangle rect = delCell!.getBoundingClientRect();
         Point tpoint = DiaUtils.getTouchPoint(e);
         Rectangle iconRect = Rectangle(
             rect.right - delIconSize, rect.top, delIconSize, delIconSize);
@@ -226,10 +226,7 @@ class InputDialog extends BaseDialog {
         }
 
         if (iconRect.containsPoint(tpoint)) {
-          if (dia != null) {
-            close(UserInput(DiaAttr.DIA_ACT_ABORT, null, null));
-            //OBSOLETEdia = null;
-          }
+          close(UserInput(DiaAttr.DIA_ACT_ABORT, null, null));
           // TODO remove as soon as Chrome sizes the window back properly when keyboard closed
           if (DiaUtils.isTablet()) {
             window.scrollTo(0, 0);
@@ -242,8 +239,8 @@ class InputDialog extends BaseDialog {
     TableRowElement row;
     TableCellElement cell;
     int nrows = 0;
-    List<InputElement>? checkBoxes;
-    List<TextInputElement>? tinputFields, tinputFields2D;
+    List<InputElement?>? checkBoxes;
+    List<TextInputElement?>? tinputFields, tinputFields2D;
 
     void addEmptyTableRow() {
       row = TableRowElement();
@@ -270,31 +267,30 @@ class InputDialog extends BaseDialog {
     //    1: [true, Exponential, Gaussian],
     //    2: [null, 0.3, 0.3], 3: [null, 0.5, -1.0, 0.1, -1.0],
     //    4: [true, 2048, 256]}
-    Map<int, List<String>> getResults() {
-      Map<int, List<String>> results = Map<int, List<String>>();
-      String cboxResult, inputResult, inputResult2D;
-      List<String> resultLine;
+    Map<int, List<String?>> getResults() {
+      Map<int, List<String?>> results = Map<int, List<String?>>();
+      String? cboxResult, inputResult, inputResult2D;
+      List<String?> resultLine;
 
-      if(checkBoxes==null || tinputFields==null || tinputFields2D==null) return {};
       for (int i = 0; i < nrows; i++) {
         resultLine = <String>[];
-        InputElement cbox = checkBoxes[i];
+        InputElement? cbox = checkBoxes?[i];
         cboxResult = "null";
         if (cbox != null) {
           cboxResult = "${cbox.checked}";
         }
 
         inputResult = "null";
-        if (tinputFields[i] != null) {
-          inputResult = tinputFields[i].value ?? '';
+        if (tinputFields?[i] != null) {
+          inputResult = tinputFields![i]!.value;
         }
         resultLine.add(cboxResult);
         resultLine.add(inputResult);
 
         if (dim == 2) {
           inputResult2D = "null";
-          if (tinputFields2D[i] != null) {
-            inputResult2D = tinputFields2D[i].value ?? '';
+          if (tinputFields2D?[i] != null) {
+            inputResult2D = tinputFields2D![i]!.value;
           }
           resultLine.add(inputResult2D);
         }
@@ -308,13 +304,9 @@ class InputDialog extends BaseDialog {
     void executeButton(int i, Event e) {
       e.preventDefault();
       if (i == -1) {
-        if (dia != null) {
-          close(UserInput(DiaAttr.DIA_ACT_ABORT, null, null));
-        }
+        close(UserInput(DiaAttr.DIA_ACT_ABORT, null, null));
       } else {
-        if (dia != null) {
-          close(UserInput(DiaAttr.DIA_ACTIONS[i], getResults(), null));
-        }
+        close(UserInput(DiaAttr.DIA_ACTIONS[i], getResults(), null));
       }
      //OBSOELTE//dia = null;
 
@@ -376,24 +368,24 @@ class InputDialog extends BaseDialog {
     if (inputTextLabelInfo != null) {
       nrows = inputTextLabelInfo.length;
 
-      checkBoxes = [];
-      tinputFields = [];
+      checkBoxes = List<InputElement?>.filled(nrows,null);
+      tinputFields = List<InputElement?>.filled(nrows,null);
       if (dim == 2) {
-        tinputFields2D = [];
+        tinputFields2D = List<InputElement?>.filled(nrows,null);
       }
 
       for (int i = 0; i < nrows; i++) {
         row = TableRowElement();
         cell = TableCellElement();
         // type must be declared inside loop, otherwise iOS would make checkbox display errors
-        late InputElement cbox;
+        InputElement? cbox;
         if (isChecked != null &&
             isChecked[i] != null &&
             (isChecked[i] == DiaUtils.TRUE || isChecked[i] == DiaUtils.FALSE)) {
           //        if(buttontype == null)
           //          buttontype = DiaAttr.CHECKBOX;
           cbox = InputElement(type: buttontype);
-          cbox.checked = DiaUtils.getBoolFromString(isChecked[i]);
+          cbox.checked = DiaUtils.getBoolFromString(isChecked[i]!);
           //        cbox.value = "checked"; // TODO ???
           cbox.style.fontSize = "${textfontSize}px";
           if (buttontype == DiaAttr.RADIO) {
@@ -421,7 +413,7 @@ class InputDialog extends BaseDialog {
 
         // Returns new text input field containing default [text]
         // May return null. The field is appended to the cbox further down
-        TextInputElement appendTextInputField(String text) {
+        TextInputElement? appendTextInputField(String? text) {
           TextInputElement? textinputField;
           if (sizes!=null && sizes[i] > 0) {
             bool readOnly = false;
@@ -445,8 +437,8 @@ class InputDialog extends BaseDialog {
             cell.append(textinputField);
             textinputField.onMouseDown.listen((UIEvent e) {
               // auto-select radiobutton when it has a textfield and the user clicks into it
-              if (checkBoxes![i] != null && checkBoxes[i].name == RADIOGROUP1) {
-                checkBoxes[i].checked = true;
+              if (checkBoxes![i] != null && checkBoxes[i]!.name == RADIOGROUP1) {
+                checkBoxes[i]!.checked = true;
               }
             });
 
@@ -464,14 +456,14 @@ class InputDialog extends BaseDialog {
           }
           row.append(cell);
           assert( textinputField!=null, 'textinputField unexpectedly null');
-          return textinputField!;
+          return textinputField;
         }
 
-        tinputFields[i] = appendTextInputField(defaultInputTexts![i]);
+        tinputFields[i] = appendTextInputField(defaultInputTexts?[i]);
 
         // appends combobox to previous text field
         void appendComboBox(
-            List<List<String>?> comboInfo, List<TextInputElement> textInFields) {
+            List<List<String>?>? comboInfo, List<TextInputElement?>? textInFields) {
           // create combo box if required, in form of a button and a popup
           if (comboInfo != null &&
               comboInfo[i] != null &&
@@ -510,8 +502,8 @@ class InputDialog extends BaseDialog {
               e.stopPropagation();
 
               // auto-select radiobutton when it has a textfield and the user clicks into it
-              if (checkBoxes![i] != null && checkBoxes[i].name == RADIOGROUP1) {
-                checkBoxes[i].checked = true;
+              if (checkBoxes![i] != null && checkBoxes[i]!.name == RADIOGROUP1) {
+                checkBoxes[i]!.checked = true;
               }
 
               List<String> combo_popup = [];
@@ -530,7 +522,7 @@ class InputDialog extends BaseDialog {
               }
 
               // toggles popup when clicking two times on the popup cell
-              if (popup == null || !popup.isOpen()) {
+              if (popup == null || !popup!.isOpen()) {
                 math.Point tpoint = DiaUtils.getTouchPoint(e as UIEvent);
                 // leave some room to be able to click on popup icon to close it
                 int x = tpoint.x.floor() + 12;
@@ -555,7 +547,7 @@ class InputDialog extends BaseDialog {
                   String actionCode = results.buttonCode;
                   // these arguments make sure that [processActions] takes the
                   // action from [sidebarItem.theAction]
-                  if (actionCode != null && actionCode.isNotEmpty) {
+                  if (actionCode.isNotEmpty) {
                     // remove possible marker
                     String pattern = comboInfo[i]![int.parse(actionCode)];
                     if (pattern.startsWith(ENABLE_TEXTINPUT_COMBO)) {
@@ -564,29 +556,29 @@ class InputDialog extends BaseDialog {
                     }
 
                     if (!disableComboSelection) {
-                      textInFields[i].value = pattern;
+                      textInFields?[i]?.value = pattern;
                     }
                     // make sure this item is now selected
                     if (checkBoxes!=null && i>=0 && i<checkBoxes.length) {
-                      checkBoxes[i].checked = true;
+                      checkBoxes[i]!.checked = true;
                     }
                   }
                 }), x, y, preventDefault);
 
-                if (nitems > N15) {
-                  popup.dia.style
+                if (nitems > N15 && popup!=null) {
+                  popup!.dia.style
 //            ..overflowX = "scroll"
                     ..overflowY = "scroll"
                     ..width = "${WIDTH15}px"
                     ..height = "${HEIGHT15}px";
                 }
               } else {
-                popup.close(null); // toggle off when on
+                popup!.close(null); // toggle off when on
               }
             }); // combo event listener
 
-            if (disableTextInputCombo && textInFields[i] != null) {
-              textInFields[i].disabled = true;
+            if (disableTextInputCombo && textInFields?[i] != null) {
+              textInFields![i]!.disabled = true;
             }
 //            print("1001=appended $i=${comboInfo[i]}");
             cell2.append(comboBut);
@@ -622,7 +614,7 @@ class InputDialog extends BaseDialog {
           }
         } // appendComboBox()
 
-        appendComboBox(comboInfo1D!, tinputFields!);
+        appendComboBox(comboInfo1D, tinputFields);
 
         if (dim == 2) {
           tinputFields2D![i] = appendTextInputField(defaultInputTexts2D![i]);
@@ -642,12 +634,12 @@ class InputDialog extends BaseDialog {
     if (buttonLabels == null) {
       buttonLabels = [DiaAttr.DIA_BUT_OK];
     }
-    actButs = [];
+    actButs = List<ActButton?>.filled(buttonLabels.length,null);
 
     int buttonFontsize = int.parse(attr[DiaAttr.DIALOG_BUTTON_FONTSIZE]!);
     for (int i = 0; i < buttonLabels.length; i++) {
       ActButton actbut = ActButton();
-      actbut.but.appendText(buttonLabels[i]);
+      actbut.but.appendText(buttonLabels[i] ?? '');
       actbut.but.style..fontSize = "${buttonFontsize}px";
       actbut.but.addEventListener('click', (e) {
         executeButton(i, e);
@@ -671,8 +663,8 @@ class InputDialog extends BaseDialog {
     form.append(diaTable);
 
     for (int i = 0; i < actButs.length; i++) {
-      if (buttonLabels[i] != null) {
-        form.append(actButs[i].but);
+      if (actButs[i] != null) {
+        form.append(actButs[i]!.but);
       }
     }
     dia.append(form);
@@ -685,7 +677,7 @@ class InputDialog extends BaseDialog {
     }
 
     // center the dialog vertically
-    int marginTop = diaContainer.clientHeight ~/ 2 - dia.clientHeight ~/ 2;
+    int marginTop = diaContainer!.clientHeight ~/ 2 - dia.clientHeight ~/ 2;
     if (marginTop < 0) {
       marginTop = 0;
     }
@@ -700,8 +692,8 @@ class InputDialog extends BaseDialog {
     int width = diaTable.clientWidth;
     if (actButs.isNotEmpty &&
         actButs[0] != null &&
-        diaTable.clientWidth < actButs[0].but.clientWidth) {
-      width = buttonLabels[0].length *
+        diaTable.clientWidth < actButs[0]!.but.clientWidth) {
+      width = (buttonLabels[0]?.length ?? 0) *
           (DiaUtils.removePx(dia.style.fontSize)).round();
     }
 
@@ -772,7 +764,7 @@ class InputDialog extends BaseDialog {
       String htmlTitleText,
       List<String>? inputTextLabelInfo,
       List<List<String>?>? comboInfo,
-      List<String>? defaultInputTexts,
+      List<String?>? defaultInputTexts,
       List<int>? sizes,
       List<String>? isChecked,
       bool? alternateRowColor,
@@ -1002,7 +994,7 @@ class Info {
       String htmlTitleText,
       List<String>? textLabels,
       List<List<String>?>? comboInfo,
-      List<String>? defaultInputTexts,
+      List<String?>? defaultInputTexts,
       List<int>? widths,
       List<String>? isChecked,
       bool? alternateRowColor,

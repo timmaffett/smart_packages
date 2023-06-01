@@ -1,14 +1,12 @@
 # The *smart_* Series of Dart Packages
 
-*This repository is the new home for Dr. Bruno Guigas's smart_XXXX series of packages from pub.dev.*
-
 --------------------------------------------------------------
 
 ## Package name: *smart_dialogs*
 
 This package provides easy-to-use dialogs of various types and some other GUI elements (popups, tables, icon panels) for use in Web applications, based on 'dart:html'. An example app displays the rich functionalities inside your browser, the respective source code, available on the pub Web site, will help you to quickly get results for your own applications.
 
-[Click here](https://smart.specpad.bplaced.net/smart_dialogs/example.html) to run the examples of *smart_dialogs*. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_dialogs/example.html) to run the examples of *smart_dialogs*. Note: This will not store any cookie or other information on your device.
 
 [https://pub.dev/packages/smart_dialogs](https://pub.dev/packages/smart_dialogs) for the pub.dev homepage for  *smart_dialogs*.
 
@@ -50,7 +48,7 @@ The compression algorithms provided by this package don't have anything to do wi
 
 It is often the case that one needs sample data for testing software, for presentations and other purposes. This package computes one and two-dimensional arrays representing functions such a sine, cosine, and more.
 
-[Click here](https://smart.specpad.bplaced.net/smart_arrays_sample_data/example.html) to run the example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_arrays_sample_data/example.html) to run the example. Note: This will not store any cookie or other information on your device.
 
 [https://pub.dev/packages/smart_arrays_sample_data](https://pub.dev/packages/smart_arrays_sample_data) for the pub.dev homepage for  *smart_arrays_sample_data*.
 
@@ -68,9 +66,9 @@ This package was designed for Web applications which need to store data on the l
 
 This package was designed for Web applications which need to plot 1D arrays in form of polylines (curves in the x, y plane). A plot may consist of one or several polylines (scaled relative to each other if desired), optionally with x and y axes, a coordinate grid, a text legend, selection icons, and marker text. Many array viewing options are provided, such as colors, fonts, zooming, scaling, shifting, rotation, layout parameters. Also, lists of points represented by circles or other shapes can be drawn, e.g.to draw a curve using individual points rather than connecting the points by polylines. The arrays to be plotted may have small or big sizes (even e.g. 1 million points). Plotting is performed using Scalable Vector Graphics SVG.
 
-[Click here](https://smart.specpad.bplaced.net/smart_arrays_plot_polyline/example.html) to run the example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_arrays_plot_polyline/example.html) to run the example. Note: This will not store any cookie or other information on your device.
 
-[Click here](https://smart.specpad.bplaced.net/smart_arrays_plot_polyline/example2.html) to run the 2nd example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_arrays_plot_polyline/example2.html) to run the 2nd example. Note: This will not store any cookie or other information on your device.
 
 Note: Also the examples of other packages listed on this page are generating plots. Click there to view more plot layouts!
 [https://pub.dev/packages/smart_arrays_plot_polyline](https://pub.dev/packages/smart_arrays_plot_polyline) for the pub.dev homepage for  *smart_arrays_plot_polyline*.
@@ -81,7 +79,7 @@ Note: Also the examples of other packages listed on this page are generating plo
 
 This package provides functions that detect peaks (maximum values) in one- or two-dimensional arrays. Peak detection (peak search, peak picking) does not simply mean finding maximum values. Data originating from measurements are often subject to noise, i.e. random small variations of the measured values. The provided algorithms therefore allow you to specify a noise value to exclude noise effects from peak search.
 
-[Click here](https://smart.specpad.bplaced.net/smart_arrays_peaks/example.html) to run the example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_arrays_peaks/example.html) to run the example. Note: This will not store any cookie or other information on your device.
 
 [https://pub.dev/packages/smart_arrays_peaks](https://pub.dev/packages/smart_arrays_peaks) for the pub.dev homepage for  *smart_arrays_peaks*.
 
@@ -91,7 +89,7 @@ This package provides functions that detect peaks (maximum values) in one- or tw
 
 The purpose of this package is to contour the three-dimensional surface represented by the values f(x,y) of a matrix with coordinate axes x and y. The detected contour lines are passed on to a user-provided renderer e.g. for graphical displaying the contours.The provided example can be directly executed via the following link. Or, download the package and execute the file `example/example.dart.js` in your browser.
 
-[Click here](https://smart.specpad.bplaced.net/smart_arrays_contour_finder/example.html) to run the example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_arrays_contour_finder/example.html) to run the example. Note: This will not store any cookie or other information on your device.
 
 [https://pub.dev/packages/smart_arrays_contour_finder](https://pub.dev/packages/smart_arrays_contour_finder) for the pub.dev homepage for  *smart_arrays_contour_finder*.
 
@@ -101,7 +99,7 @@ The purpose of this package is to contour the three-dimensional surface represen
 
 The purpose of this package is to fit "experimental data" to a "fit function" representing a model for the experimental data. These must be specified as an array of x values and an an array of the respective y values.
 
-[Click here](https://smart.specpad.bplaced.net/smart_arrays_lmfit/example.html) to run the example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_arrays_lmfit/example.html) to run the example. Note: This will not store any cookie or other information on your device.
 
 [https://pub.dev/packages/smart_arrays_lmfit](https://pub.dev/packages/smart_arrays_lmfit) for the pub.dev homepage for  *smart_arrays_lmfit*.
 
@@ -111,7 +109,7 @@ The purpose of this package is to fit "experimental data" to a "fit function" re
 
 This package provides functionalities to compute an n-dimensional mixed Lorentz-Gauss line shape, also called an n-dimensional Pseudo-Voigt function. Typically such functions occur in spectroscopic data originating from electro-magnetic radiation. The function can for example be used for fitting or deconvolution of such data, or for simulating (computing) spectra, i.e. as a superposition of several shapes with different parameters.
 
-[Click here](https://smart.specpad.bplaced.net/smart_lorentz_gauss/example.html) to run the example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_lorentz_gauss/example.html) to run the example. Note: This will not store any cookie or other information on your device.
 
 [https://pub.dev/packages/smart_lorentz_gauss](https://pub.dev/packages/smart_lorentz_gauss) for the pub.dev homepage for  *smart_lorentz_gauss*.
 
@@ -127,10 +125,11 @@ This package provides frequently used functions for signal processing:
 - Calculates the power or magnitude of a complex-valued array.
 - Phase-shifts (rotates in the complex plane) a complex-valued array.
 
-[Click here](https://smart.specpad.bplaced.net/smart_signal_processing/example.html) to run the example. Note: This will not store any cookie or other information on your device.
+[Click here](https://timmaffett.github.io/smart_packages/smart_signal_processing/example.html) to run the example. Note: This will not store any cookie or other information on your device.
 
 [https://pub.dev/packages/smart_signal_processing](https://pub.dev/packages/smart_signal_processing) for the pub.dev homepage for  *smart_signal_processing*.
 
 --------------------------------------------------------------
 
-The smart_ packages were originally authored by Dr. Bruno Guigas, Ernst Renz-Str. 16, 76646 Bruchsal, Phone: +4972574167, Germany, specpad@gmail.com
+The smart_XXXX packages are now updated and maintained by Tim Maffett, timmaffett@gmail.com
+They were originally authored by Dr. Bruno Guigas, Ernst Renz-Str. 16, 76646 Bruchsal, Phone: +4972574167, Germany, specpad@gmail.com

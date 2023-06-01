@@ -37,7 +37,7 @@ class XYGrid {
   ///  you can define here colors, dashes and more. The attributes specified here
   ///  override the respective defaults.
   XYGrid(this.xValues, this.yValues, this.xLength, this.yLength,
-      Map<AxA, String> gridAttr) {
+      Map<AxA, String>? gridAttr) {
     attributes = Map.from(GRID_DEFAULT_ATTRIBUTES); // init. attributes
     if (gridAttr != null) {
       // possibly changed attributes as wished by caller

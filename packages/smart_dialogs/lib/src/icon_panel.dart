@@ -21,7 +21,7 @@ class IconPanel extends BaseDialog {
 
   TableElement diaTable = TableElement();
   String lastTouchedActionCode='';
-  List<math.Point<int>> _lastTouchPoints=[];
+  List<math.Point<int>>? _lastTouchPoints;
   late String _iconStyle;
 
   /// Creates and displays a panel with icons. Each icon may have a callback
@@ -92,20 +92,20 @@ class IconPanel extends BaseDialog {
 
     int nrows = nitems ~/ ncols;
     if (nitems.remainder(ncols) > 0) nrows++;
-    List<TableRowElement> rows = [];//OBSOLETE//List<TableRowElement>(nrows);
+    List<TableRowElement?> rows = List<TableRowElement?>.filled(nrows,null);
 
     // add table header
     // decode: "iconName||action code"
     int iconcount = 0;
     int iconPadding = 5;
     String iconName;
-    IconCallback iconCallback;
+    IconCallback? iconCallback;
     TableCellElement cell;
     for (int i = 0; i < nrows; i++) {
       // NOTE: for any one reason, the type TableRowElement must be specified inside the loop,
       // otherwsie
       rows[i] = TableRowElement();
-      TableRowElement row = rows[i];
+      TableRowElement row = rows[i]!;
       row.style
         ..color = attr[DiaAttr.DIALOG_TEXT_COLOR] // initial setting
         ..cursor = "pointer"
@@ -132,15 +132,15 @@ class IconPanel extends BaseDialog {
         List<IconCallback> iconCallbacks = getIconCallbacks();
         assert(iconNames.length == iconCallbacks.length);
         iconCallback = iconCallbacks[touchedIconNo];
-        if (iconCallback != null) iconCallback(e);
+        if (iconCallback != null) iconCallback!(e);
       }
 
       void handleTouchEnd(TouchEvent e) {
         if(e.changedTouches==null) return;
         TouchList tl = e.changedTouches!;
-        if (tl == null || tl.isEmpty) return;
-        int lastx = _lastTouchPoints[0].x;
-        int lasty = _lastTouchPoints[0].y;
+        if (tl.isEmpty) return;
+        int lastx = _lastTouchPoints?[0].x ?? 0;
+        int lasty = _lastTouchPoints?[0].y ?? 0;
         if ((lastx - tl.first.page.x).abs() > 30 ||
             (lasty - tl.first.page.y).abs() > 20) {
           return;
@@ -149,13 +149,13 @@ class IconPanel extends BaseDialog {
       }
 
       // these are the icons in the current row
-      List<TableCellElement> iconCells = []; //OBOSLETE//List<TableCellElement>(ncols);
+      List<TableCellElement?> iconCells = List<TableCellElement?>.filled(ncols,null);
       for (int k = 0; k < ncols; k++) {
         // format is: "icon name||action code"
         iconName = iconNames[iconcount];
 
         iconCells[k] = TableCellElement();
-        cell = iconCells[k];
+        cell = iconCells[k]!;
         cell.id = "$iconcount"; // will indentify iconCallback
         DiaUtils.appendHtml2(
             cell, """<img src="${iconPath}/${iconName}" $_iconStyle>""");
@@ -167,12 +167,12 @@ class IconPanel extends BaseDialog {
             ;
 
         cell.onMouseEnter.listen((MouseEvent event) {
-          iconCells[k].style
+          iconCells[k]!.style
             ..backgroundColor = attr[DiaAttr.POPUP_SELECTION_COLOR];
         });
 
         cell.onMouseLeave.listen((MouseEvent event) {
-          iconCells[k].style
+          iconCells[k]!.style
             ..backgroundColor = attr[DiaAttr.ICONPANEL_BACKGROUND];
         });
 
@@ -212,7 +212,6 @@ class IconPanel extends BaseDialog {
 
   /// Returns the id of this panel.
   String getId() {
-    if (dia == null) return '';
     return dia.id;
   }
 

@@ -31,13 +31,13 @@ class DSAuditTrail {
   /// important methods for users of this class.
   static void addToAuditTrail(DSet ds, Map<String, String> entry) {
     ds.audittrail?.add(entry);
-    ds.meta[DSET_AUDIT_TRAIL] = json.encode(ds.audittrail);
+    ds.meta?[DSET_AUDIT_TRAIL] = json.encode(ds.audittrail);
   }
 
   /// Sets the audit trail of dataset [ds] dataset from another dataset [sourceDs].
   static void setAuditTrailFrom(DSet ds, DSet sourceDs) {
     ds.audittrail = sourceDs.audittrail;
-    ds.meta[DSET_AUDIT_TRAIL] = sourceDs.meta[DSET_AUDIT_TRAIL]!;
+    ds.meta?[DSET_AUDIT_TRAIL] = sourceDs.meta?[DSET_AUDIT_TRAIL] ?? 'ERROR in setAuditTrailFrom sourceDs.meta?[DSET_AUDIT_TRAIL] was null';
   }
 
   /// Initializes the audit trail for dataset [ds] from the metadata of [ds].
@@ -46,7 +46,7 @@ class DSAuditTrail {
   /// its version. This method is automatically called when creating a [DSet]
   /// and therefore needs not be used normally.
   static void init(DSet ds) {
-    String? json1 = ds.meta[DSET_AUDIT_TRAIL];
+    String? json1 = ds.meta?[DSET_AUDIT_TRAIL];
     if (ds.audittrail == null) {
       if (json1 != null && json1.isNotEmpty) {
         List<Map<String, String>> xlist = UtilsJson.decodeLMSS(json1);

@@ -2,7 +2,7 @@
 // code is governed by a BSD-style license that can be found in the LICENSE file.
 //
 // To execute this example, visit the following page:
-//   https://smart.specpad.bplaced.net/smart_dialogs/example.html
+//   https://timmaffett.github.io/smart_packages/smart_dialogs/example.html
 
 import 'package:smart_dialogs/smart_dialogs.dart';
 
@@ -70,12 +70,11 @@ class ExampleDispatcher {
             "<br>Please select an example and press OK",
         items,
         null,
-        List.filled(items.length, ''),
+        List.filled(items.length, null),
         List<int>.filled(items.length, 0),
         itemsChecked,
         true,
         null);
-
     if (uin.buttonCode == DiaAttr.DIA_ACT_OK) {
       itemsChecked = List<String>.filled(items.length, DiaUtils.FALSE);
       for (int i = 0; i < items.length; i++) {

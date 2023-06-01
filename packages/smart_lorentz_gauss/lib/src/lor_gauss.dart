@@ -118,7 +118,7 @@ class LorentzGauss extends LineShapeND {
   /// for L, G, and mixed mode.
   /// [c], [w] must be in the range (0, rows_cols)
   static Float64List array1D(
-      int npoints, double a, double c, double w, double m, double noiseAmpl,
+      int npoints, double a, double c, double w, double m, double? noiseAmpl,
       [double? fGauss, double? fLorentz]) {
     LorentzGauss lg = LorentzGauss.fromPars(a, [c], [w], [m], fGauss, fLorentz);
     Float64List yvals = Float64List(npoints);
@@ -145,10 +145,10 @@ class LorentzGauss extends LineShapeND {
     LorentzGauss lg = LorentzGauss.fromPars(a, c, w, m, fGauss, fLorentz);
 
     int nrows = rows_cols[0], ncols = rows_cols[1];
-    List<Float64List?> matrix = List<Float64List?>.filled(nrows,null);
+    List<Float64List> matrix = List<Float64List>.filled(nrows,Float64List(ncols));
     math.Random rand = math.Random();
     for (int i = 0; i < nrows; i++) {
-      Float64List currow = Float64List(ncols);
+      Float64List currow = matrix[i];
       for (int k = 0; k < ncols; k++) {
         double zval = lg.getValueAt([i.toDouble(), k.toDouble()]);
         if (noiseAmpl != null) {
@@ -157,9 +157,8 @@ class LorentzGauss extends LineShapeND {
         }
         currow[k] = zval;
       }
-      matrix[i] = currow;
     }
-    return matrix as List<Float64List>;
+    return matrix;
   }
 }
 

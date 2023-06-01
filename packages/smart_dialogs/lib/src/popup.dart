@@ -17,7 +17,7 @@ class PopupMenu extends BaseDialog {
 
   TableElement diaTable = TableElement(); // contains the dialog
   String lastTouchedActionCode='';
-  List<math.Point<int>> lastTouchPoints=[];
+  List<math.Point<int>>? lastTouchPoints;
 
   /// Shows a popup menu above the [parent] element (e.g. a div) with:
   ///  [id] The popup may optionally get an id (should be unique if the popup
@@ -47,7 +47,7 @@ class PopupMenu extends BaseDialog {
       String id,
       List<String> htmlItemTexts,
       List<String>? buttontypes,
-      List<String>? isChecked,
+      List<String?>? isChecked,
       BaseDialogCloseCallback? popupCallback,
       int x,
       int y,
@@ -88,7 +88,7 @@ class PopupMenu extends BaseDialog {
 //    TableRowElement row;
     TableCellElement cell;
 
-    List<TableRowElement> rows = []; //OBSOLETE//List<TableRowElement>();
+    List<TableRowElement> rows = [];
 
     void addEmptyTableRow() {
       rows.add(TableRowElement());
@@ -152,7 +152,7 @@ class PopupMenu extends BaseDialog {
             isChecked[i] != null &&
             (isChecked[i] == DiaUtils.TRUE || isChecked[i] == DiaUtils.FALSE)) {
           InputElement cbox = InputElement(type: DiaAttr.CHECKBOX);
-          cbox.checked = DiaUtils.getBoolFromString(isChecked[i]);
+          cbox.checked = DiaUtils.getBoolFromString(isChecked[i]!);
           //        cbox.value = "checked"; // TODO ???
           cbox.style.fontSize = "${attr[DiaAttr.DIALOG_POPUP_FONTSIZE2]}px";
           cell.append(cbox);
@@ -170,9 +170,8 @@ class PopupMenu extends BaseDialog {
 
       void execute(String curaction) {
         // only a non-greyed item will be executed!
-        if (dia != null && !displayedText.contains(POPUP_SPAN_GREYOUT)) {
+        if (!displayedText.contains(POPUP_SPAN_GREYOUT)) {
           close(UserInput(curaction, null, null));
-          //OBSOLETE//dia = null;
         }
       }
 
@@ -185,9 +184,9 @@ class PopupMenu extends BaseDialog {
         Element eventCell = e.target as Element;
         String curaction = eventCell.id;
         TouchList tl = e.changedTouches!;
-        if (tl == null || tl.isEmpty) return;
-        int lastx = lastTouchPoints[0].x;
-        int lasty = lastTouchPoints[0].y;
+        if (tl.isEmpty) return;
+        int lastx = lastTouchPoints?[0].x ?? 0;
+        int lasty = lastTouchPoints?[0].y ?? 0;
 //        InfoDialog("touchend=${eventCell.style.width} ${eventCell.style.height} $lastx $lasty ${tl.first.page.x} ${tl.first.page.y}", null);
         if ((lastx - tl.first.page.x).abs() > 30 ||
             (lasty - tl.first.page.y).abs() > 20) {
@@ -270,7 +269,6 @@ class PopupMenu extends BaseDialog {
   }
 
   String getId() {
-    if (dia == null) return '';
     return dia.id;
   }
 

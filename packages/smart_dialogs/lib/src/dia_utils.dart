@@ -29,7 +29,7 @@ class DiaUtils {
 
   /// Returns the rounded integer value
   /// assuming [cssAttr] is given in pixels, "10", or "10.5px",
-  static double removePx(String cssAttr) {
+  static double removePx(String? cssAttr) {
     if (cssAttr == null || cssAttr.isEmpty) return 28.0;
     return double.parse(cssAttr.replaceFirst("px", ""));
   }

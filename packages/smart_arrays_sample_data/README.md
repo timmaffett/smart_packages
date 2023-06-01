@@ -4,7 +4,7 @@
 It is often the case that one needs sample data for testing software, for presentations and other purposes. This package computes one and two-dimensional arrays representing functions such a sine, cosine, and more.
 
 ### Example
-- The provided example can be directly executed via https://smart.specpad.bplaced.net/smart_arrays_sample_data/example.html.
+- The provided example can be directly executed via https://timmaffett.github.io/smart_packages/smart_arrays_sample_data/example.html.
 - Or, download the package and execute the file `example/example.html` in your browser.
 
 ### The major API functionalities
