@@ -160,16 +160,16 @@ abstract class DSetStore {
     if (ds.values2D != null) {
       // 2D data
       yValues = ds.values2D!;
-      yPositive = ds.compressedPos!; // compression of reals
-      yNegative = ds.compressedNeg!;
+      yPositive = ds.compressedPos; // compression of reals
+      yNegative = ds.compressedNeg;
 
       // save real data
       await dscompSave(dskey, yValues, DSetStore.DSC_REAL);
       // save pos. and neg compression data
-      if (ds.compressedPos != null) {
+      if (yPositive != null) {
         await dscompSave(dskey, yPositive, DSetStore.DSC_COMPR_POS);
       }
-      if (ds.compressedNeg != null) {
+      if (yNegative != null) {
         await dscompSave(dskey, yNegative, DSetStore.DSC_COMPR_NEG);
       }
 
