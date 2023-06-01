@@ -12092,7 +12092,6 @@
               break;
             case 4:
               // then
-              null.toString;
               $async$goto = 7;
               return A._asyncAwait($async$self.dscompSave$3(dskey, t2, $.DSetStore_DSC_REAL), $async$dsSave$2);
             case 7:
